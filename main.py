@@ -3,7 +3,14 @@ from dotenv import load_dotenv
 import os, json, re, html
 from bs4 import BeautifulSoup
 import random
-import cairosvg
+from PIL import Image, ImageDraw, ImageFont
+
+
+LAST_ID_FILE = "/Volumes/Verbatim/Documents/GitHub/DevilGirlBot/last_mention_id.txt"
+IMAGES_FOLDER = "/Volumes/Verbatim/Documents/GitHub/DevilGirlBot/images"
+TEMP_PNG_PATH = "/Volumes/Verbatim/Documents/GitHub/DevilGirlBot/temp.png"
+FONT_PATH = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
+FONT_SIZE = 46
 
 load_dotenv()
 
@@ -15,8 +22,6 @@ mastodon = Mastodon(
     access_token=os.getenv("access_token"),
     api_base_url="https://mastodon.social"
 )
-
-LAST_ID_FILE = "/Volumes/Verbatim/Documents/GitHub/DevilGirlBot/last_mention_id.txt"
 
 
 
@@ -33,7 +38,7 @@ def build_alt_text(user_text: str) -> str:
 
 def pick_random_image():
     # folder containing images — adjust if needed
-    images_folder = "images"
+    images_folder = "/Volumes/Verbatim/Documents/GitHub/DevilGirlBot/images"
 
     # generate a random number between 0 and 64 inclusive
     idx = random.randint(0, 64)
@@ -72,87 +77,57 @@ def extract_user_text(status):
     return text
 
 
-# ---------------------------------------------------------
-# SVG GENERATOR
-# ---------------------------------------------------------
-def make_svg(text, max_chars_per_line=22, base_font_size=48):
-    import html
-    safe = html.escape(text)
 
-    # -------------------------------------------------------
-    # PICK RANDOM IMAGE
-    # -------------------------------------------------------
-    image_path = pick_random_image()
+def make_image(user_text, output_path=TEMP_PNG_PATH):
+    user_text = user_text.upper()
 
-    # -------------------------------------------------------
-    # WORD WRAP INTO MULTIPLE LINES
-    # -------------------------------------------------------
-    words = safe.split()
+    # Pick random image
+    img_number = random.randint(0, 64)
+    img_filename = f"devilgirl{img_number:02d}.png"
+    img_path = os.path.join(IMAGES_FOLDER, img_filename)
+
+    im = Image.open(img_path).convert("RGBA")
+    draw = ImageDraw.Draw(im)
+    font = ImageFont.truetype(FONT_PATH, FONT_SIZE)
+
+    # Dynamic wrapping based on image width
+    max_width = im.width - 40  # 20px padding on each side
+    words = user_text.split()
     lines = []
-    current = ""
-
-    for w in words:
-        if len(current + " " + w) <= max_chars_per_line:
-            if current == "":
-                current = w
-            else:
-                current += " " + w
+    line = ""
+    for word in words:
+        test_line = f"{line} {word}".strip()
+        bbox = draw.textbbox((0,0), test_line, font=font)
+        if bbox[2] - bbox[0] <= max_width:
+            line = test_line
         else:
-            lines.append(current)
-            current = w
+            lines.append(line)
+            line = word
+    if line:
+        lines.append(line)
 
-    if current:
-        lines.append(current)
+    # Calculate line height
+    bbox = draw.textbbox((0, 0), "A", font=font)
+    line_spacing = 10
+    line_height = (bbox[3] - bbox[1]) + line_spacing
+    total_text_height = line_height * len(lines)
 
-    # -------------------------------------------------------
-    # DYNAMIC FONT SIZE IF TOO MANY LINES
-    # -------------------------------------------------------
-    font_size = base_font_size
-    if len(lines) > 3:
-        font_size = int(base_font_size * 0.85)
-    if len(lines) > 4:
-        font_size = int(base_font_size * 0.70)
-    if len(lines) > 5:
-        font_size = int(base_font_size * 0.55)
+    # Draw each line, bottom-centered
+    y_text = im.height - total_text_height - 20
+    for line in lines:
+        bbox = draw.textbbox((0, 0), line, font=font)
+        text_width = bbox[2] - bbox[0]
+        x_text = (im.width - text_width) / 2
 
-    # -------------------------------------------------------
-    # BOTTOM TEXT POSITIONING
-    # -------------------------------------------------------
-    # Last line should be near bottom (e.g., y = 92%)
-    # Lines stack upward by 7% each
-    bottom_y = 92
-    line_step = 7  # percentage spacing between lines
+        draw.text((x_text, y_text), line, font=font, fill="white",
+                  stroke_width=5, stroke_fill="black")
+        y_text += line_height
 
-    svg_lines = []
-    total_lines = len(lines)
+    im.save(output_path)
+    return output_path
 
-    for i, line in enumerate(lines):
-        # Example: 3 lines → indexes 0,1,2
-        # bottom line (i=2) is at y=92
-        # line above is y=85, then 78
-        y = bottom_y - (total_lines - 1 - i) * line_step
 
-        svg_lines.append(f"""
-        <text x="50%" y="{y}%" text-anchor="middle"
-              font-size="{font_size}"
-              fill="white" stroke="black" stroke-width="3"
-              font-family="Impact">{html.escape(line.upper())}</text>
-        """)
 
-    svg_text = "\n".join(svg_lines)
-
-    # -------------------------------------------------------
-    # FINAL SVG
-    # -------------------------------------------------------
-    svg = f"""
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540">
-  <rect width="100%" height="100%" fill="black"/>
-  <image href="{image_path}"
-         x="0" y="0" width="960" height="540"/>
-  {svg_text}
-</svg>
-"""
-    return svg.strip()
 
 
 
@@ -160,65 +135,55 @@ def make_svg(text, max_chars_per_line=22, base_font_size=48):
 # PROCESS NEW MENTIONS
 # ---------------------------------------------------------
 
-
 def process_mentions(last_seen_id=None):
-    # Fetch mentions newer than last_seen_id
-    mentions = mastodon.notifications(
-        types=["mention"],
-        since_id=last_seen_id
-    )
-
+    mentions = mastodon.notifications(types=["mention"], since_id=last_seen_id)
     if not mentions:
-        return last_seen_id  # nothing new
+        return last_seen_id
 
-    # Process from oldest → newest
-    mentions = list(reversed(mentions))
-
+    mentions = list(reversed(mentions))  # Process oldest first
     for note in mentions:
-        mention = note["status"]
+        mention = note["status"]  # Correct: the post that mentioned the bot
         user_acct = mention["account"]["acct"]
 
         # Skip banned users
         if user_acct in banlist:
             continue
 
-        # Extract plain text from the mention
+        # 1% chance to skip reply
+        if random.random() < 0.01:
+            print(f"Skipping reply to {user_acct} to avoid infinite loop")
+            continue
+
+        # Collect all hashtags
+        hashtags = mention.get("tags", [])
+        hashtag_text = ""
+        if hashtags:
+            hashtag_text = " " + " ".join(f"#{tag['name']}" for tag in hashtags)
+
+
+        # Extract clean text
         soup = BeautifulSoup(mention["content"], "html.parser")
         text = soup.get_text().strip()
-
-        # Remove the bot's own @mention from the user's text
         text = re.sub(r"@\w+", "", text).strip()
-
         if not text:
-            text = " "  # prevent blank caption breaking SVG
+            text = " "  # prevent empty caption
 
-        # ---- Generate SVG ----
-        svg_data = make_svg(text)
+        # Generate PNG
+        png_path = make_image(text)
 
-        # ---- Convert SVG to PNG ----
-        png_bytes = cairosvg.svg2png(bytestring=svg_data.encode("utf-8"))
-        temp_png_path = "temp.png"
-        with open(temp_png_path, "wb") as f:
-            f.write(png_bytes)
-
-        # ---- Build alt text ----
+        # Upload image with alt text
         alt_text = build_alt_text(text)
+        media = mastodon.media_post(png_path, description=alt_text)
 
-        # ---- Upload PNG to Mastodon ----
-        media = mastodon.media_post(
-            temp_png_path,
-            description=alt_text
-        )
-
-        # ---- Reply to the mention ----
+        # Reply properly to trigger notifications
         mastodon.status_post(
-            status=f"@{user_acct}",
+            status=f"@{user_acct} {hashtag_text}",
             media_ids=[media["id"]],
-            in_reply_to_id=mention["id"],
-            visibility=mention["visibility"]
+            in_reply_to_id=mention["id"],  # must be status ID, not notification ID
+            visibility="public"  # or use mention["visibility"] to match original
         )
 
-        # Update last seen ID
+        # Update last_seen_id to the notification ID
         last_seen_id = note["id"]
 
     return last_seen_id
