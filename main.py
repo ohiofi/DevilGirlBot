@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 import random
 import cairosvg
 
-
 load_dotenv()
 
 banlist = json.loads(os.getenv("banlist"))
@@ -17,7 +16,7 @@ mastodon = Mastodon(
     api_base_url="https://mastodon.social"
 )
 
-LAST_ID_FILE = "last_mention_id.txt"
+LAST_ID_FILE = "/Volumes/Verbatim/Documents/GitHub/DevilGirlBot/last_mention_id.txt"
 
 
 
@@ -50,15 +49,16 @@ def pick_random_image():
 # ---------------------------------------------------------
 # LOAD / SAVE LAST PROCESSED MENTION
 # ---------------------------------------------------------
-def load_last_id():
-    if not os.path.exists(LAST_ID_FILE):
+def read_last_seen_id():
+    try:
+        with open(LAST_ID_FILE, "r") as f:
+            return int(f.read().strip())
+    except (FileNotFoundError, ValueError):
         return None
-    with open(LAST_ID_FILE, "r") as f:
-        return f.read().strip() or None
 
-def save_last_id(id_str):
+def save_last_seen_id(last_id):
     with open(LAST_ID_FILE, "w") as f:
-        f.write(str(id_str))
+        f.write(str(last_id))
 
 
 # ---------------------------------------------------------
@@ -159,6 +159,8 @@ def make_svg(text, max_chars_per_line=22, base_font_size=48):
 # ---------------------------------------------------------
 # PROCESS NEW MENTIONS
 # ---------------------------------------------------------
+
+
 def process_mentions(last_seen_id=None):
     # Fetch mentions newer than last_seen_id
     mentions = mastodon.notifications(
@@ -185,27 +187,27 @@ def process_mentions(last_seen_id=None):
         text = soup.get_text().strip()
 
         # Remove the bot's own @mention from the user's text
-        # Example: "@YourBot Hello" → "Hello"
         text = re.sub(r"@\w+", "", text).strip()
 
         if not text:
             text = " "  # prevent blank caption breaking SVG
 
-        # ---- Generate SVG and save temporary file ----
+        # ---- Generate SVG ----
         svg_data = make_svg(text)
 
-        temp_path = "temp.svg"
-        with open(temp_path, "w", encoding="utf-8") as f:
-            f.write(svg_data)
+        # ---- Convert SVG to PNG ----
+        png_bytes = cairosvg.svg2png(bytestring=svg_data.encode("utf-8"))
+        temp_png_path = "temp.png"
+        with open(temp_png_path, "wb") as f:
+            f.write(png_bytes)
 
         # ---- Build alt text ----
         alt_text = build_alt_text(text)
 
-        # ---- Upload to Mastodon with ALT TEXT ----
+        # ---- Upload PNG to Mastodon ----
         media = mastodon.media_post(
-            temp_path,
-            mime_type="image/svg+xml",
-            description=alt_text     # <-- ALT TEXT HERE
+            temp_png_path,
+            description=alt_text
         )
 
         # ---- Reply to the mention ----
@@ -223,8 +225,12 @@ def process_mentions(last_seen_id=None):
 
 
 
+
 # ---------------------------------------------------------
 # MAIN (single run)
 # ---------------------------------------------------------
 if __name__ == "__main__":
-    process_mentions()
+    last_seen_id = read_last_seen_id()
+    last_seen_id = process_mentions(last_seen_id)
+    if last_seen_id:
+        save_last_seen_id(last_seen_id)
