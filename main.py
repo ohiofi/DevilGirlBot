@@ -665,8 +665,8 @@ def process_mentions(last_seen_id=None):
     # print(f"last_seen_id: {last_seen_id}, type: {type(last_seen_id)}")
     mentions = mastodon.notifications(types=["mention"], since_id=last_seen_id)
     if not mentions:
-        # 1 in 720 chance to make a random post
-        if random.random() < 1 / 720:
+        # 1 in 1440 chance to make a random post
+        if random.random() < 1 / 1440:
             text = getText(captions)
             makePost(text)
         return last_seen_id
