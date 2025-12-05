@@ -523,7 +523,7 @@ def getText(captions):
     # Combine arrays into a single string
     result = " ".join(firstHalfArray + secondHalfArray)
 
-    if random.random() < 0.1 or len(result) < 3:
+    if random.random() < 0.05 or len(result) < 3:
         return random.choice(captions)
 
     return result
@@ -665,14 +665,15 @@ def process_mentions(last_seen_id=None):
     # print(f"last_seen_id: {last_seen_id}, type: {type(last_seen_id)}")
     mentions = mastodon.notifications(types=["mention"], since_id=last_seen_id)
     if not mentions:
-        # 1 in 1440 chance to make a random post
-        if random.random() < 1 / 1440:
+        # make a random post about every 2 hours
+        if random.random() < 1 / (2 * 60 * 2):
             text = getText(captions)
             makePost(text)
         return last_seen_id
 
     mentions = list(reversed(mentions))  # Process oldest first
     for note in mentions:
+        
         if note["type"] != "mention":
             continue
         mention = note["status"]  # Correct: the post that mentioned the bot
@@ -706,6 +707,7 @@ def process_mentions(last_seen_id=None):
         # Update last_seen_id to the notification ID
         last_seen_id = max(last_seen_id or 0, int(note["id"]))
         save_last_seen_id(last_seen_id)
+        break # rate limit this so that if there are multiple mentions, it will only reply to the oldest one. Other mentions can be processed when the bot runs again.
 
     return last_seen_id
 
