@@ -491,7 +491,78 @@ captions = [
 "I will return soon.",
 "One of you will come with me. The rest will die.",
 "They are afraid.",
-"Do you go with me, of your own free will?"
+"Do you go with me, of your own free will?",
+"The Monster X Strikes Back: Attack the G8 Summit",
+"The Asphyx",
+"The X from Outer Space",
+"Space Master X-7",
+"Alligator 2: The Mutation",
+"Alligator",
+"Pumpkinhead II: Blood Wings",
+"Vampires on Bikini Beach",
+"Fright Night Part 2",
+"Critters 3",
+"Legend of the Eight Samurai",
+"The Howling",
+"Magic Crystal",
+"Pumpkinhead",
+"Mr. Vampire",
+"The Hunger",
+"Thrilling Bloody Sword",
+"Fright Night",
+"Food of the Gods II",
+"The Food of the Gods",
+"The Angry Red Planet",
+"Revenge of the Creature",
+"Creature from the Black Lagoon",
+"Space Freaks from Planet Mutoid",
+"The Man from Planet X",
+"Grizzly II: Revenge",
+"Grizzly",
+"The Return of Swamp Thing",
+"Swamp Thing",
+"Little Shop of Horrors",
+"The Little Shop of Horrors",
+"Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack",
+"The Raven",
+"Vampire Circus",
+"Trucks",
+"Maximum Overdrive",
+"X: The Man with the X-Ray Eyes",
+"Frankenstein Meets the Space Monster",
+"Clash of the Titans",
+"Starcrash",
+"Bog",
+"Dracula, Prisoner of Frankenstein",
+"Godzilla: Final Wars",
+"Forbidden Planet",
+"Beyond Atlantis",
+"Slugs",
+"The Gate",
+"The Bat People",
+"First Men in the Moon",
+"Krull",
+"Laserblast",
+"Cat Girl",
+"Critters 2",
+"Yeti: The Giant of the 20th Century",
+"Critters",
+"C.H.U.D.",
+"Frogs!",
+"Frogs",
+"The Gorgon",
+"Masters of the Universe",
+"Invasion of the Star Creatures",
+"Piranha",
+"Invasion of the Bee Girls",
+"Battle Beyond the Stars",
+"Devil Girl from Mars",
+"The Stepford Wives",
+"Snowbeast",
+"The Giant Spider Invasion",
+"The Curse of the Aztec Mummy",
+"The Robot vs. The Aztec Mummy",
+"The Phantom Planet"
 ]
 
 
@@ -506,26 +577,29 @@ mastodon = Mastodon(
 )
 
 def getText(captions):
-    # Pick random captions and split into words
-    firstHalfArray = random.choice(captions).split(" ")
-    secondHalfArray = random.choice(captions).split(" ")
-
-    # Remove roughly half from firstHalfArray
-    remove_amount = random.random() * len(firstHalfArray) * 0.5
-    start_index = int(remove_amount)
-    delete_count = int(len(firstHalfArray) - remove_amount + 0.5)  # round up
-    del firstHalfArray[start_index:start_index + delete_count]
-
-    # Remove roughly half from the start of secondHalfArray
-    remove_amount2 = int(random.random() * len(secondHalfArray) * 0.5)
-    secondHalfArray = secondHalfArray[remove_amount2:]
-
+    firstHalfArray = []
+    secondHalfArray = []
+    for i in range(10): # try at max 10 times
+        # Pick random captions and split into words
+        firstHalfArray = random.choice(captions).split(" ")
+        # Remove roughly half from firstHalfArray
+        remove_amount = random.random() * len(firstHalfArray) * 0.5
+        start_index = int(remove_amount)
+        # delete_count = int(len(firstHalfArray) - remove_amount + 0.5)  # round up
+        firstHalfArray = firstHalfArray[0:start_index]
+        if len(firstHalfArray) > 1:
+            break
+    for i in range(10): # try at max 10 times
+        secondHalfArray = random.choice(captions).split(" ")
+        # Remove roughly half from the start of secondHalfArray
+        remove_amount2 = int(random.random() * len(secondHalfArray) * 0.5)
+        secondHalfArray = secondHalfArray[remove_amount2:]
+        if len(secondHalfArray) > 1:
+            break
     # Combine arrays into a single string
     result = " ".join(firstHalfArray + secondHalfArray)
-
-    if random.random() < 0.05 or len(result) < 3:
+    if random.random() < 0.01 or len(result) < 3:
         return random.choice(captions)
-
     return result
 
 def build_alt_text(user_text: str) -> str:
