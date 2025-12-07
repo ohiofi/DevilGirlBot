@@ -352,6 +352,106 @@ captions = [
     "You're doing amazing, sweetie",
     "Zero chill",
     "Zero Plans, All Vibes",
+    "Lowkey vibing, don't mind me",
+  "Big bet, say less",
+  "This whole thing is lit",
+  "Stay salty, my friend",
+  "Feeling Gucci today fr fr",
+  "Squad goals on maximum mode",
+  "Weird flex but okay, buddy",
+  "Zero chill, full savage mode",
+  "Brows on fleek forever",
+  "Quit throwing shade, amateur",
+  "You big mad, not me",
+  "All the feels right now",
+  "Yeet it into space",
+  "Ghost ride my whip gently",
+  "Drip too powerful, beware",
+  "Don't simp, stay sigma",
+  "Yep, it's a bop",
+  "Low key go off, queen",
+  "Cheugy but still iconic",
+  "We stan chaotic energy",
+  "Kept it litty all day",
+  "You're so extra today",
+  "Keep it hunid always",
+  "High key fire content",
+  "Flex on them haters daily",
+  "Major vibes detected rn",
+  "Everything is mid today",
+  "This combo is pog",
+  "The vibe has shifted",
+  "Time for a vibe check",
+  "Vibe is up, clearly",
+  "Thas tough, can't lie",
+  "Sussy Bakka energy detected",
+  "Truth only, no cap",
+  "Sip lean responsibly, bro",
+  "Real ones only, fr fr",
+  "You looking thirsty, chill",
+  "Certified thirst trap moment",
+  "This meal is bussin fr",
+  "Goofy ahh behavior rn",
+  "Absolute unit approaching",
+  "Periodt, end of discussion",
+  "Point blank period, sis",
+  "That was a serve, honestly",
+  "You ate without crumbs",
+  "You serve every day",
+  "Serving chaotic-adjacent energy",
+  "You thought, but no",
+  "Nonchalant but still iconic",
+  "Full sigma mindset activated",
+  "lowkey your planet is ours",
+  "bet we conquer by sunrise",
+  "lit invasion protocols engaged",
+  "salty humans detected",
+  "our gucci warships approach",
+  "squad pulling up in orbit",
+  "weird flex but okay, resist",
+  "savage beam cannons charging",
+  "battle formation on fleek",
+  "throwing shade on your defenses",
+  "big mad your shields failed",
+  "feels like easy victory",
+  "yeet your leaders into space",
+  "ghost ride my whip through your skies",
+  "alien drip too advanced",
+  "simp for your resources",
+  "your distress signal? it's a bop",
+  "low key go off, troops",
+  "your tech is cheugy",
+  "we stan planetary domination",
+  "kept it litty with orbital strikes",
+  "so extra, building bunkers",
+  "keep it hunid, surrender",
+  "your downfall high key fire",
+  "flex on them haters, fleet",
+  "our invasion vibes immaculate",
+  "your resistance is mid",
+  "our weaponry is pog",
+  "vibe has shifted—prepare",
+  "vibe check failed, Earthlings",
+  "vibe is up—attack mode",
+  "thas tough, humanity",
+  "Sussy Bakka trying to hide",
+  "invading with no cap",
+  "Lean to dodge the lasers",
+  "prepare, fr fr",
+  "your oceans looking thirsty",
+  "your satellites are a thirst trap",
+  "our engines bussin fr",
+  "goofy ahh defenses fr",
+  "mothership is an absolute unit",
+  "your empire ends, periodt",
+  "planet secured, point blank period",
+  "that was a serve, fleet",
+  "you ate those missiles though",
+  "you serve panic well",
+  "serving intergalactic realness",
+  "You thought you could win",
+  "invading nonchalant vibes only",
+  "sigma squad descending now",
     "My name is Nyah.",
 "You men on Earth are much as we expected.",
 "You are a scientist?",
@@ -558,23 +658,21 @@ def getText(captions):
     for i in range(10): # try at max 10 times
         # Pick random captions and split into words
         firstHalfArray = random.choice(captions).split(" ")
-        # Remove roughly half from firstHalfArray
-        remove_amount = random.random() * len(firstHalfArray) * 0.5
-        start_index = int(remove_amount)
-        # delete_count = int(len(firstHalfArray) - remove_amount + 0.5)  # round up
+        # Keep roughly half from firstHalfArray
+        start_index = int(random.random() * len(firstHalfArray) * 0.5 + random.random() * len(firstHalfArray) * 0.5)
         firstHalfArray = firstHalfArray[0:start_index]
         if len(firstHalfArray) > 1:
             break
     for i in range(10): # try at max 10 times
         secondHalfArray = random.choice(captions).split(" ")
         # Remove roughly half from the start of secondHalfArray
-        remove_amount2 = int(random.random() * len(secondHalfArray) * 0.5)
-        secondHalfArray = secondHalfArray[remove_amount2:]
+        start_index = int(random.random() * len(secondHalfArray) * 0.5 + random.random() * len(secondHalfArray) * 0.5)
+        secondHalfArray = secondHalfArray[start_index:]
         if len(secondHalfArray) > 1:
             break
     # Combine arrays into a single string
     result = " ".join(firstHalfArray + secondHalfArray)
-    if random.random() < 0.01 or len(result) < 3:
+    if random.random() < 0.001 or len(result) < 3:
         return random.choice(captions)
     return result
 
