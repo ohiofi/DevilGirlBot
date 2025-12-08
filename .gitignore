@@ -140,3 +140,4 @@ vite.config.ts.timestamp-*
 .DS_Store
 last_mention_id.txt
 temp.png
+last_random_post.txt
