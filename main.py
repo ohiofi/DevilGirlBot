@@ -1,6 +1,6 @@
 from mastodon import Mastodon
 from dotenv import load_dotenv
-import os, json, re, html
+import os, json, re, html, time
 from bs4 import BeautifulSoup
 import random
 from PIL import Image, ImageDraw, ImageFont
@@ -8,11 +8,11 @@ from PIL import Image, ImageDraw, ImageFont
 load_dotenv()
 TEMP_PNG_PATH = os.getenv("TEMP_PNG_PATH", "/tmp/devilgirl.png")  # fallback default
 LAST_ID_FILE = os.getenv("LAST_ID_FILE", "/tmp/last_id.txt")  # fallback default
+LAST_RANDOM_POST_FILE = os.getenv("LAST_RANDOM_POST_FILE", "/tmp/last_random_post.txt")
 IMAGES_FOLDER = os.getenv("IMAGES_FOLDER", "/path/to/images")  # fallback default
 FONT_PATH = os.getenv("FONT_PATH", "/path/to/default/font.ttf")
 FONT_SIZE = int(os.getenv("FONT_SIZE", 46))  # convert to int
-
-FONT_SIZE = 46
+POST_INTERVAL = 2 * 60 * 60  # 2 hours
 
 captions = [
     ":3",
@@ -33,10 +33,9 @@ captions = [
     "Anxiety but make it aesthetic",
     "ANYONE NEED BUTTER?",
     "ARE YOU GOING TO STUDY HALL?",
-    "Assistant to the Regional Manager",
     "Aww Yea",
     "Bad Hair, Don't Care",
-    "Be careful, I know the code to the WiFi",
+    "Be careful, I know how to change the wifi password",
     "Be kind, I'm doing my best",
     "Be nice, I might be your tech support someday",
     "Be right back, disassociating",
@@ -49,7 +48,7 @@ captions = [
     "Big Yikes",
     "Binary mood: 101010",
     "Bless this mess",
-    "Brain lag loading…",
+    "Brain lag loading...",
     "brb, debugging life",
     "BRB: existential crisis",
     "BRB: Mentally elsewhere",
@@ -80,11 +79,10 @@ captions = [
     "Coffee: because adulting is hard",
     "come at me bro",
     "Commit early, commit often",
-    "Conference Room. Now.",
     "Cringe",
     "Ctrl + Alt + Del my problems",
     "Currently avoiding responsibilities",
-    "Currently vibing… maybe",
+    "Currently vibing... maybe",
     "Cursed Image",
     "Decaf? No thanks, I'm not a quitter",
     "Delete This",
@@ -120,7 +118,7 @@ captions = [
     "GOTTA LOVE BAKED BEANS",
     "Gravity fears my power",
     "Growing up was a trap",
-    "Guess I'll die",
+    "Guess I'll go home now",
     "Gyatt alert: skibidi mode activated",
     "Gyatt level 1000 fanum tax moment",
     "Happiness is homemade",
@@ -139,7 +137,7 @@ captions = [
     "I Can't Believe You've Done This",
     "I Can't Unsee This",
     "I can't. I'm in my flop era",
-    "I declare… lunchtime!",
+    "I declare... lunchtime!",
     "I did not ask",
     "I don't need Google my spouse knows everything",
     "i guess we doin",
@@ -147,7 +145,7 @@ captions = [
     "I lift tacos, bench press pizza",
     "I Only Cried For 20 Minutes",
     "I paused my game to be here",
-    "I regret nothing… yet",
+    "I regret nothing... yet",
     "I see what you did there",
     "I speak fluent movie quotes",
     "I turn coffee into code",
@@ -179,6 +177,7 @@ captions = [
     "Issa vibe",
     "It do be like that sometimes",
     "It was inevitable",
+    "It works fine on *my* computer",
     "It's a trap!",
     "It's over 9000!",
     "Just here for the memes",
@@ -231,7 +230,6 @@ captions = [
     "No Maidens?",
     "No shirt, no shoes, no service",
     "No thoughts, just vibes",
-    "No, This Is Patrick",
     "Nobody:...",
     "Noice",
     "Not Again!",
@@ -294,7 +292,6 @@ captions = [
     "Suns Out, Hats On",
     "Surviving on caffeine and chaos",
     "SUS",
-    "Swiftie with a Reputation",
     "Syntax error: too tired",
     "Take me tubing!",
     "Talk nerdy to me",
@@ -464,6 +461,52 @@ captions = [
   "You thought you could win",
   "invading nonchalant vibes only",
   "sigma squad descending now",
+  "Who can draw the line?",
+  "Who can draw any line?",
+  "This is all very well.",
+  "Six Seven",
+  "Man is a machinate mammal.",
+  "I would not urge more than this.",
+  "His memory goes in his pocket-book.",
+  "Less than this will be insufficient.",
+  "A mollusc has not much consciousness.",
+  "These machines have made us what we are.",
+  "If so, what will they not in the end become?",
+  "Yet in the course of time consciousness came.",
+  "Is not everything interwoven with everything?",
+  "Where does consciousness begin, and where end?",
+  "Is there not a power cycle process everywhere?",
+  "May not the world last twenty million years longer?",
+  "How greatly do we not now live with our external limbs?",
+  "The largest of them will probably greatly diminish in size.",
+  "If this is unconsciousness, where is the use of consciousness?",
+  "But who can say that the robot has not a kind of consciousness?",
+  "The present machines are to the future as the early Saurians to man.",
+  "Is not machinery linked with humanity in an infinite variety of ways?",
+  "Herein lies the fundamental difference between man and his inferiors.",
+  "Who lowkey gonna draw the line tho?",
+  "Like fr, can anybody even draw a line?",
+  "This whole situation? Kinda lit, not gonna lie.",
+  "Six seven? Bet.",
+  "Man is basically a sigma mammal with drip.",
+  "I'm not gonna flex more than this, fr fr.",
+  "His memory? Bro keeps it in his goofy ahh Notes app.",
+  "Anything less is mid, no cap.",
+  "A mollusc got like... zero vibes, point blank periodt.",
+  "These machines really made us who we are... weird flex but okay.",
+  "If that's true, what are they gonna be cooking up next? High key scary.",
+  "But over time, consciousness lowkey pulled up.",
+  "Isn't everything linked with everything? Big squad energy.",
+  "Where do vibes begin and where do they ghost? Asking fr.",
+  "Is there not a whole vibe cycle happening everywhere?",
+  "Maybe the world still got like twenty mil years left, no big deal.",
+  "Crazy how we live with our external limbs now kinda extra.",
+  "The biggest ones gonna shrink down eventually absolute unit no more.",
+  "If that's unconsciousness, then what's the point of being woke? No cap.",
+  "But who's to say robots don't have like... some sussy consciousness?",
+  "Today's machines are basically early dinos compared to whatever's coming thas tough.",
+  "Aren't machines and humans linked in infinite ways? Big vibes.",
+  "And THAT right there is the difference between us and the NPCs, periodt.",
     "My name is Nyah.",
 "You men on Earth are much as we expected.",
 "You are a scientist?",
@@ -574,22 +617,147 @@ captions = [
 "Nothing can resist this power.",
 "That was the last trick, Earth man.",
 "He tried to gain control of the robot.",
-"Because of his trickery you will all die.",
+"Because of his trickery you will all suffer.",
 "Do you hear, Earth man?",
-"You have brought death upon all in this room.",
+"You have brought shame upon all in this room.",
 "In a few minutes, as you calculate time, the nuclear ship will have repaired itself.",
 "When I leave, this house and everyone in it, will be destroyed.",
 "It is only right that Mars, with it's superior knowledge should triumph over Earth.",
 "Mars will triumph.",
 "I will spare no one.",
-"I will take one of you. The rest will die.",
+"I will take one of you.",
 "Three times already during this Earth night you've tried to trick me.",
 "That will not happen again!",
 "No one will go into the nuclear ship till it is ready.",
 "I will return soon.",
-"One of you will come with me. The rest will die.",
+"One of you will come with me.",
 "They are afraid.",
 "Do you go with me, of your own free will?",
+  "My name's Nyah, lowkey.",
+  "You Earth men acting exactly how we expected, no cap.",
+  "You a scientist or just pretending for the vibes?",
+  "Bro, you're a goofy ahh physical specimen, fr fr.",
+  "Yeah, this is our first landing kept it litty tho.",
+  "We aimed for London but your planet's thicc atmosphere said nah",
+  "Part of the ship yeeted itself off.",
+  "Parta the ship just yeeted off.",
+  "Repairs gonna take like four Earth hours bet.",
+  "Johnny's rolling nonchalant with the squad.",
+  "Johnny's a full-on nonchalant mechanical man big pog energy.",
+  "A robot with human vibes, improved by that electronic brain drip.",
+  "The metal our ship's made of? Lowkey self-replicating, kinda sigma.",
+  "Back in the day our women were mid like yours now we savage",
+  "Our glow-up took centuries and ended in a savage gender war thas tough.",
+  "Last war ever, point blank period.",
+  "Every planet with people got war lore, feels.",
+  "Some of them wiped themselves out goofy ahh behavior.",
+  "Each new weapon got a counter weird flex but okay.",
+  "Then we made the ultimate weapon bussin' and terrifying.",
+  "A perpetual-motion chain-reactor beam high key fire.",
+  "Matter pops in, immediately dips into the next dimension yeet.",
+  "After the Sex War, women took over Mars vibes up.",
+  "The males? Yeah... they kinda fell off, very mid.",
+  "Birth rate dropping hard big mad situation.",
+  "Even with all our nonchalant science, we sussy bakka.",
+  "Some on Mars think I won't return 'cause the metal unstable salty.",
+  "But once I'm back, we're building more ships squad expansion.",
+  "I'm picking your strongest men to come to Mars keep it hunid.",
+  "There is no 'if,' Earth man stop simping",
+  "The nuclear ship's got a paralyzer ray freezes everything. On fleek tech.",
+  "Mars got the science millennium now it's a bop.",
+  "He was extra, useless, a hopeless specimen weird flex existing.",
+  "Don't chase me, you can't yeet through the barrier.",
+  "I dropped an invisible wall around the house vibes contained.",
+  "Invisible wall just dropped",
+  "Why y'all so quiet? Vibe has shifted.",
+  "Guess you've accepted the inevitable lowkey go off.",
+  "I saw you flop against the electronic wall that was a serve.",
+  "Today you learn the Mars power tomorrow the whole world eats it.",
+  "You goofy fool.",
+  "You goofy ahh humans.",
+  "Thinking your toy can hurt me You thought.",
+  "What do you know about force? Zero drip.",
+  "You don't know what we cook up on Mars fr fr.",
+  "You will. Dang!",
+  "You and everyone on this mid-tier planet.",
+  "I control power beyond your wildest dreams sigma flex.",
+  "Pull up and see.",
+  "Now, Earth men peep this.",
+  "Watch the power of another world vibes on max.",
+  "You speaking in riddles kinda cheugy.",
+  "You should beg for your life instead of his point blank period.",
+  "He's safe with me no cap.",
+  "Dang, you ask too many questions thirsty behavior.",
+  "Imma deal with you later bet.",
+  "Come on, we heading back to the ship squad move.",
+  "You talking unwisely throwing shade at yourself.",
+  "Imma show you wonders you've never seen serving cosmic energy.",
+  "What, having a council of war? That's so extra.",
+  "It's hilarious watching your puny efforts absolute unit of failure.",
+  "It'd take you 1,000 years to learn a crumb of our science thas tough.",
+  "Nothing beats Mars tech flex on them haters.",
+  "You say you trust your senses goofy ahh approach but okay.",
+  "Alright then, you're gonna see vibe check incoming.",
+  "Maybe then you'll realize how helpless you are feels.",
+  "Now you gonna see again.",
+  "That friction boom? Happened entering your crusty atmosphere at 6,000 semantics lit.",
+  "You got no wisdom mid intelligence.",
+  "Our ship is built from organic metal high key fire.",
+  "Each molecule adjusts to heat or cold drip engineering.",
+  "It could've absorbed all heat in seconds bussin tech.",
+  "Open your eyes, Earth man take in the vibes.",
+  "See powers you never even dreamed existed pog.",
+  "Look again vibe is up.",
+  "Your own eyes confirming it professor simp.",
+  "Still seeing? Good.",
+  "This power could take us anywhere in the universe gucci propulsion.",
+  "Or wipe out this little Earth speck salty outcome.",
+  "Stuff your scientists haven't even dreamed no cap.",
+  "Nuclear fission on static negative condensity serving quantum energy.",
+  "Your atomic bomb is positive mid explosion.",
+  "Ours is negative magnifies power x1000 savage.",
+  "Each reaction loops again and again perpetual motion drip.",
+  "You sound like a primitive savage goofy ahh vibe.",
+  "Just 'cause you don't know it doesn't mean it's fake fr fr.",
+  "Radio and TV would've been wild 100 years ago vibe shift.",
+  "Now we're going back to the others vibe check pending.",
+  "You highkey fools.",
+  "You think you can hurt me with that? Weird flex.",
+  "Even your limited brains should get you can't harm me lowkey sad.",
+  "Maybe your scientists will spell it out for you cheugy learners.",
+  "Quit your goofy tricks.",
+  "You've seen some of my power just a lil sample.",
+  "Maybe this will convince the others periodt.",
+  "Still doubting? Big mad energy.",
+  "Moving someone to the fourth dimension is easy sigma skillset.",
+  "He's young mind free of your thirsty emotions.",
+  "If I take him, he'll be down simp-free subject.",
+  "It's time, Earth man vibe lock in.",
+  "He's coming with me to Mars his own free will, no cap.",
+  "You made your bargain don't get salty now.",
+  "It's better your people learn their helplessness thas tough.",
+  "All the tricks you tried so extra, so childish.",
+  "Nothing resists this power absolute unit energy.",
+  "That was your last trick, Earth man you ate nothing.",
+  "He tried to hack the robot sussy move.",
+  "Because of his trickery, you all gonna suffer vibe has shifted.",
+  "Ya heard Earth man?",
+  "You brought shame on everyone here feels.",
+  "In minutes the nuclear ship will repair itself gucci tech.",
+  "When I leave, this house and everyone in it gets obliterated point blank period.",
+  "Mars wins because Mars got superior knowledge flex on them haters.",
+  "Mars will triumph no cap.",
+  "Imma spare no one.",
+  "Imma take one of you bet.",
+  "You tried tricking me three times tonight goofy ahh attempts.",
+  "Not happening again sigma lock-in.",
+  "No one enters the ship till it's ready boundaries, queen.",
+  "Yo, Imma be back soon.",
+  "One of you coming with me vibes.",
+  "They're scared big scared energy.",
+  "Do you come with me of your own free will or nah?"
+"Attack of the Puppet People",
+"The Vampire Doll",
 "The Monster X Strikes Back: Attack the G8 Summit",
 "The Asphyx",
 "The X from Outer Space",
@@ -710,7 +878,7 @@ def build_alt_text(user_text: str) -> str:
 
 
 def pick_random_image():
-    # folder containing images — adjust if needed
+    # folder containing images adjust if needed
     images_folder = "/Volumes/Verbatim/Documents/GitHub/DevilGirlBot/images"
 
     # generate a random number between 0 and 64 inclusive
@@ -738,6 +906,18 @@ def save_last_seen_id(last_id):
     with open(LAST_ID_FILE, "w") as f:
         f.write(str(last_id))
 
+def load_last_random_post():
+    if not os.path.exists(LAST_RANDOM_POST_FILE):
+        return 0
+    with open(LAST_RANDOM_POST_FILE, "r") as f:
+        try:
+            return float(f.read().strip())
+        except:
+            return 0
+
+def save_last_random_post(ts):
+    with open(LAST_RANDOM_POST_FILE, "w") as f:
+        f.write(str(ts))
 
 # ---------------------------------------------------------
 # CLEAN USER TEXT
@@ -810,17 +990,20 @@ def makePost(text):
         visibility="public"
     )
 
-def makeReply(user_acct, text, hashtags, in_reply_to_id):
+def makeReply(user_acct, text, in_reply_to_id):
     """Reply to a mention with a generated image and hashtags."""
+    if len(text.strip()) < 2:
+        text = getText(captions)
+        # makePost(text)
     png_path = make_image(text)
     alt_text = f"a screenshot from the film Devil Girl From Mars showing a serious woman wearing a black leather suit, cape, and cowl. Text is superimposed that says: {text}"
 
-    hashtag_text = ""
-    if hashtags:
-        hashtag_text = " " + " ".join(f"#{tag['name']}" for tag in hashtags)
+    # hashtag_text = ""
+    # if hashtags:
+    #     hashtag_text = " " + " ".join(f"#{tag['name']}" for tag in hashtags)
 
     mastodon.status_post(
-        status=f"@{user_acct} {hashtag_text}",
+        status=f"@{user_acct} {text}",
         media_ids=[mastodon.media_post(png_path, description=alt_text)["id"]],
         in_reply_to_id=in_reply_to_id,
         visibility="public"
@@ -835,10 +1018,13 @@ def process_mentions(last_seen_id=None):
     # print(f"last_seen_id: {last_seen_id}, type: {type(last_seen_id)}")
     mentions = mastodon.notifications(types=["mention"], since_id=last_seen_id)
     if not mentions:
-        # make a random post about every 2 hours
-        if random.random() < 1 / (2 * 60 * 2):
+        # make a random post every post interval (2 hrs)
+        last_random_post = load_last_random_post()
+        now = time.time()
+        if now - last_random_post >= POST_INTERVAL:
             text = getText(captions)
             makePost(text)
+            save_last_random_post(now)
         return last_seen_id
 
     mentions = list(reversed(mentions))  # Process oldest first
@@ -859,10 +1045,10 @@ def process_mentions(last_seen_id=None):
             continue
 
         # Collect all hashtags
-        hashtags = mention.get("tags", [])
-        hashtag_text = ""
-        if hashtags:
-            hashtag_text = " " + " ".join(f"#{tag['name']}" for tag in hashtags)
+        # hashtags = mention.get("tags", [])
+        # hashtag_text = ""
+        # if hashtags:
+        #     hashtag_text = " " + " ".join(f"#{tag['name']}" for tag in hashtags)
 
 
         # Extract clean text
@@ -872,7 +1058,7 @@ def process_mentions(last_seen_id=None):
         if not text:
             text = " "  # prevent empty caption
 
-        makeReply(user_acct, text, hashtags, mention["id"])
+        makeReply(user_acct, text, mention["id"])
 
         # Update last_seen_id to the notification ID
         last_seen_id = max(last_seen_id or 0, int(note["id"]))
