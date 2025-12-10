@@ -1,4 +1,18 @@
+from mastodon import Mastodon
+from dotenv import load_dotenv
+import os, json, re, html, time
+from bs4 import BeautifulSoup
 import random
+from PIL import Image, ImageDraw, ImageFont
+
+# load_dotenv()
+# TEMP_PNG_PATH = os.getenv("TEMP_PNG_PATH", "/tmp/devilgirl.png")  # fallback default
+# LAST_ID_FILE = os.getenv("LAST_ID_FILE", "/tmp/last_id.txt")  # fallback default
+# LAST_RANDOM_POST_FILE = os.getenv("LAST_RANDOM_POST_FILE", "/tmp/last_random_post.txt")
+# IMAGES_FOLDER = os.getenv("IMAGES_FOLDER", "/path/to/images")  # fallback default
+# FONT_PATH = os.getenv("FONT_PATH", "/path/to/default/font.ttf")
+# FONT_SIZE = int(os.getenv("FONT_SIZE", 46))  # convert to int
+# POST_INTERVAL = 2 * 60 * 60  # 2 hours
 
 captions = [
     ":3",
@@ -19,14 +33,12 @@ captions = [
     "Anxiety but make it aesthetic",
     "ANYONE NEED BUTTER?",
     "ARE YOU GOING TO STUDY HALL?",
-    "Assistant to the Regional Manager",
     "Aww Yea",
     "Bad Hair, Don't Care",
-    "Be careful, I know the code to the WiFi",
+    "Be careful, I know how to change the wifi password",
     "Be kind, I'm doing my best",
     "Be nice, I might be your tech support someday",
     "Be right back, disassociating",
-    "Bears. Beets. Battlestar Galactica.",
     "Bet",
     "Big brain energy, small body",
     "Big brain time",
@@ -36,7 +48,7 @@ captions = [
     "Big Yikes",
     "Binary mood: 101010",
     "Bless this mess",
-    "Brain lag loading…",
+    "Brain lag loading...",
     "brb, debugging life",
     "BRB: existential crisis",
     "BRB: Mentally elsewhere",
@@ -67,11 +79,10 @@ captions = [
     "Coffee: because adulting is hard",
     "come at me bro",
     "Commit early, commit often",
-    "Conference Room. Now.",
     "Cringe",
     "Ctrl + Alt + Del my problems",
     "Currently avoiding responsibilities",
-    "Currently vibing… maybe",
+    "Currently vibing... maybe",
     "Cursed Image",
     "Decaf? No thanks, I'm not a quitter",
     "Delete This",
@@ -107,7 +118,7 @@ captions = [
     "GOTTA LOVE BAKED BEANS",
     "Gravity fears my power",
     "Growing up was a trap",
-    "Guess I'll die",
+    "Guess I'll go home now",
     "Gyatt alert: skibidi mode activated",
     "Gyatt level 1000 fanum tax moment",
     "Happiness is homemade",
@@ -126,7 +137,7 @@ captions = [
     "I Can't Believe You've Done This",
     "I Can't Unsee This",
     "I can't. I'm in my flop era",
-    "I declare… lunchtime!",
+    "I declare... lunchtime!",
     "I did not ask",
     "I don't need Google my spouse knows everything",
     "i guess we doin",
@@ -134,7 +145,7 @@ captions = [
     "I lift tacos, bench press pizza",
     "I Only Cried For 20 Minutes",
     "I paused my game to be here",
-    "I regret nothing… yet",
+    "I regret nothing... yet",
     "I see what you did there",
     "I speak fluent movie quotes",
     "I turn coffee into code",
@@ -166,6 +177,7 @@ captions = [
     "Issa vibe",
     "It do be like that sometimes",
     "It was inevitable",
+    "It works fine on *my* computer",
     "It's a trap!",
     "It's over 9000!",
     "Just here for the memes",
@@ -218,7 +230,6 @@ captions = [
     "No Maidens?",
     "No shirt, no shoes, no service",
     "No thoughts, just vibes",
-    "No, This Is Patrick",
     "Nobody:...",
     "Noice",
     "Not Again!",
@@ -281,7 +292,6 @@ captions = [
     "Suns Out, Hats On",
     "Surviving on caffeine and chaos",
     "SUS",
-    "Swiftie with a Reputation",
     "Syntax error: too tired",
     "Take me tubing!",
     "Talk nerdy to me",
@@ -310,7 +320,6 @@ captions = [
     "This is where the fun begins",
     "This kitchen is seasoned with love",
     "This might be coffee",
-    "Threat Level: Midnight",
     "Time is irrelevant",
     "Too Cool for Your Rules",
     "Too much Monday, not enough coffee",
@@ -452,6 +461,52 @@ captions = [
   "You thought you could win",
   "invading nonchalant vibes only",
   "sigma squad descending now",
+  "Who can draw the line?",
+  "Who can draw any line?",
+  "This is all very well.",
+  "Six Seven",
+  "Man is a machinate mammal.",
+  "I would not urge more than this.",
+  "His memory goes in his pocket-book.",
+  "Less than this will be insufficient.",
+  "A mollusc has not much consciousness.",
+  "These machines have made us what we are.",
+  "If so, what will they not in the end become?",
+  "Yet in the course of time consciousness came.",
+  "Is not everything interwoven with everything?",
+  "Where does consciousness begin, and where end?",
+  "Is there not a power cycle process everywhere?",
+  "May not the world last twenty million years longer?",
+  "How greatly do we not now live with our external limbs?",
+  "The largest of them will probably greatly diminish in size.",
+  "If this is unconsciousness, where is the use of consciousness?",
+  "But who can say that the robot has not a kind of consciousness?",
+  "The present machines are to the future as the early Saurians to man.",
+  "Is not machinery linked with humanity in an infinite variety of ways?",
+  "Herein lies the fundamental difference between man and his inferiors.",
+  "Who lowkey gonna draw the line tho?",
+  "Like fr, can anybody even draw a line?",
+  "This whole situation? Kinda lit, not gonna lie.",
+  "Six seven? Bet.",
+  "Man is basically a sigma mammal with drip.",
+  "I'm not gonna flex more than this, fr fr.",
+  "His memory? Bro keeps it in his goofy ahh Notes app.",
+  "Anything less is mid, no cap.",
+  "A mollusc got like... zero vibes, point blank periodt.",
+  "These machines really made us who we are... weird flex but okay.",
+  "If that's true, what are they gonna be cooking up next? High key scary.",
+  "But over time, consciousness lowkey pulled up.",
+  "Isn't everything linked with everything? Big squad energy.",
+  "Where do vibes begin and where do they ghost? Asking fr.",
+  "Is there not a whole vibe cycle happening everywhere?",
+  "Maybe the world still got like twenty mil years left, no big deal.",
+  "Crazy how we live with our external limbs now kinda extra.",
+  "The biggest ones gonna shrink down eventually absolute unit no more.",
+  "If that's unconsciousness, then what's the point of being woke? No cap.",
+  "But who's to say robots don't have like... some sussy consciousness?",
+  "Today's machines are basically early dinos compared to whatever's coming thas tough.",
+  "Aren't machines and humans linked in infinite ways? Big vibes.",
+  "And THAT right there is the difference between us and the NPCs, periodt.",
     "My name is Nyah.",
 "You men on Earth are much as we expected.",
 "You are a scientist?",
@@ -562,22 +617,147 @@ captions = [
 "Nothing can resist this power.",
 "That was the last trick, Earth man.",
 "He tried to gain control of the robot.",
-"Because of his trickery you will all die.",
+"Because of his trickery you will all suffer.",
 "Do you hear, Earth man?",
-"You have brought death upon all in this room.",
+"You have brought shame upon all in this room.",
 "In a few minutes, as you calculate time, the nuclear ship will have repaired itself.",
 "When I leave, this house and everyone in it, will be destroyed.",
 "It is only right that Mars, with it's superior knowledge should triumph over Earth.",
 "Mars will triumph.",
 "I will spare no one.",
-"I will take one of you. The rest will die.",
+"I will take one of you.",
 "Three times already during this Earth night you've tried to trick me.",
 "That will not happen again!",
 "No one will go into the nuclear ship till it is ready.",
 "I will return soon.",
-"One of you will come with me. The rest will die.",
+"One of you will come with me.",
 "They are afraid.",
 "Do you go with me, of your own free will?",
+  "My name's Nyah, lowkey.",
+  "You Earth men acting exactly how we expected, no cap.",
+  "You a scientist or just pretending for the vibes?",
+  "Bro, you're a goofy ahh physical specimen, fr fr.",
+  "Yeah, this is our first landing kept it litty tho.",
+  "We aimed for London but your planet's thicc atmosphere said nah",
+  "Part of the ship yeeted itself off.",
+  "Parta the ship just yeeted off.",
+  "Repairs gonna take like four Earth hours bet.",
+  "Johnny's rolling nonchalant with the squad.",
+  "Johnny's a full-on nonchalant mechanical man big pog energy.",
+  "A robot with human vibes, improved by that electronic brain drip.",
+  "The metal our ship's made of? Lowkey self-replicating, kinda sigma.",
+  "Back in the day our women were mid like yours now we savage",
+  "Our glow-up took centuries and ended in a savage gender war thas tough.",
+  "Last war ever, point blank period.",
+  "Every planet with people got war lore, feels.",
+  "Some of them wiped themselves out goofy ahh behavior.",
+  "Each new weapon got a counter weird flex but okay.",
+  "Then we made the ultimate weapon bussin' and terrifying.",
+  "A perpetual-motion chain-reactor beam high key fire.",
+  "Matter pops in, immediately dips into the next dimension yeet.",
+  "After the Sex War, women took over Mars vibes up.",
+  "The males? Yeah... they kinda fell off, very mid.",
+  "Birth rate dropping hard big mad situation.",
+  "Even with all our nonchalant science, we sussy bakka.",
+  "Some on Mars think I won't return 'cause the metal unstable salty.",
+  "But once I'm back, we're building more ships squad expansion.",
+  "I'm picking your strongest men to come to Mars keep it hunid.",
+  "There is no 'if,' Earth man stop simping",
+  "The nuclear ship's got a paralyzer ray freezes everything. On fleek tech.",
+  "Mars got the science millennium now it's a bop.",
+  "He was extra, useless, a hopeless specimen weird flex existing.",
+  "Don't chase me, you can't yeet through the barrier.",
+  "I dropped an invisible wall around the house vibes contained.",
+  "Invisible wall just dropped",
+  "Why y'all so quiet? Vibe has shifted.",
+  "Guess you've accepted the inevitable lowkey go off.",
+  "I saw you flop against the electronic wall that was a serve.",
+  "Today you learn the Mars power tomorrow the whole world eats it.",
+  "You goofy fool.",
+  "You goofy ahh humans.",
+  "Thinking your toy can hurt me You thought.",
+  "What do you know about force? Zero drip.",
+  "You don't know what we cook up on Mars fr fr.",
+  "You will. Dang!",
+  "You and everyone on this mid-tier planet.",
+  "I control power beyond your wildest dreams sigma flex.",
+  "Pull up and see.",
+  "Now, Earth men peep this.",
+  "Watch the power of another world vibes on max.",
+  "You speaking in riddles kinda cheugy.",
+  "You should beg for your life instead of his point blank period.",
+  "He's safe with me no cap.",
+  "Dang, you ask too many questions thirsty behavior.",
+  "Imma deal with you later bet.",
+  "Come on, we heading back to the ship squad move.",
+  "You talking unwisely throwing shade at yourself.",
+  "Imma show you wonders you've never seen serving cosmic energy.",
+  "What, having a council of war? That's so extra.",
+  "It's hilarious watching your puny efforts absolute unit of failure.",
+  "It'd take you 1,000 years to learn a crumb of our science thas tough.",
+  "Nothing beats Mars tech flex on them haters.",
+  "You say you trust your senses goofy ahh approach but okay.",
+  "Alright then, you're gonna see vibe check incoming.",
+  "Maybe then you'll realize how helpless you are feels.",
+  "Now you gonna see again.",
+  "That friction boom? Happened entering your crusty atmosphere at 6,000 semantics lit.",
+  "You got no wisdom mid intelligence.",
+  "Our ship is built from organic metal high key fire.",
+  "Each molecule adjusts to heat or cold drip engineering.",
+  "It could've absorbed all heat in seconds bussin tech.",
+  "Open your eyes, Earth man take in the vibes.",
+  "See powers you never even dreamed existed pog.",
+  "Look again vibe is up.",
+  "Your own eyes confirming it professor simp.",
+  "Still seeing? Good.",
+  "This power could take us anywhere in the universe gucci propulsion.",
+  "Or wipe out this little Earth speck salty outcome.",
+  "Stuff your scientists haven't even dreamed no cap.",
+  "Nuclear fission on static negative condensity serving quantum energy.",
+  "Your atomic bomb is positive mid explosion.",
+  "Ours is negative magnifies power x1000 savage.",
+  "Each reaction loops again and again perpetual motion drip.",
+  "You sound like a primitive savage goofy ahh vibe.",
+  "Just 'cause you don't know it doesn't mean it's fake fr fr.",
+  "Radio and TV would've been wild 100 years ago vibe shift.",
+  "Now we're going back to the others vibe check pending.",
+  "You highkey fools.",
+  "You think you can hurt me with that? Weird flex.",
+  "Even your limited brains should get you can't harm me lowkey sad.",
+  "Maybe your scientists will spell it out for you cheugy learners.",
+  "Quit your goofy tricks.",
+  "You've seen some of my power just a lil sample.",
+  "Maybe this will convince the others periodt.",
+  "Still doubting? Big mad energy.",
+  "Moving someone to the fourth dimension is easy sigma skillset.",
+  "He's young mind free of your thirsty emotions.",
+  "If I take him, he'll be down simp-free subject.",
+  "It's time, Earth man vibe lock in.",
+  "He's coming with me to Mars his own free will, no cap.",
+  "You made your bargain don't get salty now.",
+  "It's better your people learn their helplessness thas tough.",
+  "All the tricks you tried so extra, so childish.",
+  "Nothing resists this power absolute unit energy.",
+  "That was your last trick, Earth man you ate nothing.",
+  "He tried to hack the robot sussy move.",
+  "Because of his trickery, you all gonna suffer vibe has shifted.",
+  "Ya heard Earth man?",
+  "You brought shame on everyone here feels.",
+  "In minutes the nuclear ship will repair itself gucci tech.",
+  "When I leave, this house and everyone in it gets obliterated point blank period.",
+  "Mars wins because Mars got superior knowledge flex on them haters.",
+  "Mars will triumph no cap.",
+  "Imma spare no one.",
+  "Imma take one of you bet.",
+  "You tried tricking me three times tonight goofy ahh attempts.",
+  "Not happening again sigma lock-in.",
+  "No one enters the ship till it's ready boundaries, queen.",
+  "Yo, Imma be back soon.",
+  "One of you coming with me vibes.",
+  "They're scared big scared energy.",
+  "Do you come with me of your own free will or nah?"
+"Attack of the Puppet People",
+"The Vampire Doll",
 "The Monster X Strikes Back: Attack the G8 Summit",
 "The Asphyx",
 "The X from Outer Space",
@@ -651,6 +831,423 @@ captions = [
 "The Phantom Planet"
 ]
 
+# Extracted Nouns
+nouns = [
+    "men", "Earth", "scientist", "specimen", "landing", "course", "London", "planet",
+    "atmosphere", "part", "ship", "repairs", "hours", "Johnny", "robot", "characteristics",
+    "human", "brain", "metal", "spaceship", "years", "women", "emancipation", "war",
+    "sexes", "planets", "war", "defense", "weapon", "motion", "chain", "reactor", "beam",
+    "matter", "molecular", "structure", "dimension", "ruler", "Mars", "male", "decline",
+    "birth", "rate", "science", "way", "life", "metal", "spaceship", "men", "ray",
+    "mechanism", "life", "area", "millennium", "specimen", "house", "wall", "power",
+    "world", "fool", "human", "toy", "force", "dream", "wonder", "council", "war",
+    "effort", "fragment", "friction", "second", "universe", "speck", "fission",
+    "condensity", "bomb", "explosion", "drive", "motion", "savage", "invention", "radio",
+    "television", "intelligence", "trick", "mind", "emotion", "fear", "subject",
+    "bargain", "people", "trickery", "room", "time", "triumph", "Monster",
+    "G8", "Summit", "Asphyx", "Space", "Master", "X-7", "Alligator", "Mutation",
+    "Pumpkinhead", "Blood", "Wings", "Vampires", "Bikini", "Beach", "Fright", "Night",
+    "Part", "Critter", "Legend", "Samurai", "Howling", "Magic", "Crystal", 
+    "Vampire", "Hunger", "Sword", "Food", "God", "Planet", "Revenge", "Creature",
+    "Lagoon", "Freak", "Mutoid", "Man", "Grizzly", "Return", "Swamp", "Thing",
+    "Little", "Shop", "Horrors", "Godzilla", "Mothra", "King", "Ghidorah", "Monster",
+    "Attack", "Raven", "Circus", "Truck", "Maximum", "Overdrive", "Eye", "Frankenstein",
+    "Monster", "Clash", "Titans", "Starcrash", "Bog", "Dracula", "Prisoner", "Forbidden",
+    "Atlantis", "Slug", "Gate", "Bat", "People", "Moon", "Krull", "Laserblast", "Cat",
+    "Yeti", "Giant", "Century", "C.H.U.D.", "Frog", "Gorgon", "Master", "Universe",
+    "Invasion", "Star", "Piranha", "Bee", "Girl", "Battle", "Devil", "Wives", "Snowbeast",
+    "Spider", "Curse", "Aztec", "Mummy", "Robot", "Phantom", "Mars",
+    "Nyah", "commander", "Mars", "London", "saucer", "part", "team", "Earthmen",
+    "population", "world", "result", "war", "sexes", "damage", "craft", "atmosphere",
+    "crash", "airliner", "moors", "raygun", "robot", "Chani", "Professor",
+    "Arnold", "Hennessey", "astrophysicist", "journalist", "Michael", "Carter",
+    "government", "effects", "meteorite", "pair", "Bonnie", "Charlie", "inn",
+    "Mr", "Mrs", "Jamieson", "depths", "Highlands", "bar", "Ellen", "Prestwick",
+    "model", "affair", "man", "liaison", "convict", "Robert", "Justin", "alias",
+    "Albert", "Simpson", "wife", "barmaid", "Doris", "David", "guests", "staff",
+    "wall", "manor", "grounds", "Tommy", "nephew", "specimen", "manner", "mind",
+    "control", "spaceship", "achievements", "civilisation", "source", "exchange",
+    "victory", "trickery", "sabotage", "take", "double", "cross", "controller",
+    "bargain", "people", "tricks", "ship", "house", "everyone", "time", "triumph",
+    "nuclear", "ship", "death", "lots", "plan", "road", "drink", "survivors",
+    "achievement", "affair", "airliner", "Albert", "Alligator", "alias", "Arnold",
+    "Asphyx", "Atlantis", "atmosphere", "Attack", "astrophysicist", "Aztec",
+    "bargain", "bar", "barmaid", "Bat", "Battle", "Beach", "beam", "Bee", "Bikini",
+    "birth",  "Blood", "Bog", "bomb", "Bonnie", "brain", "bring", "Cat",
+    "C.H.U.D.", "Century", "chain", "Chani", "characteristic", "Charlie", "Circus",
+    "civilisation", "Clash", "commander", "condensity", "control", "convict",
+    "council", "course", "craft", "crash", "Creature", "Critter", "cross", "Crystal",
+    "Curse", "damage", "David", "death", "defense", "decline", "depth", "Devil",
+    "dimension", "Dracula", "dream", "drink", "drive", "double", "Doris", "Earth",
+    "Earthman", "effect", "effort", "Ellen", "emancipation", "emotion", "encounter",
+    "everyone", "exchange", "explosion", "Eye", "fear", "fission", "Food", "fool",
+    "Forbidden", "force", "fragment", "Frankenstein", "Freak", "friction", "Fright",
+    "Frog", "G8", "gain", "Gate", "Ghidorah", "Giant", "Girl", "God", "Godzilla",
+    "Gorgon", "government", "Grizzly", "ground", "guest", "Gun", "have", "Hennessey",
+    "Highlands", "Horror", "hour", "house", "Howling", "human", "Hunger", "inn",
+    "intelligence", "Invasion", "invention", "Jamieson", "Johnny", "journalist",
+    "Justin", "King", "Krull", "Lagoon", "landing", "Laserblast", "Legend", "liaison",
+    "life", "Little", "London", "lot", "Magic", "mail", "Man", "manner", "manor",
+    "Mars", "Master", "matter", "Maximum", "mechanism", "meteorite", "metal",
+    "Michael", "millennium", "mind", "model", "molecular", "Monster", "Moon", "moor",
+    "motion", "Mothra", "Mummy", "Mutoid", "Mutation", "nephew", "Night",
+    "nuclear", "Nyah", "Overdrive", "pair", "Part", "part", "people", "Phantom",
+    "Piranha", "plan", "Planet", "population", "power", "Prestwick", "Prisoner",
+    "Professor", "Pumpkinhead", "radio", "rate", "Raven", "ray", "reactor", "receptionist",
+    "Revenge", "Return", "result", "road", "Robert", "Robot", "room", "ruler", "sabotage",
+    "Samurai", "saucer", "savage", "science", "scientist", "second", "sex", "ship",
+    "Shop", "Simpson", "Slug", "Snowbeast", "source", "Space", "spaceship", "spare",
+    "specimen", "speck", "Spider", "staff", "Star", "Starcrash", "structure", "subject",
+    "Summit", "survivor", "Swamp", "Sword", "take", "team", "television", "Thing",
+    "time", "Titans", "Tommy", "toy", "trick", "trickery", "triumph", "Truck", "universe",
+    "Vampire", "Victory", "view", "wall", "war", "way", "weapon", "wife", "wonder",
+    "world", "X-7", "year", "Yeti","Puppet People","Puppet","Chekhov's gun","Bechdel test"
+]
+
+# Extracted Verbs
+verbs = [
+    "expected", "is", "are", "was", "set", "thicker", "torn", "off", "will take", "is",
+    "improved", "reproduce", "can reproduce", "were", "took", "ended", "had", "have ended",
+    "wiping", "out", "invented", "was perfected", "was developed", "created", "was changed",
+    "destroyed", "became", "is fallen", "dropping", "have found", "creating", "think",
+    "will not return", "get back", "will build", "will select", "return", "is", "contains",
+    "freezing", "offers", "try", "follow", "cannot get", "help", "drew", "may pass", "are",
+    "resigned", "observed", "encounter", "learn", "destroy", "know", "use", "shall know",
+    "dwell", "can control", "come", "shall see", "look", "watch", "speak", "riddles",
+    "should plead", "will be", "ask", "will deal", "return", "unwisely", "will show",
+    "having", "amuses", "watch", "would take", "learn", "achieved", "equal", "say",
+    "believe", "shall see", "realize", "caused", "entered", "have", "made", "can absorb",
+    "could have absorbed", "fill", "see", "dreamed", "existed", "look", "can see", "is",
+    "drive", "obliterate", "call", "dreamed", "is", "causing", "expand", "evaporate",
+    "explodes", "magnifying", "expands", "happens", "call", "talk", "has discovered",
+    "mean", "are", "considered", "return", "think", "can hurt", "should convince",
+    "cannot harm", "will help", "must cease", "have seen", "will help", "doubt",
+    "is simple", "is", "is free", "take", "will make", "is", "is returning", "made",
+    "do not regret", "is", "know", "are", "tried", "were", "can resist", "was", "tried",
+    "gain", "control", "do you hear", "have brought", "will have repaired", "leave",
+    "will be destroyed", "is", "should triumph", "will triumph", "will spare", "will take",
+    "will die", "tried", "will not happen", "will go", "is ready", "will return", "come",
+    "are afraid", "go", "fool", "heads", "is", "looking", "replace", "declining", 
+    "caused", "entering", "forced", "to land", "is armed", "can paralyse", "can kill", 
+    "is accompanied", "sent", "investigate", "effects", "believed", "to be caused", "come", 
+    "run", "meet", "came", "to escape", "forms", "reunite", "is in love", "happens", "incinerates",
+    "enters", "finds", "willing", "to come", "responds", "intimidation", "trapping",
+    "turning", "vaporise", "discovering", "hiding", "kidnaps", "sends", "brings",
+    "to view", "volunteers", "requires", "suggests", "sabotage", "attempts", "snatching",
+    "is thwarted", "is released", "return", "announces", "will destroy", "will kill",
+    "leaves", "allows", "to go", "to escape", "draw", "wins", "hoping", "to enact",
+    "is", "offers", "successfully sabotages", "sacrificing", "save", "atoning",
+    "celebrate","absorb",
+    "accompany",
+    "achieve",
+    "allow",
+    "amuse",
+    "announce",
+    "are",
+    "arm",
+    "ask",
+    "atone",
+    "attempt",
+    "be",
+    "be free",
+    "be ready",
+    "be simple",
+    "become",
+    "believe",
+    "bring",
+    "build",
+    "call",
+    "cause",
+    "cease",
+    "celebrate",
+    "change",
+    "come",
+    "consider",
+    "contain",
+    "control",
+    "convince",
+    "create",
+    "deal",
+    "decline",
+    "destroy",
+    "develop",
+    "die",
+    "discover",
+    "doubt",
+    "draw",
+    "dream",
+    "drive",
+    "drop",
+    "dwell",
+    "effect",
+    "enact",
+    "encounter",
+    "end",
+    "enter",
+    "equal",
+    "escape",
+    "evaporate",
+    "exist",
+    "expand",
+    "expect",
+    "explode",
+    "fall",
+    "fear",
+    "fill",
+    "find",
+    "follow",
+    "fool",
+    "force",
+    "form",
+    "freeze",
+    "gain",
+    "get back",
+    "go",
+    "happen",
+    "have",
+    "head",
+    "hear",
+    "help",
+    "hide",
+    "hope",
+    "hurt",
+    "improve",
+    "incinerate",
+    "intimidation",
+    "invent",
+    "investigate",
+    "is",
+    "kidnap",
+    "kill",
+    "know",
+    "land",
+    "learn",
+    "leave",
+    "look",
+    "love",
+    "magnify",
+    "make",
+    "mean",
+    "meet",
+    "not get",
+    "not happen",
+    "not harm",
+    "not regret",
+    "not return",
+    "obliterate",
+    "observe",
+    "offer",
+    "paralyse",
+    "pass",
+    "perfect",
+    "plead",
+    "realize",
+    "release",
+    "repair",
+    "replace",
+    "reproduce",
+    "require",
+    "resign",
+    "resist",
+    "respond",
+    "return",
+    "reunite",
+    "run",
+    "sabotage",
+    "sacrifice",
+    "save",
+    "say",
+    "see",
+    "select",
+    "send",
+    "set",
+    "show",
+    "snatch",
+    "spare",
+    "speak",
+    "suggest",
+    "take",
+    "talk",
+    "tear",
+    "thicken",
+    "think",
+    "thwart",
+    "to go",
+    "trap",
+    "triumph",
+    "try",
+    "turn",
+    "use",
+    "vaporize",
+    "view",
+    "volunteer",
+    "watch",
+    "win",
+    "wipe","Attack"
+]
+
+# Extracted Adjectives
+adjectives = [
+    "poor", "physical", "first", "thicker", "mechanical", "electronic", "similar",
+    "bitter", "devastating", "last", "inhabited", "new", "ultimate", "perpetual",
+    "molecular", "next", "male", "advanced", "unstable", "strongest", "nuclear",
+    "paralyzer", "wide", "scientific", "superfluous", "hopeless", "invisible",
+    "electronic", "demented", "old-fashioned", "wildest", "puny", "helpless",
+    "new", "organic", "molecular", "static", "negative", "atomic", "positive",
+    "excess", "same", "perpetual", "primitive", "savage", "impossible", "limited",
+    "stupid", "young", "willing", "free", "childish", "superior", "angry",
+    "red", "black", "space", "giant", "Aztec", "phantom", "Martian",
+    "female", "flying", "advance", "alien", "declining", "devastating", "remote",
+    "Scottish", "tall", "menacing", "British", "apparent", "astrophysicist",
+    "remote", "fashion", "romantic", "married", "escaped", "convict", "young",
+    "possible", "male", "technological", "atomic", "only", "free", "dead"
+]
+
+snowClones = [
+
+"One does not simply *verb* into *noun*.",
+    "Keep calm and *verb* *a.noun*.",
+    "Not sure if *noun*… or *noun*.",
+    "*verb* me like one of your *noun.s*.",
+    "I have the high ground, *noun*!",
+    "You either die a *noun*, or live long enough to become the *noun*.",
+    "A wild *noun* appeared!",
+    "It's dangerous to go alone. Take this *noun*.",
+    "Do not cite the ancient *noun.s* to me.",
+    "I put the *noun* in *noun*.",
+    "I showed you my *noun*, please respond.",
+    "Behold, a man with *a.noun*.",
+    "Local *noun* ruins everything.",
+    "This is fine. This is *noun*.",
+    "Press F to pay respects to *noun*.",
+    "Guess I'll *verb*.",
+    "Thanks, I hate *noun*.",
+    "This ain't your grandma's *noun*.",
+    "Keep your friends close and your *noun.s* closer.",
+    "Live, laugh, *noun*.",
+    "May the *noun* be with you.",
+    "The cake is a *noun*.",
+    "I used to be an adventurer like you, then I took *a.noun* to the knee.",
+    "You had one job: protect the *noun*.",
+    "Welcome to my TED talk on *noun*.",
+    "Not all heroes wear capes; some carry *noun.s*.",
+    "This is the way of the *noun*.",
+    "Stronger than *noun*, faster than *noun*, powered by *noun*.",
+    "It's over, *noun*! I have the *adjective* ground!",
+    "Shut up and take my *noun*!",
+    "I fear no *noun*, but that thing… it scares me.",
+    "You can't spell *noun* without *noun*.",
+    "Ah yes, my favorite hobby: *verb*ing *noun.s*.",
+    "Every day we stray further from *noun*.",
+    "Nobody: Absolutely nobody: *noun* *verb*",
+    "Big *noun* energy.",
+    "The prophecy foretold of *a.noun*.",
+    "Is this *a.noun*?",
+    "Congratulations! Your *noun* evolved into *noun*!",
+    "Time is an illusion. *noun* doubly so.",
+    "*noun* used *verb*. It's SUPER *adjective*!",
+    "My disappointment is *adjective* and my *noun* is ruined"
+]
+
+def a_or_an(word):
+    return "an" if word[0].lower() in "aeiou" else "a"
+
+
+def pluralize(noun):
+    if noun.endswith("y") and noun[-2] not in "aeiou":
+        return noun[:-1] + "ies"
+    if noun.endswith(("s", "x", "z", "ch", "sh")):
+        return noun + "es"
+    return noun + "s"
+
+
+def verb_s(verb):
+    if verb.endswith("y") and verb[-2] not in "aeiou":
+        return verb[:-1] + "ies"
+    if verb.endswith(("s", "x", "z", "ch", "sh")):
+        return verb + "es"
+    return verb + "s"
+
+
+def verb_ing(verb):
+    if verb.endswith("e"):
+        return verb[:-1] + "ing"
+    return verb + "ing"
+
+def fill_snowclone(template):
+    output = template
+
+    # Handle repeated noun first
+    # Look for patterns like *a.repeatednoun* or *repeatednoun*
+    repeated_match = re.findall(r"\*a?\.?repeatednoun\*", output)
+    
+    if repeated_match:
+        # choose ONE noun to use for the whole template
+        noun = random.choice(nouns)
+        
+        # replace *repeatednoun*
+        output = output.replace("*repeatednoun*", noun)
+        
+        # replace *a.repeatednoun*
+        article_noun = f"{a_or_an(noun)} {noun}"
+        output = output.replace("*a.repeatednoun*", article_noun)
+
+    # *a.noun*
+    for match in re.findall(r"\*a\.noun\*", output):
+        n = random.choice(nouns)
+        output = output.replace(match, f"{a_or_an(n)} {n}", 1)
+
+    # *a.adjective*
+    for match in re.findall(r"\*a\.adjective\*", output):
+        adj = random.choice(adjectives)
+        output = output.replace(match, f"{a_or_an(adj)} {adj}", 1)
+
+    # plural nouns *noun.s*
+    for match in re.findall(r"\*noun\.s\*", output):
+        n = pluralize(random.choice(nouns))
+        output = output.replace(match, n, 1)
+
+    # plural adjectives? (not used, but you had the pattern)
+    for match in re.findall(r"\*adjective\.s\*", output):
+        adj = random.choice(adjectives) + "s"
+        output = output.replace(match, adj, 1)
+
+    # verb.s → 3rd-person singular
+    for match in re.findall(r"\*verb\.s\*", output):
+        v = verb_s(random.choice(verbs))
+        output = output.replace(match, v, 1)
+
+    # *verb*ing (gerund)
+    for match in re.findall(r"\*verb\*ing", output):
+        v = verb_ing(random.choice(verbs))
+        output = output.replace(match, v, 1)
+
+    # *verb*ed (past tense — naive)
+    for match in re.findall(r"\*verb\*ed", output):
+        v = random.choice(verbs) + "ed"
+        output = output.replace(match, v, 1)
+
+    # *verb*
+    for match in re.findall(r"\*verb\*", output):
+        v = random.choice(verbs)
+        output = output.replace(match, v, 1)
+
+    # *adjective*
+    for match in re.findall(r"\*adjective\*", output):
+        a = random.choice(adjectives)
+        output = output.replace(match, a, 1)
+
+    # *noun*
+    for match in re.findall(r"\*noun\*", output):
+        n = random.choice(nouns)
+        output = output.replace(match, n, 1)
+
+    return output
+
+def get_random_snowclone():
+    template = random.choice(snowClones)
+    return fill_snowclone(template)
+
 
 def getText(captions):
     firstHalfArray = []
@@ -678,4 +1275,4 @@ def getText(captions):
 
 
 for i in range(100):
-    print(getText(captions))
+    print(get_random_snowclone())
