@@ -831,7 +831,461 @@ captions = [
 "The Phantom Planet"
 ]
 
+# Extracted Nouns
+nouns = [
+    "men", "Earth", "scientist", "specimen", "landing", "course", "London", "planet",
+    "atmosphere", "part", "ship", "repairs", "hours", "Johnny", "robot", "characteristics",
+    "human", "brain", "metal", "spaceship", "years", "women", "emancipation", "war",
+    "sexes", "planets", "war", "defense", "weapon", "motion", "chain", "reactor", "beam",
+    "matter", "molecular", "structure", "dimension", "ruler", "Mars", "male", "decline",
+    "birth", "rate", "science", "way", "life", "metal", "spaceship", "men", "ray",
+    "mechanism", "life", "area", "millennium", "specimen", "house", "wall", "power",
+    "world", "fool", "human", "toy", "force", "dream", "wonder", "council", "war",
+    "effort", "fragment", "friction", "second", "universe", "speck", "fission",
+    "condensity", "bomb", "explosion", "drive", "motion", "savage", "invention", "radio",
+    "television", "intelligence", "trick", "mind", "emotion", "fear", "subject",
+    "bargain", "people", "trickery", "room", "time", "triumph", "Monster",
+    "G8", "Summit", "Asphyx", "Space", "Master", "X-7", "Alligator", "Mutation",
+    "Pumpkinhead", "Blood", "Wings", "Vampires", "Bikini", "Beach", "Fright", "Night",
+    "Part", "Critter", "Legend", "Samurai", "Howling", "Magic", "Crystal", 
+    "Vampire", "Hunger", "Sword", "Food", "God", "Planet", "Revenge", "Creature",
+    "Lagoon", "Freak", "Mutoid", "Man", "Grizzly", "Return", "Swamp", "Thing",
+    "Little", "Shop", "Horrors", "Godzilla", "Mothra", "King", "Ghidorah", "Monster",
+    "Attack", "Raven", "Circus", "Truck", "Maximum", "Overdrive", "Eye", "Frankenstein",
+    "Monster", "Clash", "Titans", "Starcrash", "Bog", "Dracula", "Prisoner", "Forbidden",
+    "Atlantis", "Slug", "Gate", "Bat", "People", "Moon", "Krull", "Laserblast", "Cat",
+    "Yeti", "Giant", "Century", "C.H.U.D.", "Frog", "Gorgon", "Master", "Universe",
+    "Invasion", "Star", "Piranha", "Bee", "Girl", "Battle", "Devil", "Wives", "Snowbeast",
+    "Spider", "Curse", "Aztec", "Mummy", "Robot", "Phantom", "Mars",
+    "Nyah", "commander", "Mars", "London", "saucer", "part", "team", "Earthmen",
+    "population", "world", "result", "war", "sexes", "damage", "craft", "atmosphere",
+    "crash", "airliner", "moors", "raygun", "robot", "Chani", "Professor",
+    "Arnold", "Hennessey", "astrophysicist", "journalist", "Michael", "Carter",
+    "government", "effects", "meteorite", "pair", "Bonnie", "Charlie", "inn",
+    "Mr", "Mrs", "Jamieson", "depths", "Highlands", "bar", "Ellen", "Prestwick",
+    "model", "affair", "man", "liaison", "convict", "Robert", "Justin", "alias",
+    "Albert", "Simpson", "wife", "barmaid", "Doris", "David", "guests", "staff",
+    "wall", "manor", "grounds", "Tommy", "nephew", "specimen", "manner", "mind",
+    "control", "spaceship", "achievements", "civilisation", "source", "exchange",
+    "victory", "trickery", "sabotage", "take", "double", "cross", "controller",
+    "bargain", "people", "tricks", "ship", "house", "everyone", "time", "triumph",
+    "nuclear", "ship", "lots", "plan", "road", "drink", "survivors",
+    "achievement", "affair", "airliner", "Albert", "Alligator", "alias", "Arnold",
+    "Asphyx", "Atlantis", "atmosphere", "Attack", "astrophysicist", "Aztec",
+    "bargain", "bar", "barmaid", "Bat", "Battle", "Beach", "beam", "Bee", "Bikini",
+    "birth",  "Blood", "Bog", "bomb", "Bonnie", "brain", "bring", "Cat",
+    "C.H.U.D.", "Century", "chain", "Chani", "characteristic", "Charlie", "Circus",
+    "civilisation", "Clash", "commander", "condensity", "control", "convict",
+    "council", "course", "craft", "crash", "Creature", "Critter", "cross", "Crystal",
+    "Curse", "damage", "David", "defense", "decline", "depth", "Devil",
+    "dimension", "Dracula", "dream", "drink", "drive", "double", "Doris", "Earth",
+    "Earthman", "effect", "effort", "Ellen", "emancipation", "emotion", "encounter",
+    "everyone", "exchange", "explosion", "Eye", "fear", "fission", "Food", "fool",
+    "Forbidden", "force", "fragment", "Frankenstein", "Freak", "friction", "Fright",
+    "Frog", "G8", "gain", "Gate", "Ghidorah", "Giant", "Girl", "God", "Godzilla",
+    "Gorgon", "government", "Grizzly", "ground", "guest", "Gun", "have", "Hennessey",
+    "Highlands", "Horror", "hour", "house", "Howling", "human", "Hunger", "inn",
+    "intelligence", "Invasion", "invention", "Jamieson", "Johnny", "journalist",
+    "Justin", "King", "Krull", "Lagoon", "landing", "Laserblast", "Legend", "liaison",
+    "life", "Little", "London", "lot", "Magic", "mail", "Man", "manner", "manor",
+    "Mars", "Master", "matter", "Maximum", "mechanism", "meteorite", "metal",
+    "Michael", "millennium", "mind", "model", "molecular", "Monster", "Moon", "moor",
+    "motion", "Mothra",  "Mummy", "Mutoid", "Mutation", "nephew", "Night",
+    "nuclear", "Nyah", "Overdrive", "pair", "Part", "part", "people", "Phantom",
+    "Piranha", "plan", "Planet", "population", "power", "Prestwick", "Prisoner",
+    "Professor", "Pumpkinhead", "radio", "rate", "Raven", "ray", "reactor", "receptionist",
+    "Revenge", "Return", "result", "road", "Robert", "Robot", "room", "ruler", "sabotage",
+    "Samurai", "saucer", "savage", "science", "scientist", "second", "sex", "ship",
+    "Shop", "Simpson", "Slug", "Snowbeast", "source", "Space", "spaceship", "spare",
+    "specimen", "speck", "Spider", "staff", "Star", "Starcrash", "structure", "subject",
+    "Summit", "survivor", "Swamp", "Sword", "take", "team", "television", "Thing",
+    "time", "Titans", "Tommy", "toy", "trick", "trickery", "triumph", "Truck", "universe",
+    "Vampire", "Victory", "view", "wall", "war", "way", "weapon", "wife", "wonder",
+    "world", "X-7", "year", "Yeti","Puppet People","Puppet","Monsterdon","Mastodon","Chekhov's gun","Bechdel test"
+]
 
+# Extracted Verbs
+verbs = [
+    "expected", "is", "are", "was", "set", "thicker", "torn", "off", "will take", "is",
+    "improved", "reproduce", "can reproduce", "were", "took", "ended", "had", "have ended",
+    "wiping", "out", "invented", "was perfected", "was developed", "created", "was changed",
+    "destroyed", "became", "is fallen", "dropping", "have found", "creating", "think",
+    "will not return", "get back", "will build", "will select", "return", "is", "contains",
+    "freezing", "offers", "try", "follow", "cannot get", "help", "drew", "may pass", "are",
+    "resigned", "observed", "encounter", "learn", "destroy", "know", "use", "shall know",
+    "dwell", "can control", "come", "shall see", "look", "watch", "speak", "riddles",
+    "should plead", "will be", "ask", "will deal", "return", "unwisely", "will show",
+    "having", "amuses", "watch", "would take", "learn", "achieved", "equal", "say",
+    "believe", "shall see", "realize", "caused", "entered", "have", "made", "can absorb",
+    "could have absorbed", "fill", "see", "dreamed", "existed", "look", "can see", "is",
+    "drive", "obliterate", "call", "dreamed", "is", "causing", "expand", "evaporate",
+    "explodes", "magnifying", "expands", "happens", "call", "talk", "has discovered",
+    "mean", "are", "considered", "return", "think", "can hurt", "should convince",
+    "cannot harm", "will help", "must cease", "have seen", "will help", "doubt",
+    "is simple", "is", "is free", "take", "will make", "is", "is returning", "made",
+    "do not regret", "is", "know", "are", "tried", "were", "can resist", "was", "tried",
+    "gain", "control", "do you hear", "have brought", "will have repaired", "leave",
+    "will be destroyed", "is", "should triumph", "will triumph", "will spare", "will take",
+    "will die", "tried", "will not happen", "will go", "is ready", "will return", "come",
+    "are afraid", "go", "fool", "heads", "is", "looking", "replace", "declining", 
+    "caused", "entering", "forced", "to land", "is armed", "can paralyse", "can destroy", "can end",
+    "is accompanied", "sent", "investigate", "effects", "believed", "to be caused", "come", 
+    "run", "meet", "came", "to escape", "forms", "reunite", "is in love", "happens", "incinerates",
+    "enters", "finds", "willing", "to come", "responds", "intimidation", "trapping",
+    "turning", "vaporise", "discovering", "hiding", "kidnaps", "sends", "brings",
+    "to view", "volunteers", "requires", "suggests", "sabotage", "attempts", "snatching",
+    "is thwarted", "is released", "return", "announces", "will destroy", "will end",
+    "leaves", "allows", "to go", "to escape", "draw", "wins", "hoping", "to enact",
+    "is", "offers", "successfully sabotages", "sacrificing", "save", "atoning",
+    "celebrate","absorb",
+    "accompany",
+    "achieve",
+    "allow",
+    "amuse",
+    "announce",
+    "are",
+    "arm",
+    "ask",
+    "atone",
+    "attempt",
+    "be",
+    "be free",
+    "be ready",
+    "be simple",
+    "become",
+    "believe",
+    "bring",
+    "build",
+    "call",
+    "cause",
+    "cease",
+    "celebrate",
+    "change",
+    "come",
+    "consider",
+    "contain",
+    "control",
+    "convince",
+    "create",
+    "deal",
+    "decline",
+    "destroy",
+    "develop",
+    "die",
+    "discover",
+    "doubt",
+    "draw",
+    "dream",
+    "drive",
+    "drop",
+    "dwell",
+    "effect",
+    "enact",
+    "encounter",
+    "end",
+    "enter",
+    "equal",
+    "escape",
+    "evaporate",
+    "exist",
+    "expand",
+    "expect",
+    "explode",
+    "fall",
+    "fear",
+    "fill",
+    "find",
+    "follow",
+    "fool",
+    "force",
+    "form",
+    "freeze",
+    "gain",
+    "get back",
+    "go",
+    "happen",
+    "have",
+    "head",
+    "hear",
+    "help",
+    "hide",
+    "hope",
+    "hurt",
+    "improve",
+    "incinerate",
+    "intimidation",
+    "invent",
+    "investigate",
+    "is",
+    "kidnap",
+    "know",
+    "land",
+    "learn",
+    "leave",
+    "look",
+    "love",
+    "magnify",
+    "make",
+    "mean",
+    "meet",
+    "not get",
+    "not happen",
+    "not harm",
+    "not regret",
+    "not return",
+    "obliterate",
+    "observe",
+    "offer",
+    "paralyse",
+    "pass",
+    "perfect",
+    "plead",
+    "realize",
+    "release",
+    "repair",
+    "replace",
+    "reproduce",
+    "require",
+    "resign",
+    "resist",
+    "respond",
+    "return",
+    "reunite",
+    "run",
+    "sabotage",
+    "sacrifice",
+    "save",
+    "say",
+    "see",
+    "select",
+    "send",
+    "set",
+    "show",
+    "snatch",
+    "spare",
+    "speak",
+    "suggest",
+    "take",
+    "talk",
+    "tear",
+    "thicken",
+    "think",
+    "thwart",
+    "to go",
+    "trap",
+    "triumph",
+    "try",
+    "turn",
+    "use",
+    "vaporize",
+    "view",
+    "volunteer",
+    "watch",
+    "win",
+    "wipe","Attack"
+]
+
+# Extracted Adjectives
+adjectives = [
+    "poor", "physical", "first", "thicker", "mechanical", "electronic", "similar",
+    "bitter", "devastating", "last", "inhabited", "new", "ultimate", "perpetual",
+    "molecular", "next", "male", "advanced", "unstable", "strongest", "nuclear",
+    "paralyzer", "wide", "scientific", "superfluous", "hopeless", "invisible",
+    "electronic", "demented", "old-fashioned", "wildest", "puny", "helpless",
+    "new", "organic", "molecular", "static", "negative", "atomic", "positive",
+    "excess", "same", "perpetual", "primitive", "savage", "impossible", "limited",
+    "stupid", "young", "willing", "free", "childish", "superior", "angry",
+    "red", "black", "space", "giant", "Aztec", "phantom", "Martian",
+    "female", "flying", "advance", "alien", "declining", "devastating", "remote",
+    "Scottish", "tall", "menacing", "British", "apparent", "astrophysicist",
+    "remote", "fashion", "romantic", "married", "escaped", "convict", "young",
+    "possible", "male", "technological", "atomic", "only", "free", 
+]
+
+snowClones = [
+"going to *verb* like I've never *verb*ed before",
+"the only good *noun* is *a.adjective* *noun*",
+"whatever *verb.s* your *noun*",
+"my *noun* runneth over",
+"got *noun*?",
+"if *noun* is wrong, I don't want to be right",
+"Im in ur *noun* *verb*ing ur *noun*",
+"yes Virginia, there is *a.noun*",
+"not the *adjective*-est *noun* in the *noun*",
+"a few *noun*s short of a *noun*",
+"that's not *a.repeatednoun*. THIS is *a.repeatednoun*",
+"don't hate me because I'm *adjective*",
+"to *verb* or not to *verb*",
+"*noun*-core",
+"the *noun*-gate scandal",
+"I'm not *a.noun*, but I play one on TV",
+"I am *noun*, hear me *verb*",
+"Dammit Jim, I'm *a.noun*, not *a.noun*",
+"we don't need no stinkin' *noun.s*",
+"have *noun* will travel",
+"save an *a.noun*, ride *a.noun*",
+"in space, no one can hear you *verb*",
+"*noun* is the new *noun*",
+"I for one welcome our *noun.s* overlords",
+"*noun.s* and *noun.s* and *noun.s*, oh my!",
+"take this *noun* and shove it",
+"when I say *noun*, what I really mean is *noun*",
+"What Would *noun* Do?",
+"we're gonna need a bigger *noun*",
+"*noun* is hard, let's go shopping",
+"these are not the *noun.s* you're looking for",
+"there's no crying in X!",
+"*noun* 2: *adjective* Boogaloo",
+"my kingdom for *a.noun*",
+"I <3 *adjective* *noun*",
+"this is your brain on *noun*",
+"I *verb*, therefore I am",
+"all your *noun* are belong to us",
+"it's *noun.s* all the way down",
+"Love in the time of *noun*",
+"I can has *noun*?",
+"One does not simply *verb* into *noun*.",
+"Keep calm and *verb* *a.noun*.",
+"Not sure if *noun*... or *noun*.",
+"*verb* me like one of your *noun.s*.",
+"I have the *adjective* ground, *noun*!",
+"You either die a *noun*, or live long enough to become the *noun*.",
+"A wild *noun* appeared!",
+"It's dangerous to go alone. Take this *noun*.",
+"Do not cite the ancient *noun.s* to me.",
+"I put the *noun* in *noun*.",
+"I showed you my *noun*, please respond.",
+"Behold, a man with *a.noun*.",
+"Local *noun* ruins everything.",
+"This is fine. This is *noun*.",
+"Press F to pay respects to *noun*.",
+"Guess I'll *verb*.",
+"Thanks, I hate *noun*.",
+"This ain't your grandma's *noun*.",
+"Keep your friends close and your *noun.s* closer.",
+"Live, laugh, *noun*.",
+"May the *noun* be with you.",
+"The cake is a *noun*.",
+"I used to be an adventurer like you, then I took *a.noun* to the knee.",
+"You had one job: protect the *noun*.",
+"Welcome to my TED talk on *noun*.",
+"Not all heroes wear capes; some carry *noun.s*.",
+"This is the way of the *noun*.",
+"Stronger than *noun*, faster than *noun*, powered by *noun*.",
+"It's over, *noun*! I have the *adjective* ground!",
+"Shut up and take my *noun*!",
+"I fear no *noun*, but that thing... it scares me.",
+"You can't spell *noun* without *noun*.",
+"Ah yes, my favorite hobby: *verb*ing *noun.s*.",
+"Every day we stray further from *noun*.",
+"Nobody: Absolutely nobody: *noun* *verb*",
+"Big *noun* energy.",
+"The prophecy foretold of *a.noun*.",
+"Is this *a.noun*?",
+"Congratulations! Your *noun* evolved into *noun*!",
+"Time is an illusion. *noun* doubly so.",
+"*noun* used *verb*. It's SUPER *adjective*!",
+"My disappointment is *adjective* and my *noun* is ruined"
+]
+
+def a_or_an(word):
+    return "an" if word[0].lower() in "aeiou" else "a"
+
+
+def pluralize(noun):
+    if noun.endswith("y") and noun[-2] not in "aeiou":
+        return noun[:-1] + "ies"
+    if noun.endswith(("s", "x", "z", "ch", "sh")):
+        return noun + "es"
+    return noun + "s"
+
+
+def verb_s(verb):
+    if verb.endswith("y") and verb[-2] not in "aeiou":
+        return verb[:-1] + "ies"
+    if verb.endswith(("s", "x", "z", "ch", "sh")):
+        return verb + "es"
+    return verb + "s"
+
+
+def verb_ing(verb):
+    if verb.endswith("e"):
+        return verb[:-1] + "ing"
+    return verb + "ing"
+
+def fill_snowclone(template):
+    output = template
+
+    # Handle repeated noun first
+    # Look for patterns like *a.repeatednoun* or *repeatednoun*
+    repeated_match = re.findall(r"\*a?\.?repeatednoun\*", output)
+    
+    if repeated_match:
+        # choose ONE noun to use for the whole template
+        noun = random.choice(nouns)
+        
+        # replace *repeatednoun*
+        output = output.replace("*repeatednoun*", noun)
+        
+        # replace *a.repeatednoun*
+        article_noun = f"{a_or_an(noun)} {noun}"
+        output = output.replace("*a.repeatednoun*", article_noun)
+
+    # *a.noun*
+    for match in re.findall(r"\*a\.noun\*", output):
+        n = random.choice(nouns)
+        output = output.replace(match, f"{a_or_an(n)} {n}", 1)
+
+    # *a.adjective*
+    for match in re.findall(r"\*a\.adjective\*", output):
+        adj = random.choice(adjectives)
+        output = output.replace(match, f"{a_or_an(adj)} {adj}", 1)
+
+    # plural nouns *noun.s*
+    for match in re.findall(r"\*noun\.s\*", output):
+        n = pluralize(random.choice(nouns))
+        output = output.replace(match, n, 1)
+
+    # plural adjectives? (not used, but you had the pattern)
+    for match in re.findall(r"\*adjective\.s\*", output):
+        adj = random.choice(adjectives) + "s"
+        output = output.replace(match, adj, 1)
+
+    # verb.s → 3rd-person singular
+    for match in re.findall(r"\*verb\.s\*", output):
+        v = verb_s(random.choice(verbs))
+        output = output.replace(match, v, 1)
+
+    # *verb*ing (gerund)
+    for match in re.findall(r"\*verb\*ing", output):
+        v = verb_ing(random.choice(verbs))
+        output = output.replace(match, v, 1)
+
+    # *verb*ed (past tense — naive)
+    for match in re.findall(r"\*verb\*ed", output):
+        v = random.choice(verbs) + "ed"
+        output = output.replace(match, v, 1)
+
+    # *verb*
+    for match in re.findall(r"\*verb\*", output):
+        v = random.choice(verbs)
+        output = output.replace(match, v, 1)
+
+    # *adjective*
+    for match in re.findall(r"\*adjective\*", output):
+        a = random.choice(adjectives)
+        output = output.replace(match, a, 1)
+
+    # *noun*
+    for match in re.findall(r"\*noun\*", output):
+        n = random.choice(nouns)
+        output = output.replace(match, n, 1)
+
+    return output
+
+def get_random_snowclone():
+    template = random.choice(snowClones)
+    return fill_snowclone(template)
 
 banlist = json.loads(os.getenv("banlist"))
 
@@ -843,6 +1297,8 @@ mastodon = Mastodon(
 )
 
 def getText(captions):
+    if random.random() < 0.95:
+        return get_random_snowclone()
     firstHalfArray = []
     secondHalfArray = []
     for i in range(10): # try at max 10 times
