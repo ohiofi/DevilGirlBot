@@ -141,3 +141,4 @@ vite.config.ts.timestamp-*
 last_mention_id.txt
 temp.png
 last_random_post.txt
+*.pyc
