@@ -1448,7 +1448,7 @@ verbs = [
     "win",
     "wins",
     "wipe",
-    "would take",
+    "would take"
 ]
 
 # Extracted Adjectives
@@ -1539,94 +1539,163 @@ adjectives = [
     "technological",
     "atomic",
     "only",
-    "free",
+    "free"
 ]
 
 snowClones = [
-"going to *verb* like I've never *verb*ed before",
-"the only good *noun* is *a.adjective* *noun*",
-"whatever *verb.s* your *noun*",
-"my *noun* runneth over",
-"got *noun*?",
-"if *noun* is wrong, I don't want to be right",
-"Im in ur *noun* *verb*ing ur *noun*",
-"yes Virginia, there is *a.noun*",
-"not the *adjective*-est *noun* in the *noun*",
-"a few *noun*s short of a *noun*",
-"that's not *a.repeatednoun*. THIS is *a.repeatednoun*",
-"don't hate me because I'm *adjective*",
-"to *verb* or not to *verb*",
-"*noun*-core",
-"the *noun*-gate scandal",
-"I'm not *a.noun*, but I play one on TV",
-"I am *noun*, hear me *verb*",
-"Dammit Jim, I'm *a.noun*, not *a.noun*",
-"we don't need no stinkin' *noun.s*",
-"have *noun* will travel",
-"save an *a.noun*, ride *a.noun*",
-"in space, no one can hear you *verb*",
-"*noun* is the new *noun*",
-"I for one welcome our *noun.s* overlords",
-"*noun.s* and *noun.s* and *noun.s*, oh my!",
-"take this *noun* and shove it",
-"when I say *noun*, what I really mean is *noun*",
-"What Would *noun* Do?",
-"we're gonna need a bigger *noun*",
-"*noun* is hard, let's go shopping",
-"these are not the *noun.s* you're looking for",
-"there's no crying in X!",
-"*noun* 2: *adjective* Boogaloo",
-"my kingdom for *a.noun*",
-"I <3 *adjective* *noun*",
-"this is your brain on *noun*",
-"I *verb*, therefore I am",
-"all your *noun* are belong to us",
-"it's *noun.s* all the way down",
-"Love in the time of *noun*",
-"I can has *noun*?",
-"One does not simply *verb* into *noun*.",
-"Keep calm and *verb* *a.noun*.",
-"Not sure if *noun*... or *noun*.",
-"*verb* me like one of your *noun.s*.",
-"I have the *adjective* ground, *noun*!",
-"You either die a *noun*, or live long enough to become the *noun*.",
-"A wild *noun* appeared!",
-"It's dangerous to go alone. Take this *noun*.",
-"Do not cite the ancient *noun.s* to me.",
-"I put the *noun* in *noun*.",
-"I showed you my *noun*, please respond.",
-"Behold, a man with *a.noun*.",
-"Local *noun* ruins everything.",
-"This is fine. This is *noun*.",
-"Press F to pay respects to *noun*.",
-"Guess I'll *verb*.",
-"Thanks, I hate *noun*.",
-"This ain't your grandma's *noun*.",
-"Keep your friends close and your *noun.s* closer.",
-"Live, laugh, *noun*.",
-"May the *noun* be with you.",
-"The cake is a *noun*.",
-"I used to be an adventurer like you, then I took *a.noun* to the knee.",
-"You had one job: protect the *noun*.",
-"Welcome to my TED talk on *noun*.",
-"Not all heroes wear capes; some carry *noun.s*.",
-"This is the way of the *noun*.",
-"Stronger than *noun*, faster than *noun*, powered by *noun*.",
-"It's over, *noun*! I have the *adjective* ground!",
-"Shut up and take my *noun*!",
-"I fear no *noun*, but that thing... it scares me.",
-"You can't spell *noun* without *noun*.",
-"Ah yes, my favorite hobby: *verb*ing *noun.s*.",
-"Every day we stray further from *noun*.",
-"Nobody: Absolutely nobody: *noun* *verb*",
-"Big *noun* energy.",
-"The prophecy foretold of *a.noun*.",
-"Is this *a.noun*?",
-"Congratulations! Your *noun* evolved into *noun*!",
-"Time is an illusion. *noun* doubly so.",
-"*noun* used *verb*. It's SUPER *adjective*!",
-"My disappointment is *adjective* and my *noun* is ruined"
+    "going to *verb* like I've never *verb*ed before",
+    "the only good *noun* is *a.adjective* *noun*",
+    "whatever *verb.s* your *noun*",
+    "my *noun* runneth over",
+    "got *noun*?",
+    "if *noun* is wrong, I don't want to be right",
+    "Im in ur *noun* *verb*ing ur *noun*",
+    "yes Virginia, there is *a.noun*",
+    "not the *adjective*-est *noun* in the *noun*",
+    "a few *noun*s short of a *noun*",
+    "that's not *a.repeatednoun*. THIS is *a.repeatednoun*",
+    "don't hate me because I'm *adjective*",
+    "to *verb* or not to *verb*",
+    "*noun*-core",
+    "the *noun*-gate scandal",
+    "I'm not *a.noun*, but I play one on TV",
+    "I am *noun*, hear me *verb*",
+    "Dammit Jim, I'm *a.noun*, not *a.noun*",
+    "we don't need no stinkin' *noun.s*",
+    "have *noun* will travel",
+    "save an *a.noun*, ride *a.noun*",
+    "in space, no one can hear you *verb*",
+    "*noun* is the new *noun*",
+    "I for one welcome our *noun.s* overlords",
+    "*noun.s* and *noun.s* and *noun.s*, oh my!",
+    "take this *noun* and shove it",
+    "when I say *noun*, what I really mean is *noun*",
+    "What Would *noun* Do?",
+    "we're gonna need a bigger *noun*",
+    "*noun* is hard, let's go shopping",
+    "these are not the *noun.s* you're looking for",
+    "there's no crying in X!",
+    "*noun* 2: *adjective* Boogaloo",
+    "my kingdom for *a.noun*",
+    "I <3 *adjective* *noun*",
+    "this is your brain on *noun*",
+    "I *verb*, therefore I am",
+    "all your *noun* are belong to us",
+    "it's *noun.s* all the way down",
+    "Love in the time of *noun*",
+    "I can has *noun*?",
+    "One does not simply *verb* into *noun*.",
+    "Keep calm and *verb* *a.noun*.",
+    "Not sure if *noun*... or *noun*.",
+    "*verb* me like one of your *noun.s*.",
+    "I have the *adjective* ground, *noun*!",
+    "You either die a *noun*, or live long enough to become the *noun*.",
+    "A wild *noun* appeared!",
+    "It's dangerous to go alone. Take this *noun*.",
+    "Do not cite the ancient *noun.s* to me.",
+    "I put the *noun* in *noun*.",
+    "I showed you my *noun*, please respond.",
+    "Behold, a man with *a.noun*.",
+    "Local *noun* ruins everything.",
+    "This is fine. This is *noun*.",
+    "Press F to pay respects to *noun*.",
+    "Guess I'll *verb*.",
+    "Thanks, I hate *noun*.",
+    "This ain't your grandma's *noun*.",
+    "Keep your friends close and your *noun.s* closer.",
+    "Live, laugh, *noun*.",
+    "May the *noun* be with you.",
+    "The cake is a *noun*.",
+    "I used to be an adventurer like you, then I took *a.noun* to the knee.",
+    "You had one job: protect the *noun*.",
+    "Welcome to my TED talk on *noun*.",
+    "Not all heroes wear capes; some carry *noun.s*.",
+    "This is the way of the *noun*.",
+    "Stronger than *noun*, faster than *noun*, powered by *noun*.",
+    "It's over, *noun*! I have the *adjective* ground!",
+    "Shut up and take my *noun*!",
+    "I fear no *noun*, but that thing... it scares me.",
+    "You can't spell *noun* without *noun*.",
+    "Ah yes, my favorite hobby: *verb*ing *noun.s*.",
+    "Every day we stray further from *noun*.",
+    "Nobody: Absolutely nobody: *noun* *verb*",
+    "Big *noun* energy.",
+    "The prophecy foretold of *a.noun*.",
+    "Is this *a.noun*?",
+    "Congratulations! Your *noun* evolved into *noun*!",
+    "Time is an illusion. *noun* doubly so.",
+    "*noun* used *verb*. It's SUPER *adjective*!",
+    "My disappointment is *adjective* and my *noun* is ruined",
+    "Do you like *adjective* *noun.s*?",
+    "We all *verb* down here.",
+    "Whatever you do, don't *verb*.",
+    "I see *noun* people.",
+    "We all go a little *adjective* sometimes.",
+    "It's *noun*. It has a *noun*.",
+    "You're gonna need a bigger *noun*.",
+    "It's alive! It's *adjective* alive!",
+    "No more *noun.s*. Ever.",
+    "Whatever *verb.s* in the shadows, *verb.s* for *a.noun*.",
+    "I am your worst *noun*.",
+    "They mostly *verb* at night. Mostly.",
+    "The power of *noun* compels you!",
+    "We have such *noun.s* to show you.",
+    "First rule: never *verb* the *noun*.",
+    "You opened it. We came for the *noun*.",
+    "This house is clean except for the *noun*.",
+    "It's not the *noun* you should fear. It's the *noun* behind it.",
+    "Trust me you don't want to *verb* the *noun*.",
+    "May the *noun* be with you.",
+    "You want the *repeatednoun*?! You can't HANDLE the *repeatednoun*!",
+    "Show me the *noun*!",
+    "Go ahead... make my *noun*.",
+    "I'm gonna make him an offer he can't *verb*.",
+    "Nobody puts *noun* in a corner.",
+    "Life is like a box of *noun.s*.",
+    "Say hello to my little *noun*!",
+    "You had me at *noun*.",
+    "I feel the need... the need for *noun*.",
+    "There's no place like *noun*.",
+    "Keep your friends close, but your *noun.s* closer.",
+    "Houston, we have a *noun*.",
+    "They may take our lives, but they'll never take our *noun.s*!",
+    "I'll have what *noun* is having.",
+    "Fasten your seatbelts, it's going to be a *adjective* *noun*.",
+    "To infinity... and *noun*!",
+    "I'm king of the *noun*!",
+    "The first rule of *repeatednoun* Club is: you do not *verb* about *repeatednoun* Club.",
+    "I love the smell of *noun* in the morning. Smells like... *noun*.",
+    "The power of *repeatednoun* compels you! The power of *repeatednoun* compels you!",
+    "*repeatednoun.s*? We don't need no stinking *repeatednoun.s*!",
+    "*noun* means never having to say you're sorry.",
+    "I'm just *a.noun*, standing in front of *a.noun*, asking it to love me.",
+    "You make me want to be a better *noun*.",
+    "It's *adjective*. It's *noun*. It's fate!",
+    "I'm just looking for a *adjective* *noun* to share my life with.",
+    "Don't marry the *repeatednoun* you can live with, marry the *repeatednoun* you can't live without",
+    "You make me feel like I'm living in a *adjective* *noun*.",
+    "To me, you are perfect... except for the *noun*.",
+    "I guess when you know, you know — and I know it's *noun*.",
+    "You are my greatest *noun* and my hardest *noun*.",
+    "Sometimes the *noun* you're looking for is right in front of your *noun*.",
+    "Resistance is *adjective*.",
+    "To boldly go where no *noun* has gone before.",
+    "The needs of the *noun.s* outweigh the needs of the *noun.s*.",
+    "Don't, stop! *verb*, ing! Hold on to that *noun*.",
+    "We will, we will *verb* you.",
+    "Hey! I just met you, and this is *adjective*, but here's my *noun*, so *verb* me maybe.",
+    "Take me down to the *adjective* city where the grass is *adjective* and the *noun.s* are pretty",
+    "You are my *repeatednoun*, my only *repeatednoun*. You make me *verb* when skies are *adjective*",
+    "Just a small-town *noun*, livin in a *adjective* *noun*. Took the midnight *noun* goin anywhere",
+    "Straight outta *noun*, crazy *noun* named *name*.",
+    "I got 99 *noun.s* but a *noun* ain't one.",
+    "Cache rules everything around me, *noun* get the *noun*",
+    "Started from the *noun*, now we're *noun*.",
+    "Throw your *noun.s* in the air and wave 'em like you just don't *verb*.",
+    "I got my mind on my *repeatednoun* and my *repeatednoun* on my mind.",
+    "They see me *verb.ing*, they hatin'."
 ]
+
 
 def a_or_an(word):
     return "an" if word[0].lower() in "aeiou" else "a"
@@ -1653,6 +1722,7 @@ def verb_ing(verb):
         return verb[:-1] + "ing"
     return verb + "ing"
 
+
 def fill_snowclone(template):
     output = template
 
@@ -1662,17 +1732,17 @@ def fill_snowclone(template):
         # choose ONE noun to use for the whole template
         noun = random.choice(nouns)
         plural_noun = pluralize(noun)
-        
+
         # replace *repeatednoun*
         output = output.replace("*repeatednoun*", noun)
-        
+
         # replace *a.repeatednoun*
         article_noun = f"{a_or_an(noun)} {noun}"
         output = output.replace("*a.repeatednoun*", article_noun)
 
         # plural replacements
         output = output.replace("*repeatednoun.s*", plural_noun)
-        #output = output.replace("*a.repeatednoun.s*", f"{a_or_an(plural_noun)} {plural_noun}")
+        # output = output.replace("*a.repeatednoun.s*", f"{a_or_an(plural_noun)} {plural_noun}")
 
     # *a.noun*
     for match in re.findall(r"\*a\.noun\*", output):
@@ -1731,9 +1801,11 @@ def fill_snowclone(template):
 
     return output
 
+
 def get_random_snowclone():
     template = random.choice(snowClones)
     return fill_snowclone(template)
+
 
 banlist = json.loads(os.getenv("banlist"))
 
@@ -1741,26 +1813,33 @@ mastodon = Mastodon(
     client_id=os.getenv("client_key"),
     client_secret=os.getenv("client_secret"),
     access_token=os.getenv("access_token"),
-    api_base_url="https://mastodon.social"
+    api_base_url="https://mastodon.social",
 )
+
 
 def getText(captions):
     if random.random() < 0.75:
         return get_random_snowclone()
     firstHalfArray = []
     secondHalfArray = []
-    for i in range(10): # try at max 10 times
+    for i in range(10):  # try at max 10 times
         # Pick random captions and split into words
         firstHalfArray = random.choice(captions).split(" ")
         # Keep roughly half from firstHalfArray
-        start_index = int(random.random() * len(firstHalfArray) * 0.5 + random.random() * len(firstHalfArray) * 0.5)
+        start_index = int(
+            random.random() * len(firstHalfArray) * 0.5
+            + random.random() * len(firstHalfArray) * 0.5
+        )
         firstHalfArray = firstHalfArray[0:start_index]
         if len(firstHalfArray) > 1:
             break
-    for i in range(10): # try at max 10 times
+    for i in range(10):  # try at max 10 times
         secondHalfArray = random.choice(captions).split(" ")
         # Remove roughly half from the start of secondHalfArray
-        start_index = int(random.random() * len(secondHalfArray) * 0.5 + random.random() * len(secondHalfArray) * 0.5)
+        start_index = int(
+            random.random() * len(secondHalfArray) * 0.5
+            + random.random() * len(secondHalfArray) * 0.5
+        )
         secondHalfArray = secondHalfArray[start_index:]
         if len(secondHalfArray) > 1:
             break
@@ -1770,6 +1849,7 @@ def getText(captions):
         return random.choice(captions)
     return result
 
+
 def build_alt_text(user_text: str) -> str:
     # Strip markup just in case
     clean = html.unescape(user_text).strip()
@@ -1777,7 +1857,7 @@ def build_alt_text(user_text: str) -> str:
     return (
         "a screenshot from the film Devil Girl From Mars showing a "
         "serious woman wearing a black leather suit, cape, and cowl. "
-        "Text is superimposed that says: \"" + clean + "\""
+        'Text is superimposed that says: "' + clean + '"'
     )
 
 
@@ -1795,7 +1875,6 @@ def pick_random_image():
     return os.path.join(images_folder, filename)
 
 
-
 # ---------------------------------------------------------
 # LOAD / SAVE LAST PROCESSED MENTION
 # ---------------------------------------------------------
@@ -1806,9 +1885,11 @@ def read_last_seen_id():
     except (FileNotFoundError, ValueError):
         return None
 
+
 def save_last_seen_id(last_id):
     with open(LAST_ID_FILE, "w") as f:
         f.write(str(last_id))
+
 
 def load_last_random_post():
     if not os.path.exists(LAST_RANDOM_POST_FILE):
@@ -1819,9 +1900,11 @@ def load_last_random_post():
         except:
             return 0
 
+
 def save_last_random_post(ts):
     with open(LAST_RANDOM_POST_FILE, "w") as f:
         f.write(str(ts))
+
 
 # ---------------------------------------------------------
 # CLEAN USER TEXT
@@ -1832,7 +1915,6 @@ def extract_user_text(status):
     text = soup.get_text().strip()
     text = re.sub(r"@[A-Za-z0-9_@.]+", "", text).strip()  # remove mentions
     return text
-
 
 
 def make_image(user_text, output_path=TEMP_PNG_PATH):
@@ -1854,7 +1936,7 @@ def make_image(user_text, output_path=TEMP_PNG_PATH):
     line = ""
     for word in words:
         test_line = f"{line} {word}".strip()
-        bbox = draw.textbbox((0,0), test_line, font=font)
+        bbox = draw.textbbox((0, 0), test_line, font=font)
         if bbox[2] - bbox[0] <= max_width:
             line = test_line
         else:
@@ -1876,12 +1958,19 @@ def make_image(user_text, output_path=TEMP_PNG_PATH):
         text_width = bbox[2] - bbox[0]
         x_text = (im.width - text_width) / 2
 
-        draw.text((x_text, y_text), line, font=font, fill="white",
-                  stroke_width=5, stroke_fill="black")
+        draw.text(
+            (x_text, y_text),
+            line,
+            font=font,
+            fill="white",
+            stroke_width=5,
+            stroke_fill="black",
+        )
         y_text += line_height
 
     im.save(output_path)
     return output_path
+
 
 def makePost(text):
     """Create a public post with a generated image."""
@@ -1891,8 +1980,9 @@ def makePost(text):
     mastodon.status_post(
         status=text,
         media_ids=[mastodon.media_post(png_path, description=alt_text)["id"]],
-        visibility="public"
+        visibility="public",
     )
+
 
 def makeReply(user_acct, text, in_reply_to_id):
     """Reply to a mention with a generated image and hashtags."""
@@ -1910,13 +2000,14 @@ def makeReply(user_acct, text, in_reply_to_id):
         status=f"@{user_acct} {text}",
         media_ids=[mastodon.media_post(png_path, description=alt_text)["id"]],
         in_reply_to_id=in_reply_to_id,
-        visibility="public"
+        visibility="public",
     )
 
 
 # ---------------------------------------------------------
 # PROCESS NEW MENTIONS
 # ---------------------------------------------------------
+
 
 def process_mentions(last_seen_id=None):
     # print(f"last_seen_id: {last_seen_id}, type: {type(last_seen_id)}")
@@ -1933,7 +2024,7 @@ def process_mentions(last_seen_id=None):
 
     mentions = list(reversed(mentions))  # Process oldest first
     for note in mentions:
-        
+
         if note["type"] != "mention":
             continue
         mention = note["status"]  # Correct: the post that mentioned the bot
@@ -1954,7 +2045,6 @@ def process_mentions(last_seen_id=None):
         # if hashtags:
         #     hashtag_text = " " + " ".join(f"#{tag['name']}" for tag in hashtags)
 
-
         # Extract clean text
         soup = BeautifulSoup(mention["content"], "html.parser")
         text = soup.get_text().strip()
@@ -1967,11 +2057,9 @@ def process_mentions(last_seen_id=None):
         # Update last_seen_id to the notification ID
         last_seen_id = max(last_seen_id or 0, int(note["id"]))
         save_last_seen_id(last_seen_id)
-        break # rate limit this so that if there are multiple mentions, it will only reply to the oldest one. Other mentions can be processed when the bot runs again.
+        break  # rate limit this so that if there are multiple mentions, it will only reply to the oldest one. Other mentions can be processed when the bot runs again.
 
     return last_seen_id
-
-
 
 
 # ---------------------------------------------------------
@@ -1980,4 +2068,3 @@ def process_mentions(last_seen_id=None):
 if __name__ == "__main__":
     last_seen_id = read_last_seen_id()
     last_seen_id = process_mentions(last_seen_id)
-
