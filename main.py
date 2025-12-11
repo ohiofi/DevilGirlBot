@@ -5,14 +5,34 @@ from bs4 import BeautifulSoup
 import random
 from PIL import Image, ImageDraw, ImageFont
 
-load_dotenv()
-TEMP_PNG_PATH = os.getenv("TEMP_PNG_PATH", "/tmp/devilgirl.png")  # fallback default
-LAST_ID_FILE = os.getenv("LAST_ID_FILE", "/tmp/last_id.txt")  # fallback default
-LAST_RANDOM_POST_FILE = os.getenv("LAST_RANDOM_POST_FILE", "/tmp/last_random_post.txt")
-IMAGES_FOLDER = os.getenv("IMAGES_FOLDER", "/path/to/images")  # fallback default
-FONT_PATH = os.getenv("FONT_PATH", "/path/to/default/font.ttf")
-FONT_SIZE = int(os.getenv("FONT_SIZE", 46))  # convert to int
-POST_INTERVAL = 2 * 60 * 60  # 2 hours
+
+TEMP_PNG_PATH = None
+LAST_ID_FILE = None
+LAST_RANDOM_POST_FILE = None
+IMAGES_FOLDER = None
+FONT_PATH = None
+FONT_SIZE = None
+POST_INTERVAL = None
+banlist = None
+mastodon = None
+
+def setup_globals():
+    load_dotenv()
+    TEMP_PNG_PATH = os.getenv("TEMP_PNG_PATH", "/tmp/devilgirl.png")  # fallback default
+    LAST_ID_FILE = os.getenv("LAST_ID_FILE", "/tmp/last_id.txt")  # fallback default
+    LAST_RANDOM_POST_FILE = os.getenv("LAST_RANDOM_POST_FILE", "/tmp/last_random_post.txt")
+    IMAGES_FOLDER = os.getenv("IMAGES_FOLDER", "/path/to/images")  # fallback default
+    FONT_PATH = os.getenv("FONT_PATH", "/path/to/default/font.ttf")
+    FONT_SIZE = int(os.getenv("FONT_SIZE", 46))  # convert to int
+    POST_INTERVAL = 2 * 60 * 60  # 2 hours
+    banlist = json.loads(os.getenv("banlist"))
+    mastodon = Mastodon(
+        client_id=os.getenv("client_key"),
+        client_secret=os.getenv("client_secret"),
+        access_token=os.getenv("access_token"),
+        api_base_url="https://mastodon.social",
+    )
+
 
 captions = [
     ":3",
@@ -1693,7 +1713,16 @@ snowClones = [
     "Started from the *noun*, now we're *noun*.",
     "Throw your *noun.s* in the air and wave 'em like you just don't *verb*.",
     "I got my mind on my *repeatednoun* and my *repeatednoun* on my mind.",
-    "They see me *verb.ing*, they hatin'."
+    "They see me *verb.ing*, they hatin'.",
+    "Tell me you *repeatedverb* without telling me you *repeatedverb*.",
+    "Have you tried turning it *adjective* and then back *adjective* again?",
+    "That's *a.repeatednoun*. That's *a.repeatednoun* who *verb.s* on a *noun*.",
+    "You wouldn't steal *a.noun*. You wouldn't download *a.noun*. You wouldn't *verb* *a.noun*",
+    "The *adjective* is strong with this *noun*.",
+    "What is *adjective* may never *verb*.",
+    "Be careful who you call *adjective* in *noun*.",
+    "I volunteer as *repeatednoun*! I volunteer as repeatednoun for *noun*.",
+    "Who is this *noun* and why do they keep *verb.ing* the *noun*?",
 ]
 
 
@@ -1722,27 +1751,53 @@ def verb_ing(verb):
         return verb[:-1] + "ing"
     return verb + "ing"
 
+def verb_ed(verb):
+    if not verb:
+        return ""
+    last_letter = verb[-1].lower()
+    last_two = verb[-2:].lower()
+    # Rule 1: Verbs ending in 'e' (e.g., "live" -> "lived")
+    if last_letter == 'e':
+        return verb + 'd'
+    # Rule 2: Verbs ending in 'y' preceded by a consonant (e.g., "try" -> "tried")
+    # Note: If preceded by a vowel (e.g., "play"), just add 'ed'.
+    if last_letter == 'y' and len(verb) > 1 and verb[-2].lower() not in 'aeiou':
+        return verb[:-1] + 'ied'
+    # Rule 3: CVC pattern (Consonant-Vowel-Consonant) at the end, 
+    # where the stress is on the last syllable (e.g., "stop" -> "stopped", "occur" -> "occurred")
+    # This is complex to check perfectly, but we can check common single-syllable cases.
+    vowels = 'aeiou'
+    if len(verb) >= 3 and last_letter not in vowels and verb[-2].lower() in vowels and verb[-3].lower() not in vowels:
+        # Simple check for common CVC endings (e.g., stop, drop, beg, tap)
+        if last_two not in ('er', 'el', 'on', 'ap'): # Avoid common exceptions
+            return verb + last_letter + 'ed'
+    # Default Rule: Just add 'ed' (e.g., "walk" -> "walked", "play" -> "played")
+    return verb + 'ed'
 
 def fill_snowclone(template):
     output = template
 
-    # Handle repeated noun first
-    # Find any form of repeatednoun markers
+    # Handle repeated words first
+    # REPEATED NOUN
+    # Check for *any* repeatednoun marker before choosing a word
     if re.search(r"\*a?\.?repeatednoun(?:\.s)?\*", output):
-        # choose ONE noun to use for the whole template
-        noun = random.choice(nouns)
-        plural_noun = pluralize(noun)
+        n = random.choice(nouns)
+        output = output.replace("*repeatednoun.s*", pluralize(n))
+        output = output.replace("*a.repeatednoun*", f"{a_or_an(n)} {n}")
+        output = output.replace("*repeatednoun*", n)
 
-        # replace *repeatednoun*
-        output = output.replace("*repeatednoun*", noun)
+    # REPEATED VERB
+    if re.search(r"\*repeatedverb(?:\..+)?\*", output):
+        v = random.choice(verbs)
+        output = output.replace("*repeatedverb.s*", verb_s(v))
+        output = output.replace("*repeatedverb.ing*", verb_ing(v))
+        output = output.replace("*repeatedverb.ed*", verb_ed(v))
+        output = output.replace("*repeatedverb*", v)
 
-        # replace *a.repeatednoun*
-        article_noun = f"{a_or_an(noun)} {noun}"
-        output = output.replace("*a.repeatednoun*", article_noun)
-
-        # plural replacements
-        output = output.replace("*repeatednoun.s*", plural_noun)
-        # output = output.replace("*a.repeatednoun.s*", f"{a_or_an(plural_noun)} {plural_noun}")
+    # REPEATED ADJECTIVE
+    if "*repeatedadjective*" in output:
+        a = random.choice(adjectives)
+        output = output.replace("*repeatedadjective*", a)
 
     # *a.noun*
     for match in re.findall(r"\*a\.noun\*", output):
@@ -1807,14 +1862,7 @@ def get_random_snowclone():
     return fill_snowclone(template)
 
 
-banlist = json.loads(os.getenv("banlist"))
 
-mastodon = Mastodon(
-    client_id=os.getenv("client_key"),
-    client_secret=os.getenv("client_secret"),
-    access_token=os.getenv("access_token"),
-    api_base_url="https://mastodon.social",
-)
 
 
 def getText(captions):
@@ -2066,5 +2114,6 @@ def process_mentions(last_seen_id=None):
 # MAIN (single run)
 # ---------------------------------------------------------
 if __name__ == "__main__":
+    setup_globals()
     last_seen_id = read_last_seen_id()
     last_seen_id = process_mentions(last_seen_id)
