@@ -129,7 +129,6 @@ NOUNS = [
     "Master",
     "Mastodon",
     "matter",
-    "Maximum",
     "mechanism",
     "metal",
     "meteorite",
