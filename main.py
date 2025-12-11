@@ -1,9 +1,10 @@
 from mastodon import Mastodon
 from dotenv import load_dotenv
-import os, json, re, html, time
 from bs4 import BeautifulSoup
-import random
 from PIL import Image, ImageDraw, ImageFont
+
+import os, json, re, html, time
+import random
 
 from corpora.adjectives import ADJECTIVES as adjectives
 from corpora.names import NAMES as names
@@ -38,19 +39,6 @@ def setup_globals():
         access_token=os.getenv("access_token"),
         api_base_url="https://mastodon.social",
     )
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 def a_or_an(word):
@@ -187,8 +175,6 @@ def fill_snowclone(template):
 def get_random_snowclone():
     template = random.choice(snowClones)
     return fill_snowclone(template)
-
-
 
 
 
