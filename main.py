@@ -13,32 +13,23 @@ from corpora.random_captions import RANDOM_CAPTIONS as captions
 from corpora.snowclones import SNOWCLONES as snowClones
 from corpora.verbs import VERBS as verbs
 
-TEMP_PNG_PATH = None
-LAST_ID_FILE = None
-LAST_RANDOM_POST_FILE = None
-IMAGES_FOLDER = None
-FONT_PATH = None
-FONT_SIZE = None
-POST_INTERVAL = None
-banlist = None
-mastodon = None
 
-def setup_globals():
-    load_dotenv()
-    TEMP_PNG_PATH = os.getenv("TEMP_PNG_PATH", "/tmp/devilgirl.png")  # fallback default
-    LAST_ID_FILE = os.getenv("LAST_ID_FILE", "/tmp/last_id.txt")  # fallback default
-    LAST_RANDOM_POST_FILE = os.getenv("LAST_RANDOM_POST_FILE", "/tmp/last_random_post.txt")
-    IMAGES_FOLDER = os.getenv("IMAGES_FOLDER", "/path/to/images")  # fallback default
-    FONT_PATH = os.getenv("FONT_PATH", "/path/to/default/font.ttf")
-    FONT_SIZE = int(os.getenv("FONT_SIZE", 46))  # convert to int
-    POST_INTERVAL = 2 * 60 * 60  # 2 hours
-    banlist = json.loads(os.getenv("banlist"))
-    mastodon = Mastodon(
-        client_id=os.getenv("client_key"),
-        client_secret=os.getenv("client_secret"),
-        access_token=os.getenv("access_token"),
-        api_base_url="https://mastodon.social",
-    )
+load_dotenv()
+TEMP_PNG_PATH = os.getenv("TEMP_PNG_PATH", "/tmp/devilgirl.png")  # fallback default
+LAST_ID_FILE = os.getenv("LAST_ID_FILE", "/tmp/last_id.txt")  # fallback default
+LAST_RANDOM_POST_FILE = os.getenv("LAST_RANDOM_POST_FILE", "/tmp/last_random_post.txt")
+IMAGES_FOLDER = os.getenv("IMAGES_FOLDER", "/path/to/images")  # fallback default
+FONT_PATH = os.getenv("FONT_PATH", "/path/to/default/font.ttf")
+FONT_SIZE = int(os.getenv("FONT_SIZE", 46))  # convert to int
+POST_INTERVAL = 2 * 60 * 60  # 2 hours
+banlist = json.loads(os.getenv("banlist"))
+mastodon = Mastodon(
+    client_id=os.getenv("client_key"),
+    client_secret=os.getenv("client_secret"),
+    access_token=os.getenv("access_token"),
+    api_base_url="https://mastodon.social",
+)
+
 
 
 def a_or_an(word):
@@ -427,6 +418,5 @@ def process_mentions(last_seen_id=None):
 # MAIN (single run)
 # ---------------------------------------------------------
 if __name__ == "__main__":
-    setup_globals()
     last_seen_id = read_last_seen_id()
     last_seen_id = process_mentions(last_seen_id)
