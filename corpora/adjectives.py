@@ -87,4 +87,6 @@ ADJECTIVES = [
     "wild",     
     "willing",
     "young",
+    "cannibalistic",
+    "humanoid",
 ]
