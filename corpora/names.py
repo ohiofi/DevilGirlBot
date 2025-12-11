@@ -24,5 +24,8 @@ NAMES = [
     "Peter Cushing",
     "Devil Girl",
     "Wrong Frog",
-    "Frankenstein"
+    "Frankenstein",
+    "Grizzly",
+    "Gorgon",
+    "Asphyx"
 ]
