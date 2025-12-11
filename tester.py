@@ -1,9 +1,10 @@
 # from mastodon import Mastodon
 # from dotenv import load_dotenv
-import os, json, re, html, time
 # from bs4 import BeautifulSoup
-import random
 # from PIL import Image, ImageDraw, ImageFont
+
+import os, json, re, html, time
+import random
 
 from corpora.adjectives import ADJECTIVES as adjectives
 from corpora.names import NAMES as names
