@@ -1839,5 +1839,8 @@ def getText(captions):
     return result
 
 
-for i in range(100):
-    print(get_random_snowclone())
+
+
+if __name__ == "__main__":
+    for i in range(100):
+        print(get_random_snowclone())
