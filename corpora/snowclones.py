@@ -145,7 +145,7 @@ SNOWCLONES = [
     "Just a small-town *noun*, livin in a *adjective* *noun*. Took the midnight *noun* goin anywhere",
     "Straight outta *noun*, crazy *noun* named *name*.",
     "I got 99 *noun.s* but a *noun* ain't one.",
-    "Cache rules everything around me, *noun* get the *noun*",
+    "Cash rules everything around me, *noun* get the *noun*",
     "Started from the *noun*, now we're *noun*.",
     "Throw your *noun.s* in the air and wave 'em like you just don't *verb*.",
     "I got my mind on my *repeatednoun* and my *repeatednoun* on my mind.",
@@ -161,7 +161,7 @@ SNOWCLONES = [
     "I get *verb.ed* down, but I get *verb* again. You are never gonna *verb* me down."
     "*repeatedverb* me why-ee! Ain't nothing but *a.noun*. *repeatedverb* me why-ee! Ain't nothing but *a.noun*.",
     "Ain't nothin' but *a.noun* thang, baby! Two *adjective* *noun.s* goin' crazy",
-    "I'm gonna *verb* 'em off. A seven *noun* army can't hold me back.",
+    "I'm gonna *verb* 'em off. A seven *noun* army can't *verb* me back.",
     "You only get one *noun*. Do not *verb* your chance to *verb*.",
     "He was *a.adjective* *repeatednoun*. She said, 'See you later, *repeatednoun*.'",
     "Say it ain't so, I will not *verb*, *verb* the *noun.s* off, *verb* me *noun*",
@@ -192,4 +192,5 @@ SNOWCLONES = [
     "When you play the Game Of *noun.s*, you *verb* or you *verb*. There is no *adjective* *noun*.",
     "*verb* my *adjective* metal *noun*!",
     "This is the *adjective* *noun*. Everything is *adjective* all the time.",
+    "Teenage *adjective* *adjective* *repeatednoun.s*. Heroes in *a.adjective*-shell. *repeatednoun* power!"
 ]
