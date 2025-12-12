@@ -152,7 +152,7 @@ NOUNS = [
     "pair",
     "Part",
     "part",
-    "people",     # Retaining 'people' as a singular collective noun
+    "people",  # Retaining 'people' as a singular collective noun
     "Phantom",
     "Piranha",
     "plan",
@@ -174,6 +174,7 @@ NOUNS = [
     "result",
     "Return",
     "Revenge",
+    "riddle",
     "road",
     "Robot",
     "room",
@@ -211,7 +212,7 @@ NOUNS = [
     "television",
     "Thing",
     "time",
-    "Titan",        # Singularized 'Titans'
+    "Titan",  # Singularized 'Titans'
     "toy",
     "trick",
     "trickery",
@@ -223,14 +224,14 @@ NOUNS = [
     "Victory",
     "victory",
     "view",
-    "volunteer",    # Singularized 'volunteers'
+    "volunteer",  # Singularized 'volunteers'
     "wall",
     "war",
     "way",
     "weapon",
     "wife",
     "Wing",
-    "woman",        # Singularized 'women'
+    "woman",  # Singularized 'women'
     "wonder",
     "world",
     "X-7",
@@ -238,7 +239,7 @@ NOUNS = [
     "Yeti",
     # Compound Nouns (Treated as Singular Proper Nouns)
     "Vampire Doll",
-    "Puppet Person", # Singularized
+    "Puppet Person",  # Singularized
     "Outer Space",
     "Space Master",
     "Bikini Beach",
@@ -254,16 +255,16 @@ NOUNS = [
     "X-Ray Eye",
     "Space Monster",
     "Forbidden Planet",
-    "Bat Person", # Singularized
+    "Bat Person",  # Singularized
     "Cat Girl",
     "Star Creature",
     "Bee Girl",
-    "Stepford Wife", # Singularized
+    "Stepford Wife",  # Singularized
     "Giant Spider",
     "Aztec Mummy",
     "Phantom Planet",
-    "Cat Woman", # Singularized
-    "Wrestling Woman", # Singularized
+    "Cat Woman",  # Singularized
+    "Wrestling Woman",  # Singularized
     "Monolith Monster",
     "Blacula",
     "Nosferatu",
