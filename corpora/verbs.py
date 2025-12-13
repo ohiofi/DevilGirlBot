@@ -83,6 +83,7 @@ VERBS = [
     "magnify",
     "make",
     "meet",
+    "mind control",
     "observe",
     "offer",
     "paralyse",
