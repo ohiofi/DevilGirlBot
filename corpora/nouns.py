@@ -50,7 +50,6 @@ NOUNS = [
     "damage",
     "decline",
     "defense",
-    "depth",
     "Devil",
     "dimension",
     "double",
