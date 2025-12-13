@@ -1,7 +1,7 @@
-# from mastodon import Mastodon
-# from dotenv import load_dotenv
-# from bs4 import BeautifulSoup
-# from PIL import Image, ImageDraw, ImageFont
+from mastodon import Mastodon
+from dotenv import load_dotenv
+from bs4 import BeautifulSoup
+from PIL import Image, ImageDraw, ImageFont
 
 import os, json, re, html, time
 import random
@@ -9,40 +9,43 @@ import random
 from corpora.adjectives import ADJECTIVES as adjectives
 from corpora.names import NAMES as names
 from corpora.nouns import NOUNS as nouns
+from corpora.places import PLACES as places
 from corpora.random_captions import RANDOM_CAPTIONS as captions
 from corpora.snowclones import SNOWCLONES as snowClones
 from corpora.verbs import VERBS as verbs
 
-TEMP_PNG_PATH = None
-LAST_ID_FILE = None
-LAST_RANDOM_POST_FILE = None
-IMAGES_FOLDER = None
-FONT_PATH = None
-FONT_SIZE = None
-POST_INTERVAL = None
-banlist = None
-mastodon = None
+load_dotenv()
+TEMP_PNG_PATH = os.getenv("TEMP_PNG_PATH", "/tmp/devilgirl.png")  # fallback default
+LAST_ID_FILE = os.getenv("LAST_ID_FILE", "/tmp/last_id.txt")  # fallback default
+LAST_RANDOM_POST_FILE = os.getenv("LAST_RANDOM_POST_FILE", "/tmp/last_random_post.txt")
+IMAGES_FOLDER = os.getenv("IMAGES_FOLDER", "/path/to/images")  # fallback default
+FONT_PATH = os.getenv("FONT_PATH", "/path/to/default/font.ttf")
+FONT_SIZE = int(os.getenv("FONT_SIZE", 46))  # convert to int
+POST_INTERVAL = 2 * 60 * 60  # 2 hours
+banlist = json.loads(os.getenv("banlist"))
+mastodon = Mastodon(
+    client_id=os.getenv("client_key"),
+    client_secret=os.getenv("client_secret"),
+    access_token=os.getenv("access_token"),
+    api_base_url="https://mastodon.social",
+)
 
-def setup_globals():
-    load_dotenv()
-    TEMP_PNG_PATH = os.getenv("TEMP_PNG_PATH", "/tmp/devilgirl.png")  # fallback default
-    LAST_ID_FILE = os.getenv("LAST_ID_FILE", "/tmp/last_id.txt")  # fallback default
-    LAST_RANDOM_POST_FILE = os.getenv("LAST_RANDOM_POST_FILE", "/tmp/last_random_post.txt")
-    IMAGES_FOLDER = os.getenv("IMAGES_FOLDER", "/path/to/images")  # fallback default
-    FONT_PATH = os.getenv("FONT_PATH", "/path/to/default/font.ttf")
-    FONT_SIZE = int(os.getenv("FONT_SIZE", 46))  # convert to int
-    POST_INTERVAL = 2 * 60 * 60  # 2 hours
-    banlist = json.loads(os.getenv("banlist"))
-    mastodon = Mastodon(
-        client_id=os.getenv("client_key"),
-        client_secret=os.getenv("client_secret"),
-        access_token=os.getenv("access_token"),
-        api_base_url="https://mastodon.social",
-    )
+SNOWCLONE_WORD_TYPES = ['noun', 'verb', 'adjective', 'name', 'place']
 
-
-
-
+def get_word_list(word_type):
+    """Maps marker type to the appropriate word list."""
+    if 'noun' in word_type:
+        return nouns
+    if 'verb' in word_type:
+        return verbs
+    if 'adjective' in word_type:
+        return adjectives
+    if 'name' in word_type:
+        return names
+    if 'place' in word_type:
+        return places
+    # Add other types like 'exclamation' or 'number' here
+    return []
 
 def a_or_an(word):
     return "an" if word[0].lower() in "aeiou" else "a"
@@ -66,7 +69,30 @@ def verb_s(verb):
 
 def verb_ing(verb):
     if verb.endswith("e"):
+        # Handles 'ie' verbs like 'lie' -> 'lying' (by not removing 'e')
+        if verb.endswith("ie"):
+            return verb[:-2] + "ying"
+        # Handles 'e' removal for most others
         return verb[:-1] + "ing"
+
+    # 2. Handle CVC doubling for single-syllable verbs (e.g., run -> running, stop -> stopping)
+    # This check is simplified: it looks for CVC pattern at the end.
+    # It will miss complex cases (like multi-syllable verbs), but is effective for common single-syllable verbs.
+    if len(verb) >= 3 and not verb.endswith(('y', 'w', 'x')): # Exclude common non-doublers
+        
+        # Check if the last three letters follow the Consonant-Vowel-Consonant pattern
+        last_char = verb[-1]
+        vowel = verb[-2]
+        pre_vowel = verb[-3]
+        
+        VOWELS = "aeiou"
+
+        # Check for CVC pattern
+        if last_char not in VOWELS and vowel in VOWELS and pre_vowel not in VOWELS:
+            # Double the final consonant
+            return verb + last_char + "ing"
+            
+    # 3. Default: just add 'ing' (e.g., talk -> talking, sing -> singing)
     return verb + "ing"
 
 def verb_ed(verb):
@@ -92,85 +118,95 @@ def verb_ed(verb):
     # Default Rule: Just add 'ed' (e.g., "walk" -> "walked", "play" -> "played")
     return verb + 'ed'
 
+
+
+def apply_modifier(word, modifier, *args):
+    """Applies a single modifier to the word."""
+    if modifier == 's':       # Plural (Nouns) / 3rd-person singular (Verbs)
+        return pluralize(word) if 'noun' in args else verb_s(word)
+    if modifier == 'ed':      # Past Tense
+        return verb_ed(word)
+    if modifier == 'ing':     # Present Participle
+        return verb_ing(word)
+    if modifier == 'title':   # Capitalize first letter (e.g., Title Case)
+        return word.title()
+    if modifier == 'upper':   # Uppercase
+        return word.upper()
+    if modifier == 'lower':   # Lowercase (useful after .title)
+        return word.lower()
+    # Add more modifiers here (e.g., 'reverse', 'hyphenate')
+    return word
+
 def fill_snowclone(template):
     output = template
+    
+    # Dictionary to track words chosen for repeated markers in this run
+    processed_markers = {} 
 
-    # Handle repeated words first
-    # REPEATED NOUN
-    # Check for *any* repeatednoun marker before choosing a word
-    if re.search(r"\*a?\.?repeatednoun(?:\.s)?\*", output):
-        n = random.choice(nouns)
-        output = output.replace("*repeatednoun.s*", pluralize(n))
-        output = output.replace("*a.repeatednoun*", f"{a_or_an(n)} {n}")
-        output = output.replace("*repeatednoun*", n)
+    # --- Handle Repeated Words First (Logic remains the same) ---
+    for match in re.findall(r"\*repeated[a-z]+(?:\.[a-z]+)*\*", output):
+        full_marker = match
+        parts = full_marker[1:-1].split('.')
+        base_type = parts[0]
+        modifiers = parts[1:]
 
-    # REPEATED VERB
-    if re.search(r"\*repeatedverb(?:\..+)?\*", output):
-        v = random.choice(verbs)
-        output = output.replace("*repeatedverb.s*", verb_s(v))
-        output = output.replace("*repeatedverb.ing*", verb_ing(v))
-        output = output.replace("*repeatedverb.ed*", verb_ed(v))
-        output = output.replace("*repeatedverb*", v)
+        if base_type not in processed_markers:
+            base_word = random.choice(get_word_list(base_type))
+            processed_markers[base_type] = base_word
+        else:
+            base_word = processed_markers[base_type]
+            
+        final_word = base_word
+        a_an_prefix = ""
+        for mod in modifiers:
+            if mod == 'a': continue
+            final_word = apply_modifier(final_word, mod, base_type)
+        
+        if 'a' in modifiers:
+            a_an_prefix = a_or_an(final_word) + " "
 
-    # REPEATED ADJECTIVE
-    if "*repeatedadjective*" in output:
-        a = random.choice(adjectives)
-        output = output.replace("*repeatedadjective*", a)
+        # Replace ALL occurrences of this specific repeated marker
+        output = output.replace(full_marker, a_an_prefix + final_word)
 
-    # *a.noun*
-    for match in re.findall(r"\*a\.noun\*", output):
-        n = random.choice(nouns)
-        output = output.replace(match, f"{a_or_an(n)} {n}", 1)
 
-    # *a.adjective*
-    for match in re.findall(r"\*a\.adjective\*", output):
-        adj = random.choice(adjectives)
-        output = output.replace(match, f"{a_or_an(adj)} {adj}", 1)
+    # --- Handle Unique Words (revised to ensure every *instance* is unique) ---
 
-    # plural nouns *noun.s*
-    for match in re.findall(r"\*noun\.s\*", output):
-        n = pluralize(random.choice(nouns))
-        output = output.replace(match, n, 1)
+    for type_name in SNOWCLONE_WORD_TYPES:
+        # Regex to find all markers starting with the current type (e.g., *noun*, *noun.s*, *noun.a.ing*)
+        marker_pattern = re.compile(rf"\*{type_name}(?:\.[a-z]+)*\*")
+        
+        # Find every instance of a marker that matches the pattern
+        # The key is that we must replace them one by one.
+        
+        # We find ALL instances of the marker string (e.g., all "*noun.a*")
+        found_markers = re.findall(marker_pattern, output)
+        
+        for full_marker in found_markers:
+            
+            # --- Generate the unique word for THIS specific instance ---
+            
+            parts = full_marker[1:-1].split('.')
+            base_type = parts[0]
+            modifiers = parts[1:]
 
-    # plural adjectives? (not used, but you had the pattern)
-    for match in re.findall(r"\*adjective\.s\*", output):
-        adj = random.choice(adjectives) + "s"
-        output = output.replace(match, adj, 1)
-
-    # verb.s → 3rd-person singular
-    for match in re.findall(r"\*verb\.s\*", output):
-        v = verb_s(random.choice(verbs))
-        output = output.replace(match, v, 1)
-
-    # *verb*ing (gerund)
-    for match in re.findall(r"\*verb\*ing", output):
-        v = verb_ing(random.choice(verbs))
-        output = output.replace(match, v, 1)
-
-    # *verb*ed (past tense — naive)
-    for match in re.findall(r"\*verb\*ed", output):
-        v = random.choice(verbs) + "ed"
-        output = output.replace(match, v, 1)
-
-    # *verb*
-    for match in re.findall(r"\*verb\*", output):
-        v = random.choice(verbs)
-        output = output.replace(match, v, 1)
-
-    # *adjective*
-    for match in re.findall(r"\*adjective\*", output):
-        a = random.choice(adjectives)
-        output = output.replace(match, a, 1)
-
-    # *noun*
-    for match in re.findall(r"\*noun\*", output):
-        n = random.choice(nouns)
-        output = output.replace(match, n, 1)
-
-    # *name*
-    for match in re.findall(r"\*name\*", output):
-        n = random.choice(names)
-        output = output.replace(match, n, 1)
+            base_word = random.choice(get_word_list(base_type))
+            
+            final_word = base_word
+            a_an_prefix = ""
+            for mod in modifiers:
+                if mod == 'a': continue
+                final_word = apply_modifier(final_word, mod, base_type)
+            
+            if 'a' in modifiers:
+                a_an_prefix = a_or_an(final_word) + " "
+            
+            replacement_value = a_an_prefix + final_word
+            
+            # --- Replace only ONE occurrence in the output string ---
+            # Using the count=1 argument ensures that if the template contains
+            # two *noun* markers, we replace the first one with one random word,
+            # and the second one with a second random word in the next iteration.
+            output = output.replace(full_marker, replacement_value, 1)
 
     return output
 
@@ -178,8 +214,6 @@ def fill_snowclone(template):
 def get_random_snowclone():
     template = random.choice(snowClones)
     return fill_snowclone(template)
-
-
 
 
 
@@ -221,16 +255,13 @@ def build_alt_text(user_text: str) -> str:
     clean = html.unescape(user_text).strip()
 
     return (
-        "a screenshot from the film Devil Girl From Mars showing a "
+        "screenshot from the film Devil Girl From Mars showing a "
         "serious woman wearing a black leather suit, cape, and cowl. "
-        'Text is superimposed that says: "' + clean + '"'
+        'Superimposed text says: "' + clean + '"'
     )
 
 
 def pick_random_image():
-    # folder containing images adjust if needed
-    images_folder = "/Volumes/Verbatim/Documents/GitHub/DevilGirlBot/images"
-
     # generate a random number between 0 and 64 inclusive
     idx = random.randint(0, 64)
 
@@ -238,7 +269,7 @@ def pick_random_image():
     filename = f"devilgirl{idx:02d}.png"
 
     # full path to file
-    return os.path.join(images_folder, filename)
+    return os.path.join(IMAGES_FOLDER, filename)
 
 
 # ---------------------------------------------------------
@@ -341,7 +372,7 @@ def make_image(user_text, output_path=TEMP_PNG_PATH):
 def makePost(text):
     """Create a public post with a generated image."""
     png_path = make_image(text)
-    alt_text = f"a screenshot from the film Devil Girl From Mars showing a serious woman wearing a black leather suit, cape, and cowl. Text is superimposed that says: {text}"
+    alt_text = build_alt_text(text)
 
     mastodon.status_post(
         status=text,
@@ -356,7 +387,7 @@ def makeReply(user_acct, text, in_reply_to_id):
         text = getText(captions)
         # makePost(text)
     png_path = make_image(text)
-    alt_text = f"a screenshot from the film Devil Girl From Mars showing a serious woman wearing a black leather suit, cape, and cowl. Text is superimposed that says: {text}"
+    alt_text = build_alt_text(text)
 
     # hashtag_text = ""
     # if hashtags:
@@ -393,7 +424,7 @@ def process_mentions(last_seen_id=None):
 
         if note["type"] != "mention":
             continue
-        mention = note["status"]  # Correct: the post that mentioned the bot
+        mention = note["status"]  # the post that mentioned the bot
         user_acct = mention["account"]["acct"]
 
         # Skip banned users
@@ -428,8 +459,12 @@ def process_mentions(last_seen_id=None):
     return last_seen_id
 
 
-
-
+# ---------------------------------------------------------
+# MAIN 
+# ---------------------------------------------------------
+# if __name__ == "__main__":
+#     last_seen_id = read_last_seen_id()
+#     last_seen_id = process_mentions(last_seen_id)
 
 
 
