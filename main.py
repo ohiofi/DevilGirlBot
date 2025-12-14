@@ -7,6 +7,7 @@ import os, json, re, html, time
 import random
 
 from corpora.adjectives import ADJECTIVES as adjectives
+from corpora.adverbs import ADVERBS as adverbs
 from corpora.names import NAMES as names
 from corpora.nouns import NOUNS as nouns
 from corpora.places import PLACES as places
@@ -30,7 +31,7 @@ mastodon = Mastodon(
     api_base_url="https://mastodon.social",
 )
 
-SNOWCLONE_WORD_TYPES = ['noun', 'verb', 'adjective', 'name', 'place']
+SNOWCLONE_WORD_TYPES = ['noun', 'verb', 'adjective', 'name', 'place', 'adverb']
 
 def get_word_list(word_type):
     """Maps marker type to the appropriate word list."""
@@ -449,11 +450,16 @@ def process_mentions(last_seen_id=None):
         if not text:
             text = " "  # prevent empty caption
 
+        # Update last_seen_id to the notification ID
+        # NOTE: had to move this BEFORE the reply is uploaded, because slow upload times would mean that multiple replies were being generated
+        last_seen_id = max(last_seen_id or 0, int(note["id"]))
+        save_last_seen_id(last_seen_id)
+
         makeReply(user_acct, text, mention["id"])
 
         # Update last_seen_id to the notification ID
-        last_seen_id = max(last_seen_id or 0, int(note["id"]))
-        save_last_seen_id(last_seen_id)
+        # last_seen_id = max(last_seen_id or 0, int(note["id"]))
+        # save_last_seen_id(last_seen_id)
         break  # rate limit this so that if there are multiple mentions, it will only reply to the oldest one. Other mentions can be processed when the bot runs again.
 
     return last_seen_id
