@@ -87,6 +87,7 @@ ADJECTIVES = [
     "vaporizing",
     "wide",
     "wild",
+    "wildest",
     "willing",
     "young",
     "cannibalistic",
