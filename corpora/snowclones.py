@@ -143,5 +143,69 @@ SNOWCLONES = [
     "When you play the Game Of *noun.s*, you *verb* or you *verb*. There is no *adjective* *noun*.",
     "*verb* my *adjective* metal *noun*!",
     "This is the *adjective* *noun*. Everything is *adjective* all the time.",
-    "Teenage *adjective* *adjective* *repeatednoun.s*. Heroes in *adjective.a*-shell. *repeatednoun* power!"
+    "Teenage *adjective* *adjective* *repeatednoun.s*. Heroes in *adjective.a*-shell. *repeatednoun* power!",
+
+    "*place* *verb.s* the *adjective* *noun*, *adverb*.",
+    "All *adjective* *noun.s* have had *noun.s*.",
+    "Around this *noun* I've *verb.ed* *a.adjective* *noun* through which no one may *verb*, in or out.",
+    "As fast as *noun* was *verb.ed*, it was *verb.ed* by its *adjective* *noun* into the *adjective* *noun* and so *verb.ed* itself.",
+    "Despite our *adjective* *noun*, we have still *verb.ed* no way of *verb.ing* *noun*.",
+    "For every *adjective* *noun* *verb.ed*, *noun.a* was *verb.ed*.",
+    "I can *verb* *noun* beyond your *adjective* *noun.s*.",
+    "I will *verb* you *noun.s* you have never *verb.ed* before.",
+    "I will *verb* some of your *adjective* *noun.s* to *verb* with me to *place*.",
+    "It would *verb* you 1,000 *noun.s* to *verb* *noun.a* of what we have *verb.ed*.",
+    "My *noun* is *name*. You are *noun.a*?",
+    "Our *noun* took several hundred *noun.s*, and *verb.ed* in *a.adjective* *adjective* *noun* between the *noun.s*.",
+    "The *adjective* *noun* contains *adjective.a* *noun* capable of *verb.ing* all *noun* over *a.adjective* *noun*.",
+    "The *noun* is *verb.ed* into *noun.a*. The *adjective* *noun* is *verb.ing* *adverb*.",
+    "The *noun* *noun* is *verb.ing* *adverb*.",
+    "The *noun* from which the *noun* is *verb.ed* can *verb* *adverb*.",
+    "The *noun* of your *adjective* *noun.s*, *name*! Can you still *verb*?",
+    "The *noun* was *verb.ed* for *place*, but the *noun*'s *noun* was *adjective* than *verb.ed*.",
+    "The *verb.s* of *noun.s* into the *adjective* *noun* is *adjective*.",
+    "Today, it is *name* who *verb* the *noun* of *place*. Tomorrow, it will be the *adjective* *place*.",
+    "You *adjective* *adjective* *noun.s*. To *verb* you can *verb* me with your *adjective* *noun*.",
+    "You *noun.s* on *place* are much as we *verb.ed*.",
+    "You *verb* in *noun.s*. You should *verb* for your own *noun* and not for his.",
+    "You are *adverb.a* *adjective* *adjective* *noun*.",
+    "You are *adjective.a* *adjective* *noun*.",
+    "Your *adjective* *noun* is *adjective*. *verb.ing* the *noun* to *verb* *adverb* and *verb*.",
+
+
+
+   
+    
+    
+
+
+
+    
+
+
+    
+
+    # 13. Do not try to follow me, you cannot get help.
+    "Do not *verb* to *verb* me, you cannot *verb* *noun*.",
+
+    # 14. Around this house I've drawn an invisible wall through which no one may pass, in or out.
+    "*adverb* this *noun* I've *verb.ed* *a.adjective* *noun* through which no one may *verb*.",
+    
+    # 15. Today, it is you who learn the power of Mars. Tomorrow, it will be the whole world.
+    "*noun.a*, it is *repeatednoun* who *verb* the *noun* of *place*. *noun.a*, it will be the *adjective* *noun*.",
+
+    # 16. To imagine you can destroy me with your old-fashioned toy.
+    "To *verb* you can *verb* me with your *adjective* *noun*.",
+
+    # 17. I can control power beyond your wildest dreams.
+    "I can *verb* *noun* *adverb* your *adjective* *noun.s*.",
+
+    # 18. You speak unwisely. I will show you wonders you have never seen before.
+    "You *verb* *adverb*. I will *verb* you *noun.s* you have *adverb* *verb.ed* *adverb*.",
+
+    # 19. The entire structure of a nuclear ship is made of a new organic metal.
+    "The *adjective* *noun* of *a.adjective* *noun* is *verb.ed* of *a.adjective* *adjective* *noun*.",
+
+
+    
 ]
