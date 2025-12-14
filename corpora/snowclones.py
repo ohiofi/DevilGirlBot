@@ -116,7 +116,7 @@ SNOWCLONES = [
     "*repeatedname*, *repeatedname*, *repeatedname*, *repeatedname*! I'm beggin' of you, please don't *verb* my *noun*",
     "People try to *verb* us d-down (talkin' bout my *repeatednoun*) Just because we *verb* around (talkin' bout my *repeatednoun*)",
     "Things they do look *adjective* c-c-cold (talkin' bout my *repeatednoun*) Hope I *verb* before I get old (talkin' bout my *repeatednoun*)",
-    "I *verb* *a.adjective* *noun* of *noun.a*. *repeatedname*! *repeatedname*! Will you do the *noun*?",
+    "I *verb* *adjective.a* *noun* of *noun.a*. *repeatedname*! *repeatedname*! Will you do the *noun*?",
 
     "Tell me you *repeatedverb* without telling me you *repeatedverb*.",
     "Have you tried turning it *adjective* and then back *adjective* again?",
@@ -147,7 +147,7 @@ SNOWCLONES = [
 
     "*place* *verb.s* the *adjective* *noun*, *adverb*.",
     "All *adjective* *noun.s* have had *noun.s*.",
-    "Around this *noun* I've *verb.ed* *a.adjective* *noun* through which no one may *verb*, in or out.",
+    "Around this *noun* I've *verb.ed* *adjective.a* *noun* through which no one may *verb*, in or out.",
     "As fast as *noun* was *verb.ed*, it was *verb.ed* by its *adjective* *noun* into the *adjective* *noun* and so *verb.ed* itself.",
     "Despite our *adjective* *noun*, we have still *verb.ed* no way of *verb.ing* *noun*.",
     "For every *adjective* *noun* *verb.ed*, *noun.a* was *verb.ed*.",
@@ -156,8 +156,8 @@ SNOWCLONES = [
     "I will *verb* some of your *adjective* *noun.s* to *verb* with me to *place*.",
     "It would *verb* you 1,000 *noun.s* to *verb* *noun.a* of what we have *verb.ed*.",
     "My *noun* is *name*. You are *noun.a*?",
-    "Our *noun* took several hundred *noun.s*, and *verb.ed* in *a.adjective* *adjective* *noun* between the *noun.s*.",
-    "The *adjective* *noun* contains *adjective.a* *noun* capable of *verb.ing* all *noun* over *a.adjective* *noun*.",
+    "Our *noun* took several hundred *noun.s*, and *verb.ed* in *adjective.a* *adjective* *noun* between the *noun.s*.",
+    "The *adjective* *noun* contains *adjective.a* *noun* capable of *verb.ing* all *noun* over *adjective.a* *noun*.",
     "The *noun* is *verb.ed* into *noun.a*. The *adjective* *noun* is *verb.ing* *adverb*.",
     "The *noun* *noun* is *verb.ing* *adverb*.",
     "The *noun* from which the *noun* is *verb.ed* can *verb* *adverb*.",
@@ -176,20 +176,12 @@ SNOWCLONES = [
 
    
     
-    
-
-
-
-    
-
-
-    
 
     # 13. Do not try to follow me, you cannot get help.
     "Do not *verb* to *verb* me, you cannot *verb* *noun*.",
 
     # 14. Around this house I've drawn an invisible wall through which no one may pass, in or out.
-    "*adverb* this *noun* I've *verb.ed* *a.adjective* *noun* through which no one may *verb*.",
+    "*adverb* this *noun* I've *verb.ed* *adjective.a* *noun* through which no one may *verb*.",
     
     # 15. Today, it is you who learn the power of Mars. Tomorrow, it will be the whole world.
     "*noun.a*, it is *repeatednoun* who *verb* the *noun* of *place*. *noun.a*, it will be the *adjective* *noun*.",
@@ -204,8 +196,45 @@ SNOWCLONES = [
     "You *verb* *adverb*. I will *verb* you *noun.s* you have *adverb* *verb.ed* *adverb*.",
 
     # 19. The entire structure of a nuclear ship is made of a new organic metal.
-    "The *adjective* *noun* of *a.adjective* *noun* is *verb.ed* of *a.adjective* *adjective* *noun*.",
+    "The *adjective* *noun* of *adjective.a* *noun* is *verb.ed* of *adjective.a* *adjective* *noun*.",
 
 
-    
+    # 1. Mos Eisley spaceport: You will never find a more wretched hive of scum and villainy. We must be cautious.
+    "*place* spaceport: You will *adverb* *verb* *adjective.a* *adjective* *noun* of scum and villainy. We must be cautious.",
+
+    # 2. General Kenobi. Years ago you served my father in the Clone Wars.
+    "General *name*. *noun.s.title* *adverb* you *verb.ed* my *noun* in the *adjective* wars.",
+
+    # 3. Hokey religions and ancient weapons are no match for a good blaster at your side, kid.
+    "*adjective.title* *noun.s* and *adjective* *noun.s* are no match for *adjective.a* *noun* at your side, kid.",
+
+    # 4. We seem to be made to suffer. It's our lot in life.
+    "We seem to be *verb.ed* to *verb*. It's our *noun* in life.",
+
+    # 5. Wonderful girl. Either I'm going to kill her or I'm beginning to like her.
+    "*adjective.title* *noun*. Either I'm *verb.ing* to *verb* *repeatednoun* or I'm *verb.ing* to *verb* *repeatednoun*.",
+
+    # 6. I felt a great disturbance in the Force, as if millions of voices suddenly cried out in terror and were suddenly silenced. I fear something terrible has happened.
+    "I *verb.ed* *adjective.a* disturbance in the *noun*, as if *noun.s* of *noun.s* *adverb* *verb.ed* *adverb* in *noun* and were *adverb* *verb.ed*.",
+
+    # 7. Don't be too proud of this technological terror you've constructed. The ability to destroy a planet, or even a whole system, is insignificant next to the power of the Force.
+    "Don't be *adverb* *adjective* of this *adjective* *noun* you've constructed. The *noun* to destroy a planet, or *adverb* *adjective.a* *noun*, is *adjective* next to the power of the *noun*.",
+
+    # 8. Your sad devotion to that ancient religion has not helped you conjure up the stolen data tapes, or given you clairvoyance enough to find the Rebels' hidden fort.
+    "Your *adjective* *noun* to that *adjective* *noun* has *adverb* *verb.ed* you *verb* up the stolen data tapes, or *verb.ed* you *noun* *adverb* to *verb* the *noun.s*' *adjective* *noun*.",
+
+    # 9. Governor Tarkin! I should have expected to find you holding Vader's leash. I recognized your foul stench when I was brought on board.
+    "*noun.title* *name*! I should have *verb.ed* to *verb* you *verb.ing* *name*'s *noun*. I *verb.ed* your *adjective* *noun* when I was *verb.ed* *adverb*.",
+
+    # 10. He doesn't like you. I don't like you either. You just watch yourself. We're wanted men. I have the death sentence on twelve systems.
+    "He *adverb* *repeatedverb* you. I *adverb* *repeatedverb* you either. You just watch yourself. We're *adjective* *noun.s*. I have the death sentence on twelve systems",
+
+    # 11. Evacuate? In our moment of triumph? I think you overestimate their chances.
+    "*verb.title*? In our *noun* of *noun*? I think you overestimate their *noun.s*.",
+
+    # 1. Impressive. Most impressive. Obi-Wan has taught you well. You have controlled your fear. Now, release your anger. Only your hatred can destroy me.
+    "*repeatedadjective.title*. Most *repeatedadjective.title*. *name* has *verb.ed* you *adverb*. You have *verb.ed* your *noun*. Now, *verb* your *noun*. Only your *noun* can *verb* me.",
+
+    # 2. Many Bothans died to bring us this information.
+    "Many *noun.s* *verb.ed* to bring us this *noun*."
 ]
