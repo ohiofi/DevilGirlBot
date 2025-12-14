@@ -451,15 +451,15 @@ def process_mentions(last_seen_id=None):
             text = " "  # prevent empty caption
 
         # Update last_seen_id to the notification ID
-        # NOTE: had to move this BEFORE the reply is uploaded, because slow upload times would mean that multiple replies were being generated
-        last_seen_id = max(last_seen_id or 0, int(note["id"]))
-        save_last_seen_id(last_seen_id)
+        # maybe save id BEFORE the reply is uploaded, because slow upload times would mean that multiple replies were being generated
+        # last_seen_id = max(last_seen_id or 0, int(note["id"]))
+        # save_last_seen_id(last_seen_id)
 
         makeReply(user_acct, text, mention["id"])
 
         # Update last_seen_id to the notification ID
-        # last_seen_id = max(last_seen_id or 0, int(note["id"]))
-        # save_last_seen_id(last_seen_id)
+        last_seen_id = max(last_seen_id or 0, int(note["id"]))
+        save_last_seen_id(last_seen_id)
         break  # rate limit this so that if there are multiple mentions, it will only reply to the oldest one. Other mentions can be processed when the bot runs again.
 
     return last_seen_id
