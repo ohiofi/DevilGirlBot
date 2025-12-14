@@ -303,4 +303,5 @@ NOUNS = [
     "King Kong",
     "Rodan",
     "Baragon",
+    "She-Creature",
 ]
