@@ -1,0 +1,5 @@
+PREPOSITIONS = [
+    "above",
+    "below",
+    "beyond",
+]
