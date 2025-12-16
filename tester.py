@@ -7,11 +7,15 @@ import os, json, re, html, time
 import random
 
 from corpora.adjectives import ADJECTIVES as adjectives
+from corpora.adverbs import ADVERBS as adverbs
+from corpora.comparative_adjectives import COMPARATIVE_ADJECTIVES as comparative_adjectives
 from corpora.names import NAMES as names
 from corpora.nouns import NOUNS as nouns
 from corpora.places import PLACES as places
+from corpora.prepositions import PREPOSITIONS as prepositions
 from corpora.random_captions import RANDOM_CAPTIONS as captions
-from corpora.snowclones import SNOWCLONES as snowClones
+# from corpora.snowclones import SNOWCLONES as snowClones
+from corpora.xmas_snowclones import XMAS_SNOWCLONES as snowClones
 from corpora.verbs import VERBS as verbs
 
 load_dotenv()
@@ -30,20 +34,25 @@ mastodon = Mastodon(
     api_base_url="https://mastodon.social",
 )
 
-SNOWCLONE_WORD_TYPES = ['noun', 'verb', 'adjective', 'name', 'place']
+SNOWCLONE_WORD_TYPES = ['adjective', 'adverb', 'comparativeadjective','name', 'noun', 'place',  'verb', ]
 
 def get_word_list(word_type):
     """Maps marker type to the appropriate word list."""
-    if 'noun' in word_type:
-        return nouns
-    if 'verb' in word_type:
-        return verbs
     if 'adjective' in word_type:
         return adjectives
+    if 'adverbs' in word_type:
+        return adverbs
+    if 'comparativeadjective' in word_type:
+        return comparative_adjectives
     if 'name' in word_type:
         return names
+    if 'noun' in word_type:
+        return nouns
     if 'place' in word_type:
         return places
+    if 'verb' in word_type:
+        return verbs
+    
     # Add other types like 'exclamation' or 'number' here
     return []
 
@@ -449,6 +458,11 @@ def process_mentions(last_seen_id=None):
         if not text:
             text = " "  # prevent empty caption
 
+        # Update last_seen_id to the notification ID
+        # maybe save id BEFORE the reply is uploaded, because slow upload times would mean that multiple replies were being generated
+        # last_seen_id = max(last_seen_id or 0, int(note["id"]))
+        # save_last_seen_id(last_seen_id)
+
         makeReply(user_acct, text, mention["id"])
 
         # Update last_seen_id to the notification ID
@@ -465,6 +479,7 @@ def process_mentions(last_seen_id=None):
 # if __name__ == "__main__":
 #     last_seen_id = read_last_seen_id()
 #     last_seen_id = process_mentions(last_seen_id)
+
 
 
 
