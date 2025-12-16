@@ -9,7 +9,7 @@ VERBS = [
     "atone",
     "attack",
     "attempt",
-    "be",          # Base form for 'is', 'are', 'was', 'were', 'became', 'will be'
+    "be",         
     "become",
     "believe",
     "bring",
@@ -29,7 +29,6 @@ VERBS = [
     "decline",
     "destroy",
     "develop",
-    "die",
     "discover",
     "doubt",
     "draw",
