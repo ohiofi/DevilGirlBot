@@ -8,11 +8,14 @@ import random
 
 from corpora.adjectives import ADJECTIVES as adjectives
 from corpora.adverbs import ADVERBS as adverbs
+from corpora.comparative_adjectives import COMPARATIVE_ADJECTIVES as comparative_adjectives
 from corpora.names import NAMES as names
 from corpora.nouns import NOUNS as nouns
 from corpora.places import PLACES as places
+from corpora.prepositions import PREPOSITIONS as prepositions
 from corpora.random_captions import RANDOM_CAPTIONS as captions
-from corpora.snowclones import SNOWCLONES as snowClones
+# from corpora.snowclones import SNOWCLONES as snowClones
+from corpora.xmas_snowclones import XMAS_SNOWCLONES as snowClones
 from corpora.verbs import VERBS as verbs
 
 load_dotenv()
@@ -31,20 +34,25 @@ mastodon = Mastodon(
     api_base_url="https://mastodon.social",
 )
 
-SNOWCLONE_WORD_TYPES = ['noun', 'verb', 'adjective', 'name', 'place', 'adverb']
+SNOWCLONE_WORD_TYPES = ['adjective', 'adverb', 'comparativeadjective','name', 'noun', 'place',  'verb', ]
 
 def get_word_list(word_type):
     """Maps marker type to the appropriate word list."""
-    if 'noun' in word_type:
-        return nouns
-    if 'verb' in word_type:
-        return verbs
     if 'adjective' in word_type:
         return adjectives
+    if 'adverbs' in word_type:
+        return adverbs
+    if 'comparativeadjective' in word_type:
+        return comparative_adjectives
     if 'name' in word_type:
         return names
+    if 'noun' in word_type:
+        return nouns
     if 'place' in word_type:
         return places
+    if 'verb' in word_type:
+        return verbs
+    
     # Add other types like 'exclamation' or 'number' here
     return []
 
@@ -216,11 +224,7 @@ def get_random_snowclone():
     template = random.choice(snowClones)
     return fill_snowclone(template)
 
-
-
-def getText(captions):
-    if random.random() < 0.75:
-        return get_random_snowclone()
+def make_mashup_text(captions):
     firstHalfArray = []
     secondHalfArray = []
     for i in range(10):  # try at max 10 times
@@ -249,6 +253,14 @@ def getText(captions):
     if random.random() < 0.001 or len(result) < 3:
         return random.choice(captions)
     return result
+
+
+def getText(captions):
+    return get_random_snowclone()
+    # if random.random() < 0.75:
+    #     return get_random_snowclone()
+    # return make_mashup_text(captions)
+    
 
 
 def build_alt_text(user_text: str) -> str:
