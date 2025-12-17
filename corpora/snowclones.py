@@ -1,4 +1,5 @@
 SNOWCLONES = [
+    # Meme text
     "going to *verb* like I've never *verb*ed before",
     "the only good *noun* is *adjective.a* *noun*",
     "whatever *verb.s* your *noun*",
@@ -47,6 +48,8 @@ SNOWCLONES = [
     "*noun* used *verb*. It's SUPER *adjective*!",
     "My disappointment is *adjective* and my *noun* is ruined",
     "Do you like *adjective* *noun.s*?",
+
+    # movie quotes
     "It's *noun*. It has *noun.a*.",
     "You're gonna need a bigger *noun*",
     "Whatever *verb.s* in the shadows, *verb.s* for *noun.a*.",
@@ -145,13 +148,18 @@ SNOWCLONES = [
     "This is the *adjective* *noun*. Everything is *adjective* all the time.",
     "Teenage *adjective* *adjective* *repeatednoun.s*. Heroes in *adjective.a*-shell. *repeatednoun* power!",
 
+    # Quotes from Devil Girl From Mars
+    "*adverb.title* this *noun* I've *verb.ed* *adjective.a* *noun* through which no one may *verb*.",
+    "*noun.a*, it is *repeatednoun* who *verb* the *noun* of *place*. *noun.a*, it will be the *adjective* *noun*.",
     "*place* *verb.s* the *adjective* *noun*, *adverb*.",
     "All *adjective* *noun.s* have had *noun.s*.",
     "Around this *noun* I've *verb.ed* *adjective.a* *noun* through which no one may *verb*, in or out.",
     "As fast as *noun* was *verb.ed*, it was *verb.ed* by its *adjective* *noun* into the *adjective* *noun* and so *verb.ed* itself.",
     "Despite our *adjective* *noun*, we have still *verb.ed* no way of *verb.ing* *noun*.",
+    "Do not *verb* to *verb* me, you cannot *verb* *noun*.",
     "For every *adjective* *noun* *verb.ed*, *noun.a* was *verb.ed*.",
     "I can *verb* *noun* beyond your *adjective* *noun.s*.",
+    "I can *verb* *noun* *adverb* your *adjective* *noun.s*.",
     "I will *verb* you *noun.s* you have never *verb.ed* before.",
     "I will *verb* some of your *adjective* *noun.s* to *verb* with me to *place*.",
     "It would *verb* you 1,000 *noun.s* to *verb* *noun.a* of what we have *verb.ed*.",
@@ -164,6 +172,7 @@ SNOWCLONES = [
     "The *noun* of your *adjective* *noun.s*, *name*! Can you still *verb*?",
     "The *noun* was *verb.ed* for *place*, but the *noun*'s *noun* was *adjective* than *verb.ed*.",
     "The *verb.s* of *noun.s* into the *adjective* *noun* is *adjective*.",
+    "To *verb* you can *verb* me with your *adjective* *noun*.",
     "Today, it is *name* who *verb* the *noun* of *place*. Tomorrow, it will be the *adjective* *place*.",
     "You *adjective* *adjective* *noun.s*. To *verb* you can *verb* me with your *adjective* *noun*.",
     "You *noun.s* on *place* are much as we *verb.ed*.",
@@ -172,25 +181,18 @@ SNOWCLONES = [
     "You are *adjective.a* *adjective* *noun*.",
     "Your *adjective* *noun* is *adjective*. *verb.ing* the *noun* to *verb* *adverb* and *verb*.",
 
-
-
-   
     
 
-    # 13. Do not try to follow me, you cannot get help.
-    "Do not *verb* to *verb* me, you cannot *verb* *noun*.",
-
-    # 14. Around this house I've drawn an invisible wall through which no one may pass, in or out.
-    "*adverb* this *noun* I've *verb.ed* *adjective.a* *noun* through which no one may *verb*.",
     
-    # 15. Today, it is you who learn the power of Mars. Tomorrow, it will be the whole world.
-    "*noun.a*, it is *repeatednoun* who *verb* the *noun* of *place*. *noun.a*, it will be the *adjective* *noun*.",
+    
 
-    # 16. To imagine you can destroy me with your old-fashioned toy.
-    "To *verb* you can *verb* me with your *adjective* *noun*.",
+    
+
+
+    
 
     # 17. I can control power beyond your wildest dreams.
-    "I can *verb* *noun* *adverb* your *adjective* *noun.s*.",
+    
 
     # 18. You speak unwisely. I will show you wonders you have never seen before.
     "You *verb* *adverb*. I will *verb* you *noun.s* you have *adverb* *verb.ed* *adverb*.",
@@ -199,6 +201,7 @@ SNOWCLONES = [
     "The *adjective* *noun* of *adjective.a* *noun* is *verb.ed* of *adjective.a* *adjective* *noun*.",
 
 
+    # Star Wars quotes
     # 1. Mos Eisley spaceport: You will never find a more wretched hive of scum and villainy. We must be cautious.
     "*place* spaceport: You will *adverb* *verb* *adjective.a* *adjective* *noun* of scum and villainy. We must be cautious.",
 
