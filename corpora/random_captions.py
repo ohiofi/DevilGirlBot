@@ -486,7 +486,6 @@ RANDOM_CAPTIONS = [
     "Maybe the world still got like twenty mil years left, no big deal.",
     "Crazy how we live with our external limbs now kinda extra.",
     "The biggest ones gonna shrink down eventually absolute unit no more.",
-    "If that's unconsciousness, then what's the point of being woke? No cap.",
     "But who's to say robots don't have like... some sussy consciousness?",
     "Today's machines are basically early dinos compared to whatever's coming thas tough.",
     "Aren't machines and humans linked in infinite ways? Big vibes.",
