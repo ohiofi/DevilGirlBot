@@ -60,7 +60,7 @@ XMAS_SNOWCLONES = [
     "Her *adjective* *adjective* *noun* was *verb.ed* *adverb* like a bow, And the *noun* on her *noun* was *adverb* *adjective* as the snow.",
 
     # The stump of a pipe she held tight in her teeth, And the smoke, it encircled her head like a wreath
-    "The *noun* of *noun.a* she *verb.ed* *adjective* in her teeth, And the *noun*, it *verb.ed* her *noun* like wreath.",
+    "The *noun* of *noun.a* she *verb.ed* *adjective* in her teeth, And the *noun*, it *verb.ed* her *noun* like a wreath.",
 
     # She had a broad face and a little round belly, That shook when she laughed, like a bowl full of jelly
     "She had *adjective.a* *noun* and *adjective.a* *adjective* belly, That *verb.ed* when she *verb.ed*, like *noun.a* *adverb* of jelly.",
