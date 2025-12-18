@@ -1,10 +1,12 @@
 IRREGULAR_VERBS = {
+    "allow":"allowed",
     "be": "was",
     "become": "became",
     "bring": "brought",
     "build": "built",
     "come": "came",
     "deal": "dealt",
+    "destroy":"destroyed",
     "draw": "drew",
     "dream": "dreamt",
     "drive": "drove",
