@@ -9,13 +9,14 @@ import random
 from corpora.adjectives import ADJECTIVES as adjectives
 from corpora.adverbs import ADVERBS as adverbs
 from corpora.comparative_adjectives import COMPARATIVE_ADJECTIVES as comparative_adjectives
+from corpora.irregular_verbs import IRREGULAR_VERBS as irregular_verbs
 from corpora.names import NAMES as names
 from corpora.nouns import NOUNS as nouns
 from corpora.places import PLACES as places
 from corpora.prepositions import PREPOSITIONS as prepositions
 from corpora.random_captions import RANDOM_CAPTIONS as captions
-# from corpora.snowclones import SNOWCLONES as snowClones
-from corpora.xmas_snowclones import XMAS_SNOWCLONES as snowClones
+from corpora.snowclones import SNOWCLONES as snowClones
+from corpora.xmas_snowclones import XMAS_SNOWCLONES as xmas_snowClones
 from corpora.verbs import VERBS as verbs
 
 load_dotenv()
@@ -107,8 +108,15 @@ def verb_ing(verb):
 def verb_ed(verb):
     if not verb:
         return ""
-    last_letter = verb[-1].lower()
-    last_two = verb[-2:].lower()
+    verb_lower = verb.lower()
+    # Rule 0: Irregular Verb Check
+    if verb_lower in irregular_verbs:
+        result = irregular_verbs[verb_lower]
+        # Maintain capitalization if the original was Title Case
+        return result.capitalize() if verb[0].isupper() else result
+
+    last_letter = verb_lower[-1]
+    last_two = verb_lower[-2:]
     # Rule 1: Verbs ending in 'e' (e.g., "live" -> "lived")
     if last_letter == 'e':
         return verb + 'd'
@@ -122,7 +130,7 @@ def verb_ed(verb):
     vowels = 'aeiou'
     if len(verb) >= 3 and last_letter not in vowels and verb[-2].lower() in vowels and verb[-3].lower() not in vowels:
         # Simple check for common CVC endings (e.g., stop, drop, beg, tap)
-        if last_two not in ('er', 'el', 'on', 'ap'): # Avoid common exceptions
+        if last_two not in ('er', 'el', 'on'): # Avoid common exceptions
             return verb + last_letter + 'ed'
     # Default Rule: Just add 'ed' (e.g., "walk" -> "walked", "play" -> "played")
     return verb + 'ed'
@@ -220,8 +228,8 @@ def fill_snowclone(template):
     return output
 
 
-def get_random_snowclone():
-    template = random.choice(snowClones)
+def get_random_snowclone(mylist):
+    template = random.choice(mylist)
     return fill_snowclone(template)
 
 def make_mashup_text(captions):
@@ -255,11 +263,6 @@ def make_mashup_text(captions):
     return result
 
 
-def getText(captions):
-    return get_random_snowclone()
-    # if random.random() < 0.75:
-    #     return get_random_snowclone()
-    # return make_mashup_text(captions)
     
 
 
@@ -412,6 +415,15 @@ def makeReply(user_acct, text, in_reply_to_id):
         in_reply_to_id=in_reply_to_id,
         visibility="public",
     )
+
+
+
+def getText(captions):
+    if random.random() < 0.33:
+        return get_random_snowclone(xmas_snowClones)
+    if random.random() < 0.50:
+        return get_random_snowclone(snowClones)
+    return make_mashup_text(captions)
 
 
 # ---------------------------------------------------------
