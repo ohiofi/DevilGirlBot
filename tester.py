@@ -9,6 +9,7 @@ import random
 from corpora.adjectives import ADJECTIVES as adjectives
 from corpora.adverbs import ADVERBS as adverbs
 from corpora.comparative_adjectives import COMPARATIVE_ADJECTIVES as comparative_adjectives
+from corpora.irregular_verbs import IRREGULAR_VERBS as irregular_verbs
 from corpora.names import NAMES as names
 from corpora.nouns import NOUNS as nouns
 from corpora.places import PLACES as places
@@ -25,7 +26,7 @@ LAST_RANDOM_POST_FILE = os.getenv("LAST_RANDOM_POST_FILE", "/tmp/last_random_pos
 IMAGES_FOLDER = os.getenv("IMAGES_FOLDER", "/path/to/images")  # fallback default
 FONT_PATH = os.getenv("FONT_PATH", "/path/to/default/font.ttf")
 FONT_SIZE = int(os.getenv("FONT_SIZE", 46))  # convert to int
-POST_INTERVAL = 2 * 60 * 60  # 2 hours
+POST_INTERVAL = 3 * 60 * 60  # 3 hours
 banlist = json.loads(os.getenv("banlist"))
 mastodon = Mastodon(
     client_id=os.getenv("client_key"),
@@ -107,8 +108,15 @@ def verb_ing(verb):
 def verb_ed(verb):
     if not verb:
         return ""
-    last_letter = verb[-1].lower()
-    last_two = verb[-2:].lower()
+    verb_lower = verb.lower()
+    # Rule 0: Irregular Verb Check
+    if verb_lower in irregular_verbs:
+        result = irregular_verbs[verb_lower]
+        # Maintain capitalization if the original was Title Case
+        return result.capitalize() if verb[0].isupper() else result
+
+    last_letter = verb_lower[-1]
+    last_two = verb_lower[-2:]
     # Rule 1: Verbs ending in 'e' (e.g., "live" -> "lived")
     if last_letter == 'e':
         return verb + 'd'
@@ -224,11 +232,7 @@ def get_random_snowclone():
     template = random.choice(snowClones)
     return fill_snowclone(template)
 
-
-
-def getText(captions):
-    if random.random() < 0.75:
-        return get_random_snowclone()
+def make_mashup_text(captions):
     firstHalfArray = []
     secondHalfArray = []
     for i in range(10):  # try at max 10 times
@@ -257,6 +261,14 @@ def getText(captions):
     if random.random() < 0.001 or len(result) < 3:
         return random.choice(captions)
     return result
+
+
+def getText(captions):
+    return get_random_snowclone()
+    # if random.random() < 0.75:
+    #     return get_random_snowclone()
+    # return make_mashup_text(captions)
+    
 
 
 def build_alt_text(user_text: str) -> str:
@@ -473,9 +485,9 @@ def process_mentions(last_seen_id=None):
     return last_seen_id
 
 
-# ---------------------------------------------------------
-# MAIN 
-# ---------------------------------------------------------
+# # ---------------------------------------------------------
+# # MAIN 
+# # ---------------------------------------------------------
 # if __name__ == "__main__":
 #     last_seen_id = read_last_seen_id()
 #     last_seen_id = process_mentions(last_seen_id)
