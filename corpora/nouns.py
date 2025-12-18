@@ -184,7 +184,7 @@ NOUNS = [
     "savage",
     "science",
     "scientist",
-    "Scottish Highlands",
+    "Scottish Highland",
     "second",
     "sex",
     "ship",
