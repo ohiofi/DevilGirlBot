@@ -1,7 +1,8 @@
 from mastodon import Mastodon
 from dotenv import load_dotenv
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, MarkupResemblesLocatorWarning
 from PIL import Image, ImageDraw, ImageFont
+import warnings
 
 import os, json, re, html, time
 import random
@@ -19,6 +20,8 @@ from corpora.snowclones import SNOWCLONES as snowClones
 from corpora.xmas_snowclones import XMAS_SNOWCLONES as xmas_snowClones
 from corpora.verbs import VERBS as verbs
 
+warnings.filterwarnings("ignore", category=MarkupResemblesLocatorWarning)
+
 load_dotenv()
 TEMP_PNG_PATH = os.getenv("TEMP_PNG_PATH", "/tmp/devilgirl.png")  # fallback default
 LAST_ID_FILE = os.getenv("LAST_ID_FILE", "/tmp/last_id.txt")  # fallback default
@@ -27,6 +30,7 @@ IMAGES_FOLDER = os.getenv("IMAGES_FOLDER", "/path/to/images")  # fallback defaul
 FONT_PATH = os.getenv("FONT_PATH", "/path/to/default/font.ttf")
 FONT_SIZE = int(os.getenv("FONT_SIZE", 46))  # convert to int
 POST_INTERVAL = 2 * 60 * 60  # 2 hours
+# POST_INTERVAL = 30 * 60  # 30 mins
 banlist = json.loads(os.getenv("banlist"))
 mastodon = Mastodon(
     client_id=os.getenv("client_key"),
@@ -416,9 +420,26 @@ def makeReply(user_acct, text, in_reply_to_id):
         visibility="public",
     )
 
+def does_text_contain_banned(html_content, banlist):
+    """
+    Strips HTML, lowercases the text, and checks against a banlist.
+    """
+    # Remove HTML tags using regex (standard for simple text extraction)
+    # This turns "<p>Hello STOP words</p>" into "hello stop words"
+    clean_text = re.sub('<[^<]+?>', '', html_content).lower()
+    
+    # Check if any banned word/phrase exists within the cleaned text
+    for forbidden in banlist:
+        if forbidden.lower() in clean_text:
+            return True
+            
+    return False
 
 
 def getText(captions):
+    text = get_hashtag_toot()
+    if text:
+        return text
     if random.random() < 0.33:
         return get_random_snowclone(xmas_snowClones)
     if random.random() < 0.50:
@@ -455,6 +476,7 @@ def process_mentions(last_seen_id=None):
         # Skip banned users
         if user_acct in banlist:
             continue
+        # Skip banned words
 
         # 1% chance to skip reply
         if random.random() < 0.01:
@@ -487,6 +509,86 @@ def process_mentions(last_seen_id=None):
         break  # rate limit this so that if there are multiple mentions, it will only reply to the oldest one. Other mentions can be processed when the bot runs again.
 
     return last_seen_id
+
+
+
+
+
+
+def remove_only_emojis(text):
+    emoji_pattern = re.compile(
+        u"["
+        u"\U00010000-\U0010ffff"  
+        u"\u2600-\u26ff"          
+        u"\u2700-\u27bf"          
+        u"\ufe0f"                 
+        u"\u200d"                 
+        u"]+", 
+        flags=re.UNICODE
+    )
+    return emoji_pattern.sub('', text)
+
+def remove_hashtags_and_mentions(html_content):
+    soup = BeautifulSoup(html_content, "html.parser")
+    
+    # 1. Target the anchor tags directly
+    for link in soup.find_all("a"):
+        # Mastodon marks mentions and hashtags with specific CSS classes
+        classes = link.get("class", [])
+        
+        # If it's a mention or a hashtag, kill it!
+        if "mention" in classes or "hashtag" in classes:
+            link.decompose()
+        
+        # If it's a regular URL, it usually has no class or a 'u-url' class
+        # We decompose these too to avoid the "shrapnel" numbers issue
+        else:
+            link.decompose()
+
+    # 2. Extract the remaining text
+    # We use a space separator so words don't get squashed together
+    text = soup.get_text(separator=" ")
+    
+    # 3. Clean up whitespace
+    # This handles \xa0 and extra spaces created by the decomposition
+    text = " ".join(text.split()).strip()
+    # 3. Strip Emojis
+    # text = re.sub(r'[^\x00-\x7f]|[^\w\s,.!?-]', '', text)
+    text = remove_only_emojis(text)
+    # 4. Final cleanup of "RE:" and double spaces
+    text = re.sub(r'\bRE:\b', '', text, flags=re.IGNORECASE)
+    clean_text = " ".join(text.split()).strip()
+    
+    return clean_text
+
+def get_hashtag_toot(last_seen_id=None):
+    toots = mastodon.timeline_hashtag(hashtag="monsterdon", since_id=last_seen_id, limit=40)
+    if not toots:
+        print("no toots")
+        return None
+
+    # Shuffle to avoid picking the same one repeatedly in the loop
+    random.shuffle(toots)
+
+    for toot in toots:
+        # print(f"Original: {toot['content']}")
+        full_text = remove_hashtags_and_mentions(toot['content'])
+        # soup = BeautifulSoup(toot['content'], "html.parser")
+        # full_text = soup.get_text(separator=" ")
+        # full_text = " ".join(full_text.split())
+        sentences = re.split(r'(?<=[.!?])\s+', full_text)
+        
+        raw_sentence = random.choice(sentences)
+        clean_sentence = remove_hashtags_and_mentions(raw_sentence)
+        
+        if (len(clean_sentence) < 5 or 
+            len(clean_sentence) > 100 or 
+            does_text_contain_banned(clean_sentence, banlist)):
+            continue
+            
+        # print(f"Cleaned:  {clean_sentence}")
+        return clean_sentence
+    return None
 
 
 # ---------------------------------------------------------
