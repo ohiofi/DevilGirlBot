@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from bs4 import BeautifulSoup, MarkupResemblesLocatorWarning
 from PIL import Image, ImageDraw, ImageFont
 import warnings
-
+from datetime import datetime, timedelta, timezone
 import os, json, re, html, time
 import random
 
@@ -21,14 +21,17 @@ from corpora.xmas_snowclones import XMAS_SNOWCLONES as xmas_snowClones
 from corpora.verbs import VERBS as verbs
 
 warnings.filterwarnings("ignore", category=MarkupResemblesLocatorWarning)
+
 load_dotenv()
 TEMP_PNG_PATH = os.getenv("TEMP_PNG_PATH", "/tmp/devilgirl.png")  # fallback default
 LAST_ID_FILE = os.getenv("LAST_ID_FILE", "/tmp/last_id.txt")  # fallback default
 LAST_RANDOM_POST_FILE = os.getenv("LAST_RANDOM_POST_FILE", "/tmp/last_random_post.txt")
+SENTENCE_FILE = os.getenv("SENTENCE_FILE", "/tmp/possible_sentences.txt")
 IMAGES_FOLDER = os.getenv("IMAGES_FOLDER", "/path/to/images")  # fallback default
 FONT_PATH = os.getenv("FONT_PATH", "/path/to/default/font.ttf")
 FONT_SIZE = int(os.getenv("FONT_SIZE", 46))  # convert to int
 POST_INTERVAL = 2 * 60 * 60  # 2 hours
+# POST_INTERVAL = 30 * 60  # 30 mins
 banlist = json.loads(os.getenv("banlist"))
 mastodon = Mastodon(
     client_id=os.getenv("client_key"),
@@ -290,10 +293,8 @@ def pick_random_image():
     return os.path.join(IMAGES_FOLDER, filename)
 
 
-# ---------------------------------------------------------
-# LOAD / SAVE LAST PROCESSED MENTION
-# ---------------------------------------------------------
-def read_last_seen_id():
+
+def load_last_seen_id():
     try:
         with open(LAST_ID_FILE, "r") as f:
             return int(f.read().strip())
@@ -314,6 +315,49 @@ def load_last_random_post():
             return float(f.read().strip())
         except:
             return 0
+
+def load_sentences():
+    # 1. Check if the file physically exists
+    if not os.path.exists(SENTENCE_FILE):
+        print(f"DEBUG: File not found at {SENTENCE_FILE}")
+        return []
+    
+    # 2. Check if the file is just an empty text file
+    if os.path.getsize(SENTENCE_FILE) == 0:
+        print("DEBUG: File exists but is 0 bytes (empty).")
+        return []
+
+    try:
+        with open(SENTENCE_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            
+            # 3. Check if the JSON is valid but isn't a list (e.g., a dictionary or string)
+            if not isinstance(data, list):
+                print(f"DEBUG: JSON loaded but it is a {type(data)}, not a list.")
+                return []
+            
+            # 4. Success!
+            print(f"DEBUG: Successfully loaded {len(data)} sentences from {SENTENCE_FILE}.")
+            return data
+
+    except json.JSONDecodeError:
+        print("DEBUG: Failed to load. The file contains invalid JSON formatting.")
+        return []
+    except UnicodeDecodeError:
+        print("DEBUG: Failed to load. There is an encoding issue (likely non-UTF8 characters).")
+        return []
+    except Exception as e:
+        print(f"DEBUG: An unexpected error occurred: {e}")
+        return []
+
+def save_sentences(sentences):
+    # Keep only the most recent 100 items if the list grew too large
+    if len(sentences) > 100:
+        random.shuffle(sentences) # Mix them up
+        sentences = sentences[:100] # Trim to 100
+        
+    with open(SENTENCE_FILE, "w", encoding="utf-8") as f:
+        json.dump(sentences, f, ensure_ascii=False, indent=2)
 
 
 def save_last_random_post(ts):
@@ -435,6 +479,10 @@ def does_text_contain_banned(html_content, banlist):
 
 
 def getText(captions):
+    one_minute_ago = datetime.now(timezone.utc) - timedelta(minutes=1)
+    text = get_hashtag_toot(one_minute_ago)
+    if text:
+        return text
     if random.random() < 0.33:
         return get_random_snowclone(xmas_snowClones)
     if random.random() < 0.50:
@@ -506,12 +554,7 @@ def process_mentions(last_seen_id=None):
     return last_seen_id
 
 
-# ---------------------------------------------------------
-# MAIN 
-# ---------------------------------------------------------
-# if __name__ == "__main__":
-#     last_seen_id = read_last_seen_id()
-#     last_seen_id = process_mentions(last_seen_id)
+
 
 
 
@@ -562,39 +605,57 @@ def remove_hashtags_and_mentions(html_content):
     return clean_text
 
 def get_hashtag_toot(last_seen_id=None):
+    # 1. LOAD: Get the existing sentences from the file first
+    sentence_pool = load_sentences()
+    
+    # 2. FETCH: Get new toots from Mastodon
     toots = mastodon.timeline_hashtag(hashtag="monsterdon", since_id=last_seen_id, limit=40)
-    if not toots:
-        print("no toots")
-        return last_seen_id
-
-    # Shuffle to avoid picking the same one repeatedly in the loop
-    random.shuffle(toots)
-
-    for toot in toots:
-        # print(f"Original: {toot['content']}")
-        full_text = remove_hashtags_and_mentions(toot['content'])
-        # soup = BeautifulSoup(toot['content'], "html.parser")
-        # full_text = soup.get_text(separator=" ")
-        # full_text = " ".join(full_text.split())
-        sentences = re.split(r'(?<=[.!?])\s+', full_text)
-        
-        raw_sentence = random.choice(sentences)
-        clean_sentence = remove_hashtags_and_mentions(raw_sentence)
-        
-        if (len(clean_sentence) < 5 or 
-            len(clean_sentence) > 100 or 
-            does_text_contain_banned(clean_sentence, banlist)):
-            continue
+    
+    # 3. PROCESS: If there are new toots, clean them and add to the pool
+    if toots:
+        print(f"DEBUG: Found {len(toots)} new toots. Processing...")
+        for toot in toots:
+            # Clean the whole post to avoid URL shrapnel
+            full_text = remove_hashtags_and_mentions(toot['content'])
             
-        # print(f"Cleaned:  {clean_sentence}")
-        return clean_sentence
-    return None
+            # Split into sentences and filter out empty ones
+            new_sentences = [s.strip() for s in re.split(r'(?<=[.!?])\s+', full_text) if s.strip()]
+            
+            for s in new_sentences:
+                # Standard validation checks
+                if 5 <= len(s) <= 150 and not does_text_contain_banned(s, banlist):
+                    if s not in sentence_pool: # Don't add duplicates
+                        sentence_pool.append(s)
+    else:
+        print("DEBUG: No new toots found, relying on existing pool.")
+
+    # 4. PICK: If the pool is empty (no new toots AND no file data), we can't continue
+    if not sentence_pool:
+        print("DEBUG: Pool is completely empty. Nothing to return.")
+        return None
+
+    # 5. RESULT: Choose a random sentence
+    result = random.choice(sentence_pool)
+    
+    # 6. REMOVE: Take it out so we don't repeat it
+    sentence_pool.remove(result)
+
+    # 7. SAVE: Trim the list to 100 and write back to the file
+    save_sentences(sentence_pool)
+
+    print(f"DEBUG: Returning sentence. Remaining pool size: {len(sentence_pool)}")
+    return result
+
+
+
 
 
 
 if __name__ == "__main__":
+    print("testing")
     print(does_text_contain_banned("hellow world", banlist))
     print(does_text_contain_banned("niglected", banlist))
-    get_hashtag_toot()
+    one_minute_ago = datetime.now(timezone.utc) - timedelta(minutes=1)
+    text = get_hashtag_toot(one_minute_ago)
     # for i in range(100):
     #     print(get_random_snowclone(snowClones))

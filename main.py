@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from bs4 import BeautifulSoup, MarkupResemblesLocatorWarning
 from PIL import Image, ImageDraw, ImageFont
 import warnings
-
+from datetime import datetime, timedelta, timezone
 import os, json, re, html, time
 import random
 
@@ -26,6 +26,7 @@ load_dotenv()
 TEMP_PNG_PATH = os.getenv("TEMP_PNG_PATH", "/tmp/devilgirl.png")  # fallback default
 LAST_ID_FILE = os.getenv("LAST_ID_FILE", "/tmp/last_id.txt")  # fallback default
 LAST_RANDOM_POST_FILE = os.getenv("LAST_RANDOM_POST_FILE", "/tmp/last_random_post.txt")
+SENTENCE_FILE = os.getenv("SENTENCE_FILE", "/tmp/possible_sentences.txt")
 IMAGES_FOLDER = os.getenv("IMAGES_FOLDER", "/path/to/images")  # fallback default
 FONT_PATH = os.getenv("FONT_PATH", "/path/to/default/font.ttf")
 FONT_SIZE = int(os.getenv("FONT_SIZE", 46))  # convert to int
@@ -292,10 +293,8 @@ def pick_random_image():
     return os.path.join(IMAGES_FOLDER, filename)
 
 
-# ---------------------------------------------------------
-# LOAD / SAVE LAST PROCESSED MENTION
-# ---------------------------------------------------------
-def read_last_seen_id():
+
+def load_last_seen_id():
     try:
         with open(LAST_ID_FILE, "r") as f:
             return int(f.read().strip())
@@ -316,6 +315,49 @@ def load_last_random_post():
             return float(f.read().strip())
         except:
             return 0
+
+def load_sentences():
+    # 1. Check if the file physically exists
+    if not os.path.exists(SENTENCE_FILE):
+        print(f"DEBUG: File not found at {SENTENCE_FILE}")
+        return []
+    
+    # 2. Check if the file is just an empty text file
+    if os.path.getsize(SENTENCE_FILE) == 0:
+        print("DEBUG: File exists but is 0 bytes (empty).")
+        return []
+
+    try:
+        with open(SENTENCE_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            
+            # 3. Check if the JSON is valid but isn't a list (e.g., a dictionary or string)
+            if not isinstance(data, list):
+                print(f"DEBUG: JSON loaded but it is a {type(data)}, not a list.")
+                return []
+            
+            # 4. Success!
+            print(f"DEBUG: Successfully loaded {len(data)} sentences from {SENTENCE_FILE}.")
+            return data
+
+    except json.JSONDecodeError:
+        print("DEBUG: Failed to load. The file contains invalid JSON formatting.")
+        return []
+    except UnicodeDecodeError:
+        print("DEBUG: Failed to load. There is an encoding issue (likely non-UTF8 characters).")
+        return []
+    except Exception as e:
+        print(f"DEBUG: An unexpected error occurred: {e}")
+        return []
+
+def save_sentences(sentences):
+    # Keep only the most recent 100 items if the list grew too large
+    if len(sentences) > 100:
+        random.shuffle(sentences) # Mix them up
+        sentences = sentences[:100] # Trim to 100
+        
+    with open(SENTENCE_FILE, "w", encoding="utf-8") as f:
+        json.dump(sentences, f, ensure_ascii=False, indent=2)
 
 
 def save_last_random_post(ts):
@@ -437,7 +479,8 @@ def does_text_contain_banned(html_content, banlist):
 
 
 def getText(captions):
-    text = get_hashtag_toot()
+    one_minute_ago = datetime.now(timezone.utc) - timedelta(minutes=1)
+    text = get_hashtag_toot(one_minute_ago)
     if text:
         return text
     if random.random() < 0.33:
@@ -460,9 +503,10 @@ def process_mentions(last_seen_id=None):
         last_random_post = load_last_random_post()
         now = time.time()
         if now - last_random_post >= POST_INTERVAL:
+            save_last_random_post(now) # avoid posting more than once
             text = getText(captions)
             makePost(text)
-            save_last_random_post(now)
+            # save_last_random_post(now)
         return last_seen_id
 
     mentions = list(reversed(mentions))  # Process oldest first
@@ -531,69 +575,86 @@ def remove_only_emojis(text):
 def remove_hashtags_and_mentions(html_content):
     soup = BeautifulSoup(html_content, "html.parser")
     
-    # 1. Target the anchor tags directly
     for link in soup.find_all("a"):
-        # Mastodon marks mentions and hashtags with specific CSS classes
         classes = link.get("class", [])
         
-        # If it's a mention or a hashtag, kill it!
-        if "mention" in classes or "hashtag" in classes:
-            link.decompose()
-        
-        # If it's a regular URL, it usually has no class or a 'u-url' class
-        # We decompose these too to avoid the "shrapnel" numbers issue
+        if "mention" in classes:
+            # Get text (e.g., "@user"), strip the "@", and replace the tag with just "user"
+            mention_text = link.get_text().lstrip('@')
+            link.replace_with(mention_text)
+            
+        elif "hashtag" in classes:
+            # Get text (e.g., "#monsterdon"), strip the "#", and replace tag with "monsterdon"
+            hashtag_text = link.get_text().lstrip('#')
+            link.replace_with(hashtag_text)
+            
         else:
+            # It's a regular URL - delete it entirely (text and all)
             link.decompose()
 
-    # 2. Extract the remaining text
-    # We use a space separator so words don't get squashed together
+    # 2. Extract remaining text
     text = soup.get_text(separator=" ")
     
-    # 3. Clean up whitespace
-    # This handles \xa0 and extra spaces created by the decomposition
+    # 3. Standardize whitespace (handles \xa0 and tabs)
     text = " ".join(text.split()).strip()
-    # 3. Strip Emojis
-    # text = re.sub(r'[^\x00-\x7f]|[^\w\s,.!?-]', '', text)
+    
+    # 4. Strip Emojis
     text = remove_only_emojis(text)
-    # 4. Final cleanup of "RE:" and double spaces
+    
+    # 5. Final cleanup of "RE:"
     text = re.sub(r'\bRE:\b', '', text, flags=re.IGNORECASE)
+    
+    # Final pass to ensure no weird double spaces were left by emoji removal
     clean_text = " ".join(text.split()).strip()
     
     return clean_text
 
 def get_hashtag_toot(last_seen_id=None):
+    # 1. LOAD: Get the existing sentences from the file first
+    sentence_pool = load_sentences()
+    
+    # 2. FETCH: Get new toots from Mastodon
     toots = mastodon.timeline_hashtag(hashtag="monsterdon", since_id=last_seen_id, limit=40)
-    if not toots:
-        print("no toots")
+    
+    # 3. PROCESS: If there are new toots, clean them and add to the pool
+    if toots:
+        print(f"DEBUG: Found {len(toots)} new toots. Processing...")
+        for toot in toots:
+            # Clean the whole post to avoid URL shrapnel
+            full_text = remove_hashtags_and_mentions(toot['content'])
+            
+            # Split into sentences and filter out empty ones
+            new_sentences = [s.strip() for s in re.split(r'(?<=[.!?])\s+', full_text) if s.strip()]
+            
+            for s in new_sentences:
+                # Standard validation checks
+                if 5 <= len(s) <= 150 and not does_text_contain_banned(s, banlist):
+                    if s not in sentence_pool: # Don't add duplicates
+                        sentence_pool.append(s)
+    else:
+        print("DEBUG: No new toots found, relying on existing pool.")
+
+    # 4. PICK: If the pool is empty (no new toots AND no file data), we can't continue
+    if not sentence_pool:
+        print("DEBUG: Pool is completely empty. Nothing to return.")
         return None
 
-    # Shuffle to avoid picking the same one repeatedly in the loop
-    random.shuffle(toots)
+    # 5. RESULT: Choose a random sentence
+    result = random.choice(sentence_pool)
+    
+    # 6. REMOVE: Take it out so we don't repeat it
+    sentence_pool.remove(result)
 
-    for toot in toots:
-        # print(f"Original: {toot['content']}")
-        full_text = remove_hashtags_and_mentions(toot['content'])
-        # soup = BeautifulSoup(toot['content'], "html.parser")
-        # full_text = soup.get_text(separator=" ")
-        # full_text = " ".join(full_text.split())
-        sentences = re.split(r'(?<=[.!?])\s+', full_text)
-        
-        raw_sentence = random.choice(sentences)
-        clean_sentence = remove_hashtags_and_mentions(raw_sentence)
-        
-        if (len(clean_sentence) < 5 or 
-            len(clean_sentence) > 100 or 
-            does_text_contain_banned(clean_sentence, banlist)):
-            continue
-            
-        # print(f"Cleaned:  {clean_sentence}")
-        return clean_sentence
-    return None
+    # 7. SAVE: Trim the list to 100 and write back to the file
+    save_sentences(sentence_pool)
+
+    print(f"DEBUG: Returning sentence. Remaining pool size: {len(sentence_pool)}")
+    return result
 
 
 # ---------------------------------------------------------
 # MAIN 
 # ---------------------------------------------------------
 if __name__ == "__main__":
-    last_seen_id = read_last_seen_id()
+    last_seen_id = load_last_seen_id()
     last_seen_id = process_mentions(last_seen_id)
