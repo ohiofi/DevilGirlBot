@@ -574,7 +574,7 @@ def remove_only_emojis(text):
 def remove_hashtags_and_mentions(html_content):
     soup = BeautifulSoup(html_content, "html.parser")
     
-    # 1. Target the anchor tags directly
+    # Target the anchor tags directly
     for link in soup.find_all("a"):
         # Mastodon marks mentions and hashtags with specific CSS classes
         classes = link.get("class", [])
@@ -588,17 +588,17 @@ def remove_hashtags_and_mentions(html_content):
         else:
             link.decompose()
 
-    # 2. Extract the remaining text
+    # Extract the remaining text
     # We use a space separator so words don't get squashed together
     text = soup.get_text(separator=" ")
     
-    # 3. Clean up whitespace
+    # Clean up whitespace
     # This handles \xa0 and extra spaces created by the decomposition
     text = " ".join(text.split()).strip()
-    # 3. Strip Emojis
+    # Strip Emojis
     # text = re.sub(r'[^\x00-\x7f]|[^\w\s,.!?-]', '', text)
     text = remove_only_emojis(text)
-    # 4. Final cleanup of "RE:" and double spaces
+    # Final cleanup of "RE:" and double spaces
     text = re.sub(r'\bRE:\b', '', text, flags=re.IGNORECASE)
     clean_text = " ".join(text.split()).strip()
     
