@@ -351,10 +351,10 @@ def load_sentences():
         return []
 
 def save_sentences(sentences):
-    # Keep only the most recent 100 items if the list grew too large
-    if len(sentences) > 100:
+    # Limit if the list gets too large
+    if len(sentences) > 500:
         random.shuffle(sentences) # Mix them up
-        sentences = sentences[:100] # Trim to 100
+        sentences = sentences[:500] 
         
     with open(SENTENCE_FILE, "w", encoding="utf-8") as f:
         json.dump(sentences, f, ensure_ascii=False, indent=2)
@@ -479,8 +479,8 @@ def does_text_contain_banned(html_content, banlist):
 
 
 def getText(captions):
-    one_minute_ago = datetime.now(timezone.utc) - timedelta(minutes=1)
-    text = get_hashtag_toot(one_minute_ago)
+    last_random_post = load_last_random_post()
+    text = get_hashtag_toot(last_random_post)
     if text:
         return text
     if random.random() < 0.33:
@@ -603,6 +603,8 @@ def remove_hashtags_and_mentions(html_content):
     
     # 5. Final cleanup of "RE:"
     text = re.sub(r'\bRE:\b', '', text, flags=re.IGNORECASE)
+    text = re.sub(r'#', '', text, flags=re.IGNORECASE)
+    text = re.sub(r'@\S+', '', text, flags=re.IGNORECASE)
     
     # Final pass to ensure no weird double spaces were left by emoji removal
     clean_text = " ".join(text.split()).strip()
@@ -610,6 +612,7 @@ def remove_hashtags_and_mentions(html_content):
     return clean_text
 
 def get_hashtag_toot(last_seen_id=None):
+    new_toots = False
     # 1. LOAD: Get the existing sentences from the file first
     sentence_pool = load_sentences()
     
@@ -629,7 +632,8 @@ def get_hashtag_toot(last_seen_id=None):
             for s in new_sentences:
                 # Standard validation checks
                 if 5 <= len(s) <= 150 and not does_text_contain_banned(s, banlist):
-                    if s not in sentence_pool: # Don't add duplicates
+                    if s not in sentence_pool and s not in ["monsterdon","Monsterdon","#monsterdon","#Monsterdon"]: 
+                        new_toots = True
                         sentence_pool.append(s)
     else:
         print("DEBUG: No new toots found, relying on existing pool.")
@@ -646,7 +650,8 @@ def get_hashtag_toot(last_seen_id=None):
     sentence_pool.remove(result)
 
     # 7. SAVE: Trim the list to 100 and write back to the file
-    save_sentences(sentence_pool)
+    if new_toots:
+        save_sentences(sentence_pool)
 
     print(f"DEBUG: Returning sentence. Remaining pool size: {len(sentence_pool)}")
     return result
