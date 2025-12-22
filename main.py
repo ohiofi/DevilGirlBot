@@ -30,8 +30,11 @@ SENTENCE_FILE = os.getenv("SENTENCE_FILE", "/tmp/possible_sentences.txt")
 IMAGES_FOLDER = os.getenv("IMAGES_FOLDER", "/path/to/images")  # fallback default
 FONT_PATH = os.getenv("FONT_PATH", "/path/to/default/font.ttf")
 FONT_SIZE = int(os.getenv("FONT_SIZE", 46))  # convert to int
-POST_INTERVAL = 2 * 60 * 60  # 2 hours
+# POST_INTERVAL = 2 * 60 * 60  # 2 hours
 # POST_INTERVAL = 30 * 60  # 30 mins
+NORMAL_INTERVAL = 2 * 60 * 60  # 2 hours
+SUNDAY_RUSH_INTERVAL = 10 * 60  # 10 minutes
+
 banlist = json.loads(os.getenv("banlist"))
 mastodon = Mastodon(
     client_id=os.getenv("client_key"),
@@ -41,6 +44,14 @@ mastodon = Mastodon(
 )
 
 SNOWCLONE_WORD_TYPES = ['adjective', 'adverb', 'comparativeadjective','name', 'noun', 'place',  'verb', ]
+
+def get_current_interval():
+    now = datetime.now()
+    # Sunday is 6 (Monday is 0, Sunday is 6)
+    # Hour 21 is 9 PM, Hour 22 is 10 PM
+    if now.weekday() == 6 and 21 <= now.hour < 22:
+        return SUNDAY_RUSH_INTERVAL
+    return NORMAL_INTERVAL
 
 def get_word_list(word_type):
     """Maps marker type to the appropriate word list."""
@@ -501,9 +512,13 @@ def process_mentions(last_seen_id=None):
     if not mentions:
         # make a random post every post interval (2 hrs)
         last_random_post = load_last_random_post()
-        now = time.time()
-        if now - last_random_post >= POST_INTERVAL:
-            save_last_random_post(now) # avoid posting more than once
+        now_ts = time.time()
+
+        # Determine which interval to use right now
+        current_required_interval = get_current_interval()
+
+        if now_ts - last_random_post >= current_required_interval:
+            save_last_random_post(now_ts) # avoid posting more than once
             text = getText(captions)
             makePost(text)
             # save_last_random_post(now)
