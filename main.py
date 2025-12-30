@@ -529,17 +529,23 @@ def process_mentions(last_seen_id=None):
     for note in mentions:
 
         if note["type"] != "mention":
+            last_seen_id = max(last_seen_id or 0, int(note["id"]))
+            save_last_seen_id(last_seen_id)
             continue
         mention = note["status"]  # the post that mentioned the bot
         user_acct = mention["account"]["acct"]
 
         # Skip banned users
         if user_acct in banlist:
+            last_seen_id = max(last_seen_id or 0, int(note["id"]))
+            save_last_seen_id(last_seen_id)
             continue
         # Skip banned words
 
         # 1% chance to skip reply
         if random.random() < 0.01:
+            last_seen_id = max(last_seen_id or 0, int(note["id"]))
+            save_last_seen_id(last_seen_id)
             print(f"Skipping reply to {user_acct} to avoid infinite loop")
             continue
 
@@ -559,6 +565,8 @@ def process_mentions(last_seen_id=None):
             text = " "  # prevent empty caption
 
         if len(text) > 1000:
+            last_seen_id = max(last_seen_id or 0, int(note["id"]))
+            save_last_seen_id(last_seen_id)
             print(f"Skipping to avoid too long post")
             continue
 
