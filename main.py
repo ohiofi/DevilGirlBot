@@ -285,7 +285,8 @@ def make_mashup_text(captions):
 def build_alt_text(user_text: str) -> str:
     # Strip markup just in case
     clean = html.unescape(user_text).strip()
-
+    if len(clean) > 1000:
+        clean = clean[:1000]
     return (
         "screenshot from the film Devil Girl From Mars showing a "
         "serious woman wearing a black leather suit, cape, and cowl. "
@@ -542,6 +543,8 @@ def process_mentions(last_seen_id=None):
             print(f"Skipping reply to {user_acct} to avoid infinite loop")
             continue
 
+        
+
         # Collect all hashtags
         # hashtags = mention.get("tags", [])
         # hashtag_text = ""
@@ -554,6 +557,10 @@ def process_mentions(last_seen_id=None):
         text = re.sub(r"@\w+", "", text).strip()
         if not text:
             text = " "  # prevent empty caption
+
+        if len(text) > 1000:
+            print(f"Skipping to avoid too long post")
+            continue
 
         # Update last_seen_id to the notification ID
         # maybe save id BEFORE the reply is uploaded, because slow upload times would mean that multiple replies were being generated
