@@ -49,7 +49,7 @@ def get_current_interval():
     now = datetime.now()
     # Sunday is 6 (Monday is 0, Sunday is 6)
     # Hour 21 is 9 PM, Hour 22 is 10 PM
-    if now.weekday() == 6 and 21 <= now.hour < 22:
+    if now.weekday() == 6 and 21 <= now.hour < 23:
         return SUNDAY_RUSH_INTERVAL
     return NORMAL_INTERVAL
 
