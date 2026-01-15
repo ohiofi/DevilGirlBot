@@ -30,8 +30,11 @@ SENTENCE_FILE = os.getenv("SENTENCE_FILE", "/tmp/possible_sentences.txt")
 IMAGES_FOLDER = os.getenv("IMAGES_FOLDER", "/path/to/images")  # fallback default
 FONT_PATH = os.getenv("FONT_PATH", "/path/to/default/font.ttf")
 FONT_SIZE = int(os.getenv("FONT_SIZE", 46))  # convert to int
-POST_INTERVAL = 2 * 60 * 60  # 2 hours
+# POST_INTERVAL = 2 * 60 * 60  # 2 hours
 # POST_INTERVAL = 30 * 60  # 30 mins
+NORMAL_INTERVAL = 2 * 60 * 60  # 2 hours
+SUNDAY_RUSH_INTERVAL = 10 * 60  # 10 minutes
+
 banlist = json.loads(os.getenv("banlist"))
 mastodon = Mastodon(
     client_id=os.getenv("client_key"),
@@ -41,6 +44,14 @@ mastodon = Mastodon(
 )
 
 SNOWCLONE_WORD_TYPES = ['adjective', 'adverb', 'comparativeadjective','name', 'noun', 'place',  'verb', ]
+
+def get_current_interval():
+    now = datetime.now()
+    # Sunday is 6 (Monday is 0, Sunday is 6)
+    # Hour 21 is 9 PM, Hour 22 is 10 PM
+    if now.weekday() == 6 and 21 <= now.hour < 23:
+        return SUNDAY_RUSH_INTERVAL
+    return NORMAL_INTERVAL
 
 def get_word_list(word_type):
     """Maps marker type to the appropriate word list."""
@@ -274,7 +285,8 @@ def make_mashup_text(captions):
 def build_alt_text(user_text: str) -> str:
     # Strip markup just in case
     clean = html.unescape(user_text).strip()
-
+    if len(clean) > 1000:
+        clean = clean[:1000]
     return (
         "screenshot from the film Devil Girl From Mars showing a "
         "serious woman wearing a black leather suit, cape, and cowl. "
@@ -351,10 +363,10 @@ def load_sentences():
         return []
 
 def save_sentences(sentences):
-    # Keep only the most recent 100 items if the list grew too large
-    if len(sentences) > 100:
+    # Limit if the list gets too large
+    if len(sentences) > 500:
         random.shuffle(sentences) # Mix them up
-        sentences = sentences[:100] # Trim to 100
+        sentences = sentences[:500] 
         
     with open(SENTENCE_FILE, "w", encoding="utf-8") as f:
         json.dump(sentences, f, ensure_ascii=False, indent=2)
@@ -365,9 +377,7 @@ def save_last_random_post(ts):
         f.write(str(ts))
 
 
-# ---------------------------------------------------------
-# CLEAN USER TEXT
-# ---------------------------------------------------------
+
 def extract_user_text(status):
     html_content = status["content"]
     soup = BeautifulSoup(html_content, "html.parser")
@@ -479,8 +489,8 @@ def does_text_contain_banned(html_content, banlist):
 
 
 def getText(captions):
-    one_minute_ago = datetime.now(timezone.utc) - timedelta(minutes=1)
-    text = get_hashtag_toot(one_minute_ago)
+    last_random_post = load_last_random_post()
+    text = get_hashtag_toot(last_random_post)
     if text:
         return text
     if random.random() < 0.33:
@@ -501,30 +511,43 @@ def process_mentions(last_seen_id=None):
     if not mentions:
         # make a random post every post interval (2 hrs)
         last_random_post = load_last_random_post()
-        now = time.time()
-        if now - last_random_post >= POST_INTERVAL:
+        now_ts = time.time()
+
+        # Determine which interval to use right now
+        current_required_interval = get_current_interval()
+
+        if now_ts - last_random_post >= current_required_interval:
+            save_last_random_post(now_ts) # avoid posting more than once
             text = getText(captions)
             makePost(text)
-            save_last_random_post(now)
+            # save_last_random_post(now)
         return last_seen_id
 
     mentions = list(reversed(mentions))  # Process oldest first
     for note in mentions:
 
         if note["type"] != "mention":
+            last_seen_id = max(last_seen_id or 0, int(note["id"]))
+            save_last_seen_id(last_seen_id)
             continue
         mention = note["status"]  # the post that mentioned the bot
         user_acct = mention["account"]["acct"]
 
         # Skip banned users
         if user_acct in banlist:
+            last_seen_id = max(last_seen_id or 0, int(note["id"]))
+            save_last_seen_id(last_seen_id)
             continue
         # Skip banned words
 
         # 1% chance to skip reply
         if random.random() < 0.01:
+            last_seen_id = max(last_seen_id or 0, int(note["id"]))
+            save_last_seen_id(last_seen_id)
             print(f"Skipping reply to {user_acct} to avoid infinite loop")
             continue
+
+        
 
         # Collect all hashtags
         # hashtags = mention.get("tags", [])
@@ -538,6 +561,12 @@ def process_mentions(last_seen_id=None):
         text = re.sub(r"@\w+", "", text).strip()
         if not text:
             text = " "  # prevent empty caption
+
+        if len(text) > 1000:
+            last_seen_id = max(last_seen_id or 0, int(note["id"]))
+            save_last_seen_id(last_seen_id)
+            print(f"Skipping to avoid too long post")
+            continue
 
         # Update last_seen_id to the notification ID
         # maybe save id BEFORE the reply is uploaded, because slow upload times would mean that multiple replies were being generated
@@ -574,37 +603,59 @@ def remove_only_emojis(text):
 def remove_hashtags_and_mentions(html_content):
     soup = BeautifulSoup(html_content, "html.parser")
     
-    # Target the anchor tags directly
     for link in soup.find_all("a"):
-        # Mastodon marks mentions and hashtags with specific CSS classes
         classes = link.get("class", [])
         
-        # If it's a mention or a hashtag, kill it!
-        if "mention" in classes or "hashtag" in classes:
+        if "mention" in classes:
+            # Get text (e.g., "@user"), strip the "@", and replace the tag with just "user"
+            mention_text = link.get_text().lstrip('@')
+            link.replace_with(mention_text)
+            
+        elif "hashtag" in classes:
+            # Remove hashtag entirely (# + text)
             link.decompose()
-        
-        # If it's a regular URL, it usually has no class or a 'u-url' class
-        # We decompose these too to avoid the "shrapnel" numbers issue
+            # Get text (e.g., "#monsterdon"), strip the "#", and replace tag with "monsterdon"
+            # hashtag_text = link.get_text().lstrip('#')
+            # link.replace_with(hashtag_text)
+            
         else:
+            # It's a regular URL - delete it entirely (text and all)
             link.decompose()
 
-    # Extract the remaining text
-    # We use a space separator so words don't get squashed together
+    # 2. Extract remaining text
     text = soup.get_text(separator=" ")
     
-    # Clean up whitespace
-    # This handles \xa0 and extra spaces created by the decomposition
+    # 3. Standardize whitespace (handles \xa0 and tabs)
     text = " ".join(text.split()).strip()
-    # Strip Emojis
-    # text = re.sub(r'[^\x00-\x7f]|[^\w\s,.!?-]', '', text)
+    
+    # 4. Strip Emojis
     text = remove_only_emojis(text)
-    # Final cleanup of "RE:" and double spaces
+    
+    # 5. Final cleanup of "RE:"
     text = re.sub(r'\bRE:\b', '', text, flags=re.IGNORECASE)
+    text = re.sub(r'#', '', text, flags=re.IGNORECASE)
+    text = re.sub(r'@\S+', '', text, flags=re.IGNORECASE)
+    
+    # Final pass to ensure no weird double spaces were left by emoji removal
     clean_text = " ".join(text.split()).strip()
     
     return clean_text
 
+def replace_non_terminating_punctuation(text):
+    # First fix internally dotted abbreviations a.m. and p.m.
+    text = re.sub(r'\b([ap])\.m\.', r'\1m', text, flags=re.IGNORECASE)
+    NON_TERMINATING = [
+        "vs", "mr", "mrs", "ms", "mx", "dr", "prof", "sr", "jr", "rev",
+        "etc", "eg", "ie", "cf", "al", "ca",
+        "st", "ave", "blvd", "rd", "ln", "ct", "pl", "mt", "ft",
+        "vol", "fig", "sec", "ch",
+    ]
+    pattern = r'\b(' + '|'.join(NON_TERMINATING) + r')\.'
+    text = re.sub(pattern, r'\1', text, flags=re.IGNORECASE)
+    return text
+
 def get_hashtag_toot(last_seen_id=None):
+    new_toots = False
     # 1. LOAD: Get the existing sentences from the file first
     sentence_pool = load_sentences()
     
@@ -617,6 +668,8 @@ def get_hashtag_toot(last_seen_id=None):
         for toot in toots:
             # Clean the whole post to avoid URL shrapnel
             full_text = remove_hashtags_and_mentions(toot['content'])
+
+            full_text = replace_non_terminating_punctuation(full_text)
             
             # Split into sentences and filter out empty ones
             new_sentences = [s.strip() for s in re.split(r'(?<=[.!?])\s+', full_text) if s.strip()]
@@ -624,7 +677,8 @@ def get_hashtag_toot(last_seen_id=None):
             for s in new_sentences:
                 # Standard validation checks
                 if 5 <= len(s) <= 150 and not does_text_contain_banned(s, banlist):
-                    if s not in sentence_pool: # Don't add duplicates
+                    if s not in sentence_pool and s not in ["monsterdon","Monsterdon","MONSTERDON","#monsterdon","#Monsterdon","monsteron .","Monsteron ."]: 
+                        new_toots = True
                         sentence_pool.append(s)
     else:
         print("DEBUG: No new toots found, relying on existing pool.")
@@ -641,21 +695,15 @@ def get_hashtag_toot(last_seen_id=None):
     sentence_pool.remove(result)
 
     # 7. SAVE: Trim the list to 100 and write back to the file
-    save_sentences(sentence_pool)
+    if new_toots:
+        save_sentences(sentence_pool)
 
     print(f"DEBUG: Returning sentence. Remaining pool size: {len(sentence_pool)}")
     return result
 
 
-
-
-
-
+# ---------------------------------------------------------
+# MAIN 
+# ---------------------------------------------------------
 if __name__ == "__main__":
-    print("testing")
-    print(does_text_contain_banned("hellow world", banlist))
-    print(does_text_contain_banned("niglected", banlist))
-    one_minute_ago = datetime.now(timezone.utc) - timedelta(minutes=1)
-    text = get_hashtag_toot(one_minute_ago)
-    # for i in range(100):
-    #     print(get_random_snowclone(snowClones))
+    print(replace_non_terminating_punctuation("it's 5 a.m. and in St. Louis Dr. Brown is awake. This is it. I'm done. He's okay. He's not. "))
