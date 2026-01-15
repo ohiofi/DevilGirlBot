@@ -377,9 +377,7 @@ def save_last_random_post(ts):
         f.write(str(ts))
 
 
-# ---------------------------------------------------------
-# CLEAN USER TEXT
-# ---------------------------------------------------------
+
 def extract_user_text(status):
     html_content = status["content"]
     soup = BeautifulSoup(html_content, "html.parser")
@@ -614,9 +612,11 @@ def remove_hashtags_and_mentions(html_content):
             link.replace_with(mention_text)
             
         elif "hashtag" in classes:
+            # Remove hashtag entirely (# + text)
+            link.decompose()
             # Get text (e.g., "#monsterdon"), strip the "#", and replace tag with "monsterdon"
-            hashtag_text = link.get_text().lstrip('#')
-            link.replace_with(hashtag_text)
+            # hashtag_text = link.get_text().lstrip('#')
+            # link.replace_with(hashtag_text)
             
         else:
             # It's a regular URL - delete it entirely (text and all)
@@ -641,6 +641,19 @@ def remove_hashtags_and_mentions(html_content):
     
     return clean_text
 
+def replace_non_terminating_punctuation(text):
+    # First fix internally dotted abbreviations a.m. and p.m.
+    text = re.sub(r'\b([ap])\.m\.', r'\1m', text, flags=re.IGNORECASE)
+    NON_TERMINATING = [
+        "vs", "mr", "mrs", "ms", "mx", "dr", "prof", "sr", "jr", "rev",
+        "etc", "eg", "ie", "cf", "al", "ca",
+        "st", "ave", "blvd", "rd", "ln", "ct", "pl", "mt", "ft",
+        "vol", "fig", "sec", "ch",
+    ]
+    pattern = r'\b(' + '|'.join(NON_TERMINATING) + r')\.'
+    text = re.sub(pattern, r'\1', text, flags=re.IGNORECASE)
+    return text
+
 def get_hashtag_toot(last_seen_id=None):
     new_toots = False
     # 1. LOAD: Get the existing sentences from the file first
@@ -655,6 +668,8 @@ def get_hashtag_toot(last_seen_id=None):
         for toot in toots:
             # Clean the whole post to avoid URL shrapnel
             full_text = remove_hashtags_and_mentions(toot['content'])
+
+            full_text = replace_non_terminating_punctuation(full_text)
             
             # Split into sentences and filter out empty ones
             new_sentences = [s.strip() for s in re.split(r'(?<=[.!?])\s+', full_text) if s.strip()]
@@ -662,7 +677,7 @@ def get_hashtag_toot(last_seen_id=None):
             for s in new_sentences:
                 # Standard validation checks
                 if 5 <= len(s) <= 150 and not does_text_contain_banned(s, banlist):
-                    if s not in sentence_pool and s not in ["monsterdon","Monsterdon","#monsterdon","#Monsterdon"]: 
+                    if s not in sentence_pool and s not in ["monsterdon","Monsterdon","MONSTERDON","#monsterdon","#Monsterdon","monsteron .","Monsteron ."]: 
                         new_toots = True
                         sentence_pool.append(s)
     else:
