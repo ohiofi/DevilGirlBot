@@ -27,6 +27,7 @@ TEMP_PNG_PATH = os.getenv("TEMP_PNG_PATH", "/tmp/devilgirl.png")  # fallback def
 LAST_ID_FILE = os.getenv("LAST_ID_FILE", "/tmp/last_id.txt")  # fallback default
 LAST_RANDOM_POST_FILE = os.getenv("LAST_RANDOM_POST_FILE", "/tmp/last_random_post.txt")
 SENTENCE_FILE = os.getenv("SENTENCE_FILE", "/tmp/possible_sentences.txt")
+HISTORY_FILE = os.getenv("HISTORY_FILE","/tmp/previous_posts.txt")
 IMAGES_FOLDER = os.getenv("IMAGES_FOLDER", "/path/to/images")  # fallback default
 FONT_PATH = os.getenv("FONT_PATH", "/path/to/default/font.ttf")
 FONT_SIZE = int(os.getenv("FONT_SIZE", 46))  # convert to int
@@ -318,6 +319,24 @@ def save_last_seen_id(last_id):
     with open(LAST_ID_FILE, "w") as f:
         f.write(str(last_id))
 
+def load_previous_posts():
+    """Loads the history of posted strings."""
+    if not os.path.exists(HISTORY_FILE) or os.path.getsize(HISTORY_FILE) == 0:
+        return []
+    try:
+        with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            return data if isinstance(data, list) else []
+    except (json.JSONDecodeError, UnicodeDecodeError):
+        return []
+
+def save_previous_posts(history_list):
+    """Saves the history, keeping only the last 500 items to save space."""
+    # We keep a limit so the file doesn't grow forever
+    if len(history_list) > 500:
+        history_list = history_list[-500:]
+    with open(HISTORY_FILE, "w", encoding="utf-8") as f:
+        json.dump(history_list, f, ensure_ascii=False, indent=2)
 
 def load_last_random_post():
     if not os.path.exists(LAST_RANDOM_POST_FILE):
@@ -658,6 +677,7 @@ def get_hashtag_toot(last_seen_id=None):
     new_toots = False
     # 1. LOAD: Get the existing sentences from the file first
     sentence_pool = load_sentences()
+    history = load_previous_posts()
     
     # 2. FETCH: Get new toots from Mastodon
     toots = mastodon.timeline_hashtag(hashtag="monsterdon", since_id=last_seen_id, limit=40)
@@ -677,7 +697,7 @@ def get_hashtag_toot(last_seen_id=None):
             for s in new_sentences:
                 # Standard validation checks
                 if 5 <= len(s) <= 150 and not does_text_contain_banned(s, banlist):
-                    if s not in sentence_pool and s not in ["monsterdon","Monsterdon","MONSTERDON","#monsterdon","#Monsterdon","monsteron .","Monsteron ."]: 
+                    if s not in sentence_pool and s not in history: 
                         new_toots = True
                         sentence_pool.append(s)
     else:
@@ -693,10 +713,12 @@ def get_hashtag_toot(last_seen_id=None):
     
     # 6. REMOVE: Take it out so we don't repeat it
     sentence_pool.remove(result)
+    history.append(result)
 
     # 7. SAVE: Trim the list to 100 and write back to the file
     if new_toots:
         save_sentences(sentence_pool)
+        save_previous_posts(history)
 
     print(f"DEBUG: Returning sentence. Remaining pool size: {len(sentence_pool)}")
     return result
