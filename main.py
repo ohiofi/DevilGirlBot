@@ -652,7 +652,9 @@ def remove_hashtags_and_mentions(html_content):
     
     # 5. Final cleanup of "RE:"
     text = re.sub(r'\bRE:\b', '', text, flags=re.IGNORECASE)
-    text = re.sub(r'#', '', text, flags=re.IGNORECASE)
+    # text = re.sub(r'#', '', text, flags=re.IGNORECASE)
+    # Removes the # and the word immediately following it
+    text = re.sub(r'#\S+', '', text, flags=re.IGNORECASE)
     text = re.sub(r'@\S+', '', text, flags=re.IGNORECASE)
     
     # Final pass to ensure no weird double spaces were left by emoji removal
@@ -674,7 +676,7 @@ def replace_non_terminating_punctuation(text):
     return text
 
 def get_hashtag_toot(last_seen_id=None):
-    new_toots = False
+    # new_toots = False
     # 1. LOAD: Get the existing sentences from the file first
     sentence_pool = load_sentences()
     history = load_previous_posts()
@@ -698,7 +700,7 @@ def get_hashtag_toot(last_seen_id=None):
                 # Standard validation checks
                 if 5 <= len(s) <= 150 and not does_text_contain_banned(s, banlist):
                     if s not in sentence_pool and s not in history: 
-                        new_toots = True
+                        # new_toots = True
                         sentence_pool.append(s)
     else:
         print("DEBUG: No new toots found, relying on existing pool.")
@@ -710,15 +712,17 @@ def get_hashtag_toot(last_seen_id=None):
 
     # 5. RESULT: Choose a random sentence
     result = random.choice(sentence_pool)
+    if result in history:
+        print("DEBUG: Already posted. Nothing to return.")
+        return None
     
     # 6. REMOVE: Take it out so we don't repeat it
     sentence_pool.remove(result)
     history.append(result)
 
     # 7. SAVE: Trim the list to 100 and write back to the file
-    if new_toots:
-        save_sentences(sentence_pool)
-        save_previous_posts(history)
+    save_sentences(sentence_pool)
+    save_previous_posts(history)
 
     print(f"DEBUG: Returning sentence. Remaining pool size: {len(sentence_pool)}")
     return result
