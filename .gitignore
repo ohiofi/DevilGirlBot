@@ -144,3 +144,5 @@ last_random_post.txt
 *.pyc
 possible_sentences.txt
 previous_posts.txt
+*.json
+possible_sentences_original.txt

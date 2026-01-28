@@ -382,12 +382,12 @@ def load_sentences():
         return []
 
 def save_sentences(sentences):
-    # Limit if the list gets too large
+    # Limit to 500 items
     if len(sentences) > 500:
-        random.shuffle(sentences) # Mix them up
+        random.shuffle(sentences)
         sentences = sentences[:500] 
-        
     with open(SENTENCE_FILE, "w", encoding="utf-8") as f:
+        # ensure_ascii=False keeps emojis/accents readable in the txt file
         json.dump(sentences, f, ensure_ascii=False, indent=2)
 
 
@@ -460,13 +460,13 @@ def make_image(user_text, output_path=TEMP_PNG_PATH):
     return output_path
 
 
-def makePost(text):
+def makePost(text_object):
     """Create a public post with a generated image."""
-    png_path = make_image(text)
-    alt_text = build_alt_text(text)
+    png_path = make_image(text_object["sentence"])
+    alt_text = build_alt_text(text_object["sentence"])
 
     mastodon.status_post(
-        status=text,
+        status=f'{text_object["sentence"]} {text_object["url"]}',
         media_ids=[mastodon.media_post(png_path, description=alt_text)["id"]],
         visibility="public",
     )
@@ -474,8 +474,11 @@ def makePost(text):
 
 def makeReply(user_acct, text, in_reply_to_id):
     """Reply to a mention with a generated image and hashtags."""
+    status=f"@{user_acct} {text}"
     if len(text.strip()) < 2:
-        text = getText(captions)
+        text_object = getText()
+        text = text_object["sentence"]
+        status=f'@{user_acct} {text_object["sentence"]} {text_object["url"]}'
         # makePost(text)
     png_path = make_image(text)
     alt_text = build_alt_text(text)
@@ -485,7 +488,7 @@ def makeReply(user_acct, text, in_reply_to_id):
     #     hashtag_text = " " + " ".join(f"#{tag['name']}" for tag in hashtags)
 
     mastodon.status_post(
-        status=f"@{user_acct} {text}",
+        status,
         media_ids=[mastodon.media_post(png_path, description=alt_text)["id"]],
         in_reply_to_id=in_reply_to_id,
         visibility="public",
@@ -507,16 +510,17 @@ def does_text_contain_banned(html_content, banlist):
     return False
 
 
-def getText(captions):
+def getText():
     last_random_post = load_last_random_post()
-    text = get_hashtag_toot(last_random_post)
-    if text:
-        return text
-    if random.random() < 0.33:
-        return get_random_snowclone(xmas_snowClones)
-    if random.random() < 0.50:
-        return get_random_snowclone(snowClones)
-    return make_mashup_text(captions)
+    sentence_object = get_hashtag_toot(last_random_post)
+    if sentence_object:
+        return sentence_object
+    # if random.random() < 0.33:
+    #     return get_random_snowclone(xmas_snowClones)
+    # if random.random() < 0.50:
+    #     return get_random_snowclone(snowClones)
+    # return make_mashup_text(captions)
+    return None
 
 
 # ---------------------------------------------------------
@@ -537,8 +541,9 @@ def process_mentions(last_seen_id=None):
 
         if now_ts - last_random_post >= current_required_interval:
             save_last_random_post(now_ts) # avoid posting more than once
-            text = getText(captions)
-            makePost(text)
+            text_object = getText()
+            if text_object:
+                makePost(text_object)
             # save_last_random_post(now)
         return last_seen_id
 
@@ -678,17 +683,18 @@ def replace_non_terminating_punctuation(text):
 def get_hashtag_toot(last_seen_id=None):
     # new_toots = False
     # 1. LOAD: Get the existing sentences from the file first
-    sentence_pool = load_sentences()
-    history = load_previous_posts()
+    sentence_object_list = load_sentences() # a list of dicts
+    history_string_list = load_previous_posts()
     
     # 2. FETCH: Get new toots from Mastodon
     toots = mastodon.timeline_hashtag(hashtag="monsterdon", since_id=last_seen_id, limit=40)
     
     # 3. PROCESS: If there are new toots, clean them and add to the pool
     if toots:
-        print(f"DEBUG: Found {len(toots)} new toots. Processing...")
+        # print(f"DEBUG: Found {len(toots)} new toots. Processing...")
         for toot in toots:
-            # Clean the whole post to avoid URL shrapnel
+            source_url = toot['url'] # Grab the URL before cleaning
+            
             full_text = remove_hashtags_and_mentions(toot['content'])
 
             full_text = replace_non_terminating_punctuation(full_text)
@@ -699,33 +705,41 @@ def get_hashtag_toot(last_seen_id=None):
             for s in new_sentences:
                 # Standard validation checks
                 if 5 <= len(s) <= 150 and not does_text_contain_banned(s, banlist):
-                    if s not in sentence_pool and s not in history: 
-                        # new_toots = True
-                        sentence_pool.append(s)
+                    # Check if the sentence text exists in the pool or history
+                    # Use any() to check inside the list of dictionaries
+                    is_in_pool = any(item['sentence'] == s for item in sentence_object_list)
+                    
+                    if not is_in_pool and s not in history_string_list: 
+                        sentence_object_list.append({
+                            "sentence": s,
+                            "url": source_url
+                        })
     else:
         print("DEBUG: No new toots found, relying on existing pool.")
 
     # 4. PICK: If the pool is empty (no new toots AND no file data), we can't continue
-    if not sentence_pool:
+    if not sentence_object_list:
         print("DEBUG: Pool is completely empty. Nothing to return.")
         return None
 
     # 5. RESULT: Choose a random sentence
-    result = random.choice(sentence_pool)
-    if result in history:
+    result_object = random.choice(sentence_object_list)
+    if result_object['sentence'] in history_string_list:
         print("DEBUG: Already posted. Nothing to return.")
+        sentence_object_list.remove(result_object)
+        save_sentences(sentence_object_list)
         return None
     
     # 6. REMOVE: Take it out so we don't repeat it
-    sentence_pool.remove(result)
-    history.append(result)
+    sentence_object_list.remove(result_object)
+    history_string_list.append(result_object["sentence"])
 
     # 7. SAVE: Trim the list to 100 and write back to the file
-    save_sentences(sentence_pool)
-    save_previous_posts(history)
+    save_sentences(sentence_object_list)
+    save_previous_posts(history_string_list)
 
-    print(f"DEBUG: Returning sentence. Remaining pool size: {len(sentence_pool)}")
-    return result
+    print(f"DEBUG: Returning sentence. Remaining pool size: {len(sentence_object_list)}")
+    return result_object
 
 
 # ---------------------------------------------------------
