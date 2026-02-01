@@ -1,4 +1,4 @@
-from mastodon import Mastodon
+from mastodon import Mastodon, MastodonNetworkError
 from dotenv import load_dotenv
 from bs4 import BeautifulSoup, MarkupResemblesLocatorWarning
 from PIL import Image, ImageDraw, ImageFont
@@ -35,7 +35,7 @@ FONT_PATH = os.getenv("FONT_PATH", "/path/to/default/font.ttf")
 FONT_SIZE = int(os.getenv("FONT_SIZE", 46))  # convert to int
 # POST_INTERVAL = 2 * 60 * 60  # 2 hours
 # POST_INTERVAL = 30 * 60  # 30 mins
-NORMAL_INTERVAL = 1.0 * 60 * 60  # 1 hours
+NORMAL_INTERVAL = 1.5 * 60 * 60  # 1.5 hours
 SUNDAY_RUSH_INTERVAL = 10 * 60  # 10 minutes
 
 banlist = json.loads(os.getenv("banlist"))
@@ -741,10 +741,16 @@ def get_hashtag_toot(last_seen_id=None):
     sentence_object_list = load_sentences()  # a list of dicts
     history_string_list = load_previous_posts()
 
-    # 2. FETCH: Get new toots from Mastodon
-    toots = mastodon.timeline_hashtag(
-        hashtag="monsterdon", since_id=last_seen_id, limit=40
-    )
+    # # 2. FETCH: Get new toots from Mastodon
+    # toots = mastodon.timeline_hashtag(
+    #     hashtag="monsterdon", since_id=last_seen_id, limit=40
+    # )
+    # 2. FETCH: Wrap in try/except to prevent crashes
+    try:
+        toots = mastodon.timeline_hashtag(hashtag="monsterdon", since_id=last_seen_id, limit=40)
+    except MastodonNetworkError as e:
+        print(f"DEBUG: Mastodon server timed out or network is down: {e}")
+        toots = None # Fall back to using the existing pool
 
     # 3. PROCESS: If there are new toots, clean them and add to the pool
     if toots:
