@@ -651,49 +651,105 @@ def remove_only_emojis(text):
     )
     return emoji_pattern.sub("", text)
 
-
 def remove_hashtags_and_mentions(html_content):
     soup = BeautifulSoup(html_content, "html.parser")
+    
+    # 1. Handle Leading Mentions
+    # We look at the children of the main container (usually a <p> or <div>)
+    # If the first items are mentions, we decompose them.
+    found_content = False
+    
+    # We iterate through all elements in the soup
+    for element in list(soup.descendants):
+        if found_content:
+            break
+            
+        # If it's a mention link at the very start
+        if element.name == 'a' and "mention" in element.get("class", []):
+            element.decompose()
+        # If it's a hashtag or regular link at the start, we still want to skip it later, 
+        # but for now, we just don't stop the "leading" check.
+        elif element.name == 'a':
+            continue
+        # If we hit actual text that isn't just whitespace, stop the "leading" deletion
+        elif isinstance(element, str) and element.strip():
+            found_content = True
 
+    # 2. Process Remaining Tags
+    # This handles the middle/end mentions and all hashtags/URLs
     for link in soup.find_all("a"):
         classes = link.get("class", [])
 
         if "mention" in classes:
-            # Get text (e.g., "@user"), strip the "@", and replace the tag with just "user"
+            # MID/END MENTIONS: Keep the name, strip the @
             mention_text = link.get_text().lstrip("@")
             link.replace_with(mention_text)
-
         elif "hashtag" in classes:
-            # Remove hashtag entirely (# + text)
+            # REMOVE HASHTAGS ENTIRELY
             link.decompose()
-            # Get text (e.g., "#monsterdon"), strip the "#", and replace tag with "monsterdon"
-            # hashtag_text = link.get_text().lstrip('#')
-            # link.replace_with(hashtag_text)
-
         else:
-            # It's a regular URL - delete it entirely (text and all)
+            # REMOVE REGULAR URLs ENTIRELY
             link.decompose()
 
-    # 2. Extract remaining text
+    # 3. Extract and Clean Text
     text = soup.get_text(separator=" ")
-
-    # 3. Standardize whitespace (handles \xa0 and tabs)
     text = " ".join(text.split()).strip()
-
-    # 4. Strip Emojis
     text = remove_only_emojis(text)
 
-    # 5. Final cleanup of "RE:"
+    # 4. Final Sweep
     text = re.sub(r"\bRE:\b", "", text, flags=re.IGNORECASE)
-    # text = re.sub(r'#', '', text, flags=re.IGNORECASE)
-    # Removes the # and the word immediately following it
+    
+    # We keep your hashtag regex as a safety net for plain-text hashtags
     text = re.sub(r"#\S+", "", text, flags=re.IGNORECASE)
-    text = re.sub(r"@\S+", "", text, flags=re.IGNORECASE)
-
-    # Final pass to ensure no weird double spaces were left by emoji removal
+    
+    # NOTE: I removed the @\S+ regex because it would delete the 
+    # usernames you just converted to plain text in Step 2.
+    
     clean_text = " ".join(text.split()).strip()
-
     return clean_text
+
+# def remove_hashtags_and_mentions(html_content):
+#     soup = BeautifulSoup(html_content, "html.parser")
+
+#     for link in soup.find_all("a"):
+#         classes = link.get("class", [])
+
+#         if "mention" in classes:
+#             # Get text (e.g., "@user"), strip the "@", and replace the tag with just "user"
+#             mention_text = link.get_text().lstrip("@")
+#             link.replace_with(mention_text)
+
+#         elif "hashtag" in classes:
+#             # Remove hashtag entirely (# + text)
+#             link.decompose()
+#             # Get text (e.g., "#monsterdon"), strip the "#", and replace tag with "monsterdon"
+#             # hashtag_text = link.get_text().lstrip('#')
+#             # link.replace_with(hashtag_text)
+
+#         else:
+#             # It's a regular URL - delete it entirely (text and all)
+#             link.decompose()
+
+#     # 2. Extract remaining text
+#     text = soup.get_text(separator=" ")
+
+#     # 3. Standardize whitespace (handles \xa0 and tabs)
+#     text = " ".join(text.split()).strip()
+
+#     # 4. Strip Emojis
+#     text = remove_only_emojis(text)
+
+#     # 5. Final cleanup of "RE:"
+#     text = re.sub(r"\bRE:\b", "", text, flags=re.IGNORECASE)
+#     # text = re.sub(r'#', '', text, flags=re.IGNORECASE)
+#     # Removes the # and the word immediately following it
+#     text = re.sub(r"#\S+", "", text, flags=re.IGNORECASE)
+#     text = re.sub(r"@\S+", "", text, flags=re.IGNORECASE)
+
+#     # Final pass to ensure no weird double spaces were left by emoji removal
+#     clean_text = " ".join(text.split()).strip()
+
+#     return clean_text
 
 
 def replace_non_terminating_punctuation(text):
