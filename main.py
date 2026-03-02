@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup, MarkupResemblesLocatorWarning
 from PIL import Image, ImageDraw, ImageFont
 import warnings
 from datetime import datetime, timedelta, timezone
-import os, json, re, html, time
+import os, json, re, html, time, io
 import random
 
 from corpora.adjectives import ADJECTIVES as adjectives
@@ -44,6 +44,7 @@ mastodon = Mastodon(
     client_secret=os.getenv("client_secret"),
     access_token=os.getenv("access_token"),
     api_base_url="https://mastodon.social",
+    request_timeout=40
 )
 
 SNOWCLONE_WORD_TYPES = [
@@ -62,6 +63,7 @@ def get_current_interval():
     # Sunday is 6 (Monday is 0, Sunday is 6)
     # Hour 21 is 9 PM, Hour 22 is 10 PM
     if now.weekday() == 6 and 20 <= now.hour < 24:
+        # print("sunday rush")
         return SUNDAY_RUSH_INTERVAL
     return NORMAL_INTERVAL
 
@@ -488,14 +490,50 @@ def make_image(user_text, output_path=TEMP_PNG_PATH):
 
 
 def makePost(text_object):
-    """Create a public post with a generated image."""
-    png_path = make_image(text_object["sentence"])
-    alt_text = build_alt_text(text_object["sentence"])
-    mastodon.status_post(
-        status=f'{text_object["sentence"]}',
-        media_ids=[mastodon.media_post(png_path, description=alt_text)["id"]],
-        visibility="public",
-    )
+    sentence = text_object['sentence']
+    print(f"DEBUG: Starting makePost for: {sentence[:30]}...")
+    
+    media_id = None
+    try:
+        # 1. Generate Image
+        png_path = make_image(sentence)
+        
+        # 2. Try Upload with a strict internal timeout
+        print("DEBUG: Attempting Media Upload...")
+        with open(png_path, "rb") as f:
+            # If this takes > 40s, it will now throw an exception instead of freezing
+            media = mastodon.media_post(f, mime_type='image/png')
+            media_id = media["id"]
+            print(f"DEBUG: Media uploaded! ID: {media_id}")
+
+    except Exception as e:
+        print(f"WARNING: Media upload failed or timed out: {e}")
+        print("DEBUG: Falling back to text-only post...")
+
+    # 3. Final Post (Works with or without media_id)
+    try:
+        print("DEBUG: Sending status...")
+        opts = {"status": sentence, "visibility": "public"}
+        if media_id:
+            opts["media_ids"] = [media_id]
+            
+        response = mastodon.status_post(**opts)
+        print(f"SUCCESS: Post live! ID: {response['id']}")
+        return True
+    except Exception as e:
+        print(f"CRITICAL ERROR: Status post failed: {e}")
+        return False
+
+# def makePost(text_object):
+#     print("make post")
+#     """Create a public post with a generated image."""
+#     png_path = make_image(text_object["sentence"])
+#     alt_text = build_alt_text(text_object["sentence"])
+#     mastodon.status_post(
+#         status=f'{text_object["sentence"]}',
+#         media_ids=[mastodon.media_post(png_path, description=alt_text)["id"]],
+#         visibility="public",
+#     )
     # mastodon.status_post(
     #     status=f'{text_object["sentence"]} {text_object["url"]}',
     #     media_ids=[mastodon.media_post(png_path, description=alt_text)["id"]],
@@ -562,17 +600,20 @@ def getText():
 
 
 def process_mentions(last_seen_id=None):
+    # print("process mentions")
     # print(f"last_seen_id: {last_seen_id}, type: {type(last_seen_id)}")
     mentions = mastodon.notifications(types=["mention"], since_id=last_seen_id)
-    if not mentions:
+    if not mentions or random.random() < 0.25:
+        # print("make a random post")
         # make a random post every post interval (2 hrs)
         last_random_post = load_last_random_post()
         now_ts = time.time()
-
+        # print(now_ts)
         # Determine which interval to use right now
         current_required_interval = get_current_interval()
 
         if now_ts - last_random_post >= current_required_interval:
+            # print("time to post")
             save_last_random_post(now_ts)  # avoid posting more than once
             text_object = getText()
             if text_object:
@@ -581,6 +622,7 @@ def process_mentions(last_seen_id=None):
         return last_seen_id
 
     mentions = list(reversed(mentions))  # Process oldest first
+    print(mentions)
     for note in mentions:
 
         if note["type"] != "mention":
@@ -842,6 +884,7 @@ def get_hashtag_toot(last_seen_id=None):
         print("DEBUG: Pool is completely empty. Nothing to return.")
         return None
 
+    print("step 5")
     # 5. RESULT: Choose a random sentence
     result_object = random.choice(sentence_object_list)
     if result_object["sentence"] in history_string_list:
@@ -850,10 +893,12 @@ def get_hashtag_toot(last_seen_id=None):
         save_sentences(sentence_object_list)
         return None
 
+    print("step 6")
     # 6. REMOVE: Take it out so we don't repeat it
     sentence_object_list.remove(result_object)
     history_string_list.append(result_object["sentence"])
 
+    print("step 7")
     # 7. SAVE: Trim the list to 100 and write back to the file
     save_sentences(sentence_object_list)
     save_previous_posts(history_string_list)
@@ -868,5 +913,24 @@ def get_hashtag_toot(last_seen_id=None):
 # MAIN
 # ---------------------------------------------------------
 if __name__ == "__main__":
-    last_seen_id = load_last_seen_id()
-    last_seen_id = process_mentions(last_seen_id)
+    try:
+        # print("--- DEBUG START ---")
+        # # 1. Test the sentence fetcher directly
+        # test_sentence = get_hashtag_toot()
+        # print(f"DEBUG: Found sentence: {test_sentence}")
+        
+        # # 2. Stop here for a second so we can read it
+        # if test_sentence:
+        #     print(f"DEBUG: Sentence Text: {test_sentence['sentence']}")
+        #     print(f"DEBUG: Source URL: {test_sentence['url']}")
+        # else:
+        #     print("DEBUG: Pool is empty or API timed out.")
+        
+        # print("--- DEBUG END ---")
+        # print("testing " + str(random.randint(0,999999999)))
+        last_seen_id = load_last_seen_id()
+        last_seen_id = process_mentions(last_seen_id)
+    except Exception as e:
+        print(f"CRITICAL ERROR: {e}")
+        import traceback
+        traceback.print_exc() # This prints the EXACT line number where it failed
