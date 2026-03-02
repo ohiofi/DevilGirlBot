@@ -35,7 +35,7 @@ FONT_PATH = os.getenv("FONT_PATH", "/path/to/default/font.ttf")
 FONT_SIZE = int(os.getenv("FONT_SIZE", 46))  # convert to int
 # POST_INTERVAL = 2 * 60 * 60  # 2 hours
 # POST_INTERVAL = 30 * 60  # 30 mins
-NORMAL_INTERVAL = 1.25 * 60 * 60  # 1.25 hours
+NORMAL_INTERVAL = 2 * 60 * 60  # 2 hours
 SUNDAY_RUSH_INTERVAL = 10 * 60  # 10 minutes
 
 banlist = json.loads(os.getenv("banlist"))
