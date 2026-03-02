@@ -600,10 +600,10 @@ def getText():
 
 
 def process_mentions(last_seen_id=None):
-    # print("process mentions")
+    print("process mentions")
     # print(f"last_seen_id: {last_seen_id}, type: {type(last_seen_id)}")
     mentions = mastodon.notifications(types=["mention"], since_id=last_seen_id)
-    if not mentions or random.random() < 0.25:
+    if not mentions:
         # print("make a random post")
         # make a random post every post interval (2 hrs)
         last_random_post = load_last_random_post()
@@ -696,57 +696,46 @@ def remove_only_emojis(text):
 def remove_hashtags_and_mentions(html_content):
     soup = BeautifulSoup(html_content, "html.parser")
     
-    # 1. Handle Leading Mentions
-    # We look at the children of the main container (usually a <p> or <div>)
-    # If the first items are mentions, we decompose them.
+    # 1. IMMEDIATE HASHTAG & URL PURGE
+    # We do this first so they are gone from the tree entirely
+    for link in soup.find_all("a"):
+        classes = link.get("class", [])
+        # If it's a hashtag or a regular link (not a mention), kill it now
+        if "hashtag" in classes or "mention" not in classes:
+            link.decompose()
+
+    # 2. HANDLE LEADING MENTIONS
+    # Now that hashtags are gone, we only have text and mention links left
     found_content = False
-    
-    # We iterate through all elements in the soup
     for element in list(soup.descendants):
         if found_content:
             break
             
-        # If it's a mention link at the very start
+        # If it's a mention at the very start, delete it
         if element.name == 'a' and "mention" in element.get("class", []):
             element.decompose()
-        # If it's a hashtag or regular link at the start, we still want to skip it later, 
-        # but for now, we just don't stop the "leading" check.
-        elif element.name == 'a':
-            continue
-        # If we hit actual text that isn't just whitespace, stop the "leading" deletion
+        # If we hit actual text, stop the leading deletion
         elif isinstance(element, str) and element.strip():
             found_content = True
 
-    # 2. Process Remaining Tags
-    # This handles the middle/end mentions and all hashtags/URLs
-    for link in soup.find_all("a"):
-        classes = link.get("class", [])
+    # 3. PROCESS REMAINING MENTIONS (Middle/End)
+    # Convert remaining @mentions to plain text names
+    for link in soup.find_all("a", class_="mention"):
+        mention_text = link.get_text().lstrip("@")
+        link.replace_with(mention_text)
 
-        if "mention" in classes:
-            # MID/END MENTIONS: Keep the name, strip the @
-            mention_text = link.get_text().lstrip("@")
-            link.replace_with(mention_text)
-        elif "hashtag" in classes:
-            # REMOVE HASHTAGS ENTIRELY
-            link.decompose()
-        else:
-            # REMOVE REGULAR URLs ENTIRELY
-            link.decompose()
-
-    # 3. Extract and Clean Text
+    # 4. EXTRACT AND CLEAN TEXT
     text = soup.get_text(separator=" ")
-    text = " ".join(text.split()).strip()
+    
+    # 5. FINAL REGEX SWEEP
+    # Removes "RE:", emojis, and any plain-text hashtags that weren't in <a> tags
     text = remove_only_emojis(text)
-
-    # 4. Final Sweep
     text = re.sub(r"\bRE:\b", "", text, flags=re.IGNORECASE)
     
-    # We keep your hashtag regex as a safety net for plain-text hashtags
-    text = re.sub(r"#\S+", "", text, flags=re.IGNORECASE)
+    # This regex is the "nuclear option" for any remaining #tags
+    text = re.sub(r"#\S+", "", text)
     
-    # NOTE: I removed the @\S+ regex because it would delete the 
-    # usernames you just converted to plain text in Step 2.
-    
+    # Final whitespace cleanup
     clean_text = " ".join(text.split()).strip()
     return clean_text
 
