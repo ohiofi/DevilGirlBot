@@ -491,6 +491,7 @@ def make_image(user_text, output_path=TEMP_PNG_PATH):
 
 def makePost(text_object):
     sentence = text_object['sentence']
+    alt_text = build_alt_text(text_object["sentence"])
     print(f"DEBUG: Starting makePost for: {sentence[:30]}...")
     
     media_id = None
@@ -502,7 +503,7 @@ def makePost(text_object):
         print("DEBUG: Attempting Media Upload...")
         with open(png_path, "rb") as f:
             # If this takes > 40s, it will now throw an exception instead of freezing
-            media = mastodon.media_post(f, mime_type='image/png')
+            media = mastodon.media_post(f, mime_type='image/png', description=alt_text)
             media_id = media["id"]
             print(f"DEBUG: Media uploaded! ID: {media_id}")
 
