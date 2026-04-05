@@ -694,6 +694,16 @@ def remove_only_emojis(text):
     )
     return emoji_pattern.sub("", text)
 
+def text_only_cleaning_algorithm(html_content):
+    soup = BeautifulSoup(html_content, "html.parser")
+    for link in soup.find_all("a"):
+        link.decompose()
+    # Extract remaining text
+    text = soup.get_text(separator=" ")
+    # Standardize whitespace (handles \xa0 and tabs)
+    text = " ".join(text.split()).strip()
+    return text
+
 def remove_hashtags_and_mentions(html_content):
     soup = BeautifulSoup(html_content, "html.parser")
     
@@ -846,7 +856,7 @@ def get_hashtag_toot(last_seen_id=None):
         for toot in toots:
             source_url = toot["url"]  # Grab the URL before cleaning
 
-            full_text = remove_hashtags_and_mentions(toot["content"])
+            full_text = text_only_cleaning_algorithm(toot["content"])
 
             full_text = replace_non_terminating_punctuation(full_text)
 
