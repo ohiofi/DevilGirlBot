@@ -44,7 +44,6 @@ movieCriteria = [
     ["has the ", "MOST", "LEAST", " dangerous monster"],
     ["has the ", "MOST", "LEAST", " destruction"],
     ["has the ", "MOST", "LEAST", " effective military or police"],
-    ["has the ", "MOST", "LEAST", " famous director"],
     ["has the ", "MOST", "LEAST", " fur"],
     ["has the ", "MOST", "LEAST", " growth"],
     ["has the ", "MOST", "LEAST", " monster screen time"],
@@ -264,7 +263,12 @@ movieCriteria = [
     ["is the ", "MOST", "LEAST", " likely to make someone cry"],
     ["is the ", "MOST", "LEAST", " likely to contain a subliminal message"],
     ["is the ", "MOST", "LEAST", " likely to be a front for a CIA experiment"],
-    ["is the ","MOST","LEAST"," likely to have a 'Lost Ending' that was never released"],
+    [
+        "is the ",
+        "MOST",
+        "LEAST",
+        " likely to have a 'Lost Ending' that was never released",
+    ],
     ["is the ", "MOST", "LEAST", " likely to be the leader of a high school club"],
     ["is the ", "MOST", "LEAST", " likely to have a theme song that actually slaps"],
     ["is the ", "MOST", "LEAST", " likely to steal your wallet"],
@@ -325,6 +329,10 @@ movieCriteria = [
 
 
 movieList = [
+    "Critters 4 (1992)",
+    "The Golden Voyage of Sinbad (1973)",
+    "Jason and the Argonauts (1963)",
+    "The Adventures of Hercules (1985)",
     "Hercules (1983)",
     "Dr. Who and the Daleks (1965)",
     "4D Man (1959)",
@@ -395,6 +403,12 @@ def getMovieHashtag(titleParenthesesDate):
     return f"#{clean_title}"
 
 
+def addEllipsisIfTooLong(word):
+    if len(word) > 50:
+        word = word[:49] + "…"
+    return word
+
+
 def main():
     emojis = [
         "🚨",
@@ -424,12 +438,14 @@ def main():
 
     movie1, movie2 = random.sample(movieList[:52], 2)
     # question = random.choice(movieCriteria)
-
+    movie1 = addEllipsisIfTooLong(movie1)
+    movie2 = addEllipsisIfTooLong(movie2)
     poll = mastodon.make_poll(
         options=[movie1, movie2], expires_in=86400, multiple=False
     )
     e1, e2 = random.sample(emojis, 2)
     post_text = f"{e1}{e2} MARS MADNESS POLL {e2}{e1} {get_random_question()}\n\n#monsterdon #MarsMadness #MarchBadness {getMovieHashtag(movie1)} {getMovieHashtag(movie2)}"
+    print(post_text)
     mastodon.status_post(
         status=f"{post_text}",
         poll=poll,
