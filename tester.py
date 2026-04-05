@@ -701,9 +701,29 @@ def get_hashtag_toot(last_seen_id=None):
     print(f"DEBUG: Returning sentence. Remaining pool size: {len(sentence_pool)}")
     return result
 
+def text_only_cleaning_algorithm(html_content):
+    soup = BeautifulSoup(html_content, "html.parser")
+    for link in soup.find_all("a"):
+        link.decompose()
+    # Extract remaining text
+    text = soup.get_text(separator=" ")
+    # Standardize whitespace (handles \xa0 and tabs)
+    text = " ".join(text.split()).strip()
+    return text
+
+
+
+
+
 
 # ---------------------------------------------------------
 # MAIN 
 # ---------------------------------------------------------
 if __name__ == "__main__":
-    print(replace_non_terminating_punctuation("it's 5 a.m. and in St. Louis Dr. Brown is awake. This is it. I'm done. He's okay. He's not. "))
+    # print(replace_non_terminating_punctuation("it's 5 a.m. and in St. Louis Dr. Brown is awake. This is it. I'm done. He's okay. He's not. "))
+    print("https://mastodon.social/@ohiofi/116247065421245892")
+    mytoot = mastodon.status(id="116247065421245892")
+    print()
+    print(mytoot.content)
+    print()
+    print(text_only_cleaning_algorithm(mytoot.content))
