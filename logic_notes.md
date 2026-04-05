@@ -16,11 +16,13 @@ if mentions:
     - skip if user is banned
     - skip if post contains banned words
     - 1% chance to randomly skip 
-    - extract clean text
-    - remove all at mentions
-    - skip if length > 255
-    - makeReply
-    - save_last_seen_id(last_seen_id)
+    - if mention contains a keyword
+    - if not mention contains keyword
+        - extract clean text
+        - remove all at mentions
+        - skip if length > 255
+        - makeReply
+        - save_last_seen_id(last_seen_id)
 
 ## make random meme posts
 
