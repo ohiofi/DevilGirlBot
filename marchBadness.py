@@ -328,6 +328,7 @@ movieCriteria = [
 
 
 movieList = [
+    "The Monster That Challenged The World (1957)",
     "Critters 4 (1992)",
     "The Golden Voyage of Sinbad (1973)",
     "Jason and the Argonauts (1963)",
