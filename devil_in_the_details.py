@@ -87,14 +87,14 @@ def get_rank_text(df_sorted, latest_title, metric_col, unit, rank_start=1, rank_
 
     return "\n".join(lines)
 
-def generate_decade_report(df, post_num):
+def generate_decade_report(df):
     """Generates the Most Popular Decade report."""
     df['decade'] = (df['release_year'] // 10) * 10
     decade_counts = df['decade'].value_counts().reset_index()
     decade_counts.columns = ['decade', 'count']
     
     top_decades = decade_counts.head(5)
-    lines = [f"Most Popular Decades ({post_num}/{TOTAL_POSTS})\n"]
+    lines = [f"Most Popular Decades \n"]
     for i, row in top_decades.iterrows():
         lines.append(f"#{i+1}: {row['decade']}s ({row['count']} films)")
         
@@ -110,18 +110,18 @@ def generate_decade_report(df, post_num):
     
     return {'text': text, 'image': fname, 'desc': 'Histogram of films watched by decade'}
 
-def generate_longest_movies_report(df, post_num):
+def generate_longest_movies_report(df):
     """Generates the Longest Movies list (No histogram)."""
     df_sorted = df.sort_values('duration_minutes', ascending=False).reset_index(drop=True)
     
-    lines = [f"Longest Movies Watched ({post_num}/{TOTAL_POSTS})\n"]
+    lines = [f"Longest Movies Watched \n"]
     for i in range(min(5, len(df_sorted))):
         row = df_sorted.iloc[i]
         lines.append(f"#{i+1}: {row['duration_minutes']} min, {row['title']} ({row['release_year']})")
         
     return {'text': "\n".join(lines), 'image': None, 'desc': None}
 
-def create_timeframe_reports(df, latest_film, metric_col, unit, report_title, start_post_num):
+def create_timeframe_reports(df, latest_film, metric_col, unit, report_title):
     """Generates 4w, 52w, and two All Time reports (1-5 and 6-10) for any metric."""
     posts = []
     current_val = latest_film[metric_col]
@@ -134,14 +134,14 @@ def create_timeframe_reports(df, latest_film, metric_col, unit, report_title, st
     df_4w = last_4_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
     fname_4w = f"{metric_col}_4w.png"
     create_histogram(df_4w[metric_col], current_val, f"Current: {current_val:.1f}", f"{report_title}: {latest_film['title']} vs Last 4 Weeks", unit.upper(), fname_4w)
-    text_4w = f"{report_title}: Last 4 Weeks ({start_post_num}/{TOTAL_POSTS})\n\n" + get_rank_text(df_4w, latest_film['title'], metric_col, unit, 1, 5, show_current=True)
+    text_4w = f"{report_title}: Last 4 Weeks\n\n" + get_rank_text(df_4w, latest_film['title'], metric_col, unit, 1, 5, show_current=True)
     posts.append({'text': text_4w, 'image': fname_4w, 'desc': f'Histogram of {report_title} for Last 4 Weeks'})
 
     # 2. Last 52 Weeks
     df_52w = last_52_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
     fname_52w = f"{metric_col}_52w.png"
     create_histogram(df_52w[metric_col], current_val, f"Current: {current_val:.1f}", f"{report_title}: {latest_film['title']} vs Last 52 Weeks", unit.upper(), fname_52w)
-    text_52w = f"{report_title}: Last 52 Weeks ({start_post_num+1}/{TOTAL_POSTS})\n\n" + get_rank_text(df_52w, latest_film['title'], metric_col, unit, 1, 5, show_current=True)
+    text_52w = f"{report_title}: Last 52 Weeks\n\n" + get_rank_text(df_52w, latest_film['title'], metric_col, unit, 1, 5, show_current=True)
     posts.append({'text': text_52w, 'image': fname_52w, 'desc': f'Histogram of {report_title} for Last 52 Weeks'})
 
     # 3. All Time (Top 1-5)
@@ -149,22 +149,25 @@ def create_timeframe_reports(df, latest_film, metric_col, unit, report_title, st
     fname_all = f"{metric_col}_all.png"
     create_histogram(df_all[metric_col], current_val, f"Current: {current_val:.1f}", f"{report_title}: {latest_film['title']} vs All Time", unit.upper(), fname_all)
     # Note: show_current=False here so it doesn't duplicate info if the movie is further down the list.
-    text_all_1 = f"{report_title}: All Time Top 5 ({start_post_num+2}/{TOTAL_POSTS})\n\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 1, 5, show_current=False)
+    text_all_1 = f"{report_title}: All Time Top 5\n\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 1, 5, show_current=False)
     posts.append({'text': text_all_1, 'image': fname_all, 'desc': f'Histogram of {report_title} for All Time'})
 
     # 4. All Time (Ranks 6-10) - No histogram attached to keep it clean
-    text_all_2 = f"{report_title}: All Time 6-10 ({start_post_num+3}/{TOTAL_POSTS})\n\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 6, 10, show_current=True)
+    text_all_2 = f"{report_title}: All Time 6-10\n\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 6, 10, show_current=True)
     posts.append({'text': text_all_2, 'image': None, 'desc': None})
         
     return posts
 
 
 def post_thread(posts):
-    """Iterates through the list of post dictionaries and publishes them as a thread."""
+    """Iterates through the list and publishes them as a thread with numbering."""
     previous_post_id = None
     visibility = 'private' if DEBUG_MODE else 'public'
     
     for i, post_data in enumerate(posts):
+        # Append thread numbering to the end of the text
+        full_text = f"{post_data['text']}\n\n🧵 {i+1}/{TOTAL_POSTS}"
+        
         print(f"Uploading post {i+1}/{TOTAL_POSTS}...")
         
         media_ids = []
@@ -173,7 +176,7 @@ def post_thread(posts):
             media_ids = [media]
             
         post = mastodon.status_post(
-            post_data['text'],
+            full_text,
             media_ids=media_ids if media_ids else None,
             in_reply_to_id=previous_post_id,
             visibility=visibility
@@ -183,14 +186,17 @@ def post_thread(posts):
         print(f"✅ Posted {i+1}/{TOTAL_POSTS}")
 
 def debug_print_thread(posts):
-    """Prints the entire thread to the console for verification."""
+    """Prints the entire thread to the console with numbering appended."""
     print("\n" + "="*50)
     print("DEBUG MODE: SIMULATING THREAD OUTPUT")
     print("="*50 + "\n")
     
     for i, post_data in enumerate(posts):
+        # Append thread numbering to the end of the text
+        full_text = f"{post_data['text']}\n\n🧵 {i+1}/{TOTAL_POSTS}"
+        
         print(f"--- POST {i+1}/{TOTAL_POSTS} ---")
-        print(post_data['text'])
+        print(full_text)
         
         if post_data['image']:
             print(f"\n[IMAGE ATTACHED]: {post_data['image']}")
@@ -217,25 +223,25 @@ def main():
     
     # Post 1: Intro
     intro_text = (
-        f"😈 DEVIL IN THE DETAILS (1/{TOTAL_POSTS})\n\n"
+        f"😈 DEVIL IN THE DETAILS 😈\n\n"
         f"Analytics for Monsterdon and {latest_film['title']} ({latest_film['release_year']}). "
-        f"A thread with data on Toot Rates, Toot Volume, and historical context.\n\n"
+        f"A weekly thread with data on Toot Rates, Toot Volume, and more.\n\n"
         f"#Monsterdon"
     )
     thread_posts.append({'text': intro_text, 'image': None, 'desc': None})
     
     # Post 2: Decade Report
-    thread_posts.append(generate_decade_report(df, 2))
+    thread_posts.append(generate_decade_report(df))
     
     # Posts 3, 4, 5, 6: TPM Reports
-    tpm_posts = create_timeframe_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Toot Rate', start_post_num=3)
+    tpm_posts = create_timeframe_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Toot Rate')
     thread_posts.extend(tpm_posts)
     
     # Post 7: Longest Movies
-    thread_posts.append(generate_longest_movies_report(df, 7))
+    thread_posts.append(generate_longest_movies_report(df))
     
     # Posts 8, 9, 10, 11: Toot Volume Reports
-    vol_posts = create_timeframe_reports(df, latest_film, metric_col='toots', unit='toots', report_title='Toot Volume', start_post_num=8)
+    vol_posts = create_timeframe_reports(df, latest_film, metric_col='toots', unit='toots', report_title='Toot Volume')
     thread_posts.extend(vol_posts)
 
     # 3. Publish Thread
