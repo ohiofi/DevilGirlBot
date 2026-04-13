@@ -1,2 +1,229 @@
-1,2,3,4,5,6,8
-6,7,8,9,0,7,9
+title,release_year,duration_minutes,toots,watched_date,imdb_lookup,rated,genre,director,actors,awards,metascore,imdb_score
+Son of Dracula,1974,90,339,2026-04-12,tt0072189,PG,"Comedy, Fantasy, Horror",Freddie Francis,"Harry Nilsson, Ringo Starr, Freddie Jones",0,-1,4.2
+Son of Dracula,1943,77,2536,2026-04-12,tt0036376,Approved,"Drama, Fantasy, Horror",Robert Siodmak,"Lon Chaney Jr., Robert Paige, Louise Allbritton",1,47,6.1
+The Monster That Challenged the World,1957,84,2857,2026-04-05,tt0050722,Approved,"Horror, Sci-Fi, Thriller",Arnold Laven,"Tim Holt, Audrey Dalton, Hans Conried",0.01,-1,5.7
+Critters 4,1992,87,2550,2026-03-29,tt0101628,PG-13,"Horror, Sci-Fi",Rupert Harvey,"Don Keith Opper, Terrence Mann, Paul Whitthorne",0,-1,4.1
+Kazaam,1996,94,281,2026-03-22,tt0116756,PG,"Comedy, Family, Fantasy",Paul Michael Glaser,"Shaquille O'Neal, Francis Capra, Ally Walker",0.02,24,3.1
+The Golden Voyage of Sinbad,1973,105,3289,2026-03-22,tt0071569,G,"Action, Adventure, Fantasy",Gordon Hessler,"John Phillip Law, Caroline Munro, Tom Baker",3,69,6.8
+"The Beast from 20,000 Fathoms",1953,80,289,2026-03-15,tt0045546,Approved,"Horror, Sci-Fi",Eugène Lourié,"Paul Hubschmid, Paula Raymond, Cecil Kellaway",0.02,-1,6.6
+Jason and the Argonauts,1963,104,2784,2026-03-15,tt0057197,G,"Action, Adventure, Family",Don Chaffey,"Todd Armstrong, Nancy Kovack, Gary Raymond",0,69,7.3
+Godzilla 1977,1977,96,254,2026-03-08,tt1543211,TV-MA,"Action, Horror, Sci-Fi","Luigi Cozzi, Ishirô Honda, Terry O. Morse","Raymond Burr, Akira Takarada, Akihiko Hirata",0,-1,5.2
+The Adventures of Hercules,1985,88,3577,2026-03-08,tt0089271,PG,"Adventure, Fantasy",Luigi Cozzi,"Lou Ferrigno, Milly Carlucci, Sonia Viviani",0,-1,3.9
+The Seven Magnificent Gladiators,1983,100,363,2026-03-01,tt0086289,PG,"Action, Adventure, Drama","Bruno Mattei, Claudio Fragasso","Lou Ferrigno, Sybil Danning, Brad Harris",0,-1,3.7
+Hercules,1983,98,3967,2026-03-01,tt0085672,PG,"Adventure, Fantasy, History",Luigi Cozzi,"Lou Ferrigno, Brad Harris, Sybil Danning",2.03,-1,4.1
+The Flesh and the Fiends,1960,94,199,2026-02-22,tt0052811,UR,"Crime, Drama, Thriller",John Gilling,"Peter Cushing, June Laverick, Donald Pleasence",0,-1,6.9
+Dr. Who and the Daleks,1965,82,2807,2026-02-22,tt0059126,NR,"Adventure, Drama, Sci-Fi",Gordon Flemyng,"Peter Cushing, Roy Castle, Jennie Linden",0,-1,5.6
+Master of Horror,1965,60,240,2026-02-15,tt1503643,GP,Horror,Enrique Carreras,"Narciso Ibáñez Menta, Osvaldo Pacheco, Inés Moreno",0,-1,6.1
+4D Man,1959,85,3014,2026-02-15,tt0052530,Approved,"Action, Horror, Romance",Irvin S. Yeaworth Jr.,"Robert Lansing, Lee Meriwether, James Congdon",0,-1,5.8
+Rebirth of Mothra III,1998,99,246,2026-02-08,tt0189764,TV-G,"Action, Adventure, Fantasy",Okihiro Yoneda,"Megumi Kobayashi, Misato Tate, Aki Hano",0,-1,5.7
+Devil Doll,1964,81,2181,2026-02-08,tt0058007,NR,Horror,Lindsay Shonteff,"Bryant Haliday, William Sylvester, Yvonne Romain",0,-1,4.8
+Rebirth of Mothra II,1997,97,293,2026-02-01,tt0133104,UR,"Action, Fantasy, Sci-Fi",Kunio Miyoshi,"Megumi Kobayashi, Sayaka Yamaguchi, Aki Hano",0,-1,5.1
+Planet Earth,1974,74,2442,2026-02-01,tt0072000,NR,"Drama, Sci-Fi, Thriller",Marc Daniels,"John Saxon, Janet Margolin, Ted Cassidy",0,-1,5.7
+Rebirth of Mothra,1996,104,323,2026-01-25,tt0117089,UR,"Action, Adventure, Family",Okihiro Yoneda,"Megumi Kobayashi, Sayaka Yamaguchi, Aki Hano",0,-1,5.8
+The Quatermass Xperiment,1955,82,2719,2026-01-25,tt0049646,Approved,"Horror, Sci-Fi",Val Guest,"Brian Donlevy, Jack Warner, Richard Wordsworth",0,-1,6.6
+Mars Attacks!,1996,106,306,2026-01-18,tt0116996,PG-13,"Comedy, Sci-Fi",Tim Burton,"Jack Nicholson, Pierce Brosnan, Sarah Jessica Parker",3.19,52,6.4
+Mothra,1961,101,2390,2026-01-18,tt0055198,Approved,"Adventure, Fantasy, Sci-Fi",Ishirô Honda,"Furankî Sakai, Hiroshi Koizumi, Kyôko Kagawa",0.02,-1,6.6
+Daigoro vs. Goliath,1972,85,96,2026-01-11,tt0188014,NR,"Action, Family, Fantasy",Toshihiro Iijima,"Hiroshi Inuzuka, Akiji Kobayashi, Fusako Amachi",0,-1,5.0
+Godzilla,1998,139,3728,2026-01-11,tt0120685,PG-13,"Action, Sci-Fi, Thriller",Roland Emmerich,"Matthew Broderick, Jean Reno, Maria Pitillo",10.13,32,5.5
+Death Race 2000,1975,80,2310,2026-01-04,tt0072856,R,"Action, Comedy, Sci-Fi",Paul Bartel,"David Carradine, Sylvester Stallone, Simone Griffeth",0,58,6.2
+The Super Inframan,1975,90,371,2025-12-28,tt0073168,PG,"Action, Sci-Fi",Shan Hua,"Danny Lee, Terry Liu, Hsieh Wang",0,-1,6.3
+Time Walker,1982,83,2771,2025-12-28,tt0084796,PG,"Horror, Sci-Fi",Tom Kennedy,"Ben Murphy, Nina Axelrod, Kevin Brophy",0,-1,3.7
+Evil of Dracula,1974,83,208,2025-12-21,tt0071308,NR,"Drama, Horror",Michio Yamamoto,"Toshio Kurosawa, Kunie Tanaka, Katsuhiko Sasaki",0.01,-1,6.3
+Tales from the Crypt,1972,93,2617,2025-12-21,tt0069341,PG,"Drama, Horror, Mystery",Freddie Francis,"Joan Collins, Peter Cushing, Ralph Richardson",0,-1,6.8
+Lake of Dracula,1971,82,287,2025-12-14,tt0067503,NR,Horror,Michio Yamamoto,"Chôei Takahashi, Sanae Emi, Midori Fujita",0.01,-1,6.2
+The She-Creature,1956,77,2274,2025-12-14,tt0050957,Approved,"Crime, Fantasy, Horror",Edward L. Cahn,"Chester Morris, Tom Conway, Cathy Downs",0,-1,3.8
+The Vampire Doll,1970,71,241,2025-12-07,tt0066600,NR,Horror,Michio Yamamoto,"Kayo Matsuo, Akira Nakao, Yukiko Kobayashi",0.01,-1,6.6
+Attack of the Puppet People,1958,79,2193,2025-12-07,tt0051381,Approved,"Sci-Fi, Horror",Bert I. Gordon,"John Agar, John Hoyt, June Kenney",0.01,-1,5.2
+The Monster X Strikes Back: Attack the G8 Summit,2008,98,437,2025-11-30,tt1190867,NR,"Comedy, Sci-Fi",Minoru Kawasaki,"Natsuki Katô, Kazuki Katô, Hide Fukumoto",0,-1,5.2
+The Asphyx,1972,99,2546,2025-11-30,tt0069738,PG,"Fantasy, Horror, Sci-Fi",Peter Newbrook,"Robert Powell, Robert Stephens, Jane Lapotaire",0,-1,6.2
+The X from Outer Space,1967,89,472,2025-11-23,tt0062411,PG,"Horror, Sci-Fi",Kazui Nihonmatsu,"Shun'ya Wazaki, Itoko Harada, Shin'ichi Yanagisawa",0,-1,4.8
+Space Master X-7,1958,71,2415,2025-11-23,tt0052228,Approved,"Horror, Sci-Fi, Thriller",Edward Bernds,"Bill Williams, Lyn Thomas, Robert Ellis",0,-1,5.2
+Alligator 2: The Mutation,1991,92,333,2025-11-16,tt0101309,PG-13,"Horror, Sci-Fi",Jon Hess,"Joseph Bologna, Dee Wallace, Richard Lynch",0,-1,4.0
+Alligator,1980,91,2958,2025-11-16,tt0080354,R,"Horror, Sci-Fi, Thriller",Lewis Teague,"Robert Forster, Robin Riker, Michael V. Gazzo",0.03,62,6.1
+Pumpkinhead II: Blood Wings,1995,88,301,2025-11-09,tt0110913,R,"Fantasy, Horror, Thriller",Jeff Burr,"Andrew Robinson, Ami Dolenz, Soleil Moon Frye",0,-1,4.7
+Vampires on Bikini Beach,1988,80,3059,2025-11-09,tt0177329,NR,Horror,Mark Headley,"Jennifer Badham, Todd Kaufman, Stephen Mathews, Nancy Rogers",0,-1,2.0
+Fright Night Part 2,1988,104,390,2025-11-02,tt0097390,R,"Comedy, Horror, Thriller",Tommy Lee Wallace,"William Ragsdale, Roddy McDowall, Traci Lind",0.02,-1,6.0
+Critters 3,1991,86,2421,2025-11-02,tt0101627,PG-13,"Comedy, Horror, Sci-Fi",Kristine Peterson,"John Calvin, Aimee Brooks, Christian Cousins",0.01,-1,4.5
+Legend of the Eight Samurai,1983,133,337,2025-10-26,tt0086244,NR,"Action, Adventure, Drama",Kinji Fukasaku,"Hiroko Yakushimaru, Hiroyuki Sanada, Shin'ichi Chiba",0.04,-1,6.4
+The Howling,1981,91,2535,2025-10-26,tt0082533,R,Horror,Joe Dante,"Dee Wallace, Patrick Macnee, Dennis Dugan",2.03,68,6.5
+Magic Crystal,1986,94,231,2025-10-19,tt0091532,NR,"Action, Adventure, Comedy",Jing Wong,"Andy Lau, Cynthia Rothrock, Pak-Cheung Chan",0,-1,6.2
+Pumpkinhead,1988,86,2047,2025-10-19,tt0095925,R,"Fantasy, Horror",Stan Winston,"Lance Henriksen, Jeff East, John D'Aquino",0.03,47,6.2
+Mr. Vampire,1985,96,298,2025-10-12,tt0089371,PG-13,"Action, Comedy, Fantasy",Ricky Lau,"Ching-Ying Lam, Siu-Ho Chin, Ricky Hui",1.11,-1,7.3
+The Hunger,1983,96,2232,2025-10-12,tt0085701,R,"Drama, Horror",Tony Scott,"Catherine Deneuve, David Bowie, Susan Sarandon",0.03,52,6.6
+Thrilling Bloody Sword,1981,89,222,2025-10-05,tt0122286,NR,"Action, Fantasy, Adventure",Hsin-Yi Chang,"Pu-Liao Hsu, Hui-Shan Yang, Ling-Ling Hsia",0,-1,6.7
+Fright Night,1985,107,3018,2025-10-05,tt0089175,R,Horror,Tom Holland,"Chris Sarandon, William Ragsdale, Amanda Bearse",5.05,62,7.1
+Food of the Gods II,1989,91,232,2025-09-28,tt0097371,R,"Sci-Fi, Horror",Damian Lee,"Paul Coufos, Lisa Schrage, Réal Andrews",0,-1,4.1
+The Food of the Gods,1976,88,2662,2025-09-28,tt0074540,PG,"Adventure, Horror, Sci-Fi",Bert I. Gordon,"Marjoe Gortner, Pamela Franklin, Ralph Meeker",0.02,20,4.6
+The Angry Red Planet,1959,83,2798,2025-09-21,tt0052564,Approved,"Adventure, Horror, Sci-Fi",Ib Melchior,"Gerald Mohr, Nora Hayden, Les Tremayne",0,-1,5.3
+Revenge of the Creature,1955,82,346,2025-09-14,tt0048554,Approved,"Horror, Sci-Fi",Jack Arnold,"John Agar, Lori Nelson, John Bromfield",0,-1,5.6
+Creature from the Black Lagoon,1954,79,2725,2025-09-14,tt0046876,G,"Horror, Sci-Fi",Jack Arnold,"Richard Carlson, Julie Adams, Richard Denning",2.02,68,6.9
+Space Freaks from Planet Mutoid,1995,84,343,2025-09-07,tt0131593,NR,Sci-Fi,Dionysius Zervos,"Tamela Glenn, Gregory Harvey, Harry Sando",0,-1,3.1
+The Man from Planet X,1951,70,2442,2025-09-07,tt0043778,Approved,"Horror, Romance, Sci-Fi",Edgar G. Ulmer,"Robert Clarke, Margaret Field, Raymond Bond",0,-1,5.7
+Grizzly II: Revenge,2020,74,467,2025-08-31,tt0093119,NR,"Horror, Music, Thriller",André Szöts,"George Clooney, Laura Dern, Charlie Sheen",0,7,2.7
+Grizzly,1976,91,3111,2025-08-31,tt0074593,PG,"Adventure, Horror, Thriller",William Girdler,"Christopher George, Andrew Prine, Richard Jaeckel",0,25,5.2
+The Return of Swamp Thing,1989,84,280,2025-08-24,tt0098193,PG-13,"Action, Adventure, Comedy",Jim Wynorski,"Dick Durock, Heather Locklear, Louis Jourdan",1,39,4.7
+Swamp Thing,1982,93,2950,2025-08-24,tt0084745,PG,"Horror, Sci-Fi",Wes Craven,"Louis Jourdan, Adrienne Barbeau, Ray Wise",0.01,50,5.3
+Little Shop of Horrors,1986,94,388,2025-08-17,tt0091419,PG-13,"Comedy, Horror, Musical",Frank Oz,"Rick Moranis, Ellen Greene, Vincent Gardenia",2.14,81,7.1
+The Little Shop of Horrors,1960,72,1744,2025-08-17,tt0054033,NR,"Comedy, Horror",Roger Corman,"Jonathan Haze, Jackie Joseph, Mel Welles",0,-1,6.2
+"Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack",2001,105,2563,2025-08-10,tt0279112,NR,"Action, Adventure, Drama",Shûsuke Kaneko,"Chiharu Niiyama, Ryûdô Uzaki, Masahiro Kobayashi",0.01,-1,7.0
+The Raven,1963,86,2762,2025-08-03,tt0057449,G,"Comedy, Drama, Fantasy",Roger Corman,"Vincent Price, Peter Lorre, Boris Karloff",1,-1,6.5
+Vampire Circus,1972,87,2496,2025-07-27,tt0067924,PG,Horror,Robert Young,"Adrienne Corri, Thorley Walters, Anthony Higgins",0,-1,6.3
+Trucks,1997,99,211,2025-07-20,tt0120380,R,"Drama, Horror, Sci-Fi",Chris Thomson,"Timothy Busfield, Brenda Bakke, Aidan Devine",0,-1,3.9
+Maximum Overdrive,1986,97,2814,2025-07-20,tt0091499,R,"Action, Comedy, Horror",Stephen King,"Emilio Estevez, Pat Hingle, Laura Harrington",0.04,24,5.4
+X: The Man with the X-Ray Eyes,1963,79,2071,2025-07-13,tt0057693,Approved,"Horror, Sci-Fi, Thriller",Roger Corman,"Ray Milland, Diana Van der Vlis, Harold J. Stone",0.02,-1,6.6
+Frankenstein Meets the Space Monster,1965,79,2759,2025-07-06,tt0059199,UR,"Horror, Sci-Fi",Robert Gaffney,"Marilyn Hanold, James Karen, Lou Cutell",0,-1,3.8
+Clash of the Titans,1981,118,3444,2025-06-29,tt0082186,PG,"Action, Adventure, Fantasy",Desmond Davis,"Laurence Olivier, Harry Hamlin, Claire Bloom",2.06,59,6.9
+Starcrash,1978,94,3556,2025-06-22,tt0079946,PG,"Action, Adventure, Sci-Fi",Luigi Cozzi,"Marjoe Gortner, Caroline Munro, Christopher Plummer",0.01,-1,4.0
+Bog,1979,86,2969,2025-06-15,tt0077254,PG,Horror,Don Keeslar,"Gloria DeHaven, Aldo Ray, Marshall Thompson",0,-1,3.2
+"Dracula, Prisoner of Frankenstein",1972,88,2874,2025-06-08,tt0065660,NR,Horror,Jesús Franco,"Dennis Price, Howard Vernon, Paca Gabaldón",0,-1,4.1
+Godzilla: Final Wars,2004,125,3472,2025-06-01,tt0399102,PG-13,"Action, Adventure, Fantasy","Ryûhei Kitamura, Kôji Hashimoto, Shûsuke Kaneko","Masahiro Matsuoka, Rei Kikukawa, Don Frye",0.03,-1,6.3
+Forbidden Planet,1956,98,2608,2025-05-25,tt0049223,G,"Adventure, Sci-Fi",Fred M. Wilcox,"Walter Pidgeon, Anne Francis, Leslie Nielsen",2.03,80,7.5
+Beyond Atlantis,1973,91,2305,2025-05-18,tt0069783,PG,"Action, Adventure, Fantasy",Eddie Romero,"Patrick Wayne, John Ashley, Leigh Christian",0,-1,4.0
+Slugs,1988,89,2526,2025-05-11,tt0093995,R,Horror,Juan Piquer Simón,"Michael Garfield Levine, Kim Terry, Philip MacHale",1.01,-1,5.3
+The Gate,1987,86,2434,2025-05-04,tt0093075,PG-13,"Fantasy, Horror",Tibor Takács,"Stephen Dorff, Christa Denton, Louis Tripp",2.02,55,6.0
+The Bat People,1974,95,2828,2025-04-27,tt0071198,PG,"Horror, Romance",Jerry Jameson,"Stewart Moss, Marianne McAndrew, Michael Pataki",0,-1,2.8
+First Men in the Moon,1964,103,2648,2025-04-20,tt0058100,Approved,"Adventure, Sci-Fi",Nathan Juran,"Edward Judd, Martha Hyer, Lionel Jeffries",0,-1,6.5
+Krull,1983,121,3947,2025-04-13,tt0085811,PG,"Action, Adventure, Fantasy",Peter Yates,"Ken Marshall, Lysette Anthony, Freddie Jones",1.05,45,6.1
+Laserblast,1978,83,2719,2025-04-06,tt0077834,PG,"Horror, Sci-Fi",Michael Rae,"Kim Milford, Cheryl Smith, Gianni Russo",0.01,-1,2.8
+Cat Girl,1957,76,2213,2025-03-30,tt0050235,UR,Horror,Alfred Shaughnessy,"Barbara Shelley, Robert Ayres, Kay Callard",0,-1,5.5
+Critters 2,1988,86,2196,2025-03-23,tt0094919,PG-13,"Comedy, Horror, Sci-Fi",Mick Garris,"Scott Grimes, Liane Curtis, Terrence Mann",1.03,48,5.6
+Yeti: The Giant of the 20th Century,1977,101,3524,2025-03-16,tt0076937,NR,"Adventure, Crime, Fantasy",Gianfranco Parolini,"Antonella Interlenghi, Mimmo Crao, Jim Sullivan",0,-1,4.1
+Critters,1986,86,2272,2025-03-09,tt0090887,PG-13,"Comedy, Horror, Sci-Fi",Stephen Herek,"Dee Wallace, M. Emmet Walsh, Billy Green Bush",0.03,52,6.1
+C.H.U.D.,1984,97,2369,2025-03-02,tt0087015,R,"Horror, Sci-Fi",Douglas Cheek,"John Heard, Daniel Stern, Christopher Curry",1.01,57,5.6
+Frogs!,1991,100,397,2025-02-23,tt0315609,PG,"Comedy, Fantasy",David Grossman,"Shelley Duvall, Elliott Gould, Scott Grimes",0,-1,4.6
+Frogs,1972,90,3719,2025-02-23,tt0068615,PG,"Horror, Mystery, Sci-Fi",George McCowan,"Ray Milland, Sam Elliott, Joan Van Ark",0.01,51,4.4
+The Gorgon,1964,83,2519,2025-02-16,tt0058155,Approved,Horror,Terence Fisher,"Christopher Lee, Peter Cushing, Richard Pasco",0,-1,6.4
+Masters of the Universe,1987,106,3044,2025-02-09,tt0093507,PG,"Action, Adventure, Fantasy",Gary Goddard,"Dolph Lundgren, Frank Langella, Meg Foster",2.05,35,5.4
+Invasion of the Star Creatures,1962,70,2093,2025-02-02,tt0128274,Approved,"Comedy, Sci-Fi",Bruno VeSota,"Robert Ball, Frank Ray Perilli, Gloria Victor",0,-1,3.1
+Piranha,1978,94,2955,2025-01-26,tt0078087,R,"Comedy, Horror, Sci-Fi",Joe Dante,"Bradford Dillman, Heather Menzies-Urich, Kevin McCarthy",1.01,71,5.9
+Invasion of the Bee Girls,1973,85,2893,2025-01-19,tt0070222,R,"Horror, Sci-Fi",Denis Sanders,"William Smith, Anitra Ford, Victoria Vetri",0,-1,4.9
+Battle Beyond the Stars,1980,104,3183,2025-01-12,tt0080421,PG,"Action, Adventure, Sci-Fi","Jimmy T. Murakami, Roger Corman","George Peppard, Robert Vaughn, Richard Thomas",1.04,59,5.5
+Devil Girl from Mars,1954,77,2389,2025-01-05,tt0046907,Approved,"Horror, Sci-Fi",David MacDonald,"Hugh McDermott, Hazel Court, Peter Reynolds",0,-1,4.9
+The Stepford Wives,1975,117,2041,2024-12-29,tt0073747,PG,"Horror, Mystery, Sci-Fi",Bryan Forbes,"Katharine Ross, Paula Prentiss, Peter Masterson",1.01,54,6.9
+Snowbeast,1977,86,2906,2024-12-22,tt0076731,UR,Horror,Herb Wallerstein,"Bo Svenson, Yvette Mimieux, Robert Logan",0,-1,4.6
+The Giant Spider Invasion,1975,79,2679,2024-12-15,tt0073043,PG,"Horror, Sci-Fi",Bill Rebane,"Steve Brodie, Barbara Hale, Robert Easton",0,-1,3.3
+The Curse of the Aztec Mummy,1957,63,425,2024-12-08,tt0050672,TV-14,Horror,Rafael Portillo,"Ramón Gay, Rosita Arenas, Crox Alvarado",0,-1,3.9
+The Robot vs. The Aztec Mummy,1958,65,2434,2024-12-08,tt0050717,Approved,"Horror, Sci-Fi",Rafael Portillo,"Ramón Gay, Rosita Arenas, Crox Alvarado",0,-1,2.4
+The Phantom Planet,1961,82,2340,2024-12-01,tt0055294,UR,"Action, Adventure, Sci-Fi",William Marshall,"Dean Fredericks, Coleen Gray, Anthony Dexter",0,-1,3.9
+Missile to the Moon,1958,78,468,2024-11-24,tt0053072,Approved,"Drama, Sci-Fi",Richard E. Cunha,"Richard Travis, Cathy Downs, K.T. Stevens",0,-1,4.1
+Cat-Women of the Moon,1953,64,2435,2024-11-24,tt0045609,Approved,"Adventure, Sci-Fi",Arthur Hilton,"Sonny Tufts, Victor Jory, Marie Windsor",0,-1,3.9
+The Wrestling Women vs. the Aztec Mummy,1964,89,2577,2024-11-17,tt0058304,NR,"Adventure, Horror, Sci-Fi",René Cardona,"Lorena Velázquez, Armando Silvestre, Elizabeth Campbell",0,-1,4.2
+The Monolith Monsters,1957,77,2218,2024-11-10,tt0050720,Approved,"Drama, Horror, Sci-Fi",John Sherwood,"Grant Williams, Lola Albright, Les Tremayne",0,-1,6.4
+THEM!,1954,94,1992,2024-11-03,tt0047573,Approved,"Horror, Sci-Fi",Gordon Douglas,"James Whitmore, Edmund Gwenn, Joan Weldon",1.03,74,7.2
+Scream Blacula Scream,1973,96,1940,2024-10-27,tt0070656,PG,"Fantasy, Horror",Bob Kelljan,"William Marshall, Don Mitchell, Pam Grier",0.01,40,5.6
+Dracula,1974,98,2143,2024-10-20,tt0070003,TV-14,"Drama, Horror",Dan Curtis,"Jack Palance, Simon Ward, Nigel Davenport",0,-1,6.2
+Nosferatu the Vampyre,1979,107,2524,2024-10-13,tt0079641,PG,"Drama, Horror",Werner Herzog,"Klaus Kinski, Isabelle Adjani, Bruno Ganz",5.08,79,7.4
+Count Dracula,1970,98,2291,2024-10-06,tt0065569,PG,"Drama, Horror",Jesús Franco,"Christopher Lee, Herbert Lom, Klaus Kinski",0,-1,5.6
+Invaders from Mars,1986,100,2352,2024-09-29,tt0091276,PG,"Horror, Sci-Fi",Tobe Hooper,"Karen Black, Hunter Carson, Timothy Bottoms",0.02,56,5.5
+Mysterious Island,1961,101,2446,2024-09-22,tt0055207,Approved,"Adventure, Family, Fantasy",Cy Endfield,"Michael Craig, Joan Greenwood, Michael Callan",0,-1,6.7
+Night of the Comet,1984,95,2193,2024-09-15,tt0087799,PG-13,"Comedy, Horror, Sci-Fi",Thom Eberhardt,"Catherine Mary Stewart, Kelli Maroney, Robert Beltran",0.01,59,6.3
+Godzilla vs. Megalon,1973,82,2199,2024-09-08,tt0070122,G,"Action, Adventure, Family","Jun Fukuda, Yoshimitsu Banno, Ishirô Honda","Katsuhiko Sasaki, Hiroyuki Kawase, Yutaka Hayashi",0,-1,4.8
+Invasion of the Body Snatchers,1978,116,2251,2024-09-01,tt0077745,PG,"Horror, Sci-Fi",Philip Kaufman,"Donald Sutherland, Brooke Adams, Jeff Goldblum",3.11,75,7.4
+Twins of Evil,1971,87,2044,2024-08-25,tt0069427,R,Horror,John Hough,"Peter Cushing, Dennis Price, Mary Collinson",0,62,6.6
+Tentacles,1977,102,2671,2024-08-18,tt0076809,PG,"Action, Adventure, Comedy",Ovidio G. Assonitis,"John Huston, Shelley Winters, Bo Hopkins",0,36,3.8
+The Wicker Man,1973,93,1688,2024-08-11,tt0070917,R,"Horror, Mystery, Thriller",Robin Hardy,"Edward Woodward, Christopher Lee, Diane Cilento",3.06,87,7.5
+Gamera: Guardian of the Universe,1995,96,1984,2024-08-04,tt0113142,NR,"Action, Drama, Fantasy",Shûsuke Kaneko,"Tsuyoshi Ihara, Akira Onodera, Shinobu Nakayama",6.01,-1,6.7
+The Last Man on Earth,1964,86,1623,2024-07-28,tt0058700,Approved,"Drama, Horror, Sci-Fi","Ubaldo Ragona, Sidney Salkow","Vincent Price, Franca Bettoia, Emma Danieli",0.01,-1,6.7
+Chopping Mall,1986,77,2157,2024-07-21,tt0090837,R,"Horror, Sci-Fi",Jim Wynorski,"Kelli Maroney, Tony O'Dell, Russell Todd",0,22,5.6
+Terror of Mechagodzilla,1975,83,1993,2024-07-14,tt0073373,G,"Action, Adventure, Family","Ishirô Honda, Jun Fukuda","Katsuhiko Sasaki, Tomoko Ai, Akihiko Hirata",0.01,-1,6.1
+Gargoyles,1972,74,1835,2024-07-07,tt0068622,NR,Horror,Bill Norton,"Cornel Wilde, Jennifer Salt, Grayson Hall",1.01,-1,5.9
+Invaders from Mars,1953,78,1820,2024-06-30,tt0045917,Approved,"Horror, Sci-Fi",William Cameron Menzies,"Helena Carter, Arthur Franz, Jimmy Hunt",3.01,-1,6.3
+Horror Express,1972,87,1700,2024-06-23,tt0068713,R,"Adventure, Horror, Sci-Fi",Eugenio Martín,"Christopher Lee, Peter Cushing, Alberto de Mendoza",1.01,68,6.5
+Q,1982,93,1628,2024-06-16,tt0084556,R,"Crime, Fantasy, Mystery",Larry Cohen,"David Carradine, Michael Moriarty, Candy Clark",0,-1,6.0
+Creature with the Atom Brain,1955,69,1308,2024-06-09,tt0047960,Approved,"Crime, Horror, Sci-Fi",Edward L. Cahn,"Richard Denning, Angela Stevens, S. John Launer",0,-1,5.5
+Stranger from Venus,1954,75,1349,2024-06-02,tt0047529,NR,Sci-Fi,Burt Balaban,"Patricia Neal, Helmut Dantine, Derek Bond",0,-1,5.4
+Son of Godzilla,1967,86,1499,2024-05-26,tt0061856,PG,"Adventure, Comedy, Fantasy",Jun Fukuda,"Tadao Takashima, Akira Kubo, Bibari Maeda",0,-1,5.2
+The Pit and the Pendulum,1961,81,1330,2024-05-19,tt0055304,Approved,"Drama, Horror, Mystery",Roger Corman,"Vincent Price, Barbara Steele, John Kerr",0,78,7.0
+Journey to the Centre of the Earth,1977,90,1852,2024-05-12,tt0075389,PG,"Adventure, Family, Sci-Fi",Juan Piquer Simón,"Kenneth More, Pep Munné, Ivonne Sentis",0,-1,4.8
+Kingdom of the Spiders,1977,97,1972,2024-05-05,tt0076271,PG,"Horror, Sci-Fi",John 'Bud' Cardos,"William Shatner, Tiffany Bolling, Woody Strode",0.04,-1,5.7
+Logan's Run,1976,119,1949,2024-04-28,tt0074812,PG,"Action, Adventure, Sci-Fi",Michael Anderson,"Michael York, Jenny Agutter, Richard Jordan",7.05,53,6.8
+The Shape of Things to Come,1979,97,1901,2024-04-21,tt0079894,PG,"Adventure, Sci-Fi, Thriller",George McCowan,"Jack Palance, Carol Lynley, Barry Morse",0,-1,3.2
+It Came from Outer Space,1953,81,1246,2024-04-14,tt0045920,Approved,"Horror, Sci-Fi",Jack Arnold,"Richard Carlson, Barbara Rush, Charles Drake",1.04,68,6.5
+Project Moon Base,1953,63,1367,2024-04-07,tt0046213,Approved,Sci-Fi,Richard Talmadge,"Donna Martell, Hayden Rorke, Ross Ford",0,-1,3.3
+Blacula,1972,93,1465,2024-03-31,tt0068284,PG,"Fantasy, Horror, Romance",William Crain,"William Marshall, Vonetta McGee, Denise Nicholas",1,-1,5.7
+The Werewolf of Washington,1973,90,1622,2024-03-24,tt0070908,PG,"Comedy, Horror",Milton Moses Ginsberg,"Dean Stockwell, Katalin Kallay, Henry Ferrentino",0,-1,4.0
+Godmonster of Indian Flats,1973,89,1857,2024-03-17,tt0070119,NR,"Drama, Horror, Western",Fredric Hobbs,"Christopher Brooks, Stuart Lancaster, E. Kerrigan Prescott",0,-1,3.7
+Beyond the Time Barrier,1960,75,1337,2024-03-10,tt0053651,NR,"Romance, Sci-Fi",Edgar G. Ulmer,"Robert Clarke, Darlene Tompkins, Arianne Ulmer",0,-1,5.3
+Godzilla,1954,96,1322,2024-03-03,tt0047034,NR,"Horror, Sci-Fi",Ishirô Honda,"Takashi Shimura, Akihiko Hirata, Akira Takarada",4.02,79,7.6
+Mothra vs. Godzilla,1964,89,1177,2024-02-25,tt0058379,NR,"Adventure, Fantasy, Sci-Fi",Ishirô Honda,"Akira Takarada, Yuriko Hoshi, Hiroshi Koizumi",0.01,-1,6.5
+Earth vs. the Flying Saucers,1956,83,1383,2024-02-18,tt0049169,Approved,"Action, Horror, Sci-Fi",Fred F. Sears,"Hugh Marlowe, Joan Taylor, Donald Curtis",1,-1,6.3
+Matango,1963,88,1104,2024-02-11,tt0057295,UR,"Horror, Mystery, Sci-Fi",Ishirô Honda,"Akira Kubo, Kumi Mizuno, Hiroshi Koizumi",0,-1,6.4
+Attack of the Crab Monsters,1957,63,1194,2024-02-04,tt0050147,Approved,"Horror, Sci-Fi",Roger Corman,"Richard Garland, Pamela Duncan, Russell Johnson",0,-1,4.9
+20 Million Miles to Earth,1957,82,1075,2024-01-28,tt0050084,Approved,"Adventure, Family, Fantasy",Nathan Juran,"William Hopper, Joan Taylor, Thomas Browne Henry",0,-1,6.3
+Empire of the Ants,1977,89,1175,2024-01-21,tt0075989,PG,"Adventure, Horror, Sci-Fi",Bert I. Gordon,"Joan Collins, Robert Lansing, John David Carson",0.02,26,4.3
+Gorgo,1961,78,1186,2024-01-14,tt0054938,Approved,"Horror, Sci-Fi",Eugène Lourié,"Bill Travers, William Sylvester, Vincent Winter",0,-1,5.6
+War Between the Planets,1966,80,1110,2024-01-07,tt0059588,G,Sci-Fi,Antonio Margheriti,"Giacomo Rossi Stuart, Ombretta Colli, Enzo Fiermonte",0,-1,4.1
+Hogfather (Part 2),2007,185,293,2023-12-31,tt0765458,NR,"Comedy, Fantasy",Vadim Jean,"David Jason, Marc Warren, Michelle Dockery",3.03,-1,7.4
+Hogfather (Part 1),2007,185,377,2023-12-24,tt0765458,NR,"Comedy, Fantasy",Vadim Jean,"David Jason, Marc Warren, Michelle Dockery",3.03,-1,7.4
+From Hell It Came,1957,73,921,2023-12-17,tt0050414,Approved,"Horror, Sci-Fi",Dan Milner,"Tod Andrews, Tina Carver, Linda Watkins",0,-1,3.8
+Mothra,1961,101,914,2023-12-10,tt0055198,Approved,"Adventure, Fantasy, Sci-Fi",Ishirô Honda,"Furankî Sakai, Hiroshi Koizumi, Kyôko Kagawa",0.02,-1,6.6
+It Came from Beneath the Sea,1955,79,1073,2023-12-03,tt0048215,Approved,"Horror, Sci-Fi",Robert Gordon,"Kenneth Tobey, Faith Domergue, Donald Curtis",0,-1,5.9
+It! The Terror from Beyond Space,1958,68,1021,2023-11-26,tt0051786,Approved,"Horror, Sci-Fi, Thriller",Edward L. Cahn,"Marshall Thompson, Shirley Patterson, Kim Spalding",0.01,-1,6.0
+The Magnetic Monster,1953,76,1137,2023-11-19,tt0046026,Approved,"Horror, Sci-Fi","Curt Siodmak, Herbert L. Strock","Richard Carlson, King Donovan, Jean Byron",0,-1,5.8
+The Wasp Woman,1959,61,1059,2023-11-12,tt0054462,Approved,"Horror, Sci-Fi",Roger Corman,"Susan Cabot, Anthony Eisley, Barboura Morris",0,-1,4.8
+Destroy All Monsters,1968,89,1198,2023-11-05,tt0063172,G,"Action, Sci-Fi, Thriller","Ishirô Honda, Jun Fukuda","Akira Kubo, Jun Tazaki, Yukiko Kobayashi",0,-1,6.4
+The Beast Must Die,1974,93,326,2023-10-29,tt0071200,PG,"Horror, Mystery",Paul Annett,"Calvin Lockhart, Peter Cushing, Marlene Clark",0,60,5.6
+The Return of the Living Dead,1985,91,275,2023-10-22,tt0089907,R,"Comedy, Horror, Sci-Fi",Dan O'Bannon,"Clu Gulager, James Karen, Don Calfa",0.04,66,7.3
+Tucker and Dale vs. Evil,2010,89,206,2023-10-15,tt1465522,R,"Comedy, Horror",Eli Craig,"Tyler Labine, Alan Tudyk, Katrina Bowden",12.14,65,7.5
+Re-Animator,1985,86,266,2023-10-08,tt0089885,R,"Comedy, Horror, Sci-Fi",Stuart Gordon,"Jeffrey Combs, Bruce Abbott, Barbara Crampton",4.05,73,7.1
+Killer Klowns from Outer Space,1988,88,208,2023-10-01,tt0095444,PG-13,"Comedy, Horror, Sci-Fi",Stephen Chiodo,"Grant Cramer, Suzanne Snyder, John Allen Nelson",0.02,43,6.2
+Godzilla vs. Mothra,1992,102,1189,2023-09-24,tt0104352,NR,"Adventure, Fantasy, Sci-Fi",Takao Okawara,"Tetsuya Bessho, Satomi Kobayashi, Takehiro Murata",1.03,-1,6.2
+The Blob,1958,82,1081,2023-09-17,tt0051418,Approved,"Horror, Sci-Fi","Irvin S. Yeaworth Jr., Russell S. Doughten Jr.","Steve McQueen, Aneta Corsaut, Earl Rowe",0.01,58,6.3
+The Stuff,1985,87,838,2023-09-10,tt0090094,R,"Comedy, Horror, Sci-Fi",Larry Cohen,"Michael Moriarty, Andrea Marcovicci, Garrett Morris",0,-1,5.9
+The Thing from Another World,1951,87,1025,2023-09-03,tt0044121,Approved,"Horror, Sci-Fi","Christian Nyby, Howard Hawks","Kenneth Tobey, Margaret Sheridan, James Arness",1,-1,7.0
+Octaman,1971,76,954,2023-08-27,tt0067515,PG,"Sci-Fi, Horror",Harry Essex,"Pier Angeli, Kerwin Mathews, Jeff Morrow",0,-1,3.4
+The Day of the Triffids,1963,93,980,2023-08-20,tt0055894,Approved,"Horror, Sci-Fi","Steve Sekely, Freddie Francis","Howard Keel, Nicole Maurey, Janette Scott",0,-1,6.1
+"Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack",2001,105,911,2023-08-13,tt0279112,NR,"Action, Adventure, Drama",Shûsuke Kaneko,"Chiharu Niiyama, Ryûdô Uzaki, Masahiro Kobayashi",0.01,-1,7.0
+Queen of Blood,1966,81,993,2023-08-06,tt0060877,UR,"Horror, Sci-Fi",Curtis Harrington,"John Saxon, Basil Rathbone, Judi Meredith",0,-1,5.2
+The Brain Eaters,1958,61,890,2023-07-30,tt0051432,Approved,"Sci-Fi, Horror",Bruno VeSota,"Ed Nelson, Alan Jay Factor, Cornelius Keefe",0,-1,4.4
+The Giant Claw,1957,73,976,2023-07-23,tt0050432,Approved,"Fantasy, Horror, Sci-Fi",Fred F. Sears,"Jeff Morrow, Mara Corday, Morris Ankrum",0,-1,4.6
+Planet of the Vampires,1965,88,817,2023-07-16,tt0059792,NR,"Action, Adventure, Horror",Mario Bava,"Barry Sullivan, Norma Bengell, Ángel Aranda",0.01,-1,6.2
+The Tingler,1959,82,706,2023-07-09,tt0053363,Approved,"Horror, Sci-Fi",William Castle,"Vincent Price, Judith Evelyn, Darryl Hickman",0.01,-1,6.6
+Godzilla vs. Destoroyah,1995,103,743,2023-07-02,tt0113187,UR,"Action, Drama, Horror","Takao Okawara, Ishirô Honda, Kôji Hashimoto","Takurô Tatsumi, Yôko Ishino, Yasufumi Hayashi",0.03,-1,6.9
+Godzilla vs. King Ghidorah,1991,103,762,2023-06-25,tt0101962,NR,"Action, Adventure, Drama","Kazuki Ômori, Kôji Hashimoto","Kôsuke Toyohara, Anna Nakagawa, Megumi Odaka",1.01,-1,6.5
+Invasion of the Body Snatchers,1956,80,488,2023-06-18,tt0049366,Approved,"Drama, Horror, Sci-Fi",Don Siegel,"Kevin McCarthy, Dana Wynter, Larry Gates",3,92,7.7
+Godzilla vs. Megaguirus,2000,105,739,2023-06-11,tt0255198,NR,"Action, Sci-Fi, Thriller","Masaaki Tezuka, Ishirô Honda","Misato Tanaka, Shôsuke Tanihara, Masatô Ibu",1.01,-1,6.0
+Godzilla: Tokyo S.O.S.,2003,91,665,2023-06-04,tt0366526,PG,"Action, Adventure, Fantasy","Masaaki Tezuka, Kôji Hashimoto, Takao Okawara","Noboru Kaneko, Miho Yoshioka, Mickey Koga",0.01,-1,6.4
+Dogora,1964,83,438,2023-05-28,tt0058698,NR,"Crime, Horror, Sci-Fi",Ishirô Honda,"Yôsuke Natsuki, Yôko Fujiyama, Hiroshi Koizumi",0,-1,5.6
+The H-Man,1958,87,533,2023-05-21,tt0051413,Approved,"Crime, Horror, Sci-Fi",Ishirô Honda,"Yumi Shirakawa, Kenji Sahara, Akihiko Hirata",0.01,-1,6.0
+Godzilla 2000: Millennium,1999,107,567,2023-05-14,tt0188640,PG,"Action, Adventure, Drama",Takao Okawara,"Takehiro Murata, Hiroshi Abe, Naomi Nishida",0.02,41,6.0
+Atragon,1963,96,532,2023-05-07,tt0057215,TV-Y7,"Action, Adventure, Fantasy","Ishirô Honda, Shûe Matsubayashi","Tadao Takashima, Yôko Fujiyama, Yû Fujiki",0,-1,5.8
+Godzilla vs. Gigan,1972,89,721,2023-04-30,tt0068371,PG,"Action, Family, Sci-Fi","Jun Fukuda, Yoshimitsu Banno, Ishirô Honda","Hiroshi Ishikawa, Yuriko Hishimi, Minoru Takashima",0,-1,5.6
+Gamera the Brave,2006,96,735,2023-04-23,tt0467923,NR,"Action, Adventure, Family",Ryuta Tasaki,"Ryô Tomioka, Kaho, Shingo Ishikawa",0,-1,6.6
+King Kong Escapes,1967,104,748,2023-04-16,tt0061868,G,"Action, Adventure, Family",Ishirô Honda,"Rhodes Reason, Mie Hama, Linda Miller",0,-1,5.5
+Battle in Outer Space,1959,90,534,2023-04-09,tt0053388,Approved,"Action, Sci-Fi",Ishirô Honda,"Ryô Ikebe, Kyôko Anzai, Minoru Takada",0.01,-1,5.6
+Rodan,1956,72,501,2023-04-02,tt0049782,Approved,"Sci-Fi, Thriller",Ishirô Honda,"Kenji Sahara, Yumi Shirakawa, Akihiko Hirata",0,-1,6.2
+Gamera 3: Revenge of Iris,1999,108,409,2023-03-26,tt0184503,NR,"Action, Drama, Fantasy",Shûsuke Kaneko,"Shinobu Nakayama, Ai Maeda, Yukijirô Hotaru",1,-1,7.1
+Gamera 2: Attack of Legion,1996,99,459,2023-03-19,tt0116390,NR,"Action, Drama, Fantasy",Shûsuke Kaneko,"Toshiyuki Nagashima, Miki Mizuno, Tamotsu Ishibashi",0,-1,7.0
+Gamera: Guardian of the Universe,1995,96,435,2023-03-12,tt0113142,NR,"Action, Drama, Fantasy",Shûsuke Kaneko,"Tsuyoshi Ihara, Akira Onodera, Shinobu Nakayama",6.01,-1,6.7
+The Mysterians,1957,89,477,2023-03-05,tt0050251,Approved,"Action, Sci-Fi, Thriller",Ishirô Honda,"Kenji Sahara, Yumi Shirakawa, Momoko Kôchi",0,-1,6.1
+Frankenstein Conquers the World,1965,90,456,2023-02-26,tt0059205,UR,"Horror, Sci-Fi, Thriller",Ishirô Honda,"Nick Adams, Kumi Mizuno, Tadao Takashima",0,-1,5.5
+Matango,1963,89,255,2023-02-19,tt0057295,UR,"Horror, Mystery, Sci-Fi",Ishirô Honda,"Akira Kubo, Kumi Mizuno, Hiroshi Koizumi",0,-1,6.4
+The War of the Gargantuas,1966,88,237,2023-02-12,tt0060440,G,"Action, Horror, Sci-Fi",Ishirô Honda,"Russ Tamblyn, Kumi Mizuno, Kenji Sahara",0,-1,6.2
+"Ebirah, Horror of the Deep",1966,87,271,2023-02-05,tt0060464,PG,"Adventure, Fantasy, Sci-Fi",Jun Fukuda,"Akira Takarada, Kumi Mizuno, Chôtarô Tôgin",0,-1,5.5
+Space Amoeba,1970,84,319,2023-01-29,tt0065776,G,"Adventure, Sci-Fi",Ishirô Honda,"Akira Kubo, Atsuko Takahashi, Yukiko Kobayashi",0,-1,5.4
+Godzilla vs. Mechagodzilla,1974,84,206,2023-01-22,tt0071565,PG,"Action, Family, Fantasy",Jun Fukuda,"Masaaki Daimon, Kazuya Aoyama, Reiko Tajima",0.01,-1,6.2
+Shin Godzilla,2016,120,165,2023-01-15,tt4262980,PG-13,"Action, Drama, Horror","Shinji Higuchi, Hideaki Anno","Hiroki Hasegawa, Yutaka Takenouchi, Satomi Ishihara",13.1,66,6.9
+Godzilla: Final Wars,2004,125,120,2023-01-06,tt0399102,PG-13,"Action, Adventure, Fantasy","Ryûhei Kitamura, Kôji Hashimoto, Shûsuke Kaneko","Masahiro Matsuoka, Rei Kikukawa, Don Frye",0.03,-1,6.3
+Invasion of Astro-Monster,1965,96,109,2022-08-25,tt0059346,G,"Action, Adventure, Sci-Fi",Ishirô Honda,"Nick Adams, Akira Takarada, Jun Tazaki",0.01,-1,6.2
+"Ghidorah, the Three-Headed Monster",1964,92,170,2022-08-18,tt0058544,NR,"Action, Adventure, Fantasy",Ishirô Honda,"Yôsuke Natsuki, Yuriko Hoshi, Hiroshi Koizumi",0.01,-1,6.5
+Rebirth of Mothra II,1997,97,138,2022-08-04,tt0133104,UR,"Action, Fantasy, Sci-Fi",Kunio Miyoshi,"Megumi Kobayashi, Sayaka Yamaguchi, Aki Hano",0,-1,5.1
+Rebirth of Mothra,1996,104,122,2022-07-28,tt0117089,UR,"Action, Adventure, Family",Okihiro Yoneda,"Megumi Kobayashi, Sayaka Yamaguchi, Aki Hano",0,-1,5.8
+Godzilla 1985,1985,87,127,2022-07-21,tt0087344,PG,"Drama, Sci-Fi, Thriller","Kôji Hashimoto, R.J. Kizer, Ishirô Honda","Raymond Burr, Keiju Kobayashi, Ken Tanaka",2.03,31,6.1
+Godzilla vs. Mechagodzilla II,1993,108,201,2022-07-14,tt0107027,PG,"Action, Adventure, Drama","Takao Okawara, Kazuki Ômori","Masahiro Takashima, Ryoko Sano, Megumi Odaka",0.02,-1,6.5
+Godzilla vs. Hedorah,1971,85,126,2022-07-07,tt0067148,PG,"Animation, Drama, Family","Yoshimitsu Banno, Ishirô Honda","Akira Yamanouchi, Toshie Kimura, Hiroyuki Kawase",0,-1,6.1
+Terror of Mechagodzilla,1975,83,80,2022-06-30,tt0073373,G,"Action, Adventure, Family","Ishirô Honda, Jun Fukuda","Katsuhiko Sasaki, Tomoko Ai, Akihiko Hirata",0.01,-1,6.1
+Godzilla vs. Biollante,1989,105,93,2022-06-23,tt0097444,PG,"Action, Drama, Fantasy","Kazuki Ômori, Kôji Hashimoto, Kenjirô Ohmori","Kunihiko Mitamura, Yoshiko Tanaka, Masanobu Takashima",2,-1,6.5
+Godzilla vs. Megalon,1973,82,157,2022-06-16,tt0070122,G,"Action, Adventure, Family","Jun Fukuda, Yoshimitsu Banno, Ishirô Honda","Katsuhiko Sasaki, Hiroyuki Kawase, Yutaka Hayashi",0,-1,4.8
+Godzilla: Planet of the Monsters,2017,89,88,2022-06-09,tt5979874,TV-14,"Animation, Action, Sci-Fi","Hiroyuki Seshita, Kôbun Shizuno","Mamoru Miyano, Takahiro Sakurai, Kana Hanazawa",0,-1,6.0
+King Kong vs. Godzilla,1963,96,103,2022-06-02,tt0056142,Approved,"Action, Adventure, Comedy","Ishirô Honda, Tom Montgomery","Tadao Takashima, Kenji Sahara, Yû Fujiki",0,40,5.7
+Godzilla,1954,96,86,2022-05-26,tt0047034,NR,"Horror, Sci-Fi",Ishirô Honda,"Takashi Shimura, Akihiko Hirata, Akira Takarada",4.02,79,7.6
+Godzilla vs. SpaceGodzilla,1994,108,132,2022-05-19,tt0109916,NR,"Action, Adventure, Sci-Fi","Kenshô Yamashita, Takao Okawara, Kazuki Ômori","Jun Hashizume, Megumi Odaka, Zenkichi Yoneyama",0.01,-1,5.8
+Godzilla: Final Wars,2004,125,164,2022-05-12,tt0399102,PG-13,"Action, Adventure, Fantasy","Ryûhei Kitamura, Kôji Hashimoto, Shûsuke Kaneko","Masahiro Matsuoka, Rei Kikukawa, Don Frye",0.03,-1,6.3
+Godzilla Against MechaGodzilla,2002,88,177,2022-05-05,tt0314111,NR,"Action, Sci-Fi, Thriller","Masaaki Tezuka, Kazuki Ômori","Yumiko Shaku, Shin Takuma, Kana Onodera",0,-1,6.6
+"Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack",2001,105,104,2022-04-28,tt0279112,NR,"Action, Adventure, Drama",Shûsuke Kaneko,"Chiharu Niiyama, Ryûdô Uzaki, Masahiro Kobayashi",0.01,-1,7.0
+Godzilla vs. Destoroyah,1995,103,137,2022-04-21,tt0113187,UR,"Action, Drama, Horror","Takao Okawara, Ishirô Honda, Kôji Hashimoto","Takurô Tatsumi, Yôko Ishino, Yasufumi Hayashi",0.03,-1,6.9
+Godzilla vs. King Ghidorah,1991,103,68,2022-04-14,tt0101962,NR,"Action, Adventure, Drama","Kazuki Ômori, Kôji Hashimoto","Kôsuke Toyohara, Anna Nakagawa, Megumi Odaka",1.01,-1,6.5
+Godzilla vs. Mothra,1992,102,135,2022-04-07,tt0104352,NR,"Adventure, Fantasy, Sci-Fi",Takao Okawara,"Tetsuya Bessho, Satomi Kobayashi, Takehiro Murata",1.03,-1,6.2
+Mothra vs. Godzilla,1964,89,124,2022-03-31,tt0058379,NR,"Adventure, Fantasy, Sci-Fi",Ishirô Honda,"Akira Takarada, Yuriko Hoshi, Hiroshi Koizumi",0.01,-1,6.5
+Mothra,1961,101,119,2022-03-24,tt0055198,Approved,"Adventure, Fantasy, Sci-Fi",Ishirô Honda,"Furankî Sakai, Hiroshi Koizumi, Kyôko Kagawa",0.02,-1,6.6
