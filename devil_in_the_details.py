@@ -29,6 +29,18 @@ mastodon = Mastodon(
 #     return mylist
 
 
+
+def get_deduplicated_df(df):
+    """
+    Returns a dataframe where each IMDB ID appears only once, 
+    keeping the entry with the highest number of toots.
+    """
+    # Sort by ID, then by toots descending
+    # drop_duplicates(keep='first') will now keep the one with the most toots
+    return df.sort_values(['imdb_lookup', 'toots'], ascending=[True, False]).drop_duplicates(subset=['imdb_lookup'], keep='first')
+
+
+
 def create_histogram(data_series, target_val, target_label, title, x_label, filename, histogram_color, bins=15):
     """Generates a histogram and highlights the bin containing the latest film."""
     plt.figure(figsize=(10, 6))
@@ -87,14 +99,42 @@ def get_rank_text(df_sorted, latest_title, metric_col, unit, rank_start=1, rank_
 
     return "\n".join(lines)
 
+
+
+def generate_most_boring_films(df):
+    unique_df = get_deduplicated_df(df)
+    
+    # Calculate boringness (Minutes per Toot)
+    unique_df['min_per_toot'] = unique_df['duration_minutes'] / unique_df['toots'].replace(0, 1)
+    df_sorted = unique_df.sort_values('min_per_toot', ascending=False).reset_index(drop=True)
+
+    lines1 = ["Most Boring Films (Minutes per Toot): Top 5\n"]
+    for i in range(min(5, len(df_sorted))):
+        row = df_sorted.iloc[i]
+        lines1.append(f"#{i+1}: {row['min_per_toot']:.2f} min/toot, {row['title']} ({row['release_year']})")
+    
+    lines2 = ["Most Boring Films (Minutes per Toot): 6-10\n"]
+    for i in range(5, min(10, len(df_sorted))):
+        row = df_sorted.iloc[i]
+        lines2.append(f"#{i+1}: {row['min_per_toot']:.2f} min/toot, {row['title']} ({row['release_year']})")
+    
+    return [{'text': "\n".join(lines1), 'image': None, 'desc': None}, 
+            {'text': "\n".join(lines2), 'image': None, 'desc': None}]
+
+
+
 def generate_decade_report(df):
     """Generates the Most Popular Decade report."""
-    df['decade'] = (df['release_year'] // 10) * 10
-    decade_counts = df['decade'].value_counts().reset_index()
+    # 1. Deduplicate based on IMDB ID so we don't double-count 
+    # movies appearing twice in the CSV.
+    uniqueData = df.drop_duplicates(subset=['imdb_lookup']).copy()
+
+    uniqueData['decade'] = (uniqueData['release_year'] // 10) * 10
+    decade_counts = uniqueData['decade'].value_counts().reset_index()
     decade_counts.columns = ['decade', 'count']
     
     top_decades = decade_counts.head(5)
-    lines = [f"Most Popular Decades \n"]
+    lines = [f"😈📊 Most Popular Decades\n".upper()]
     for i, row in top_decades.iterrows():
         lines.append(f"#{i+1}: {row['decade']}s ({row['count']} films)")
         
@@ -102,24 +142,104 @@ def generate_decade_report(df):
     fname = "hist_decades.png"
     
     # Histogram of release years automatically shows decades if bins are set right
-    min_year = df['decade'].min()
-    max_year = df['decade'].max()
+    min_year = uniqueData['decade'].min()
+    max_year = uniqueData['decade'].max()
     bins = range(min_year, max_year + 20, 10) # 10-year bins
     
-    create_histogram(df['release_year'], None, None, "Films by Decade", "Release Year", fname, bins=bins)
+    create_histogram(uniqueData['release_year'], None, None, "Films by Decade", "Release Year", fname, bins=bins)
     
     return {'text': text, 'image': fname, 'desc': 'Histogram of films watched by decade'}
 
+
+
+def generate_most_popular_actors(df):
+    """
+    Deduplicates films, counts actor appearances, 
+    and returns two post dictionaries (1-5 and 6-10).
+    """
+    # 1. Deduplicate based on IMDB ID so we don't double-count 
+    # movies appearing twice in the CSV.
+    uniqueData = df.drop_duplicates(subset=['imdb_lookup']).copy()
+
+    # 2. Split the 'actors' strings into lists and 'explode' them into individual rows
+    # We strip whitespace to ensure ' Ringo Starr' and 'Ringo Starr' match.
+    actor_series = uniqueData['actors'].str.split(',').explode().str.strip()
+    
+    # 3. Count occurrences
+    actor_counts = actor_series.value_counts().reset_index()
+    actor_counts.columns = ['actor', 'count']
+
+    # --- Build Post 1: Top 1-5 ---
+    lines1 = ["😈📊 Most Popular Actors: Top 5\n".upper()]
+    for i in range(min(5, len(actor_counts))):
+        row = actor_counts.iloc[i]
+        lines1.append(f"#{i+1}: {row['actor']} ({row['count']} films)")
+    
+    post1 = {'text': "\n".join(lines1), 'image': None, 'desc': None}
+
+    # --- Build Post 2: 6-10 ---
+    lines2 = ["😈📊 Most Popular Actors: 6-10\n".upper()]
+    # If we have fewer than 6 actors, this range will just be empty/ignored
+    for i in range(5, min(10, len(actor_counts))):
+        row = actor_counts.iloc[i]
+        lines2.append(f"#{i+1}: {row['actor']} ({row['count']} films)")
+    
+    post2 = {'text': "\n".join(lines2), 'image': None, 'desc': None}
+
+    return [post1, post2]
+
+
+
+def generate_most_popular_directors(df):
+    """
+    Deduplicates films, counts director appearances (handling multiple directors), 
+    and returns two post dictionaries (1-5 and 6-10).
+    """
+    # 1. Deduplicate based on IMDB ID
+    unique_df = df.drop_duplicates(subset=['imdb_lookup']).copy()
+
+    # 2. Split 'director' strings into lists and 'explode' into individual rows
+    # This handles cases like "Kazuki Ômori, Kôji Hashimoto"
+    director_series = unique_df['director'].str.split(',').explode().str.strip()
+    
+    # 3. Count occurrences
+    director_counts = director_series.value_counts().reset_index()
+    director_counts.columns = ['director', 'count']
+
+    # --- Build Post 1: Top 1-5 ---
+    lines1 = ["Most Popular Directors: Top 5\n"]
+    for i in range(min(5, len(director_counts))):
+        row = director_counts.iloc[i]
+        lines1.append(f"#{i+1}: {row['director']} ({row['count']} films)")
+    
+    post1 = {'text': "\n".join(lines1), 'image': None, 'desc': None}
+
+    # --- Build Post 2: 6-10 ---
+    lines2 = ["Most Popular Directors: 6-10\n"]
+    for i in range(5, min(10, len(director_counts))):
+        row = director_counts.iloc[i]
+        lines2.append(f"#{i+1}: {row['director']} ({row['count']} films)")
+    
+    post2 = {'text': "\n".join(lines2), 'image': None, 'desc': None}
+
+    return [post1, post2]
+
+
+
 def generate_longest_movies_report(df):
     """Generates the Longest Movies list (No histogram)."""
-    df_sorted = df.sort_values('duration_minutes', ascending=False).reset_index(drop=True)
+    # 1. Deduplicate based on IMDB ID
+    uniqueData = df.drop_duplicates(subset=['imdb_lookup']).copy()
+    df_sorted = uniqueData.sort_values('duration_minutes', ascending=False).reset_index(drop=True)
     
-    lines = [f"Longest Movies Watched \n"]
+    lines = [f"😈📊 Longest Movies Watched \n".upper()]
     for i in range(min(5, len(df_sorted))):
         row = df_sorted.iloc[i]
-        lines.append(f"#{i+1}: {row['duration_minutes']} min, {row['title']} ({row['release_year']})")
+        lines.append(f"#{i+1}: {row['duration_minutes']} mins, {row['title']} ({row['release_year']})")
         
     return {'text': "\n".join(lines), 'image': None, 'desc': None}
+
+
 
 def create_timeframe_reports(df, latest_film, metric_col, unit, report_title):
     """Generates 4w, 52w, and two All Time reports (1-5 and 6-10) for any metric."""
@@ -134,14 +254,14 @@ def create_timeframe_reports(df, latest_film, metric_col, unit, report_title):
     df_4w = last_4_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
     fname_4w = f"{metric_col}_4w.png"
     create_histogram(df_4w[metric_col], current_val, f"Current: {current_val:.1f}", f"{report_title}: {latest_film['title']} vs Last 4 Weeks", unit.upper(), fname_4w)
-    text_4w = f"{report_title}: Last 4 Weeks\n\n" + get_rank_text(df_4w, latest_film['title'], metric_col, unit, 1, 5, show_current=True)
+    text_4w = f"😈📊 {report_title}: Last 4 Weeks\n\n" + get_rank_text(df_4w, latest_film['title'], metric_col, unit, 1, 5, show_current=True)
     posts.append({'text': text_4w, 'image': fname_4w, 'desc': f'Histogram of {report_title} for Last 4 Weeks'})
 
     # 2. Last 52 Weeks
     df_52w = last_52_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
     fname_52w = f"{metric_col}_52w.png"
     create_histogram(df_52w[metric_col], current_val, f"Current: {current_val:.1f}", f"{report_title}: {latest_film['title']} vs Last 52 Weeks", unit.upper(), fname_52w)
-    text_52w = f"{report_title}: Last 52 Weeks\n\n" + get_rank_text(df_52w, latest_film['title'], metric_col, unit, 1, 5, show_current=True)
+    text_52w = f"😈📊 {report_title}: Last 52 Weeks\n\n" + get_rank_text(df_52w, latest_film['title'], metric_col, unit, 1, 5, show_current=True)
     posts.append({'text': text_52w, 'image': fname_52w, 'desc': f'Histogram of {report_title} for Last 52 Weeks'})
 
     # 3. All Time (Top 1-5)
@@ -149,14 +269,15 @@ def create_timeframe_reports(df, latest_film, metric_col, unit, report_title):
     fname_all = f"{metric_col}_all.png"
     create_histogram(df_all[metric_col], current_val, f"Current: {current_val:.1f}", f"{report_title}: {latest_film['title']} vs All Time", unit.upper(), fname_all)
     # Note: show_current=False here so it doesn't duplicate info if the movie is further down the list.
-    text_all_1 = f"{report_title}: All Time Top 5\n\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 1, 5, show_current=False)
+    text_all_1 = f"😈📊 {report_title}: All Time Top 5\n\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 1, 5, show_current=False)
     posts.append({'text': text_all_1, 'image': fname_all, 'desc': f'Histogram of {report_title} for All Time'})
 
     # 4. All Time (Ranks 6-10) - No histogram attached to keep it clean
-    text_all_2 = f"{report_title}: All Time 6-10\n\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 6, 10, show_current=True)
+    text_all_2 = f"😈📊 {report_title}: All Time 6-10\n\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 6, 10, show_current=True)
     posts.append({'text': text_all_2, 'image': None, 'desc': None})
         
     return posts
+
 
 
 def post_thread(posts):
@@ -185,6 +306,8 @@ def post_thread(posts):
         previous_post_id = post['id']
         print(f"✅ Posted {i+1}/{TOTAL_POSTS}")
 
+
+
 def debug_print_thread(posts):
     """Prints the entire thread to the console with numbering appended."""
     print("\n" + "="*50)
@@ -208,6 +331,8 @@ def debug_print_thread(posts):
     print(f"DEBUG COMPLETE: {len(posts)} posts generated.")
     print("="*50 + "\n")
 
+
+
 def main():
     # 1. Load Data
     df = pd.read_csv('Monsterdon - Sheet3.csv', skipinitialspace=True)
@@ -216,16 +341,17 @@ def main():
     
     # Sort by date
     df = df.sort_values('watched_date', ascending=False).reset_index(drop=True)
-    latest_film = df.iloc[0]
+    latest_film = df.iloc[1] # use index 1 to skip double feature and treat the main film as latest
     
     # 2. Assemble Thread Content
     thread_posts = []
     
     # Post 1: Intro
     intro_text = (
-        f"😈 DEVIL IN THE DETAILS 😈\n\n"
-        f"Analytics for Monsterdon and {latest_film['title']} ({latest_film['release_year']}). "
-        f"A weekly thread with data on Toot Rates, Toot Volume, and more.\n\n"
+        f"😈📊 DEVIL IN THE DETAILS 😈📊\n\n"
+        f"An occasional thread with data on Toot Rates, Toot Volume, and more.\n"
+        f"Analytics for Monsterdon and {latest_film['title']} ({latest_film['release_year']}).\n"
+        f"Data sources: monsterdon-replay.gerlach.dev, imdb.com\n\n"
         f"#Monsterdon"
     )
     thread_posts.append({'text': intro_text, 'image': None, 'desc': None})
@@ -233,12 +359,21 @@ def main():
     # Post 2: Decade Report
     thread_posts.append(generate_decade_report(df))
     
-    # Posts 3, 4, 5, 6: TPM Reports
-    tpm_posts = create_timeframe_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Toot Rate')
-    thread_posts.extend(tpm_posts)
+    # # Posts 3, 4, 5, 6: TPM Reports
+    # tpm_posts = create_timeframe_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Toot Rate')
+    # thread_posts.extend(tpm_posts)
+
+    # Add the Actor reports
+    actor_posts = generate_most_popular_actors(df)
+    thread_posts.extend(actor_posts)
+
+    # Add the Director reports (Posts 14-15)
+    thread_posts.extend(generate_most_popular_directors(df))
+
+    thread_posts.extend(generate_most_boring_films(df))
     
-    # Post 7: Longest Movies
-    thread_posts.append(generate_longest_movies_report(df))
+    # # Post 7: Longest Movies
+    # thread_posts.append(generate_longest_movies_report(df))
     
     # Posts 8, 9, 10, 11: Toot Volume Reports
     vol_posts = create_timeframe_reports(df, latest_film, metric_col='toots', unit='toots', report_title='Toot Volume')
@@ -251,6 +386,8 @@ def main():
         print("Beginning live thread publish sequence...")
         post_thread(thread_posts)
         print("🎉 Thread published successfully!")
+
+
 
 if __name__ == "__main__":
     main()
