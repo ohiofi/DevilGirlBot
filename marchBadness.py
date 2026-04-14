@@ -444,7 +444,7 @@ def main():
         options=[movie1, movie2], expires_in=86400, multiple=False
     )
     e1, e2 = random.sample(emojis, 2)
-    post_text = f"{e1}{e2} MARS MADNESS POLL {e2}{e1} {get_random_question()}\n\n#monsterdon #MarsMadness #MarchBadness {getMovieHashtag(movie1)} {getMovieHashtag(movie2)}"
+    post_text = f"{e1}{e2} MARS MADNESS POLL {e2}{e1} {get_random_question()}\n\n#monsterdon #MarsMadness {getMovieHashtag(movie1)} {getMovieHashtag(movie2)}"
     print(post_text)
     mastodon.status_post(
         status=f"{post_text}",
