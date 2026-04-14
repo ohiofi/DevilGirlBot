@@ -7,6 +7,8 @@ from dotenv import load_dotenv
 
 DEBUG_MODE = True # Set to False when ready to post publicly
 THIS_WEEKS_EMOJI = "🧛"
+THIS_WEEKS_INDEX_LOCATION = 1 # use index 1 to skip double feature and treat the main film as latest
+CSV_FILE = "details.csv"
 
 load_dotenv()
 
@@ -15,12 +17,13 @@ mastodon = Mastodon(
     client_secret=os.getenv("client_secret"),
     access_token=os.getenv("access_token"),
     api_base_url="https://mastodon.social",
+    request_timeout=40
 )
 
 
 
 # def import_csv_as_dictionaries():
-#     with open('Monsterdon - Sheet3.csv') as f:
+#     with open(CSV_FILE) as f:
 #         mylist = [{k: v for k, v in row.items()}
 #             for row in csv.DictReader(f, skipinitialspace=True)]
 #     for each in mylist:
@@ -171,6 +174,17 @@ def generate_most_popular_actors(df):
     
     post2 = {'text': "\n".join(lines2), 'image': None, 'desc': None}
 
+    #  # --- Build Post 3: 11-15 ---
+    # lines3 = ["😈📊 Most Popular Monsterdon Actors: 11-15\n".upper()]
+    # # If we have fewer than 11 actors, this range will just be empty/ignored
+    # for i in range(10, min(15, len(actor_counts))):
+    #     row = actor_counts.iloc[i]
+    #     lines3.append(f"#{i+1}: {row['actor']} ({row['count']} {get_film_or_films(row['count'])})")
+    
+    # post3 = {'text': "\n".join(lines3), 'image': None, 'desc': None}
+
+    # return [post1, post2, post3]
+
     return [post1, post2]
 
 
@@ -239,26 +253,26 @@ def create_timeframe_reports(df, latest_film, metric_col, unit, report_title):
     df_4w = last_4_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
     fname_4w = f"{metric_col}_4w.png"
     create_histogram(df_4w[metric_col], current_val, f"{latest_film['title']} ({latest_film['release_year']}): {current_val:.1f} {unit}", f"{report_title}: {latest_film['title']} ({latest_film['release_year']}) vs Last 4 Weeks", unit.upper(), fname_4w, "purple")
-    text_4w = f"😈📊  MONSTERDON {report_title.upper()}: Last 4 Weeks\n\n" + get_rank_text(df_4w, latest_film['title'], metric_col, unit, 1, 5, show_current=True)
-    posts.append({'text': text_4w, 'image': fname_4w, 'desc': f'Histogram of Monsterdon {report_title} for Last 4 Weeks'})
+    text_4w = f"😈📊 {report_title.upper()}: Last 4 Weeks\n\n" + get_rank_text(df_4w, latest_film['title'], metric_col, unit, 1, 5, show_current=True)
+    posts.append({'text': text_4w, 'image': fname_4w, 'desc': f'Histogram of {report_title} for Last 4 Weeks'})
 
     # 2. Last 52 Weeks
     df_52w = last_52_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
     fname_52w = f"{metric_col}_52w.png"
     create_histogram(df_52w[metric_col], current_val, f"{latest_film['title']} ({latest_film['release_year']}): {current_val:.1f} {unit}", f"{report_title}: {latest_film['title']} ({latest_film['release_year']}) vs Last 52 Weeks", unit.upper(), fname_52w, "purple")
-    text_52w = f"😈📊  MONSTERDON {report_title.upper()}: Last 52 Weeks\n\n" + get_rank_text(df_52w, latest_film['title'], metric_col, unit, 1, 5, show_current=True)
-    posts.append({'text': text_52w, 'image': fname_52w, 'desc': f'Histogram of Monsterdon {report_title} for Last 52 Weeks'})
+    text_52w = f"😈📊 {report_title.upper()}: Last 52 Weeks\n\n" + get_rank_text(df_52w, latest_film['title'], metric_col, unit, 1, 5, show_current=True)
+    posts.append({'text': text_52w, 'image': fname_52w, 'desc': f'Histogram of {report_title} for Last 52 Weeks'})
 
     # 3. All Time (Top 1-5)
     df_all = all_time.sort_values(metric_col, ascending=False).reset_index(drop=True)
     fname_all = f"{metric_col}_all.png"
     create_histogram(df_all[metric_col], current_val, f"{latest_film['title']} ({latest_film['release_year']}): {current_val:.1f} {unit}", f"{report_title}: {latest_film['title']} ({latest_film['release_year']}) vs All Time", unit.upper(), fname_all, "purple")
     # Note: show_current=False here so it doesn't duplicate info if the movie is further down the list.
-    text_all_1 = f"😈📊  MONSTERDON {report_title.upper()}: All Time Top 5\n\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 1, 5, show_current=False)
-    posts.append({'text': text_all_1, 'image': fname_all, 'desc': f'Histogram of Monsterdon {report_title} for All Time'})
+    text_all_1 = f"😈📊 {report_title.upper()}: All Time Top 5\n\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 1, 5, show_current=False)
+    posts.append({'text': text_all_1, 'image': fname_all, 'desc': f'Histogram of {report_title} for All Time'})
 
     # 4. All Time (Ranks 6-10) - No histogram attached to keep it clean
-    text_all_2 = f"😈📊  MONSTERDON {report_title.upper()}: All Time 6-10\n\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 6, 10, show_current=True)
+    text_all_2 = f"😈📊 {report_title.upper()}: All Time 6-10\n\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 6, 10, show_current=True)
     posts.append({'text': text_all_2, 'image': None, 'desc': None})
         
     return posts
@@ -273,7 +287,7 @@ def post_thread(posts):
     
     for i, post_data in enumerate(posts):
         # Append thread numbering to the end of the text
-        full_text = f"{post_data['text']}\n\n🧵 {i+1}/{total_posts}"
+        full_text = f"{post_data['text']}\n\n🧵 {i+1}/{total_posts}\n\n#DevilInTheDetails"
         
         print(f"Uploading post {i+1}/{total_posts}...")
         
@@ -304,7 +318,7 @@ def debug_print_thread(posts):
     
     for i, post_data in enumerate(posts):
         # Append thread numbering to the end of the text
-        full_text = f"{post_data['text']}\n\n🧵 {i+1}/{total_posts}"
+        full_text = f"{post_data['text']}\n\n🧵 {i+1}/{total_posts}\n\n#DevilInTheDetails"
         
         print(f"--- POST {i+1}/{total_posts} ---")
         print(full_text)
@@ -323,13 +337,13 @@ def debug_print_thread(posts):
 
 def main():
     # 1. Load Data
-    df = pd.read_csv('Monsterdon - Sheet3.csv', skipinitialspace=True)
+    df = pd.read_csv(CSV_FILE, skipinitialspace=True)
     df['watched_date'] = pd.to_datetime(df['watched_date'])
     df['tpm'] = df['toots'] / df['duration_minutes']
     
     # Sort by date
     df = df.sort_values('watched_date', ascending=False).reset_index(drop=True)
-    latest_film = df.iloc[1] # use index 1 to skip double feature and treat the main film as latest
+    latest_film = df.iloc[THIS_WEEKS_INDEX_LOCATION] # use index 1 to skip double feature and treat the main film as latest
     
     # 2. Assemble Thread Content
     thread_posts = []
@@ -337,8 +351,8 @@ def main():
     # Post 1: Intro
     intro_text = (
         f"😈📊 DEVIL IN THE DETAILS 😈📊\n\n"
-        f"An occasional thread with data on Toot Rates, Toot Volume, and more.\n"
-        f"Analytics for Monsterdon and {THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']}).\n"
+        f"An occasional thread with Monsterdon data rankings. This time it's the Most Popular Decades, Actors, Directors, and Toot Volume.\n"
+        f"{THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']})\n"
         f"Data sources: monsterdon-replay.gerlach.dev, imdb.com\n\n"
         f"#Monsterdon"
     )
