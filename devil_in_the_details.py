@@ -5,6 +5,8 @@ from mastodon import Mastodon
 import os
 from dotenv import load_dotenv
 
+# NOTE: Run this manually in terminal. This always crashes if I try to run via VSCode play button.
+
 DEBUG_MODE = True # Set to False when ready to post publicly
 THIS_WEEKS_EMOJI = "🧛"
 THIS_WEEKS_INDEX_LOCATION = 1 # use index 1 to skip double feature and treat the main film as latest
