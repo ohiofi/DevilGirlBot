@@ -18,8 +18,8 @@ load_dotenv()
 CSV_FILE = "details.csv"
 ID_FILE = "census_max_id.txt"  # The file that stores our "place" in time
 LOCAL_TZ = pytz.timezone("US/Eastern")
-BATCH_SIZE = 5
-DELAY_BETWEEN_MOVIES = 2
+BATCH_SIZE = 9
+DELAY_BETWEEN_MOVIES = 40
 
 mastodon = Mastodon(
     access_token=os.getenv("access_token"), api_base_url="https://mastodon.social"
@@ -173,6 +173,7 @@ def main():
             print(f"last max id is {last_max_id}")
 
             processed_count += 1
+            print(f"sleeping {DELAY_BETWEEN_MOVIES} secs")
             time.sleep(DELAY_BETWEEN_MOVIES)
 
         except Exception as e:
