@@ -7,9 +7,9 @@ from urllib.parse import urlparse
 from dotenv import load_dotenv
 import pytz
 
-# NOTE: Whenever you add a brand new movie that was watched recently, simply delete census_max_id.txt.
-# The script will start from "Now," find your new movie, and then proceed to scroll back to wherever 
-# it needs to go for the rest of the missing data.
+# NOTE: Whenever you add a new movie that was watched recently, delete census_max_id.txt
+# The script will start from "Now" rather than back in time
+
 
 # Mastodon has a rate limit (usually 300 requests per 5 minutes)
 
@@ -18,7 +18,7 @@ load_dotenv()
 CSV_FILE = "details.csv"
 ID_FILE = "census_max_id.txt"  # The file that stores our "place" in time
 LOCAL_TZ = pytz.timezone("US/Eastern")
-BATCH_SIZE = 3
+BATCH_SIZE = 5
 DELAY_BETWEEN_MOVIES = 2
 
 mastodon = Mastodon(
@@ -28,10 +28,21 @@ mastodon = Mastodon(
 
 def fetch_census_data(start_dt, duration, starting_max_id=None):
     """Fetches census data starting from a specific ID."""
-    end_dt = start_dt + timedelta(minutes=int(duration))
+    # Ensure starting_max_id isn't the literal string "None"
+    if starting_max_id == "None":
+        starting_max_id = None
+    
+    end_dt = start_dt + timedelta(minutes = int(duration) + 10) # include the 10 minutes after the end of the film
+   
     unique_users = set()
     unique_servers = set()
     total_hashtags_found = 0
+    
+    # Engagement Counters
+    total_favorites = 0
+    total_boosts = 0
+    total_replies = 0
+    
     total_checked = 0
     current_max_id = starting_max_id
     done = False
@@ -54,7 +65,14 @@ def fetch_census_data(start_dt, duration, starting_max_id=None):
                 unique_users.add(toot["account"]["acct"])
                 server_domain = urlparse(toot["account"]["url"]).netloc
                 unique_servers.add(server_domain)
+
                 total_hashtags_found += 1
+
+                # Engagement Metrics
+                # Mastodon uses 'favourites_count' and 'reblogs_count' (Boosts)
+                total_favorites += toot.get('favourites_count', 0)
+                total_boosts += toot.get('reblogs_count', 0)
+                total_replies += toot.get('replies_count', 0)
 
             if created_at < start_dt:
                 done = True
@@ -69,8 +87,21 @@ def fetch_census_data(start_dt, duration, starting_max_id=None):
             end="\r",
         )
 
+    if total_hashtags_found == 0:
+        print(f"\n   ⚠️ Warning: No toots found for '{start_dt.date()}'.")
+        # Return None for everything to signal Main not to save this
+        return None
+
     print(f"\n   ✅ Done. Found {total_hashtags_found} toots.")
-    return len(unique_users), total_hashtags_found, len(unique_servers), current_max_id
+    return {
+        'users': len(unique_users),
+        'toots': total_hashtags_found,
+        'servers': len(unique_servers),
+        'favs': total_favorites,
+        'boosts': total_boosts,
+        'replies': total_replies,
+        'next_id': current_max_id
+    }
 
 
 def main():
@@ -114,12 +145,22 @@ def main():
         print(f"[{processed_count+1}/{BATCH_SIZE}] Analyzing: {row['title']}...")
         
         try:
-            users, toots, servers, last_max_id = fetch_census_data(movie_time, duration, last_max_id)
+            results = fetch_census_data(movie_time, duration, last_max_id)
+
+            if results is None:
+                print(f"   🛑 Skipping save for {row['title']}. Something is wrong with the API response.")
+                # We stop the whole batch here because if one fails, the scroll is broken
+                break
             
+            last_max_id = results['next_id']
+
             # Update and Save CSV
-            df.at[index, 'attendees'] = users
-            df.at[index, 'event_toots'] = toots
-            df.at[index, 'unique_servers'] = servers
+            df.at[index, 'attendees'] = results['users']
+            df.at[index, 'event_toots'] = results['toots']
+            df.at[index, 'unique_servers'] = results['servers']
+            df.at[index, 'total_favorites'] = results['favs']
+            df.at[index, 'total_boosts'] = results['boosts']
+            df.at[index, 'total_replies'] = results['replies']
             
             df_to_save = df.copy()
             df_to_save['watched_date'] = df_to_save['watched_date'].dt.strftime('%Y-%m-%d %H:%M:%S')
@@ -129,6 +170,8 @@ def main():
             with open(ID_FILE, 'w') as f:
                 f.write(str(last_max_id))
             
+            print(f"last max id is {last_max_id}")
+
             processed_count += 1
             time.sleep(DELAY_BETWEEN_MOVIES)
 
