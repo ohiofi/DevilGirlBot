@@ -9,6 +9,7 @@ IMAGES_FOLDER = os.getenv("IMAGES_FOLDER", "/path/to/images")  # fallback defaul
 FONT_PATH = os.getenv("FONT_PATH", "/path/to/default/font.ttf")
 FONT_SIZE = int(os.getenv("FONT_SIZE", 46))  # convert to int
 HISTORY_FILE = os.getenv("HISTORY_FILE", "/tmp/previous_posts.txt")
+SENTENCE_FILE = os.getenv("SENTENCE_FILE", "/tmp/possible_sentences.txt")
 
 
 def build_alt_text(user_text):
@@ -35,6 +36,9 @@ def does_text_contain_banned(html_content, banlist):
 
     return False
 
+
+def extract_raw_text(html_content):
+    return BeautifulSoup(html_content, "html.parser").get_text().lower()
 
 def find_source_by_parent_id(parent_id):
     """Looks through history to find which original post inspired a meme."""
