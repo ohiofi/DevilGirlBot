@@ -284,10 +284,15 @@ def create_timeframe_reports(df, latest_film, metric_col, unit, report_title):
 def post_thread(posts):
     """Iterates through the list and publishes them as a thread with numbering."""
     previous_post_id = None
-    visibility = 'private' if DEBUG_MODE else 'public'
+    
     total_posts = len(posts)
     
     for i, post_data in enumerate(posts):
+        # First post (index 0) is public. Everything else (1-9) is unlisted.
+        current_visibility = "public" if i == 0 else "unlisted"
+        if DEBUG_MODE:
+            current_visibility = "private"
+        
         # Append thread numbering to the end of the text
         full_text = f"{post_data['text']}\n\n🧵 {i+1}/{total_posts}\n\n#DevilInTheDetails"
         
@@ -302,7 +307,7 @@ def post_thread(posts):
             full_text,
             media_ids=media_ids if media_ids else None,
             in_reply_to_id=previous_post_id,
-            visibility=visibility
+            visibility=current_visibility
         )
         
         previous_post_id = post['id']
@@ -322,7 +327,7 @@ def debug_print_thread(posts):
         # Append thread numbering to the end of the text
         full_text = f"{post_data['text']}\n\n🧵 {i+1}/{total_posts}\n\n#DevilInTheDetails"
         
-        print(f"--- POST {i+1}/{total_posts} ---")
+        print(f"--- POST {i+1}/{total_posts} --- Char count: {len(full_text)}/500 ---")
         print(full_text)
         
         if post_data['image']:
