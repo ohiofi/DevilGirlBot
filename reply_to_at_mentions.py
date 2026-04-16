@@ -10,7 +10,8 @@ from shared_utils import (
     load_dotenv,
     load_last_seen_id,
     save_last_seen_id,
-    update_history
+    update_history,
+    extract_raw_text
 )
 
 
@@ -24,6 +25,14 @@ LAST_ID_FILE = os.getenv("LAST_ID_FILE", "/tmp/last_id.txt")
 def send_text_reply(original_mention, text):
     mastodon.status_post(status=text, in_reply_to_id=original_mention["id"], visibility="unlisted")
 
+def context_lookup(mention, user_acct):
+    parent_id = mention.get("in_reply_to_id")
+    source_url = find_source_by_parent_id(parent_id)
+    if source_url:
+        return f"@{user_acct} Context lookup successful: {source_url}"
+    else:
+        return f"@{user_acct} I cannot find the origin of that transmission in my recent logs."
+
 def process_mentions():
     last_id = load_last_seen_id("last_mention_id.txt")
     mentions = mastodon.notifications(types=["mention"], since_id=last_id)
@@ -31,23 +40,28 @@ def process_mentions():
     for note in reversed(mentions):
         mention = note["status"]
         user_acct = mention["account"]["acct"]
-        raw_text = BeautifulSoup(mention["content"], "html.parser").get_text().lower()
+        raw_text = extract_raw_text(mention["content"])
 
         # --- COMMAND CHAIN ---
         if "!help" in raw_text:
-            send_text_reply(mention, f"@{user_acct} COMMANDS:\n  !source (get the source URL for the meme text),\n  !status (returns the pool size),\n  !fuel (get a random number)")
-        
+            send_text_reply(mention, 
+                            f"@{user_acct} DevilGirlBot is series of automated Python scripts.\n"
+                            f"COMMANDS:\n"
+                            f"  !context = get the source URL for the meme text\n"
+                            f"  !roll2d6 = roll two 6-sided die\n"
+                            f"  !source = same as !context\n"
+                            f"  !status = returns the pool size\n"
+                            )
+        elif "!context" in raw_text:
+            send_text_reply(mention, context_lookup(mention, user_acct))
         elif "!source" in raw_text:
-            parent_id = mention.get("in_reply_to_id")
-            source_url = find_source_by_parent_id(parent_id)
-            if source_url:
-                send_text_reply(mention, f"@{user_acct} Source lookup successful: {source_url}")
-            else:
-                send_text_reply(mention, f"@{user_acct} I cannot find the origin of that transmission in my recent logs.")
+            send_text_reply(mention, context_lookup(mention, user_acct))
         elif "!status" in raw_text:
             send_text_reply(mention, f"@{user_acct} The ship's fueled level is {random.randint(1,100)}")
-        elif "!fuel" in raw_text:
-            send_text_reply(mention, f"@{user_acct} The ship's fueled level is {random.randint(1,100)}")
+        elif "!roll2d6" in raw_text:
+            d1 = random.randint(1,6)
+            d2 = random.randint(1,6)
+            send_text_reply(mention, f"@{user_acct} Rolled {d1} and {d2} for a total of {d1 + d2}")
 
         # --- DEFAULT: GENERATE MEME ---
         else:
