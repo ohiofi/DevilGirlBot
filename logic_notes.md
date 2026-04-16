@@ -32,3 +32,14 @@ connect to mastodon
 getText()
 
 makePost()
+
+
+## previous posts format
+
+[
+  {
+    "text": "The real horror is the friends we made along the way",
+    "source_url": "https://mastodon.social/@user/11223344",
+    "meme_post_url": "https://mastodon.social/@DevilGirlBot/99887766"
+  }
+]
