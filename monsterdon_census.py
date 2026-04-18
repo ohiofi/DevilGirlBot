@@ -10,7 +10,6 @@ import pytz
 # NOTE: Whenever you add a new movie that was watched recently, delete census_max_id.txt
 # The script will start from "Now" rather than back in time
 
-
 # Mastodon has a rate limit (usually 300 requests per 5 minutes)
 
 # --- Configuration ---
@@ -18,7 +17,7 @@ load_dotenv()
 CSV_FILE = "details.csv"
 ID_FILE = "census_max_id.txt"  # The file that stores our "place" in time
 LOCAL_TZ = pytz.timezone("US/Eastern")
-BATCH_SIZE = 15
+BATCH_SIZE = 20
 DELAY_BETWEEN_MOVIES = 60
 
 mastodon = Mastodon(
