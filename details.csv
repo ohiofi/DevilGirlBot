@@ -61,7 +61,7 @@ Space Freaks from Planet Mutoid,1995,84,343,2025-09-07 22:20:00,True,tt0131593,N
 The Man from Planet X,1951,70,2442,2025-09-07 21:00:00,False,tt0043778,Approved,"Horror, Romance, Sci-Fi",Edgar G. Ulmer,"Robert Clarke, Margaret Field, Raymond Bond",0.0,-1,5.7,-1.0,107.0,1959.0,62.0,2466.0,740.0,886.0
 Grizzly II: Revenge,2020,74,467,2025-08-31 22:41:00,True,tt0093119,NR,"Horror, Music, Thriller",André Szöts,"George Clooney, Laura Dern, Charlie Sheen",0.0,7,2.7,-1.0,41.0,296.0,26.0,378.0,171.0,93.0
 Grizzly,1976,91,3111,2025-08-31 21:00:00,False,tt0074593,PG,"Adventure, Horror, Thriller",William Girdler,"Christopher George, Andrew Prine, Richard Jaeckel",0.0,25,5.2,-1.0,107.0,2489.0,63.0,3816.0,1311.0,1236.0
-The Return of Swamp Thing,1989,84,280,2025-08-24 22:43:00,True,tt0098193,PG-13,"Action, Adventure, Comedy",Jim Wynorski,"Dick Durock, Heather Locklear, Louis Jourdan",1.0,39,4.7,513916.84,0.0,0.0,0.0,0.0,0.0,0.0
+The Return of Swamp Thing,1989,84,280,2025-08-24 22:43:00,True,tt0098193,PG-13,"Action, Adventure, Comedy",Jim Wynorski,"Dick Durock, Heather Locklear, Louis Jourdan",1.0,39,4.7,513916.84,27.0,231.0,19.0,170.0,79.0,80.0
 Swamp Thing,1982,93,2950,2025-08-24 21:00:00,False,tt0084745,PG,"Horror, Sci-Fi",Wes Craven,"Louis Jourdan, Adrienne Barbeau, Ray Wise",0.01,50,5.3,-1.0,112.0,2236.0,67.0,2860.0,838.0,1096.0
 Little Shop of Horrors,1986,94,388,2025-08-17 22:22:00,True,tt0091419,PG-13,"Comedy, Horror, Musical",Frank Oz,"Rick Moranis, Ellen Greene, Vincent Gardenia",2.14,81,7.1,117701426.37,36.0,204.0,25.0,242.0,79.0,64.0
 The Little Shop of Horrors,1960,72,1744,2025-08-17 21:00:00,False,tt0054033,NR,"Comedy, Horror",Roger Corman,"Jonathan Haze, Jackie Joseph, Mel Welles",0.0,-1,6.2,-1.0,81.0,1245.0,53.0,1877.0,528.0,667.0
@@ -82,55 +82,55 @@ Beyond Atlantis,1973,91,2305,2025-05-18 21:00:00,False,tt0069783,PG,"Action, Adv
 Slugs,1988,89,2526,2025-05-11 21:00:00,False,tt0093995,R,Horror,Juan Piquer Simón,"Michael Garfield Levine, Kim Terry, Philip MacHale",1.01,-1,5.3,-1.0,86.0,2000.0,56.0,3317.0,804.0,947.0
 The Gate,1987,86,2434,2025-05-04 21:00:00,False,tt0093075,PG-13,"Fantasy, Horror",Tibor Takács,"Stephen Dorff, Christa Denton, Louis Tripp",2.02,55,6.0,39390764.69,93.0,1934.0,55.0,2143.0,589.0,842.0
 The Bat People,1974,95,2828,2025-04-27 21:00:00,False,tt0071198,PG,"Horror, Romance",Jerry Jameson,"Stewart Moss, Marianne McAndrew, Michael Pataki",0.0,-1,2.8,-1.0,98.0,2228.0,57.0,1625.0,831.0,1149.0
-First Men in the Moon,1964,103,2648,2025-04-20 21:00:00,False,tt0058100,Approved,"Adventure, Sci-Fi",Nathan Juran,"Edward Judd, Martha Hyer, Lionel Jeffries",0.0,-1,6.5,17591129.03,0.0,0.0,0.0,0.0,0.0,0.0
-Krull,1983,121,3947,2025-04-13 21:00:00,False,tt0085811,PG,"Action, Adventure, Fantasy",Peter Yates,"Ken Marshall, Lysette Anthony, Freddie Jones",1.05,45,6.1,56133955.01,,,,,,
-Laserblast,1978,83,2719,2025-04-06 21:00:00,False,tt0077834,PG,"Horror, Sci-Fi",Michael Rae,"Kim Milford, Cheryl Smith, Gianni Russo",0.01,-1,2.8,-1.0,,,,,,
-Cat Girl,1957,76,2213,2025-03-30 21:00:00,False,tt0050235,UR,Horror,Alfred Shaughnessy,"Barbara Shelley, Robert Ayres, Kay Callard",0.0,-1,5.5,-1.0,,,,,,
-Critters 2,1988,86,2196,2025-03-23 21:00:00,False,tt0094919,PG-13,"Comedy, Horror, Sci-Fi",Mick Garris,"Scott Grimes, Liane Curtis, Terrence Mann",1.03,48,5.6,10653367.17,,,,,,
-Yeti: The Giant of the 20th Century,1977,101,3524,2025-03-16 21:00:00,False,tt0076937,NR,"Adventure, Crime, Fantasy",Gianfranco Parolini,"Antonella Interlenghi, Mimmo Crao, Jim Sullivan",0.0,-1,4.1,-1.0,,,,,,
-Critters,1986,86,2272,2025-03-09 21:00:00,False,tt0090887,PG-13,"Comedy, Horror, Sci-Fi",Stephen Herek,"Dee Wallace, M. Emmet Walsh, Billy Green Bush",0.03,52,6.1,39705932.26,,,,,,
-C.H.U.D.,1984,97,2369,2025-03-02 21:00:00,False,tt0087015,R,"Horror, Sci-Fi",Douglas Cheek,"John Heard, Daniel Stern, Christopher Curry",1.01,57,5.6,14805455.26,,,,,,
-Frogs!,1991,100,397,2025-02-23 22:40:00,True,tt0315609,PG,"Comedy, Fantasy",David Grossman,"Shelley Duvall, Elliott Gould, Scott Grimes",0.0,-1,4.6,-1.0,,,,,,
-Frogs,1972,90,3719,2025-02-23 21:00:00,False,tt0068615,PG,"Horror, Mystery, Sci-Fi",George McCowan,"Ray Milland, Sam Elliott, Joan Van Ark",0.01,51,4.4,3757777.09,,,,,,
-The Gorgon,1964,83,2519,2025-02-16 21:00:00,False,tt0058155,Approved,Horror,Terence Fisher,"Christopher Lee, Peter Cushing, Richard Pasco",0.0,-1,6.4,-1.0,,,,,,
-Masters of the Universe,1987,106,3044,2025-02-09 21:00:00,False,tt0093507,PG,"Action, Adventure, Fantasy",Gary Goddard,"Dolph Lundgren, Frank Langella, Meg Foster",2.05,35,5.4,50437238.42,,,,,,
-Invasion of the Star Creatures,1962,70,2093,2025-02-02 21:00:00,False,tt0128274,Approved,"Comedy, Sci-Fi",Bruno VeSota,"Robert Ball, Frank Ray Perilli, Gloria Victor",0.0,-1,3.1,-1.0,,,,,,
-Piranha,1978,94,2955,2025-01-26 21:00:00,False,tt0078087,R,"Comedy, Horror, Sci-Fi",Joe Dante,"Bradford Dillman, Heather Menzies-Urich, Kevin McCarthy",1.01,71,5.9,-1.0,,,,,,
-Invasion of the Bee Girls,1973,85,2893,2025-01-19 21:00:00,False,tt0070222,R,"Horror, Sci-Fi",Denis Sanders,"William Smith, Anitra Ford, Victoria Vetri",0.0,-1,4.9,-1.0,,,,,,
-Battle Beyond the Stars,1980,104,3183,2025-01-12 21:00:00,False,tt0080421,PG,"Action, Adventure, Sci-Fi","Jimmy T. Murakami, Roger Corman","George Peppard, Robert Vaughn, Richard Thomas",1.04,59,5.5,-1.0,,,,,,
-Devil Girl from Mars,1954,77,2389,2025-01-05 21:00:00,False,tt0046907,Approved,"Horror, Sci-Fi",David MacDonald,"Hugh McDermott, Hazel Court, Peter Reynolds",0.0,-1,4.9,-1.0,,,,,,
-The Stepford Wives,1975,117,2041,2024-12-29 21:00:00,False,tt0073747,PG,"Horror, Mystery, Sci-Fi",Bryan Forbes,"Katharine Ross, Paula Prentiss, Peter Masterson",1.01,54,6.9,53568029.74,,,,,,
-Snowbeast,1977,86,2906,2024-12-22 21:00:00,False,tt0076731,UR,Horror,Herb Wallerstein,"Bo Svenson, Yvette Mimieux, Robert Logan",0.0,-1,4.6,-1.0,,,,,,
-The Giant Spider Invasion,1975,79,2679,2024-12-15 21:00:00,False,tt0073043,PG,"Horror, Sci-Fi",Bill Rebane,"Steve Brodie, Barbara Hale, Robert Easton",0.0,-1,3.3,1800260.53,,,,,,
-The Curse of the Aztec Mummy,1957,63,425,2024-12-08 21:00:00,False,tt0050672,TV-14,Horror,Rafael Portillo,"Ramón Gay, Rosita Arenas, Crox Alvarado",0.0,-1,3.9,-1.0,,,,,,
-The Robot vs. The Aztec Mummy,1958,65,2434,2024-12-08 21:00:00,False,tt0050717,Approved,"Horror, Sci-Fi",Rafael Portillo,"Ramón Gay, Rosita Arenas, Crox Alvarado",0.0,-1,2.4,-1.0,,,,,,
-The Phantom Planet,1961,82,2340,2024-12-01 21:00:00,False,tt0055294,UR,"Action, Adventure, Sci-Fi",William Marshall,"Dean Fredericks, Coleen Gray, Anthony Dexter",0.0,-1,3.9,-1.0,,,,,,
-Missile to the Moon,1958,78,468,2024-11-24 22:14:00,True,tt0053072,Approved,"Drama, Sci-Fi",Richard E. Cunha,"Richard Travis, Cathy Downs, K.T. Stevens",0.0,-1,4.1,-1.0,,,,,,
-Cat-Women of the Moon,1953,64,2435,2024-11-24 21:00:00,False,tt0045609,Approved,"Adventure, Sci-Fi",Arthur Hilton,"Sonny Tufts, Victor Jory, Marie Windsor",0.0,-1,3.9,-1.0,,,,,,
-The Wrestling Women vs. the Aztec Mummy,1964,89,2577,2024-11-17 21:00:00,False,tt0058304,NR,"Adventure, Horror, Sci-Fi",René Cardona,"Lorena Velázquez, Armando Silvestre, Elizabeth Campbell",0.0,-1,4.2,-1.0,,,,,,
-The Monolith Monsters,1957,77,2218,2024-11-10 21:00:00,False,tt0050720,Approved,"Drama, Horror, Sci-Fi",John Sherwood,"Grant Williams, Lola Albright, Les Tremayne",0.0,-1,6.4,-1.0,,,,,,
-THEM!,1954,94,1992,2024-11-03 21:00:00,False,tt0047573,Approved,"Horror, Sci-Fi",Gordon Douglas,"James Whitmore, Edmund Gwenn, Joan Weldon",1.03,74,7.2,-1.0,,,,,,
-Scream Blacula Scream,1973,96,1940,2024-10-27 21:00:00,False,tt0070656,PG,"Fantasy, Horror",Bob Kelljan,"William Marshall, Don Mitchell, Pam Grier",0.01,40,5.6,16227252.25,,,,,,
-Dracula,1974,98,2143,2024-10-20 21:00:00,False,tt0070003,TV-14,"Drama, Horror",Dan Curtis,"Jack Palance, Simon Ward, Nigel Davenport",0.0,-1,6.2,-1.0,,,,,,
-Nosferatu the Vampyre,1979,107,2524,2024-10-13 21:00:00,False,tt0079641,PG,"Drama, Horror",Werner Herzog,"Klaus Kinski, Isabelle Adjani, Bruno Ganz",5.08,79,7.4,-1.0,,,,,,
-Count Dracula,1970,98,2291,2024-10-06 21:00:00,False,tt0065569,PG,"Drama, Horror",Jesús Franco,"Christopher Lee, Herbert Lom, Klaus Kinski",0.0,-1,5.6,-1.0,,,,,,
-Invaders from Mars,1986,100,2352,2024-09-29 21:00:00,False,tt0091276,PG,"Horror, Sci-Fi",Tobe Hooper,"Karen Black, Hunter Carson, Timothy Bottoms",0.02,56,5.5,14729754.76,,,,,,
-Mysterious Island,1961,101,2446,2024-09-22 21:00:00,False,tt0055207,Approved,"Adventure, Family, Fantasy",Cy Endfield,"Michael Craig, Joan Greenwood, Michael Callan",0.0,-1,6.7,-1.0,,,,,,
-Night of the Comet,1984,95,2193,2024-09-15 21:00:00,False,tt0087799,PG-13,"Comedy, Horror, Sci-Fi",Thom Eberhardt,"Catherine Mary Stewart, Kelli Maroney, Robert Beltran",0.01,59,6.3,45865772.1,,,,,,
-Godzilla vs. Megalon,1973,82,2199,2024-09-08 21:00:00,False,tt0070122,G,"Action, Adventure, Family","Jun Fukuda, Yoshimitsu Banno, Ishirô Honda","Katsuhiko Sasaki, Hiroyuki Kawase, Yutaka Hayashi",0.0,-1,4.8,-1.0,,,,,,
-Invasion of the Body Snatchers,1978,116,2251,2024-09-01 21:00:00,False,tt0077745,PG,"Horror, Sci-Fi",Philip Kaufman,"Donald Sutherland, Brooke Adams, Jeff Goldblum",3.11,75,7.4,126454434.92,,,,,,
-Twins of Evil,1971,87,2044,2024-08-25 21:00:00,False,tt0069427,R,Horror,John Hough,"Peter Cushing, Dennis Price, Mary Collinson",0.0,62,6.6,-1.0,,,,,,
-Tentacles,1977,102,2671,2024-08-18 21:00:00,False,tt0076809,PG,"Action, Adventure, Comedy",Ovidio G. Assonitis,"John Huston, Shelley Winters, Bo Hopkins",0.0,36,3.8,-1.0,,,,,,
-The Wicker Man,1973,93,1688,2024-08-11 21:00:00,False,tt0070917,R,"Horror, Mystery, Thriller",Robin Hardy,"Edward Woodward, Christopher Lee, Diane Cilento",3.06,87,7.5,1108232.0,,,,,,
-Gamera: Guardian of the Universe,1995,96,1984,2024-08-04 21:00:00,False,tt0113142,NR,"Action, Drama, Fantasy",Shûsuke Kaneko,"Tsuyoshi Ihara, Akira Onodera, Shinobu Nakayama",6.01,-1,6.7,-1.0,,,,,,
-The Last Man on Earth,1964,86,1623,2024-07-28 21:00:00,False,tt0058700,Approved,"Drama, Horror, Sci-Fi","Ubaldo Ragona, Sidney Salkow","Vincent Price, Franca Bettoia, Emma Danieli",0.01,-1,6.7,-1.0,,,,,,
-Chopping Mall,1986,77,2157,2024-07-21 21:00:00,False,tt0090837,R,"Horror, Sci-Fi",Jim Wynorski,"Kelli Maroney, Tony O'Dell, Russell Todd",0.0,22,5.6,-1.0,,,,,,
-Terror of Mechagodzilla,1975,83,1993,2024-07-14 21:00:00,False,tt0073373,G,"Action, Adventure, Family","Ishirô Honda, Jun Fukuda","Katsuhiko Sasaki, Tomoko Ai, Akihiko Hirata",0.01,-1,6.1,-1.0,,,,,,
-Gargoyles,1972,74,1835,2024-07-07 21:00:00,False,tt0068622,NR,Horror,Bill Norton,"Cornel Wilde, Jennifer Salt, Grayson Hall",1.01,-1,5.9,-1.0,,,,,,
-Invaders from Mars,1953,78,1820,2024-06-30 21:00:00,False,tt0045917,Approved,"Horror, Sci-Fi",William Cameron Menzies,"Helena Carter, Arthur Franz, Jimmy Hunt",3.01,-1,6.3,-1.0,,,,,,
-Horror Express,1972,87,1700,2024-06-23 21:00:00,False,tt0068713,R,"Adventure, Horror, Sci-Fi",Eugenio Martín,"Christopher Lee, Peter Cushing, Alberto de Mendoza",1.01,68,6.5,-1.0,,,,,,
-Q,1982,93,1628,2024-06-16 21:00:00,False,tt0084556,R,"Crime, Fantasy, Mystery",Larry Cohen,"David Carradine, Michael Moriarty, Candy Clark",0.0,-1,6.0,-1.0,,,,,,
-Creature with the Atom Brain,1955,69,1308,2024-06-09 21:00:00,False,tt0047960,Approved,"Crime, Horror, Sci-Fi",Edward L. Cahn,"Richard Denning, Angela Stevens, S. John Launer",0.0,-1,5.5,-1.0,,,,,,
+First Men in the Moon,1964,103,2648,2025-04-20 21:00:00,False,tt0058100,Approved,"Adventure, Sci-Fi",Nathan Juran,"Edward Judd, Martha Hyer, Lionel Jeffries",0.0,-1,6.5,17591129.03,86.0,2095.0,54.0,1713.0,885.0,1034.0
+Krull,1983,121,3947,2025-04-13 21:00:00,False,tt0085811,PG,"Action, Adventure, Fantasy",Peter Yates,"Ken Marshall, Lysette Anthony, Freddie Jones",1.05,45,6.1,56133955.01,105.0,2904.0,61.0,3053.0,1533.0,1291.0
+Laserblast,1978,83,2719,2025-04-06 21:00:00,False,tt0077834,PG,"Horror, Sci-Fi",Michael Rae,"Kim Milford, Cheryl Smith, Gianni Russo",0.01,-1,2.8,-1.0,98.0,2042.0,62.0,1779.0,776.0,955.0
+Cat Girl,1957,76,2213,2025-03-30 21:00:00,False,tt0050235,UR,Horror,Alfred Shaughnessy,"Barbara Shelley, Robert Ayres, Kay Callard",0.0,-1,5.5,-1.0,96.0,1701.0,55.0,1928.0,714.0,687.0
+Critters 2,1988,86,2196,2025-03-23 21:00:00,False,tt0094919,PG-13,"Comedy, Horror, Sci-Fi",Mick Garris,"Scott Grimes, Liane Curtis, Terrence Mann",1.03,48,5.6,10653367.17,88.0,1685.0,56.0,1355.0,713.0,881.0
+Yeti: The Giant of the 20th Century,1977,101,3524,2025-03-16 21:00:00,False,tt0076937,NR,"Adventure, Crime, Fantasy",Gianfranco Parolini,"Antonella Interlenghi, Mimmo Crao, Jim Sullivan",0.0,-1,4.1,-1.0,100.0,2651.0,57.0,2610.0,992.0,1164.0
+Critters,1986,86,2272,2025-03-09 21:00:00,False,tt0090887,PG-13,"Comedy, Horror, Sci-Fi",Stephen Herek,"Dee Wallace, M. Emmet Walsh, Billy Green Bush",0.03,52,6.1,39705932.26,88.0,1679.0,56.0,1127.0,627.0,869.0
+C.H.U.D.,1984,97,2369,2025-03-02 21:00:00,False,tt0087015,R,"Horror, Sci-Fi",Douglas Cheek,"John Heard, Daniel Stern, Christopher Curry",1.01,57,5.6,14805455.26,93.0,1804.0,56.0,2156.0,702.0,892.0
+Frogs!,1991,100,397,2025-02-23 22:40:00,True,tt0315609,PG,"Comedy, Fantasy",David Grossman,"Shelley Duvall, Elliott Gould, Scott Grimes",0.0,-1,4.6,-1.0,39.0,314.0,26.0,182.0,114.0,109.0
+Frogs,1972,90,3719,2025-02-23 21:00:00,False,tt0068615,PG,"Horror, Mystery, Sci-Fi",George McCowan,"Ray Milland, Sam Elliott, Joan Van Ark",0.01,51,4.4,3757777.09,117.0,2697.0,69.0,2200.0,987.0,1128.0
+The Gorgon,1964,83,2519,2025-02-16 21:00:00,False,tt0058155,Approved,Horror,Terence Fisher,"Christopher Lee, Peter Cushing, Richard Pasco",0.0,-1,6.4,-1.0,101.0,1896.0,58.0,2648.0,1001.0,835.0
+Masters of the Universe,1987,106,3044,2025-02-09 21:00:00,False,tt0093507,PG,"Action, Adventure, Fantasy",Gary Goddard,"Dolph Lundgren, Frank Langella, Meg Foster",2.05,35,5.4,50437238.42,106.0,2262.0,64.0,2685.0,762.0,985.0
+Invasion of the Star Creatures,1962,70,2093,2025-02-02 21:00:00,False,tt0128274,Approved,"Comedy, Sci-Fi",Bruno VeSota,"Robert Ball, Frank Ray Perilli, Gloria Victor",0.0,-1,3.1,-1.0,93.0,1532.0,52.0,1892.0,798.0,638.0
+Piranha,1978,94,2955,2025-01-26 21:00:00,False,tt0078087,R,"Comedy, Horror, Sci-Fi",Joe Dante,"Bradford Dillman, Heather Menzies-Urich, Kevin McCarthy",1.01,71,5.9,-1.0,96.0,2123.0,58.0,2358.0,880.0,963.0
+Invasion of the Bee Girls,1973,85,2893,2025-01-19 21:00:00,False,tt0070222,R,"Horror, Sci-Fi",Denis Sanders,"William Smith, Anitra Ford, Victoria Vetri",0.0,-1,4.9,-1.0,101.0,2070.0,66.0,1411.0,982.0,959.0
+Battle Beyond the Stars,1980,104,3183,2025-01-12 21:00:00,False,tt0080421,PG,"Action, Adventure, Sci-Fi","Jimmy T. Murakami, Roger Corman","George Peppard, Robert Vaughn, Richard Thomas",1.04,59,5.5,-1.0,113.0,2293.0,67.0,2066.0,1403.0,1142.0
+Devil Girl from Mars,1954,77,2389,2025-01-05 21:00:00,False,tt0046907,Approved,"Horror, Sci-Fi",David MacDonald,"Hugh McDermott, Hazel Court, Peter Reynolds",0.0,-1,4.9,-1.0,77.0,1649.0,48.0,1691.0,593.0,829.0
+The Stepford Wives,1975,117,2041,2024-12-29 21:00:00,False,tt0073747,PG,"Horror, Mystery, Sci-Fi",Bryan Forbes,"Katharine Ross, Paula Prentiss, Peter Masterson",1.01,54,6.9,53568029.74,79.0,1480.0,48.0,1853.0,721.0,802.0
+Snowbeast,1977,86,2906,2024-12-22 21:00:00,False,tt0076731,UR,Horror,Herb Wallerstein,"Bo Svenson, Yvette Mimieux, Robert Logan",0.0,-1,4.6,-1.0,97.0,2121.0,55.0,2082.0,844.0,1030.0
+The Giant Spider Invasion,1975,79,2679,2024-12-15 21:00:00,False,tt0073043,PG,"Horror, Sci-Fi",Bill Rebane,"Steve Brodie, Barbara Hale, Robert Easton",0.0,-1,3.3,1800260.53,86.0,1838.0,54.0,1466.0,701.0,864.0
+The Curse of the Aztec Mummy,1957,63,425,2024-12-08 22:15:00,False,tt0050672,TV-14,Horror,Rafael Portillo,"Ramón Gay, Rosita Arenas, Crox Alvarado",0.0,-1,3.9,-1.0,36.0,292.0,27.0,433.0,195.0,104.0
+The Robot vs. The Aztec Mummy,1958,65,2434,2024-12-08 21:00:00,False,tt0050717,Approved,"Horror, Sci-Fi",Rafael Portillo,"Ramón Gay, Rosita Arenas, Crox Alvarado",0.0,-1,2.4,-1.0,80.0,1522.0,52.0,1195.0,551.0,664.0
+The Phantom Planet,1961,82,2340,2024-12-01 21:00:00,False,tt0055294,UR,"Action, Adventure, Sci-Fi",William Marshall,"Dean Fredericks, Coleen Gray, Anthony Dexter",0.0,-1,3.9,-1.0,78.0,1658.0,50.0,1659.0,671.0,689.0
+Missile to the Moon,1958,78,468,2024-11-24 22:14:00,True,tt0053072,Approved,"Drama, Sci-Fi",Richard E. Cunha,"Richard Travis, Cathy Downs, K.T. Stevens",0.0,-1,4.1,-1.0,32.0,354.0,25.0,269.0,149.0,201.0
+Cat-Women of the Moon,1953,64,2435,2024-11-24 21:00:00,False,tt0045609,Approved,"Adventure, Sci-Fi",Arthur Hilton,"Sonny Tufts, Victor Jory, Marie Windsor",0.0,-1,3.9,-1.0,88.0,1424.0,54.0,1401.0,666.0,606.0
+The Wrestling Women vs. the Aztec Mummy,1964,89,2577,2024-11-17 21:00:00,False,tt0058304,NR,"Adventure, Horror, Sci-Fi",René Cardona,"Lorena Velázquez, Armando Silvestre, Elizabeth Campbell",0.0,-1,4.2,-1.0,86.0,1611.0,53.0,1412.0,814.0,820.0
+The Monolith Monsters,1957,77,2218,2024-11-10 21:00:00,False,tt0050720,Approved,"Drama, Horror, Sci-Fi",John Sherwood,"Grant Williams, Lola Albright, Les Tremayne",0.0,-1,6.4,-1.0,83.0,1502.0,54.0,1904.0,1053.0,684.0
+THEM!,1954,94,1992,2024-11-03 21:00:00,False,tt0047573,Approved,"Horror, Sci-Fi",Gordon Douglas,"James Whitmore, Edmund Gwenn, Joan Weldon",1.03,74,7.2,-1.0,82.0,1360.0,54.0,1474.0,847.0,632.0
+Scream Blacula Scream,1973,96,1940,2024-10-27 21:00:00,False,tt0070656,PG,"Fantasy, Horror",Bob Kelljan,"William Marshall, Don Mitchell, Pam Grier",0.01,40,5.6,16227252.25,75.0,1278.0,55.0,933.0,841.0,625.0
+Dracula,1974,98,2143,2024-10-20 21:00:00,False,tt0070003,TV-14,"Drama, Horror",Dan Curtis,"Jack Palance, Simon Ward, Nigel Davenport",0.0,-1,6.2,-1.0,75.0,1418.0,54.0,1241.0,688.0,622.0
+Nosferatu the Vampyre,1979,107,2524,2024-10-13 21:00:00,False,tt0079641,PG,"Drama, Horror",Werner Herzog,"Klaus Kinski, Isabelle Adjani, Bruno Ganz",5.08,79,7.4,-1.0,0.0,0.0,0.0,0.0,0.0,0.0
+Count Dracula,1970,98,2291,2024-10-06 21:00:00,False,tt0065569,PG,"Drama, Horror",Jesús Franco,"Christopher Lee, Herbert Lom, Klaus Kinski",0.0,-1,5.6,-1.0,78.0,1425.0,54.0,1186.0,969.0,769.0
+Invaders from Mars,1986,100,2352,2024-09-29 21:00:00,False,tt0091276,PG,"Horror, Sci-Fi",Tobe Hooper,"Karen Black, Hunter Carson, Timothy Bottoms",0.02,56,5.5,14729754.76,68.0,1501.0,46.0,1356.0,685.0,738.0
+Mysterious Island,1961,101,2446,2024-09-22 21:00:00,False,tt0055207,Approved,"Adventure, Family, Fantasy",Cy Endfield,"Michael Craig, Joan Greenwood, Michael Callan",0.0,-1,6.7,-1.0,83.0,1598.0,57.0,824.0,705.0,710.0
+Night of the Comet,1984,95,2193,2024-09-15 21:00:00,False,tt0087799,PG-13,"Comedy, Horror, Sci-Fi",Thom Eberhardt,"Catherine Mary Stewart, Kelli Maroney, Robert Beltran",0.01,59,6.3,45865772.1,79.0,1475.0,58.0,1082.0,499.0,794.0
+Godzilla vs. Megalon,1973,82,2199,2024-09-08 21:00:00,False,tt0070122,G,"Action, Adventure, Family","Jun Fukuda, Yoshimitsu Banno, Ishirô Honda","Katsuhiko Sasaki, Hiroyuki Kawase, Yutaka Hayashi",0.0,-1,4.8,-1.0,67.0,1529.0,41.0,1261.0,745.0,672.0
+Invasion of the Body Snatchers,1978,116,2251,2024-09-01 21:00:00,False,tt0077745,PG,"Horror, Sci-Fi",Philip Kaufman,"Donald Sutherland, Brooke Adams, Jeff Goldblum",3.11,75,7.4,126454434.92,81.0,1594.0,52.0,1240.0,681.0,734.0
+Twins of Evil,1971,87,2044,2024-08-25 21:00:00,False,tt0069427,R,Horror,John Hough,"Peter Cushing, Dennis Price, Mary Collinson",0.0,62,6.6,-1.0,79.0,1511.0,57.0,1280.0,777.0,670.0
+Tentacles,1977,102,2671,2024-08-18 21:00:00,False,tt0076809,PG,"Action, Adventure, Comedy",Ovidio G. Assonitis,"John Huston, Shelley Winters, Bo Hopkins",0.0,36,3.8,-1.0,86.0,1989.0,51.0,1575.0,1001.0,934.0
+The Wicker Man,1973,93,1688,2024-08-11 21:00:00,False,tt0070917,R,"Horror, Mystery, Thriller",Robin Hardy,"Edward Woodward, Christopher Lee, Diane Cilento",3.06,87,7.5,1108232.0,66.0,1207.0,45.0,1178.0,928.0,540.0
+Gamera: Guardian of the Universe,1995,96,1984,2024-08-04 21:00:00,False,tt0113142,NR,"Action, Drama, Fantasy",Shûsuke Kaneko,"Tsuyoshi Ihara, Akira Onodera, Shinobu Nakayama",6.01,-1,6.7,-1.0,74.0,1544.0,54.0,1070.0,857.0,705.0
+The Last Man on Earth,1964,86,1623,2024-07-28 21:00:00,False,tt0058700,Approved,"Drama, Horror, Sci-Fi","Ubaldo Ragona, Sidney Salkow","Vincent Price, Franca Bettoia, Emma Danieli",0.01,-1,6.7,-1.0,79.0,1210.0,58.0,1345.0,818.0,513.0
+Chopping Mall,1986,77,2157,2024-07-21 21:00:00,False,tt0090837,R,"Horror, Sci-Fi",Jim Wynorski,"Kelli Maroney, Tony O'Dell, Russell Todd",0.0,22,5.6,-1.0,74.0,1635.0,52.0,1211.0,858.0,723.0
+Terror of Mechagodzilla,1975,83,1993,2024-07-14 21:00:00,False,tt0073373,G,"Action, Adventure, Family","Ishirô Honda, Jun Fukuda","Katsuhiko Sasaki, Tomoko Ai, Akihiko Hirata",0.01,-1,6.1,-1.0,76.0,1596.0,51.0,1833.0,683.0,622.0
+Gargoyles,1972,74,1835,2024-07-07 21:00:00,False,tt0068622,NR,Horror,Bill Norton,"Cornel Wilde, Jennifer Salt, Grayson Hall",1.01,-1,5.9,-1.0,70.0,1391.0,49.0,1478.0,620.0,610.0
+Invaders from Mars,1953,78,1820,2024-06-30 21:00:00,False,tt0045917,Approved,"Horror, Sci-Fi",William Cameron Menzies,"Helena Carter, Arthur Franz, Jimmy Hunt",3.01,-1,6.3,-1.0,65.0,1377.0,43.0,1047.0,745.0,547.0
+Horror Express,1972,87,1700,2024-06-23 21:00:00,False,tt0068713,R,"Adventure, Horror, Sci-Fi",Eugenio Martín,"Christopher Lee, Peter Cushing, Alberto de Mendoza",1.01,68,6.5,-1.0,67.0,1319.0,44.0,1069.0,795.0,647.0
+Q,1982,93,1628,2024-06-16 21:00:00,False,tt0084556,R,"Crime, Fantasy, Mystery",Larry Cohen,"David Carradine, Michael Moriarty, Candy Clark",0.0,-1,6.0,-1.0,66.0,1235.0,42.0,1037.0,484.0,522.0
+Creature with the Atom Brain,1955,69,1308,2024-06-09 21:00:00,False,tt0047960,Approved,"Crime, Horror, Sci-Fi",Edward L. Cahn,"Richard Denning, Angela Stevens, S. John Launer",0.0,-1,5.5,-1.0,65.0,1020.0,42.0,862.0,398.0,437.0
 Stranger from Venus,1954,75,1349,2024-06-02 21:00:00,False,tt0047529,NR,Sci-Fi,Burt Balaban,"Patricia Neal, Helmut Dantine, Derek Bond",0.0,-1,5.4,-1.0,,,,,,
 Son of Godzilla,1967,86,1499,2024-05-26 21:00:00,False,tt0061856,PG,"Adventure, Comedy, Fantasy",Jun Fukuda,"Tadao Takashima, Akira Kubo, Bibari Maeda",0.0,-1,5.2,-1.0,,,,,,
 The Pit and the Pendulum,1961,81,1330,2024-05-19 21:00:00,False,tt0055304,Approved,"Drama, Horror, Mystery",Roger Corman,"Vincent Price, Barbara Steele, John Kerr",0.0,78,7.0,-1.0,,,,,,
