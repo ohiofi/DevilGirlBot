@@ -262,12 +262,6 @@ movieCriteria = [
     ["is the ", "MOST", "LEAST", " likely to make someone cry"],
     ["is the ", "MOST", "LEAST", " likely to contain a subliminal message"],
     ["is the ", "MOST", "LEAST", " likely to be a front for a CIA experiment"],
-    [
-        "is the ",
-        "MOST",
-        "LEAST",
-        " likely to have a 'Lost Ending' that was never released",
-    ],
     ["is the ", "MOST", "LEAST", " likely to be the leader of a high school club"],
     ["is the ", "MOST", "LEAST", " likely to have a theme song that actually slaps"],
     ["is the ", "MOST", "LEAST", " likely to steal your wallet"],
@@ -313,7 +307,6 @@ movieCriteria = [
     ["is the ", "MOST", "LEAST", " hip-hop"],
     ["is the ", "MOST", "LEAST", " electronic"],
     ["has the ", "MOST", "LEAST", " folk energy"],
-    ["has the ", "MOST", "LEAST", " 'dance like no one is watching' energy"],
     ["is the ", "MOST", "LEAST", " classical"],
     ["is the ", "MOST", "LEAST", " British"],
     ["is the ", "MOST", "LEAST", " grunge"],
@@ -328,6 +321,7 @@ movieCriteria = [
 
 
 movieList = [
+    "Son of Dracula (1943)",
     "The Monster That Challenged The World (1957)",
     "Critters 4 (1992)",
     "The Golden Voyage of Sinbad (1973)",
