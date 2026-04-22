@@ -1,231 +1,1390 @@
-title,release_year,title_and_year,getIMDBNumber,imdb_lookup,duration_minutes,toots,watched_date,is_double_feature,getRated,rated,getGenre,genre,getDirector,director,getActors,actors,getAwards,awards,getMetascore,metascore,getIMDBScore,imdb_score,getRealBoxOffice,real_box_office,attendees,event_toots,unique_servers,total_favorites,total_boosts,total_replies
-Earth Girls Are Easy,1988,Earth Girls Are Easy (1988),tt0097257,tt0097257,100,313,2026-04-19 22:53:00,True,PG,PG,"Comedy, Musical, Romance","Comedy, Musical, Romance",Julien Temple,Julien Temple,"Geena Davis, Jeff Goldblum, Jim Carrey","Geena Davis, Jeff Goldblum, Jim Carrey",0.03,0.03,66.0,66,5.5,-1.0,10941150.82,10941150.82,37.0,261.0,25.0,261.0,100.0,106.0
-Communion,1989,Communion (1989),,tt0097100,103,2980,2026-04-19 21:00:00,False,R,R,"Biography, Drama, Horror","Biography, Drama, Horror","Biography, Drama, Horror",Philippe Mora,"Christopher Walken, Lindsay Crouse, Frances Sternhagen","Christopher Walken, Lindsay Crouse, Frances Sternhagen",0.01,0.01,-1.0,-1,5.5,5.5,5116494.49,5116494.49,124.0,2752.0,69.0,4531.0,1523.0,1633.0
-Son of Dracula,1974,Son of Dracula (1974),,tt0072189,90,339,2026-04-12 22:27:00,True,,PG,,"Comedy, Fantasy, Horror",,Freddie Francis,,"Harry Nilsson, Ringo Starr, Freddie Jones",,0.0,,-1,,4.2,,-1.0,51.0,309.0,33.0,352.0,184.0,125.0
-Son of Dracula,1943,Son of Dracula (1943),,tt0036376,77,2536,2026-04-12 21:00:00,False,,Approved,,"Drama, Fantasy, Horror",,Robert Siodmak,,"Lon Chaney Jr., Robert Paige, Louise Allbritton",,1.0,,47,,6.1,,-1.0,124.0,2053.0,72.0,3931.0,1533.0,1117.0
-The Monster That Challenged the World,1957,The Monster That Challenged the World (1957),,tt0050722,84,2857,2026-04-05 21:00:00,False,,Approved,,"Horror, Sci-Fi, Thriller",,Arnold Laven,,"Tim Holt, Audrey Dalton, Hans Conried",,0.01,,-1,,5.7,,-1.0,127.0,2769.0,67.0,4156.0,1939.0,1451.0
-Critters 4,1992,Critters 4 (1992),,tt0101628,87,2550,2026-03-29 21:00:00,False,,PG-13,,"Horror, Sci-Fi",,Rupert Harvey,,"Don Keith Opper, Terrence Mann, Paul Whitthorne",,0.0,,-1,,4.1,,-1.0,98.0,2249.0,56.0,3032.0,1132.0,1247.0
-Kazaam,1996,Kazaam (1996),,tt0116756,94,281,2026-03-22 22:55:00,True,,PG,,"Comedy, Family, Fantasy",,Paul Michael Glaser,,"Shaquille O'Neal, Francis Capra, Ally Walker",,0.02,,24,,3.1,,39890153.54,32.0,253.0,23.0,402.0,174.0,82.0
-The Golden Voyage of Sinbad,1973,The Golden Voyage of Sinbad (1973),,tt0071569,105,3289,2026-03-22 21:00:00,False,,G,,"Action, Adventure, Fantasy",,Gordon Hessler,,"John Phillip Law, Caroline Munro, Tom Baker",,3.0,,69,,6.8,,-1.0,127.0,2831.0,70.0,3723.0,1939.0,1169.0
-"The Beast from 20,000 Fathoms",1953,"The Beast from 20,000 Fathoms (1953)",,tt0045546,80,289,2026-03-15 22:54:00,True,,Approved,,"Horror, Sci-Fi",,Eugène Lourié,,"Paul Hubschmid, Paula Raymond, Cecil Kellaway",,0.02,,-1,,6.6,,-1.0,35.0,256.0,24.0,355.0,147.0,87.0
-Jason and the Argonauts,1963,Jason and the Argonauts (1963),,tt0057197,104,2784,2026-03-15 21:00:00,False,,G,,"Action, Adventure, Family",,Don Chaffey,,"Todd Armstrong, Nancy Kovack, Gary Raymond",,0.0,,69,,7.3,,-1.0,116.0,2457.0,65.0,3843.0,1552.0,1265.0
-Godzilla 1977,1977,Godzilla 1977 (1977),,tt1543211,96,254,2026-03-08 22:38:00,True,,TV-MA,,"Action, Horror, Sci-Fi",,"Luigi Cozzi, Ishirô Honda, Terry O. Morse",,"Raymond Burr, Akira Takarada, Akihiko Hirata",,0.0,,-1,,5.2,,-1.0,28.0,194.0,19.0,299.0,135.0,98.0
-The Adventures of Hercules,1985,The Adventures of Hercules (1985),,tt0089271,88,3577,2026-03-08 21:00:00,False,,PG,,"Adventure, Fantasy",,Luigi Cozzi,,"Lou Ferrigno, Milly Carlucci, Sonia Viviani",,0.0,,-1,,3.9,,-1.0,103.0,2874.0,62.0,2910.0,1640.0,1452.0
-The Seven Magnificent Gladiators,1983,The Seven Magnificent Gladiators (1983),,tt0086289,100,363,2026-03-01 22:48:00,True,,PG,,"Action, Adventure, Drama",,"Bruno Mattei, Claudio Fragasso",,"Lou Ferrigno, Sybil Danning, Brad Harris",,0.0,,-1,,3.7,,-1.0,42.0,300.0,29.0,496.0,293.0,165.0
-Hercules,1983,Hercules (1983),,tt0085672,98,3967,2026-03-01 21:00:00,False,,PG,,"Adventure, Fantasy, History",,Luigi Cozzi,,"Lou Ferrigno, Brad Harris, Sybil Danning",,2.03,,-1,,4.1,,35426527.28,126.0,3169.0,70.0,3298.0,1684.0,1789.0
-The Flesh and the Fiends,1960,The Flesh and the Fiends (1960),,tt0052811,94,199,2026-02-22 22:32:00,True,,UR,,"Crime, Drama, Thriller",,John Gilling,,"Peter Cushing, June Laverick, Donald Pleasence",,0.0,,-1,,6.9,,-1.0,36.0,147.0,27.0,283.0,102.0,72.0
-Dr. Who and the Daleks,1965,Dr. Who and the Daleks (1965),,tt0059126,82,2807,2026-02-22 21:00:00,False,,NR,,"Adventure, Drama, Sci-Fi",,Gordon Flemyng,,"Peter Cushing, Roy Castle, Jennie Linden",,0.0,,-1,,5.6,,-1.0,125.0,2311.0,73.0,3819.0,1410.0,1177.0
-Master of Horror,1965,Master of Horror (1965),,tt1503643,60,240,2026-02-15 22:35:00,True,,GP,,Horror,,Enrique Carreras,,"Narciso Ibáñez Menta, Osvaldo Pacheco, Inés Moreno",,0.0,,-1,,6.1,,-1.0,37.0,154.0,23.0,303.0,101.0,88.0
-4D Man,1959,4D Man (1959),,tt0052530,85,3014,2026-02-15 21:00:00,False,,Approved,,"Action, Horror, Romance",,Irvin S. Yeaworth Jr.,,"Robert Lansing, Lee Meriwether, James Congdon",,0.0,,-1,,5.8,,-1.0,112.0,2546.0,60.0,3392.0,1466.0,1234.0
-Rebirth of Mothra III,1998,Rebirth of Mothra III (1998),,tt0189764,99,246,2026-02-08 22:31:00,True,,TV-G,,"Action, Adventure, Fantasy",,Okihiro Yoneda,,"Megumi Kobayashi, Misato Tate, Aki Hano",,0.0,,-1,,5.7,,-1.0,24.0,183.0,17.0,179.0,101.0,102.0
-Devil Doll,1964,Devil Doll (1964),,tt0058007,81,2181,2026-02-08 21:00:00,False,,NR,,Horror,,Lindsay Shonteff,,"Bryant Haliday, William Sylvester, Yvonne Romain",,0.0,,-1,,4.8,,-1.0,87.0,1768.0,47.0,2483.0,1532.0,979.0
-Rebirth of Mothra II,1997,Rebirth of Mothra II (1997),,tt0133104,97,293,2026-02-01 22:24:00,True,,UR,,"Action, Fantasy, Sci-Fi",,Kunio Miyoshi,,"Megumi Kobayashi, Sayaka Yamaguchi, Aki Hano",,0.0,,-1,,5.1,,-1.0,44.0,245.0,28.0,419.0,140.0,104.0
-Planet Earth,1974,Planet Earth (1974),,tt0072000,74,2442,2026-02-01 21:00:00,False,,NR,,"Drama, Sci-Fi, Thriller",,Marc Daniels,,"John Saxon, Janet Margolin, Ted Cassidy",,0.0,,-1,,5.7,,-1.0,116.0,1859.0,62.0,3016.0,1421.0,896.0
-Rebirth of Mothra,1996,Rebirth of Mothra (1996),,tt0117089,104,323,2026-01-25 22:32:00,True,,UR,,"Action, Adventure, Family",,Okihiro Yoneda,,"Megumi Kobayashi, Sayaka Yamaguchi, Aki Hano",,0.0,,-1,,5.8,,-1.0,31.0,211.0,21.0,341.0,64.0,108.0
-The Quatermass Xperiment,1955,The Quatermass Xperiment (1955),,tt0049646,82,2719,2026-01-25 21:00:00,False,,Approved,,"Horror, Sci-Fi",,Val Guest,,"Brian Donlevy, Jack Warner, Richard Wordsworth",,0.0,,-1,,6.6,,-1.0,113.0,2248.0,57.0,3419.0,1053.0,1128.0
-Mars Attacks!,1996,Mars Attacks! (1996),,tt0116996,106,306,2026-01-18 22:51:00,True,,PG-13,,"Comedy, Sci-Fi",,Tim Burton,,"Jack Nicholson, Pierce Brosnan, Sarah Jessica Parker",,3.19,,52,,6.4,,79583719.62,36.0,266.0,20.0,561.0,167.0,134.0
-Mothra,1961,Mothra (1961),,tt0055198,101,2390,2026-01-18 21:00:00,False,,Approved,,"Adventure, Fantasy, Sci-Fi",,Ishirô Honda,,"Furankî Sakai, Hiroshi Koizumi, Kyôko Kagawa",,0.02,,-1,,6.6,,-1.0,99.0,1905.0,52.0,2406.0,1383.0,1025.0
-Daigoro vs. Goliath,1972,Daigoro vs. Goliath (1972),,tt0188014,85,96,2026-01-11 23:29:00,True,,NR,,"Action, Family, Fantasy",,Toshihiro Iijima,,"Hiroshi Inuzuka, Akiji Kobayashi, Fusako Amachi",,0.0,,-1,,5.0,,-1.0,21.0,63.0,15.0,133.0,17.0,24.0
-Godzilla,1998,Godzilla (1998),,tt0120685,139,3728,2026-01-11 21:00:00,False,,PG-13,,"Action, Sci-Fi, Thriller",,Roland Emmerich,,"Matthew Broderick, Jean Reno, Maria Pitillo",,10.13,,32,,5.5,,276391866.06,117.0,3089.0,70.0,4343.0,1791.0,1761.0
-Death Race 2000,2000,Death Race 2000 (2000),,tt0072856,80,2310,2026-01-04 21:00:00,False,,R,,"Action, Comedy, Sci-Fi",,Paul Bartel,,"David Carradine, Sylvester Stallone, Simone Griffeth",,0.0,,58,,6.2,,-1.0,94.0,1672.0,61.0,1842.0,834.0,825.0
-The Super Inframan,1975,The Super Inframan (1975),,tt0073168,90,371,2025-12-28 22:33:00,True,,PG,,"Action, Sci-Fi",,Shan Hua,,"Danny Lee, Terry Liu, Hsieh Wang",,0.0,,-1,,6.3,,-1.0,39.0,298.0,25.0,353.0,98.0,105.0
-Time Walker,1982,Time Walker (1982),,tt0084796,83,2771,2025-12-28 21:00:00,False,,PG,,"Horror, Sci-Fi",,Tom Kennedy,,"Ben Murphy, Nina Axelrod, Kevin Brophy",,0.0,,-1,,3.7,,-1.0,98.0,2052.0,52.0,2644.0,976.0,986.0
-Evil of Dracula,1974,Evil of Dracula (1974),,tt0071308,83,208,2025-12-21 22:43:00,True,,NR,,"Drama, Horror",,Michio Yamamoto,,"Toshio Kurosawa, Kunie Tanaka, Katsuhiko Sasaki",,0.01,,-1,,6.3,,-1.0,33.0,142.0,22.0,405.0,222.0,75.0
-Tales from the Crypt,1972,Tales from the Crypt (1972),,tt0069341,93,2617,2025-12-21 21:00:00,False,,PG,,"Drama, Horror, Mystery",,Freddie Francis,,"Joan Collins, Peter Cushing, Ralph Richardson",,0.0,,-1,,6.8,,-1.0,100.0,2046.0,57.0,2559.0,1117.0,1010.0
-Lake of Dracula,1971,Lake of Dracula (1971),,tt0067503,82,287,2025-12-14 22:27:00,True,,NR,,Horror,,Michio Yamamoto,,"Chôei Takahashi, Sanae Emi, Midori Fujita",,0.01,,-1,,6.2,,-1.0,24.0,187.0,18.0,252.0,54.0,85.0
-The She-Creature,1956,The She-Creature (1956),,tt0050957,77,2274,2025-12-14 21:00:00,False,,Approved,,"Crime, Fantasy, Horror",,Edward L. Cahn,,"Chester Morris, Tom Conway, Cathy Downs",,0.0,,-1,,3.8,,-1.0,87.0,1754.0,50.0,2171.0,739.0,825.0
-The Vampire Doll,1970,The Vampire Doll (1970),,tt0066600,71,241,2025-12-07 22:29:00,True,,NR,,Horror,,Michio Yamamoto,,"Kayo Matsuo, Akira Nakao, Yukiko Kobayashi",,0.01,,-1,,6.6,,-1.0,40.0,198.0,25.0,430.0,75.0,87.0
-Attack of the Puppet People,1958,Attack of the Puppet People (1958),,tt0051381,79,2193,2025-12-07 21:00:00,False,,Approved,,"Sci-Fi, Horror",,Bert I. Gordon,,"John Agar, John Hoyt, June Kenney",,0.01,,-1,,5.2,,-1.0,91.0,1669.0,53.0,2631.0,487.0,786.0
-The Monster X Strikes Back: Attack the G8 Summit,2008,The Monster X Strikes Back: Attack the G8 Summit (2008),,tt1190867,98,437,2025-11-30 22:49:00,True,,NR,,"Comedy, Sci-Fi",,Minoru Kawasaki,,"Natsuki Katô, Kazuki Katô, Hide Fukumoto",,0.0,,-1,,5.2,,-1.0,25.0,236.0,18.0,303.0,100.0,84.0
-The Asphyx,1972,The Asphyx (1972),,tt0069738,99,2546,2025-11-30 21:00:00,False,,PG,,"Fantasy, Horror, Sci-Fi",,Peter Newbrook,,"Robert Powell, Robert Stephens, Jane Lapotaire",,0.0,,-1,,6.2,,-1.0,95.0,2077.0,58.0,2829.0,877.0,1101.0
-The X from Outer Space,1967,The X from Outer Space (1967),,tt0062411,89,472,2025-11-23 22:21:00,True,,PG,,"Horror, Sci-Fi",,Kazui Nihonmatsu,,"Shun'ya Wazaki, Itoko Harada, Shin'ichi Yanagisawa",,0.0,,-1,,4.8,,-1.0,43.0,382.0,28.0,606.0,168.0,141.0
-Space Master X-7,1958,Space Master X-7 (1958),,tt0052228,71,2415,2025-11-23 21:00:00,False,,Approved,,"Horror, Sci-Fi, Thriller",,Edward Bernds,,"Bill Williams, Lyn Thomas, Robert Ellis",,0.0,,-1,,5.2,,-1.0,96.0,1857.0,52.0,2889.0,1040.0,807.0
-Alligator 2: The Mutation,1991,Alligator 2: The Mutation (1991),,tt0101309,92,333,2025-11-16 22:41:00,True,,PG-13,,"Horror, Sci-Fi",,Jon Hess,,"Joseph Bologna, Dee Wallace, Richard Lynch",,0.0,,-1,,4.0,,-1.0,23.0,295.0,16.0,360.0,85.0,104.0
-Alligator,1980,Alligator (1980),,tt0080354,91,2958,2025-11-16 21:00:00,False,,R,,"Horror, Sci-Fi, Thriller",,Lewis Teague,,"Robert Forster, Robin Riker, Michael V. Gazzo",,0.03,,62,,6.1,,-1.0,97.0,2309.0,54.0,3346.0,630.0,1139.0
-Pumpkinhead II: Blood Wings,1995,Pumpkinhead II: Blood Wings (1995),,tt0110913,88,301,2025-11-09 22:30:00,True,,R,,"Fantasy, Horror, Thriller",,Jeff Burr,,"Andrew Robinson, Ami Dolenz, Soleil Moon Frye",,0.0,,-1,,4.7,,-1.0,31.0,228.0,22.0,197.0,77.0,98.0
-Vampires on Bikini Beach,1988,Vampires on Bikini Beach (1988),,tt0177329,80,3059,2025-11-09 21:00:00,False,,NR,,Horror,,Mark Headley,,"Jennifer Badham, Todd Kaufman, Stephen Mathews, Nancy Rogers",,0.0,,-1,,2.0,,-1.0,95.0,2441.0,57.0,2868.0,1006.0,1237.0
-Fright Night Part 2,1988,Fright Night Part 2 (1988),,tt0097390,104,390,2025-11-02 22:36:00,True,,R,,"Comedy, Horror, Thriller",,Tommy Lee Wallace,,"William Ragsdale, Roddy McDowall, Traci Lind",,0.02,,-1,,6.0,,8335930.79,27.0,295.0,16.0,358.0,70.0,128.0
-Critters 3,1991,Critters 3 (1991),,tt0101627,86,2421,2025-11-02 21:00:00,False,,PG-13,,"Comedy, Horror, Sci-Fi",,Kristine Peterson,,"John Calvin, Aimee Brooks, Christian Cousins",,0.01,,-1,,4.5,,-1.0,89.0,1891.0,52.0,2041.0,866.0,1038.0
-Legend of the Eight Samurai,1983,Legend of the Eight Samurai (1983),,tt0086244,133,337,2025-10-26 22:41:00,True,,NR,,"Action, Adventure, Drama",,Kinji Fukasaku,,"Hiroko Yakushimaru, Hiroyuki Sanada, Shin'ichi Chiba",,0.04,,-1,,6.4,,-1.0,23.0,266.0,15.0,372.0,55.0,99.0
-The Howling,1981,The Howling (1981),,tt0082533,91,2535,2025-10-26 21:00:00,False,,R,,Horror,,Joe Dante,,"Dee Wallace, Patrick Macnee, Dennis Dugan",,2.03,,68,,6.5,,65394253.43,92.0,1910.0,58.0,2247.0,599.0,1019.0
-Magic Crystal,1986,Magic Crystal (1986),,tt0091532,94,231,2025-10-19 22:36:00,True,,NR,,"Action, Adventure, Comedy",,Jing Wong,,"Andy Lau, Cynthia Rothrock, Pak-Cheung Chan",,0.0,,-1,,6.2,,-1.0,25.0,251.0,18.0,299.0,82.0,75.0
-Pumpkinhead,1988,Pumpkinhead (1988),,tt0095925,86,2047,2025-10-19 21:00:00,False,,R,,"Fantasy, Horror",,Stan Winston,,"Lance Henriksen, Jeff East, John D'Aquino",,0.03,,47,,6.2,,12252012.16,91.0,1543.0,48.0,1551.0,506.0,765.0
-Mr. Vampire,1985,Mr. Vampire (1985),,tt0089371,96,298,2025-10-12 22:46:00,True,,PG-13,,"Action, Comedy, Fantasy",,Ricky Lau,,"Ching-Ying Lam, Siu-Ho Chin, Ricky Hui",,1.11,,-1,,7.3,,-1.0,24.0,189.0,17.0,296.0,55.0,61.0
-The Hunger,1983,The Hunger (1983),,tt0085701,96,2232,2025-10-12 21:00:00,False,,R,,"Drama, Horror",,Tony Scott,,"Catherine Deneuve, David Bowie, Susan Sarandon",,0.03,,52,,6.6,,19840923.76,101.0,1576.0,59.0,3460.0,954.0,849.0
-Thrilling Bloody Sword,1981,Thrilling Bloody Sword (1981),,tt0122286,89,222,2025-10-05 22:57:00,True,,NR,,"Action, Fantasy, Adventure",,Hsin-Yi Chang,,"Pu-Liao Hsu, Hui-Shan Yang, Ling-Ling Hsia",,0.0,,-1,,6.7,,-1.0,17.0,158.0,15.0,174.0,48.0,81.0
-Fright Night,1985,Fright Night (1985),,tt0089175,107,3018,2025-10-05 21:00:00,False,,R,,Horror,,Tom Holland,,"Chris Sarandon, William Ragsdale, Amanda Bearse",,5.05,,62,,7.1,,76550179.63,99.0,2360.0,60.0,2882.0,1155.0,1246.0
-Food of the Gods II,1989,Food of the Gods II (1989),,tt0097371,91,232,2025-09-28 22:38:00,True,,R,,"Sci-Fi, Horror",,Damian Lee,,"Paul Coufos, Lisa Schrage, Réal Andrews",,0.0,,-1,,4.1,,-1.0,24.0,186.0,19.0,203.0,42.0,21.0
-The Food of the Gods,1976,The Food of the Gods (1976),,tt0074540,88,2662,2025-09-28 21:00:00,False,,PG,,"Adventure, Horror, Sci-Fi",,Bert I. Gordon,,"Marjoe Gortner, Pamela Franklin, Ralph Meeker",,0.02,,20,,4.6,,-1.0,96.0,2036.0,55.0,2931.0,491.0,962.0
-The Angry Red Planet,1959,The Angry Red Planet (1959),,tt0052564,83,2798,2025-09-21 21:00:00,False,,Approved,,"Adventure, Horror, Sci-Fi",,Ib Melchior,,"Gerald Mohr, Nora Hayden, Les Tremayne",,0.0,,-1,,5.3,,-1.0,92.0,2159.0,53.0,3060.0,778.0,1065.0
-Revenge of the Creature,1955,Revenge of the Creature (1955),,tt0048554,82,346,2025-09-14 22:29:00,True,,Approved,,"Horror, Sci-Fi",,Jack Arnold,,"John Agar, Lori Nelson, John Bromfield",,0.0,,-1,,5.6,,13565298.51,36.0,260.0,24.0,491.0,135.0,107.0
-Creature from the Black Lagoon,1954,Creature from the Black Lagoon (1954),,tt0046876,79,2725,2025-09-14 21:00:00,False,,G,,"Horror, Sci-Fi",,Jack Arnold,,"Richard Carlson, Julie Adams, Richard Denning",,2.02,,68,,6.9,,-1.0,112.0,2139.0,63.0,2929.0,1127.0,1018.0
-Space Freaks from Planet Mutoid,1995,Space Freaks from Planet Mutoid (1995),,tt0131593,84,343,2025-09-07 22:20:00,True,,NR,,Sci-Fi,,Dionysius Zervos,,"Tamela Glenn, Gregory Harvey, Harry Sando",,0.0,,-1,,3.1,,-1.0,35.0,259.0,27.0,328.0,131.0,123.0
-The Man from Planet X,1951,The Man from Planet X (1951),,tt0043778,70,2442,2025-09-07 21:00:00,False,,Approved,,"Horror, Romance, Sci-Fi",,Edgar G. Ulmer,,"Robert Clarke, Margaret Field, Raymond Bond",,0.0,,-1,,5.7,,-1.0,107.0,1959.0,62.0,2466.0,740.0,886.0
-Grizzly II: Revenge,2020,Grizzly II: Revenge (2020),,tt0093119,74,467,2025-08-31 22:41:00,True,,NR,,"Horror, Music, Thriller",,André Szöts,,"George Clooney, Laura Dern, Charlie Sheen",,0.0,,7,,2.7,,-1.0,41.0,296.0,26.0,378.0,171.0,93.0
-Grizzly,1976,Grizzly (1976),,tt0074593,91,3111,2025-08-31 21:00:00,False,,PG,,"Adventure, Horror, Thriller",,William Girdler,,"Christopher George, Andrew Prine, Richard Jaeckel",,0.0,,25,,5.2,,-1.0,107.0,2489.0,63.0,3816.0,1311.0,1236.0
-The Return of Swamp Thing,1989,The Return of Swamp Thing (1989),,tt0098193,84,280,2025-08-24 22:43:00,True,,PG-13,,"Action, Adventure, Comedy",,Jim Wynorski,,"Dick Durock, Heather Locklear, Louis Jourdan",,1.0,,39,,4.7,,513916.84,27.0,231.0,19.0,170.0,79.0,80.0
-Swamp Thing,1982,Swamp Thing (1982),,tt0084745,93,2950,2025-08-24 21:00:00,False,,PG,,"Horror, Sci-Fi",,Wes Craven,,"Louis Jourdan, Adrienne Barbeau, Ray Wise",,0.01,,50,,5.3,,-1.0,112.0,2236.0,67.0,2860.0,838.0,1096.0
-Little Shop of Horrors,1986,Little Shop of Horrors (1986),,tt0091419,94,388,2025-08-17 22:22:00,True,,PG-13,,"Comedy, Horror, Musical",,Frank Oz,,"Rick Moranis, Ellen Greene, Vincent Gardenia",,2.14,,81,,7.1,,117701426.37,36.0,204.0,25.0,242.0,79.0,64.0
-The Little Shop of Horrors,1960,The Little Shop of Horrors (1960),,tt0054033,72,1744,2025-08-17 21:00:00,False,,NR,,"Comedy, Horror",,Roger Corman,,"Jonathan Haze, Jackie Joseph, Mel Welles",,0.0,,-1,,6.2,,-1.0,81.0,1245.0,53.0,1877.0,528.0,667.0
-"Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack",2001,"Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack (2001)",,tt0279112,105,2563,2025-08-10 21:00:00,False,,NR,,"Action, Adventure, Drama",,Shûsuke Kaneko,,"Chiharu Niiyama, Ryûdô Uzaki, Masahiro Kobayashi",,0.01,,-1,,7.0,,-1.0,100.0,2049.0,63.0,2587.0,808.0,953.0
-The Raven,1963,The Raven (1963),,tt0057449,86,2762,2025-08-03 21:00:00,False,,G,,"Comedy, Drama, Fantasy",,Roger Corman,,"Vincent Price, Peter Lorre, Boris Karloff",,1.0,,-1,,6.5,,-1.0,125.0,2210.0,72.0,2735.0,942.0,1110.0
-Vampire Circus,1972,Vampire Circus (1972),,tt0067924,87,2496,2025-07-27 21:00:00,False,,PG,,Horror,,Robert Young,,"Adrienne Corri, Thorley Walters, Anthony Higgins",,0.0,,-1,,6.3,,-1.0,97.0,1950.0,53.0,2625.0,795.0,988.0
-Trucks,1997,Trucks (1997),,tt0120380,99,211,2025-07-20 22:47:00,True,,R,,"Drama, Horror, Sci-Fi",,Chris Thomson,,"Timothy Busfield, Brenda Bakke, Aidan Devine",,0.0,,-1,,3.9,,-1.0,36.0,142.0,27.0,154.0,46.0,59.0
-Maximum Overdrive,1986,Maximum Overdrive (1986),,tt0091499,97,2814,2025-07-20 21:00:00,False,,R,,"Action, Comedy, Horror",,Stephen King,,"Emilio Estevez, Pat Hingle, Laura Harrington",,0.04,,24,,5.4,,22416292.17,105.0,2098.0,65.0,2902.0,860.0,1132.0
-X: The Man with the X-Ray Eyes,1963,X: The Man with the X-Ray Eyes (1963),,tt0057693,79,2071,2025-07-13 21:00:00,False,,Approved,,"Horror, Sci-Fi, Thriller",,Roger Corman,,"Ray Milland, Diana Van der Vlis, Harold J. Stone",,0.02,,-1,,6.6,,-1.0,94.0,1731.0,55.0,1913.0,959.0,886.0
-Frankenstein Meets the Space Monster,1965,Frankenstein Meets the Space Monster (1965),,tt0059199,79,2759,2025-07-06 21:00:00,False,,UR,,"Horror, Sci-Fi",,Robert Gaffney,,"Marilyn Hanold, James Karen, Lou Cutell",,0.0,,-1,,3.8,,-1.0,104.0,2202.0,61.0,2857.0,847.0,1113.0
-Clash of the Titans,1981,Clash of the Titans (1981),,tt0082186,118,3444,2025-06-29 21:00:00,False,,PG,,"Action, Adventure, Fantasy",,Desmond Davis,,"Laurence Olivier, Harry Hamlin, Claire Bloom",,2.06,,59,,6.9,,149406099.05,113.0,2614.0,63.0,3738.0,1200.0,1448.0
-Starcrash,1978,Starcrash (1978),,tt0079946,94,3556,2025-06-22 21:00:00,False,,PG,,"Action, Adventure, Sci-Fi",,Luigi Cozzi,,"Marjoe Gortner, Caroline Munro, Christopher Plummer",,0.01,,-1,,4.0,,-1.0,105.0,2802.0,60.0,4344.0,1133.0,1379.0
-Bog,1979,Bog (1979),,tt0077254,86,2969,2025-06-15 21:00:00,False,,PG,,Horror,,Don Keeslar,,"Gloria DeHaven, Aldo Ray, Marshall Thompson",,0.0,,-1,,3.2,,-1.0,100.0,2387.0,62.0,3728.0,931.0,1311.0
-"Dracula, Prisoner of Frankenstein",1972,"Dracula, Prisoner of Frankenstein (1972)",,tt0065660,88,2874,2025-06-08 21:00:00,False,,NR,,Horror,,Jesús Franco,,"Dennis Price, Howard Vernon, Paca Gabaldón",,0.0,,-1,,4.1,,-1.0,103.0,2246.0,64.0,3063.0,794.0,1229.0
-Godzilla: Final Wars,2004,Godzilla: Final Wars (2004),,tt0399102,125,3472,2025-06-01 21:00:00,False,,PG-13,,"Action, Adventure, Fantasy",,"Ryûhei Kitamura, Kôji Hashimoto, Shûsuke Kaneko",,"Masahiro Matsuoka, Rei Kikukawa, Don Frye",,0.03,,-1,,6.3,,-1.0,100.0,2748.0,62.0,4612.0,1135.0,1302.0
-Forbidden Planet,1956,Forbidden Planet (1956),,tt0049223,98,2608,2025-05-25 21:00:00,False,,G,,"Adventure, Sci-Fi",,Fred M. Wilcox,,"Walter Pidgeon, Anne Francis, Leslie Nielsen",,2.03,,80,,7.5,,-1.0,116.0,2113.0,65.0,4539.0,899.0,1119.0
-Beyond Atlantis,1973,Beyond Atlantis (1973),,tt0069783,91,2305,2025-05-18 21:00:00,False,,PG,,"Action, Adventure, Fantasy",,Eddie Romero,,"Patrick Wayne, John Ashley, Leigh Christian",,0.0,,-1,,4.0,,-1.0,86.0,1821.0,50.0,2104.0,708.0,824.0
-Slugs,1988,Slugs (1988),,tt0093995,89,2526,2025-05-11 21:00:00,False,,R,,Horror,,Juan Piquer Simón,,"Michael Garfield Levine, Kim Terry, Philip MacHale",,1.01,,-1,,5.3,,-1.0,86.0,2000.0,56.0,3317.0,804.0,947.0
-The Gate,1987,The Gate (1987),,tt0093075,86,2434,2025-05-04 21:00:00,False,,PG-13,,"Fantasy, Horror",,Tibor Takács,,"Stephen Dorff, Christa Denton, Louis Tripp",,2.02,,55,,6.0,,39390764.69,93.0,1934.0,55.0,2143.0,589.0,842.0
-The Bat People,1974,The Bat People (1974),,tt0071198,95,2828,2025-04-27 21:00:00,False,,PG,,"Horror, Romance",,Jerry Jameson,,"Stewart Moss, Marianne McAndrew, Michael Pataki",,0.0,,-1,,2.8,,-1.0,98.0,2228.0,57.0,1625.0,831.0,1149.0
-First Men in the Moon,1964,First Men in the Moon (1964),,tt0058100,103,2648,2025-04-20 21:00:00,False,,Approved,,"Adventure, Sci-Fi",,Nathan Juran,,"Edward Judd, Martha Hyer, Lionel Jeffries",,0.0,,-1,,6.5,,17591129.03,86.0,2095.0,54.0,1713.0,885.0,1034.0
-Krull,1983,Krull (1983),,tt0085811,121,3947,2025-04-13 21:00:00,False,,PG,,"Action, Adventure, Fantasy",,Peter Yates,,"Ken Marshall, Lysette Anthony, Freddie Jones",,1.05,,45,,6.1,,56133955.01,105.0,2904.0,61.0,3053.0,1533.0,1291.0
-Laserblast,1978,Laserblast (1978),,tt0077834,83,2719,2025-04-06 21:00:00,False,,PG,,"Horror, Sci-Fi",,Michael Rae,,"Kim Milford, Cheryl Smith, Gianni Russo",,0.01,,-1,,2.8,,-1.0,98.0,2042.0,62.0,1779.0,776.0,955.0
-Cat Girl,1957,Cat Girl (1957),,tt0050235,76,2213,2025-03-30 21:00:00,False,,UR,,Horror,,Alfred Shaughnessy,,"Barbara Shelley, Robert Ayres, Kay Callard",,0.0,,-1,,5.5,,-1.0,96.0,1701.0,55.0,1928.0,714.0,687.0
-Critters 2,1988,Critters 2 (1988),,tt0094919,86,2196,2025-03-23 21:00:00,False,,PG-13,,"Comedy, Horror, Sci-Fi",,Mick Garris,,"Scott Grimes, Liane Curtis, Terrence Mann",,1.03,,48,,5.6,,10653367.17,88.0,1685.0,56.0,1355.0,713.0,881.0
-Yeti: The Giant of the 20th Century,1977,Yeti: The Giant of the 20th Century (1977),,tt0076937,101,3524,2025-03-16 21:00:00,False,,NR,,"Adventure, Crime, Fantasy",,Gianfranco Parolini,,"Antonella Interlenghi, Mimmo Crao, Jim Sullivan",,0.0,,-1,,4.1,,-1.0,100.0,2651.0,57.0,2610.0,992.0,1164.0
-Critters,1986,Critters (1986),,tt0090887,86,2272,2025-03-09 21:00:00,False,,PG-13,,"Comedy, Horror, Sci-Fi",,Stephen Herek,,"Dee Wallace, M. Emmet Walsh, Billy Green Bush",,0.03,,52,,6.1,,39705932.26,88.0,1679.0,56.0,1127.0,627.0,869.0
-C.H.U.D.,1984,C.H.U.D. (1984),,tt0087015,97,2369,2025-03-02 21:00:00,False,,R,,"Horror, Sci-Fi",,Douglas Cheek,,"John Heard, Daniel Stern, Christopher Curry",,1.01,,57,,5.6,,14805455.26,93.0,1804.0,56.0,2156.0,702.0,892.0
-Frogs!,1991,Frogs! (1991),,tt0315609,100,397,2025-02-23 22:40:00,True,,PG,,"Comedy, Fantasy",,David Grossman,,"Shelley Duvall, Elliott Gould, Scott Grimes",,0.0,,-1,,4.6,,-1.0,39.0,314.0,26.0,182.0,114.0,109.0
-Frogs,1972,Frogs (1972),,tt0068615,90,3719,2025-02-23 21:00:00,False,,PG,,"Horror, Mystery, Sci-Fi",,George McCowan,,"Ray Milland, Sam Elliott, Joan Van Ark",,0.01,,51,,4.4,,3757777.09,117.0,2697.0,69.0,2200.0,987.0,1128.0
-The Gorgon,1964,The Gorgon (1964),,tt0058155,83,2519,2025-02-16 21:00:00,False,,Approved,,Horror,,Terence Fisher,,"Christopher Lee, Peter Cushing, Richard Pasco",,0.0,,-1,,6.4,,-1.0,101.0,1896.0,58.0,2648.0,1001.0,835.0
-Masters of the Universe,1987,Masters of the Universe (1987),,tt0093507,106,3044,2025-02-09 21:00:00,False,,PG,,"Action, Adventure, Fantasy",,Gary Goddard,,"Dolph Lundgren, Frank Langella, Meg Foster",,2.05,,35,,5.4,,50437238.42,106.0,2262.0,64.0,2685.0,762.0,985.0
-Invasion of the Star Creatures,1962,Invasion of the Star Creatures (1962),,tt0128274,70,2093,2025-02-02 21:00:00,False,,Approved,,"Comedy, Sci-Fi",,Bruno VeSota,,"Robert Ball, Frank Ray Perilli, Gloria Victor",,0.0,,-1,,3.1,,-1.0,93.0,1532.0,52.0,1892.0,798.0,638.0
-Piranha,1978,Piranha (1978),,tt0078087,94,2955,2025-01-26 21:00:00,False,,R,,"Comedy, Horror, Sci-Fi",,Joe Dante,,"Bradford Dillman, Heather Menzies-Urich, Kevin McCarthy",,1.01,,71,,5.9,,-1.0,96.0,2123.0,58.0,2358.0,880.0,963.0
-Invasion of the Bee Girls,1973,Invasion of the Bee Girls (1973),,tt0070222,85,2893,2025-01-19 21:00:00,False,,R,,"Horror, Sci-Fi",,Denis Sanders,,"William Smith, Anitra Ford, Victoria Vetri",,0.0,,-1,,4.9,,-1.0,101.0,2070.0,66.0,1411.0,982.0,959.0
-Battle Beyond the Stars,1980,Battle Beyond the Stars (1980),,tt0080421,104,3183,2025-01-12 21:00:00,False,,PG,,"Action, Adventure, Sci-Fi",,"Jimmy T. Murakami, Roger Corman",,"George Peppard, Robert Vaughn, Richard Thomas",,1.04,,59,,5.5,,-1.0,113.0,2293.0,67.0,2066.0,1403.0,1142.0
-Devil Girl from Mars,1954,Devil Girl from Mars (1954),,tt0046907,77,2389,2025-01-05 21:00:00,False,,Approved,,"Horror, Sci-Fi",,David MacDonald,,"Hugh McDermott, Hazel Court, Peter Reynolds",,0.0,,-1,,4.9,,-1.0,77.0,1649.0,48.0,1691.0,593.0,829.0
-The Stepford Wives,1975,The Stepford Wives (1975),,tt0073747,117,2041,2024-12-29 21:00:00,False,,PG,,"Horror, Mystery, Sci-Fi",,Bryan Forbes,,"Katharine Ross, Paula Prentiss, Peter Masterson",,1.01,,54,,6.9,,53568029.74,79.0,1480.0,48.0,1853.0,721.0,802.0
-Snowbeast,1977,Snowbeast (1977),,tt0076731,86,2906,2024-12-22 21:00:00,False,,UR,,Horror,,Herb Wallerstein,,"Bo Svenson, Yvette Mimieux, Robert Logan",,0.0,,-1,,4.6,,-1.0,97.0,2121.0,55.0,2082.0,844.0,1030.0
-The Giant Spider Invasion,1975,The Giant Spider Invasion (1975),,tt0073043,79,2679,2024-12-15 21:00:00,False,,PG,,"Horror, Sci-Fi",,Bill Rebane,,"Steve Brodie, Barbara Hale, Robert Easton",,0.0,,-1,,3.3,,1800260.53,86.0,1838.0,54.0,1466.0,701.0,864.0
-The Curse of the Aztec Mummy,1957,The Curse of the Aztec Mummy (1957),,tt0050672,63,425,2024-12-08 22:15:00,True,,TV-14,,Horror,,Rafael Portillo,,"Ramón Gay, Rosita Arenas, Crox Alvarado",,0.0,,-1,,3.9,,-1.0,36.0,292.0,27.0,433.0,195.0,104.0
-The Robot vs. The Aztec Mummy,1958,The Robot vs. The Aztec Mummy (1958),,tt0050717,65,2434,2024-12-08 21:00:00,False,,Approved,,"Horror, Sci-Fi",,Rafael Portillo,,"Ramón Gay, Rosita Arenas, Crox Alvarado",,0.0,,-1,,2.4,,-1.0,80.0,1522.0,52.0,1195.0,551.0,664.0
-The Phantom Planet,1961,The Phantom Planet (1961),,tt0055294,82,2340,2024-12-01 21:00:00,False,,UR,,"Action, Adventure, Sci-Fi",,William Marshall,,"Dean Fredericks, Coleen Gray, Anthony Dexter",,0.0,,-1,,3.9,,-1.0,78.0,1658.0,50.0,1659.0,671.0,689.0
-Missile to the Moon,1958,Missile to the Moon (1958),,tt0053072,78,468,2024-11-24 22:14:00,True,,Approved,,"Drama, Sci-Fi",,Richard E. Cunha,,"Richard Travis, Cathy Downs, K.T. Stevens",,0.0,,-1,,4.1,,-1.0,32.0,354.0,25.0,269.0,149.0,201.0
-Cat-Women of the Moon,1953,Cat-Women of the Moon (1953),,tt0045609,64,2435,2024-11-24 21:00:00,False,,Approved,,"Adventure, Sci-Fi",,Arthur Hilton,,"Sonny Tufts, Victor Jory, Marie Windsor",,0.0,,-1,,3.9,,-1.0,88.0,1424.0,54.0,1401.0,666.0,606.0
-The Wrestling Women vs. the Aztec Mummy,1964,The Wrestling Women vs. the Aztec Mummy (1964),,tt0058304,89,2577,2024-11-17 21:00:00,False,,NR,,"Adventure, Horror, Sci-Fi",,René Cardona,,"Lorena Velázquez, Armando Silvestre, Elizabeth Campbell",,0.0,,-1,,4.2,,-1.0,86.0,1611.0,53.0,1412.0,814.0,820.0
-The Monolith Monsters,1957,The Monolith Monsters (1957),,tt0050720,77,2218,2024-11-10 21:00:00,False,,Approved,,"Drama, Horror, Sci-Fi",,John Sherwood,,"Grant Williams, Lola Albright, Les Tremayne",,0.0,,-1,,6.4,,-1.0,83.0,1502.0,54.0,1904.0,1053.0,684.0
-THEM!,1954,THEM! (1954),,tt0047573,94,1992,2024-11-03 21:00:00,False,,Approved,,"Horror, Sci-Fi",,Gordon Douglas,,"James Whitmore, Edmund Gwenn, Joan Weldon",,1.03,,74,,7.2,,-1.0,82.0,1360.0,54.0,1474.0,847.0,632.0
-Scream Blacula Scream,1973,Scream Blacula Scream (1973),,tt0070656,96,1940,2024-10-27 21:00:00,False,,PG,,"Fantasy, Horror",,Bob Kelljan,,"William Marshall, Don Mitchell, Pam Grier",,0.01,,40,,5.6,,16227252.25,75.0,1278.0,55.0,933.0,841.0,625.0
-Dracula,1974,Dracula (1974),,tt0070003,98,2143,2024-10-20 21:00:00,False,,TV-14,,"Drama, Horror",,Dan Curtis,,"Jack Palance, Simon Ward, Nigel Davenport",,0.0,,-1,,6.2,,-1.0,75.0,1418.0,54.0,1241.0,688.0,622.0
-Nosferatu the Vampyre,1979,Nosferatu the Vampyre (1979),,tt0079641,107,2524,2024-10-13 21:00:00,False,,PG,,"Drama, Horror",,Werner Herzog,,"Klaus Kinski, Isabelle Adjani, Bruno Ganz",,5.08,,79,,7.4,,-1.0,81.0,1792.0,55.0,1717.0,959.0,937.0
-Count Dracula,1970,Count Dracula (1970),,tt0065569,98,2291,2024-10-06 21:00:00,False,,PG,,"Drama, Horror",,Jesús Franco,,"Christopher Lee, Herbert Lom, Klaus Kinski",,0.0,,-1,,5.6,,-1.0,78.0,1425.0,54.0,1186.0,969.0,769.0
-Invaders from Mars,1986,Invaders from Mars (1986),,tt0091276,100,2352,2024-09-29 21:00:00,False,,PG,,"Horror, Sci-Fi",,Tobe Hooper,,"Karen Black, Hunter Carson, Timothy Bottoms",,0.02,,56,,5.5,,14729754.76,68.0,1501.0,46.0,1356.0,685.0,738.0
-Mysterious Island,1961,Mysterious Island (1961),,tt0055207,101,2446,2024-09-22 21:00:00,False,,Approved,,"Adventure, Family, Fantasy",,Cy Endfield,,"Michael Craig, Joan Greenwood, Michael Callan",,0.0,,-1,,6.7,,-1.0,83.0,1598.0,57.0,824.0,705.0,710.0
-Night of the Comet,1984,Night of the Comet (1984),,tt0087799,95,2193,2024-09-15 21:00:00,False,,PG-13,,"Comedy, Horror, Sci-Fi",,Thom Eberhardt,,"Catherine Mary Stewart, Kelli Maroney, Robert Beltran",,0.01,,59,,6.3,,45865772.1,79.0,1475.0,58.0,1082.0,499.0,794.0
-Godzilla vs. Megalon,1973,Godzilla vs. Megalon (1973),,tt0070122,82,2199,2024-09-08 21:00:00,False,,G,,"Action, Adventure, Family",,"Jun Fukuda, Yoshimitsu Banno, Ishirô Honda",,"Katsuhiko Sasaki, Hiroyuki Kawase, Yutaka Hayashi",,0.0,,-1,,4.8,,-1.0,67.0,1529.0,41.0,1261.0,745.0,672.0
-Invasion of the Body Snatchers,1978,Invasion of the Body Snatchers (1978),,tt0077745,116,2251,2024-09-01 21:00:00,False,,PG,,"Horror, Sci-Fi",,Philip Kaufman,,"Donald Sutherland, Brooke Adams, Jeff Goldblum",,3.11,,75,,7.4,,126454434.92,81.0,1594.0,52.0,1240.0,681.0,734.0
-Twins of Evil,1971,Twins of Evil (1971),,tt0069427,87,2044,2024-08-25 21:00:00,False,,R,,Horror,,John Hough,,"Peter Cushing, Dennis Price, Mary Collinson",,0.0,,62,,6.6,,-1.0,79.0,1511.0,57.0,1280.0,777.0,670.0
-Tentacles,1977,Tentacles (1977),,tt0076809,102,2671,2024-08-18 21:00:00,False,,PG,,"Action, Adventure, Comedy",,Ovidio G. Assonitis,,"John Huston, Shelley Winters, Bo Hopkins",,0.0,,36,,3.8,,-1.0,86.0,1989.0,51.0,1575.0,1001.0,934.0
-The Wicker Man,1973,The Wicker Man (1973),,tt0070917,93,1688,2024-08-11 21:00:00,False,,R,,"Horror, Mystery, Thriller",,Robin Hardy,,"Edward Woodward, Christopher Lee, Diane Cilento",,3.06,,87,,7.5,,1108232.0,66.0,1207.0,45.0,1178.0,928.0,540.0
-Gamera: Guardian of the Universe,1995,Gamera: Guardian of the Universe (1995),,tt0113142,96,1984,2024-08-04 21:00:00,False,,NR,,"Action, Drama, Fantasy",,Shûsuke Kaneko,,"Tsuyoshi Ihara, Akira Onodera, Shinobu Nakayama",,6.01,,-1,,6.7,,-1.0,74.0,1544.0,54.0,1070.0,857.0,705.0
-The Last Man on Earth,1964,The Last Man on Earth (1964),,tt0058700,86,1623,2024-07-28 21:00:00,False,,Approved,,"Drama, Horror, Sci-Fi",,"Ubaldo Ragona, Sidney Salkow",,"Vincent Price, Franca Bettoia, Emma Danieli",,0.01,,-1,,6.7,,-1.0,79.0,1210.0,58.0,1345.0,818.0,513.0
-Chopping Mall,1986,Chopping Mall (1986),,tt0090837,77,2157,2024-07-21 21:00:00,False,,R,,"Horror, Sci-Fi",,Jim Wynorski,,"Kelli Maroney, Tony O'Dell, Russell Todd",,0.0,,22,,5.6,,-1.0,74.0,1635.0,52.0,1211.0,858.0,723.0
-Terror of Mechagodzilla,1975,Terror of Mechagodzilla (1975),,tt0073373,83,1993,2024-07-14 21:00:00,False,,G,,"Action, Adventure, Family",,"Ishirô Honda, Jun Fukuda",,"Katsuhiko Sasaki, Tomoko Ai, Akihiko Hirata",,0.01,,-1,,6.1,,-1.0,76.0,1596.0,51.0,1833.0,683.0,622.0
-Gargoyles,1972,Gargoyles (1972),,tt0068622,74,1835,2024-07-07 21:00:00,False,,NR,,Horror,,Bill Norton,,"Cornel Wilde, Jennifer Salt, Grayson Hall",,1.01,,-1,,5.9,,-1.0,70.0,1391.0,49.0,1478.0,620.0,610.0
-Invaders from Mars,1953,Invaders from Mars (1953),,tt0045917,78,1820,2024-06-30 21:00:00,False,,Approved,,"Horror, Sci-Fi",,William Cameron Menzies,,"Helena Carter, Arthur Franz, Jimmy Hunt",,3.01,,-1,,6.3,,-1.0,65.0,1377.0,43.0,1047.0,745.0,547.0
-Horror Express,1972,Horror Express (1972),,tt0068713,87,1700,2024-06-23 21:00:00,False,,R,,"Adventure, Horror, Sci-Fi",,Eugenio Martín,,"Christopher Lee, Peter Cushing, Alberto de Mendoza",,1.01,,68,,6.5,,-1.0,67.0,1319.0,44.0,1069.0,795.0,647.0
-Q,1982,Q (1982),,tt0084556,93,1628,2024-06-16 21:00:00,False,,R,,"Crime, Fantasy, Mystery",,Larry Cohen,,"David Carradine, Michael Moriarty, Candy Clark",,0.0,,-1,,6.0,,-1.0,66.0,1235.0,42.0,1037.0,484.0,522.0
-Creature with the Atom Brain,1955,Creature with the Atom Brain (1955),,tt0047960,69,1308,2024-06-09 21:00:00,False,,Approved,,"Crime, Horror, Sci-Fi",,Edward L. Cahn,,"Richard Denning, Angela Stevens, S. John Launer",,0.0,,-1,,5.5,,-1.0,65.0,1020.0,42.0,862.0,398.0,437.0
-Stranger from Venus,1954,Stranger from Venus (1954),,tt0047529,75,1349,2024-06-02 21:00:00,False,,NR,,Sci-Fi,,Burt Balaban,,"Patricia Neal, Helmut Dantine, Derek Bond",,0.0,,-1,,5.4,,-1.0,62.0,1030.0,41.0,892.0,517.0,436.0
-Son of Godzilla,1967,Son of Godzilla (1967),,tt0061856,86,1499,2024-05-26 21:00:00,False,,PG,,"Adventure, Comedy, Fantasy",,Jun Fukuda,,"Tadao Takashima, Akira Kubo, Bibari Maeda",,0.0,,-1,,5.2,,-1.0,57.0,1165.0,39.0,638.0,411.0,604.0
-The Pit and the Pendulum,1961,The Pit and the Pendulum (1961),,tt0055304,81,1330,2024-05-19 21:00:00,False,,Approved,,"Drama, Horror, Mystery",,Roger Corman,,"Vincent Price, Barbara Steele, John Kerr",,0.0,,78,,7.0,,-1.0,57.0,1025.0,36.0,787.0,349.0,486.0
-Journey to the Centre of the Earth,1977,Journey to the Centre of the Earth (1977),,tt0075389,90,1852,2024-05-12 21:00:00,False,,PG,,"Adventure, Family, Sci-Fi",,Juan Piquer Simón,,"Kenneth More, Pep Munné, Ivonne Sentis",,0.0,,-1,,4.8,,-1.0,66.0,1437.0,42.0,1282.0,650.0,705.0
-Kingdom of the Spiders,1977,Kingdom of the Spiders (1977),,tt0076271,97,1972,2024-05-05 21:00:00,False,,PG,,"Horror, Sci-Fi",,John 'Bud' Cardos,,"William Shatner, Tiffany Bolling, Woody Strode",,0.04,,-1,,5.7,,-1.0,77.0,1486.0,48.0,923.0,784.0,665.0
-Logan's Run,1976,Logan's Run (1976),,tt0074812,119,1949,2024-04-28 21:00:00,False,,PG,,"Action, Adventure, Sci-Fi",,Michael Anderson,,"Michael York, Jenny Agutter, Richard Jordan",,7.05,,53,,6.8,,-1.0,83.0,1550.0,51.0,1354.0,783.0,642.0
-The Shape of Things to Come,1979,The Shape of Things to Come (1979),,tt0079894,97,1901,2024-04-21 21:00:00,False,,PG,,"Adventure, Sci-Fi, Thriller",,George McCowan,,"Jack Palance, Carol Lynley, Barry Morse",,0.0,,-1,,3.2,,-1.0,71.0,1476.0,42.0,1223.0,553.0,609.0
-It Came from Outer Space,1953,It Came from Outer Space (1953),,tt0045920,81,1246,2024-04-14 21:00:00,False,,Approved,,"Horror, Sci-Fi",,Jack Arnold,,"Richard Carlson, Barbara Rush, Charles Drake",,1.04,,68,,6.5,,-1.0,55.0,957.0,34.0,962.0,450.0,342.0
-Project Moon Base,1953,Project Moon Base (1953),,tt0046213,63,1367,2024-04-07 21:00:00,False,,Approved,,Sci-Fi,,Richard Talmadge,,"Donna Martell, Hayden Rorke, Ross Ford",,0.0,,-1,,3.3,,-1.0,59.0,1028.0,39.0,710.0,397.0,365.0
-Blacula,1972,Blacula (1972),,tt0068284,93,1465,2024-03-31 21:00:00,False,,PG,,"Fantasy, Horror, Romance",,William Crain,,"William Marshall, Vonetta McGee, Denise Nicholas",,1.0,,-1,,5.7,,-1.0,50.0,522.0,32.0,292.0,248.0,242.0
-The Werewolf of Washington,1973,The Werewolf of Washington (1973),,tt0070908,90,1622,2024-03-24 21:00:00,False,,PG,,"Comedy, Horror",,Milton Moses Ginsberg,,"Dean Stockwell, Katalin Kallay, Henry Ferrentino",,0.0,,-1,,4.0,,-1.0,67.0,1292.0,42.0,1020.0,544.0,612.0
-Godmonster of Indian Flats,1973,Godmonster of Indian Flats (1973),,tt0070119,89,1857,2024-03-17 21:00:00,False,,NR,,"Drama, Horror, Western",,Fredric Hobbs,,"Christopher Brooks, Stuart Lancaster, E. Kerrigan Prescott",,0.0,,-1,,3.7,,-1.0,74.0,1485.0,45.0,845.0,515.0,591.0
-Beyond the Time Barrier,1960,Beyond the Time Barrier (1960),,tt0053651,75,1337,2024-03-10 21:00:00,False,,NR,,"Romance, Sci-Fi",,Edgar G. Ulmer,,"Robert Clarke, Darlene Tompkins, Arianne Ulmer",,0.0,,-1,,5.3,,-1.0,65.0,1127.0,44.0,582.0,343.0,478.0
-Godzilla,1954,Godzilla (1954),,tt0047034,96,1322,2024-03-03 21:00:00,False,,NR,,"Horror, Sci-Fi",,Ishirô Honda,,"Takashi Shimura, Akihiko Hirata, Akira Takarada",,4.02,,79,,7.6,,6913605.41,63.0,1116.0,40.0,1201.0,673.0,537.0
-Mothra vs. Godzilla,1964,Mothra vs. Godzilla (1964),,tt0058379,89,1177,2024-02-25 21:00:00,False,,NR,,"Adventure, Fantasy, Sci-Fi",,Ishirô Honda,,"Akira Takarada, Yuriko Hoshi, Hiroshi Koizumi",,0.01,,-1,,6.5,,-1.0,59.0,1036.0,39.0,1108.0,541.0,446.0
-Earth vs. the Flying Saucers,1956,Earth vs. the Flying Saucers (1956),,tt0049169,83,1383,2024-02-18 21:00:00,False,,Approved,,"Action, Horror, Sci-Fi",,Fred F. Sears,,"Hugh Marlowe, Joan Taylor, Donald Curtis",,1.0,,-1,,6.3,,-1.0,54.0,1060.0,37.0,945.0,399.0,433.0
-Matango,1963,Matango (1963),,tt0057295,88,1104,2024-02-11 21:00:00,False,,UR,,"Horror, Mystery, Sci-Fi",,Ishirô Honda,,"Akira Kubo, Kumi Mizuno, Hiroshi Koizumi",,0.0,,-1,,6.4,,-1.0,50.0,926.0,31.0,640.0,339.0,489.0
-Attack of the Crab Monsters,1957,Attack of the Crab Monsters (1957),,tt0050147,63,1194,2024-02-04 21:00:00,False,,Approved,,"Horror, Sci-Fi",,Roger Corman,,"Richard Garland, Pamela Duncan, Russell Johnson",,0.0,,-1,,4.9,,-1.0,53.0,976.0,31.0,887.0,385.0,408.0
-20 Million Miles to Earth,1957,20 Million Miles to Earth (1957),,tt0050084,82,1075,2024-01-28 21:00:00,False,,Approved,,"Adventure, Family, Fantasy",,Nathan Juran,,"William Hopper, Joan Taylor, Thomas Browne Henry",,0.0,,-1,,6.3,,-1.0,47.0,897.0,31.0,442.0,519.0,376.0
-Empire of the Ants,1977,Empire of the Ants (1977),,tt0075989,89,1175,2024-01-21 21:00:00,False,,PG,,"Adventure, Horror, Sci-Fi",,Bert I. Gordon,,"Joan Collins, Robert Lansing, John David Carson",,0.02,,26,,4.3,,-1.0,49.0,976.0,33.0,541.0,361.0,390.0
-Gorgo,1961,Gorgo (1961),,tt0054938,78,1186,2024-01-14 21:00:00,False,,Approved,,"Horror, Sci-Fi",,Eugène Lourié,,"Bill Travers, William Sylvester, Vincent Winter",,0.0,,-1,,5.6,,-1.0,49.0,996.0,32.0,506.0,476.0,495.0
-War Between the Planets,1966,War Between the Planets (1966),,tt0059588,80,1110,2024-01-07 21:00:00,False,,G,,Sci-Fi,,Antonio Margheriti,,"Giacomo Rossi Stuart, Ombretta Colli, Enzo Fiermonte",,0.0,,-1,,4.1,,-1.0,44.0,910.0,33.0,137.0,426.0,390.0
-Hogfather (Part 2),2007,Hogfather (Part 2) (2007),,tt0765458,185,293,2023-12-31 21:00:00,False,,NR,,"Comedy, Fantasy",,Vadim Jean,,"David Jason, Marc Warren, Michelle Dockery",,3.03,,-1,,7.4,,-1.0,20.0,237.0,17.0,254.0,203.0,67.0
-Hogfather (Part 1),2007,Hogfather (Part 1) (2007),,tt0765458,185,377,2023-12-24 21:00:00,False,,NR,,"Comedy, Fantasy",,Vadim Jean,,"David Jason, Marc Warren, Michelle Dockery",,3.03,,-1,,7.4,,-1.0,26.0,303.0,22.0,341.0,239.0,159.0
-From Hell It Came,1957,From Hell It Came (1957),,tt0050414,73,921,2023-12-17 21:00:00,False,,Approved,,"Horror, Sci-Fi",,Dan Milner,,"Tod Andrews, Tina Carver, Linda Watkins",,0.0,,-1,,3.8,,-1.0,44.0,694.0,29.0,294.0,313.0,275.0
-Mothra,1961,Mothra (1961),,tt0055198,101,914,2023-12-10 21:00:00,False,,Approved,,"Adventure, Fantasy, Sci-Fi",,Ishirô Honda,,"Furankî Sakai, Hiroshi Koizumi, Kyôko Kagawa",,0.02,,-1,,6.6,,-1.0,47.0,790.0,28.0,402.0,641.0,352.0
-It Came from Beneath the Sea,1955,It Came from Beneath the Sea (1955),,tt0048215,79,1073,2023-12-03 21:00:00,False,,Approved,,"Horror, Sci-Fi",,Robert Gordon,,"Kenneth Tobey, Faith Domergue, Donald Curtis",,0.0,,-1,,5.9,,-1.0,45.0,855.0,29.0,433.0,458.0,365.0
-It! The Terror from Beyond Space,1958,It! The Terror from Beyond Space (1958),,tt0051786,68,1021,2023-11-26 21:00:00,False,,Approved,,"Horror, Sci-Fi, Thriller",,Edward L. Cahn,,"Marshall Thompson, Shirley Patterson, Kim Spalding",,0.01,,-1,,6.0,,-1.0,48.0,772.0,32.0,170.0,424.0,357.0
-The Magnetic Monster,1953,The Magnetic Monster (1953),,tt0046026,76,1137,2023-11-19 21:00:00,False,,Approved,,"Horror, Sci-Fi",,"Curt Siodmak, Herbert L. Strock",,"Richard Carlson, King Donovan, Jean Byron",,0.0,,-1,,5.8,,-1.0,48.0,873.0,29.0,485.0,469.0,316.0
-The Wasp Woman,1959,The Wasp Woman (1959),,tt0054462,61,1059,2023-11-12 21:00:00,False,,Approved,,"Horror, Sci-Fi",,Roger Corman,,"Susan Cabot, Anthony Eisley, Barboura Morris",,0.0,,-1,,4.8,,-1.0,42.0,761.0,24.0,279.0,322.0,354.0
-Destroy All Monsters,1968,Destroy All Monsters (1968),,tt0063172,89,1198,2023-11-05 21:00:00,False,,G,,"Action, Sci-Fi, Thriller",,"Ishirô Honda, Jun Fukuda",,"Akira Kubo, Jun Tazaki, Yukiko Kobayashi",,0.0,,-1,,6.4,,-1.0,44.0,955.0,29.0,427.0,496.0,424.0
-The Beast Must Die,1974,The Beast Must Die (1974),,tt0071200,93,326,2023-10-29 21:00:00,False,,PG,,"Horror, Mystery",,Paul Annett,,"Calvin Lockhart, Peter Cushing, Marlene Clark",,0.0,,60,,5.6,,-1.0,20.0,261.0,14.0,102.0,190.0,188.0
-The Return of the Living Dead,1985,The Return of the Living Dead (1985),,tt0089907,91,275,2023-10-22 21:00:00,False,,R,,"Comedy, Horror, Sci-Fi",,Dan O'Bannon,,"Clu Gulager, James Karen, Don Calfa",,0.04,,66,,7.3,,43732521.75,14.0,201.0,11.0,247.0,130.0,143.0
-Tucker and Dale vs. Evil,2010,Tucker and Dale vs. Evil (2010),,tt1465522,89,206,2023-10-15 21:00:00,False,,R,,"Comedy, Horror",,Eli Craig,,"Tyler Labine, Alan Tudyk, Katrina Bowden",,12.14,,65,,7.5,,339195.14,10.0,199.0,8.0,24.0,194.0,151.0
-Re-Animator,1985,Re-Animator (1985),,tt0089885,86,266,2023-10-08 21:00:00,False,,R,,"Comedy, Horror, Sci-Fi",,Stuart Gordon,,"Jeffrey Combs, Bruce Abbott, Barbara Crampton",,4.05,,73,,7.1,,6215040.21,15.0,216.0,11.0,103.0,112.0,191.0
-Killer Klowns from Outer Space,1988,Killer Klowns from Outer Space (1988),,tt0095444,88,208,2023-10-01 21:00:00,False,,PG-13,,"Comedy, Horror, Sci-Fi",,Stephen Chiodo,,"Grant Cramer, Suzanne Snyder, John Allen Nelson",,0.02,,43,,6.2,,-1.0,17.0,178.0,12.0,160.0,123.0,123.0
-Godzilla vs. Mothra,1992,Godzilla vs. Mothra (1992),,tt0104352,102,1189,2023-09-24 21:00:00,False,,NR,,"Adventure, Fantasy, Sci-Fi",,Takao Okawara,,"Tetsuya Bessho, Satomi Kobayashi, Takehiro Murata",,1.03,,-1,,6.2,,-1.0,40.0,926.0,25.0,422.0,615.0,381.0
-The Blob,1958,The Blob (1958),,tt0051418,82,1081,2023-09-17 21:00:00,False,,Approved,,"Horror, Sci-Fi",,"Irvin S. Yeaworth Jr., Russell S. Doughten Jr.",,"Steve McQueen, Aneta Corsaut, Earl Rowe",,0.01,,58,,6.3,,-1.0,43.0,823.0,28.0,418.0,582.0,388.0
-The Stuff,1985,The Stuff (1985),,tt0090094,87,838,2023-09-10 21:00:00,False,,R,,"Comedy, Horror, Sci-Fi",,Larry Cohen,,"Michael Moriarty, Andrea Marcovicci, Garrett Morris",,0.0,,-1,,5.9,,-1.0,39.0,675.0,27.0,476.0,368.0,319.0
-The Thing from Another World,1951,The Thing from Another World (1951),,tt0044121,87,1025,2023-09-03 21:00:00,False,,Approved,,"Horror, Sci-Fi",,"Christian Nyby, Howard Hawks",,"Kenneth Tobey, Margaret Sheridan, James Arness",,1.0,,-1,,7.0,,-1.0,46.0,772.0,28.0,549.0,379.0,348.0
-Octaman,1971,Octaman (1971),,tt0067515,76,954,2023-08-27 21:00:00,False,,PG,,"Sci-Fi, Horror",,Harry Essex,,"Pier Angeli, Kerwin Mathews, Jeff Morrow",,0.0,,-1,,3.4,,2290732.22,43.0,728.0,26.0,508.0,452.0,344.0
-The Day of the Triffids,1963,The Day of the Triffids (1963),,tt0055894,93,980,2023-08-20 21:00:00,False,,Approved,,"Horror, Sci-Fi",,"Steve Sekely, Freddie Francis",,"Howard Keel, Nicole Maurey, Janette Scott",,0.0,,-1,,6.1,,-1.0,44.0,826.0,26.0,589.0,461.0,364.0
-"Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack",2001,"Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack (2001)",,tt0279112,105,911,2023-08-13 21:00:00,False,,NR,,"Action, Adventure, Drama",,Shûsuke Kaneko,,"Chiharu Niiyama, Ryûdô Uzaki, Masahiro Kobayashi",,0.01,,-1,,7.0,,-1.0,38.0,686.0,23.0,286.0,320.0,295.0
-Queen of Blood,1966,Queen of Blood (1966),,tt0060877,81,993,2023-08-06 21:00:00,False,,UR,,"Horror, Sci-Fi",,Curtis Harrington,,"John Saxon, Basil Rathbone, Judi Meredith",,0.0,,-1,,5.2,,-1.0,43.0,759.0,24.0,531.0,430.0,371.0
-The Brain Eaters,1958,The Brain Eaters (1958),,tt0051432,61,890,2023-07-30 21:00:00,False,,Approved,,"Sci-Fi, Horror",,Bruno VeSota,,"Ed Nelson, Alan Jay Factor, Cornelius Keefe",,0.0,,-1,,4.4,,-1.0,44.0,732.0,27.0,162.0,454.0,352.0
-The Giant Claw,1957,The Giant Claw (1957),,tt0050432,73,976,2023-07-23 21:00:00,False,,Approved,,"Fantasy, Horror, Sci-Fi",,Fred F. Sears,,"Jeff Morrow, Mara Corday, Morris Ankrum",,0.0,,-1,,4.6,,-1.0,47.0,851.0,29.0,343.0,606.0,378.0
-Planet of the Vampires,1965,Planet of the Vampires (1965),,tt0059792,88,817,2023-07-16 21:00:00,False,,NR,,"Action, Adventure, Horror",,Mario Bava,,"Barry Sullivan, Norma Bengell, Ángel Aranda",,0.01,,-1,,6.2,,-1.0,32.0,649.0,21.0,327.0,317.0,302.0
-The Tingler,1959,The Tingler (1959),,tt0053363,82,706,2023-07-09 21:00:00,False,,Approved,,"Horror, Sci-Fi",,William Castle,,"Vincent Price, Judith Evelyn, Darryl Hickman",,0.01,,-1,,6.6,,-1.0,31.0,564.0,19.0,318.0,389.0,305.0
-Godzilla vs. Destoroyah,1995,Godzilla vs. Destoroyah (1995),,tt0113187,103,743,2023-07-02 21:00:00,False,,UR,,"Action, Drama, Horror",,"Takao Okawara, Ishirô Honda, Kôji Hashimoto",,"Takurô Tatsumi, Yôko Ishino, Yasufumi Hayashi",,0.03,,-1,,6.9,,-1.0,34.0,614.0,20.0,159.0,238.0,323.0
-Godzilla vs. King Ghidorah,1991,Godzilla vs. King Ghidorah (1991),,tt0101962,103,762,2023-06-25 21:00:00,False,,NR,,"Action, Adventure, Drama",,"Kazuki Ômori, Kôji Hashimoto",,"Kôsuke Toyohara, Anna Nakagawa, Megumi Odaka",,1.01,,-1,,6.5,,-1.0,28.0,589.0,19.0,85.0,148.0,268.0
-Invasion of the Body Snatchers,1956,Invasion of the Body Snatchers (1956),,tt0049366,80,488,2023-06-18 21:00:00,False,,Approved,,"Drama, Horror, Sci-Fi",,Don Siegel,,"Kevin McCarthy, Dana Wynter, Larry Gates",,3.0,,92,,7.7,,-1.0,27.0,415.0,16.0,72.0,112.0,198.0
-Godzilla vs. Megaguirus,2000,Godzilla vs. Megaguirus (2000),,tt0255198,105,739,2023-06-11 21:00:00,False,,NR,,"Action, Sci-Fi, Thriller",,"Masaaki Tezuka, Ishirô Honda",,"Misato Tanaka, Shôsuke Tanihara, Masatô Ibu",,1.01,,-1,,6.0,,-1.0,24.0,599.0,16.0,66.0,173.0,271.0
-Godzilla: Tokyo S.O.S.,2003,Godzilla: Tokyo S.O.S. (2003),,tt0366526,91,665,2023-06-04 21:00:00,False,,PG,,"Action, Adventure, Fantasy",,"Masaaki Tezuka, Kôji Hashimoto, Takao Okawara",,"Noboru Kaneko, Miho Yoshioka, Mickey Koga",,0.01,,-1,,6.4,,-1.0,23.0,566.0,16.0,28.0,328.0,240.0
-Dogora,1964,Dogora (1964),,tt0058698,83,438,2023-05-28 21:00:00,False,,NR,,"Crime, Horror, Sci-Fi",,Ishirô Honda,,"Yôsuke Natsuki, Yôko Fujiyama, Hiroshi Koizumi",,0.0,,-1,,5.6,,-1.0,20.0,391.0,12.0,77.0,119.0,207.0
-The H-Man,1958,The H-Man (1958),,tt0051413,87,533,2023-05-21 21:00:00,False,,Approved,,"Crime, Horror, Sci-Fi",,Ishirô Honda,,"Yumi Shirakawa, Kenji Sahara, Akihiko Hirata",,0.01,,-1,,6.0,,-1.0,23.0,466.0,14.0,66.0,131.0,228.0
-Godzilla 2000: Millennium,2000,Godzilla 2000: Millennium (2000),,tt0188640,107,567,2023-05-14 21:00:00,False,,PG,,"Action, Adventure, Drama",,Takao Okawara,,"Takehiro Murata, Hiroshi Abe, Naomi Nishida",,0.02,,41,,6.0,,19912109.21,22.0,496.0,15.0,113.0,229.0,269.0
-Atragon,1963,Atragon (1963),,tt0057215,96,532,2023-05-07 21:00:00,False,,TV-Y7,,"Action, Adventure, Fantasy",,"Ishirô Honda, Shûe Matsubayashi",,"Tadao Takashima, Yôko Fujiyama, Yû Fujiki",,0.0,,-1,,5.8,,-1.0,23.0,454.0,18.0,128.0,214.0,189.0
-Godzilla vs. Gigan,1972,Godzilla vs. Gigan (1972),,tt0068371,89,721,2023-04-30 21:00:00,False,,PG,,"Action, Family, Sci-Fi",,"Jun Fukuda, Yoshimitsu Banno, Ishirô Honda",,"Hiroshi Ishikawa, Yuriko Hishimi, Minoru Takashima",,0.0,,-1,,5.6,,-1.0,25.0,617.0,18.0,84.0,337.0,242.0
-Gamera the Brave,2006,Gamera the Brave (2006),,tt0467923,96,735,2023-04-23 21:00:00,False,,NR,,"Action, Adventure, Family",,Ryuta Tasaki,,"Ryô Tomioka, Kaho, Shingo Ishikawa",,0.0,,-1,,6.6,,-1.0,25.0,616.0,17.0,40.0,296.0,208.0
-King Kong Escapes,1967,King Kong Escapes (1967),,tt0061868,104,748,2023-04-16 21:00:00,False,,G,,"Action, Adventure, Family",,Ishirô Honda,,"Rhodes Reason, Mie Hama, Linda Miller",,0.0,,-1,,5.5,,21571556.89,28.0,630.0,21.0,47.0,308.0,253.0
-Battle in Outer Space,1959,Battle in Outer Space (1959),,tt0053388,90,534,2023-04-09 21:00:00,False,,Approved,,"Action, Sci-Fi",,Ishirô Honda,,"Ryô Ikebe, Kyôko Anzai, Minoru Takada",,0.01,,-1,,5.6,,-1.0,22.0,419.0,16.0,82.0,234.0,181.0
-Rodan,1956,Rodan (1956),,tt0049782,72,501,2023-04-02 21:00:00,False,,Approved,,"Sci-Fi, Thriller",,Ishirô Honda,,"Kenji Sahara, Yumi Shirakawa, Akihiko Hirata",,0.0,,-1,,6.2,,6075367.65,23.0,416.0,17.0,49.0,227.0,172.0
-Gamera 3: Revenge of Iris,1999,Gamera 3: Revenge of Iris (1999),,tt0184503,108,409,2023-03-26 21:00:00,False,,NR,,"Action, Drama, Fantasy",,Shûsuke Kaneko,,"Shinobu Nakayama, Ai Maeda, Yukijirô Hotaru",,1.0,,-1,,7.1,,-1.0,18.0,324.0,14.0,22.0,393.0,164.0
-Gamera 2: Attack of Legion,1996,Gamera 2: Attack of Legion (1996),,tt0116390,99,459,2023-03-19 21:00:00,False,,NR,,"Action, Drama, Fantasy",,Shûsuke Kaneko,,"Toshiyuki Nagashima, Miki Mizuno, Tamotsu Ishibashi",,0.0,,-1,,7.0,,-1.0,23.0,398.0,19.0,20.0,326.0,184.0
-Gamera: Guardian of the Universe,1995,Gamera: Guardian of the Universe (1995),,tt0113142,96,435,2023-03-12 21:00:00,False,,NR,,"Action, Drama, Fantasy",,Shûsuke Kaneko,,"Tsuyoshi Ihara, Akira Onodera, Shinobu Nakayama",,6.01,,-1,,6.7,,-1.0,23.0,353.0,17.0,81.0,377.0,159.0
-The Mysterians,1957,The Mysterians (1957),,tt0050251,89,477,2023-03-05 21:00:00,False,,Approved,,"Action, Sci-Fi, Thriller",,Ishirô Honda,,"Kenji Sahara, Yumi Shirakawa, Momoko Kôchi",,0.0,,-1,,6.1,,11467526.69,24.0,403.0,20.0,74.0,268.0,165.0
-Frankenstein Conquers the World,1965,Frankenstein Conquers the World (1965),,tt0059205,90,456,2023-02-26 21:00:00,False,,UR,,"Horror, Sci-Fi, Thriller",,Ishirô Honda,,"Nick Adams, Kumi Mizuno, Tadao Takashima",,0.0,,-1,,5.5,,-1.0,24.0,369.0,18.0,105.0,359.0,147.0
-Matango,1963,Matango (1963),,tt0057295,89,255,2023-02-19 21:00:00,False,,UR,,"Horror, Mystery, Sci-Fi",,Ishirô Honda,,"Akira Kubo, Kumi Mizuno, Hiroshi Koizumi",,0.0,,-1,,6.4,,-1.0,20.0,185.0,17.0,17.0,142.0,108.0
-The War of the Gargantuas,1966,The War of the Gargantuas (1966),,tt0060440,88,237,2023-02-12 21:00:00,False,,G,,"Action, Horror, Sci-Fi",,Ishirô Honda,,"Russ Tamblyn, Kumi Mizuno, Kenji Sahara",,0.0,,-1,,6.2,,-1.0,14.0,191.0,11.0,0.0,222.0,86.0
-"Ebirah, Horror of the Deep",1966,"Ebirah, Horror of the Deep (1966)",,tt0060464,87,271,2023-02-05 21:00:00,False,,PG,,"Adventure, Fantasy, Sci-Fi",,Jun Fukuda,,"Akira Takarada, Kumi Mizuno, Chôtarô Tôgin",,0.0,,-1,,5.5,,-1.0,11.0,188.0,10.0,1.0,151.0,68.0
-Space Amoeba,1970,Space Amoeba (1970),,tt0065776,84,319,2023-01-29 21:00:00,False,,G,,"Adventure, Sci-Fi",,Ishirô Honda,,"Akira Kubo, Atsuko Takahashi, Yukiko Kobayashi",,0.0,,-1,,5.4,,-1.0,9.0,193.0,8.0,0.0,158.0,86.0
-Godzilla vs. Mechagodzilla,1974,Godzilla vs. Mechagodzilla (1974),,tt0071565,84,206,2023-01-22 21:00:00,False,,PG,,"Action, Family, Fantasy",,Jun Fukuda,,"Masaaki Daimon, Kazuya Aoyama, Reiko Tajima",,0.01,,-1,,6.2,,-1.0,10.0,57.0,8.0,2.0,72.0,17.0
-Shin Godzilla,2016,Shin Godzilla (2016),,tt4262980,120,165,2023-01-15 21:00:00,False,,PG-13,,"Action, Drama, Horror",,"Shinji Higuchi, Hideaki Anno",,"Hiroki Hasegawa, Yutaka Takenouchi, Satomi Ishihara",,13.1,,66,,6.9,,8208172.69,14.0,74.0,12.0,0.0,61.0,21.0
-Godzilla: Final Wars,2004,Godzilla: Final Wars (2004),,tt0399102,125,120,2023-01-06 21:00:00,False,,PG-13,,"Action, Adventure, Fantasy",,"Ryûhei Kitamura, Kôji Hashimoto, Shûsuke Kaneko",,"Masahiro Matsuoka, Rei Kikukawa, Don Frye",,0.03,,-1,,6.3,,-1.0,8.0,54.0,8.0,1.0,63.0,22.0
-Invasion of Astro-Monster,1965,Invasion of Astro-Monster (1965),,tt0059346,96,109,2022-08-25 21:00:00,False,,G,,"Action, Adventure, Sci-Fi",,Ishirô Honda,,"Nick Adams, Akira Takarada, Jun Tazaki",,0.01,,-1,,6.2,,-1.0,5.0,46.0,5.0,4.0,25.0,10.0
-"Ghidorah, the Three-Headed Monster",1964,"Ghidorah, the Three-Headed Monster (1964)",,tt0058544,92,170,2022-08-18 21:00:00,False,,NR,,"Action, Adventure, Fantasy",,Ishirô Honda,,"Yôsuke Natsuki, Yuriko Hoshi, Hiroshi Koizumi",,0.01,,-1,,6.5,,-1.0,8.0,44.0,8.0,1.0,18.0,13.0
-Rebirth of Mothra II,1997,Rebirth of Mothra II (1997),,tt0133104,97,138,2022-08-04 21:00:00,False,,UR,,"Action, Fantasy, Sci-Fi",,Kunio Miyoshi,,"Megumi Kobayashi, Sayaka Yamaguchi, Aki Hano",,0.0,,-1,,5.1,,-1.0,6.0,56.0,6.0,4.0,30.0,10.0
-Rebirth of Mothra,1996,Rebirth of Mothra (1996),,tt0117089,104,122,2022-07-28 21:00:00,False,,UR,,"Action, Adventure, Family",,Okihiro Yoneda,,"Megumi Kobayashi, Sayaka Yamaguchi, Aki Hano",,0.0,,-1,,5.8,,-1.0,5.0,36.0,5.0,1.0,24.0,9.0
-Godzilla 1985,1985,Godzilla 1985 (1985),,tt0087344,87,127,2022-07-21 21:00:00,False,,PG,,"Drama, Sci-Fi, Thriller",,"Kôji Hashimoto, R.J. Kizer, Ishirô Honda",,"Raymond Burr, Keiju Kobayashi, Ken Tanaka",,2.03,,31,,6.1,,12643759.74,4.0,37.0,4.0,0.0,25.0,13.0
-Godzilla vs. Mechagodzilla II,1993,Godzilla vs. Mechagodzilla II (1993),,tt0107027,108,201,2022-07-14 21:00:00,False,,PG,,"Action, Adventure, Drama",,"Takao Okawara, Kazuki Ômori",,"Masahiro Takashima, Ryoko Sano, Megumi Odaka",,0.02,,-1,,6.5,,-1.0,7.0,69.0,6.0,2.0,49.0,15.0
-Godzilla vs. Hedorah,1971,Godzilla vs. Hedorah (1971),,tt0067148,85,126,2022-07-07 21:00:00,False,,PG,,"Animation, Drama, Family",,"Yoshimitsu Banno, Ishirô Honda",,"Akira Yamanouchi, Toshie Kimura, Hiroyuki Kawase",,0.0,,-1,,6.1,,-1.0,7.0,45.0,7.0,5.0,43.0,10.0
-Terror of Mechagodzilla,1975,Terror of Mechagodzilla (1975),,tt0073373,83,80,2022-06-30 21:00:00,False,,G,,"Action, Adventure, Family",,"Ishirô Honda, Jun Fukuda",,"Katsuhiko Sasaki, Tomoko Ai, Akihiko Hirata",,0.01,,-1,,6.1,,-1.0,3.0,12.0,3.0,0.0,13.0,4.0
-Godzilla vs. Biollante,1989,Godzilla vs. Biollante (1989),,tt0097444,105,93,2022-06-23 21:00:00,False,,PG,,"Action, Drama, Fantasy",,"Kazuki Ômori, Kôji Hashimoto, Kenjirô Ohmori",,"Kunihiko Mitamura, Yoshiko Tanaka, Masanobu Takashima",,2.0,,-1,,6.5,,-1.0,4.0,30.0,4.0,0.0,22.0,13.0
-Godzilla vs. Megalon,1973,Godzilla vs. Megalon (1973),,tt0070122,82,157,2022-06-16 21:00:00,False,,G,,"Action, Adventure, Family",,"Jun Fukuda, Yoshimitsu Banno, Ishirô Honda",,"Katsuhiko Sasaki, Hiroyuki Kawase, Yutaka Hayashi",,0.0,,-1,,4.8,,-1.0,5.0,27.0,5.0,0.0,18.0,4.0
-Godzilla: Planet of the Monsters,2017,Godzilla: Planet of the Monsters (2017),,tt5979874,89,88,2022-06-09 21:00:00,False,,TV-14,,"Animation, Action, Sci-Fi",,"Hiroyuki Seshita, Kôbun Shizuno",,"Mamoru Miyano, Takahiro Sakurai, Kana Hanazawa",,0.0,,-1,,6.0,,-1.0,4.0,20.0,4.0,0.0,13.0,5.0
-King Kong vs. Godzilla,1963,King Kong vs. Godzilla (1963),,tt0056142,96,103,2022-06-02 21:00:00,False,,Approved,,"Action, Adventure, Comedy",,"Ishirô Honda, Tom Montgomery",,"Tadao Takashima, Kenji Sahara, Yû Fujiki",,0.0,,40,,5.7,,-1.0,5.0,47.0,5.0,0.0,17.0,3.0
-Godzilla,1954,Godzilla (1954),,tt0047034,96,86,2022-05-26 21:00:00,False,,NR,,"Horror, Sci-Fi",,Ishirô Honda,,"Takashi Shimura, Akihiko Hirata, Akira Takarada",,4.02,,79,,7.6,,6913605.41,8.0,33.0,6.0,1.0,20.0,5.0
-Godzilla vs. SpaceGodzilla,1994,Godzilla vs. SpaceGodzilla (1994),,tt0109916,108,132,2022-05-19 21:00:00,False,,NR,,"Action, Adventure, Sci-Fi",,"Kenshô Yamashita, Takao Okawara, Kazuki Ômori",,"Jun Hashizume, Megumi Odaka, Zenkichi Yoneyama",,0.01,,-1,,5.8,,-1.0,4.0,51.0,4.0,0.0,27.0,4.0
-Godzilla: Final Wars,2004,Godzilla: Final Wars (2004),,tt0399102,125,164,2022-05-12 21:00:00,False,,PG-13,,"Action, Adventure, Fantasy",,"Ryûhei Kitamura, Kôji Hashimoto, Shûsuke Kaneko",,"Masahiro Matsuoka, Rei Kikukawa, Don Frye",,0.03,,-1,,6.3,,-1.0,6.0,39.0,5.0,1.0,54.0,5.0
-Godzilla Against MechaGodzilla,2002,Godzilla Against MechaGodzilla (2002),,tt0314111,88,177,2022-05-05 21:00:00,False,,NR,,"Action, Sci-Fi, Thriller",,"Masaaki Tezuka, Kazuki Ômori",,"Yumiko Shaku, Shin Takuma, Kana Onodera",,0.0,,-1,,6.6,,-1.0,5.0,42.0,5.0,0.0,23.0,13.0
-"Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack",2001,"Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack (2001)",,tt0279112,105,104,2022-04-28 21:00:00,False,,NR,,"Action, Adventure, Drama",,Shûsuke Kaneko,,"Chiharu Niiyama, Ryûdô Uzaki, Masahiro Kobayashi",,0.01,,-1,,7.0,,-1.0,4.0,38.0,4.0,0.0,28.0,11.0
-Godzilla vs. Destoroyah,1995,Godzilla vs. Destoroyah (1995),,tt0113187,103,137,2022-04-21 21:00:00,False,,UR,,"Action, Drama, Horror",,"Takao Okawara, Ishirô Honda, Kôji Hashimoto",,"Takurô Tatsumi, Yôko Ishino, Yasufumi Hayashi",,0.03,,-1,,6.9,,-1.0,4.0,45.0,3.0,0.0,46.0,10.0
-Godzilla vs. King Ghidorah,1991,Godzilla vs. King Ghidorah (1991),,tt0101962,103,68,2022-04-14 21:00:00,False,,NR,,"Action, Adventure, Drama",,"Kazuki Ômori, Kôji Hashimoto",,"Kôsuke Toyohara, Anna Nakagawa, Megumi Odaka",,1.01,,-1,,6.5,,-1.0,4.0,17.0,4.0,0.0,16.0,2.0
-Godzilla vs. Mothra,1992,Godzilla vs. Mothra (1992),,tt0104352,102,135,2022-04-07 21:00:00,False,,NR,,"Adventure, Fantasy, Sci-Fi",,Takao Okawara,,"Tetsuya Bessho, Satomi Kobayashi, Takehiro Murata",,1.03,,-1,,6.2,,-1.0,5.0,48.0,5.0,1.0,10.0,7.0
-Mothra vs. Godzilla,1964,Mothra vs. Godzilla (1964),,tt0058379,89,124,2022-03-31 21:00:00,False,,NR,,"Adventure, Fantasy, Sci-Fi",,Ishirô Honda,,"Akira Takarada, Yuriko Hoshi, Hiroshi Koizumi",,0.01,,-1,,6.5,,-1.0,7.0,25.0,7.0,0.0,14.0,8.0
-Mothra,1961,Mothra (1961),,tt0055198,101,119,2022-03-24 21:00:00,False,,Approved,,"Adventure, Fantasy, Sci-Fi",,Ishirô Honda,,"Furankî Sakai, Hiroshi Koizumi, Kyôko Kagawa",,0.02,,-1,,6.6,,-1.0,5.0,29.0,4.0,0.0,16.0,11.0
+summary,title,release_year,title_and_year,getIMDBNumber,imdb_lookup,duration_minutes,toots,tpm,watched_date,is_double_feature,getRated,rated,getGenre,genre,getDirector,director,getActors,actors,getAwards,awards,getMetascore,metascore,getIMDBScore,imdb_score,getRealBoxOffice,real_box_office,attendees,event_toots,unique_servers,total_favorites,total_boosts,total_replies,engagement_score
+"Earth Girls Are Easy 
+1988 · 1h 40m · 313 toots
+Watched on 19 April 2026",Earth Girls Are Easy,1988,Earth Girls Are Easy (1988),tt0097257,tt0097257,100,313,3.13,2026-04-19 22:53:00,TRUE,PG,PG,"Comedy, Musical, Romance","Comedy, Musical, Romance",Julien Temple,Julien Temple,"Geena Davis, Jeff Goldblum, Jim Carrey","Geena Davis, Jeff Goldblum, Jim Carrey",0.03,0.03,66,66,5.5,5.5,10941150.82,10941150.82,37,261,25,261,100,106,149.201278
+"Communion 
+1989 · 1h 43m · 2980 toots
+Watched on 19 April 2026",Communion,1989,Communion (1989),,tt0097100,103,2980,28.93203883,2026-04-19 21:00:00,FALSE,R,R,"Biography, Drama, Horror","Biography, Drama, Horror","Biography, Drama, Horror",Philippe Mora,"Christopher Walken, Lindsay Crouse, Frances Sternhagen","Christopher Walken, Lindsay Crouse, Frances Sternhagen",0.01,0.01,-1,-1,5.5,5.5,5116494.49,5116494.49,124,2752,69,4531,1523,1633,257.9530201
+"Son of Dracula 
+1974 · 1h 30m · 339 toots
+Watched on 12 April 2026",Son of Dracula,1974,Son of Dracula (1974),,tt0072189,90,339,3.766666667,2026-04-12 22:27:00,TRUE,,PG,,"Comedy, Fantasy, Horror",,Freddie Francis,,"Harry Nilsson, Ringo Starr, Freddie Jones",,0,,-1,,4.2,,-1,51,309,33,352,184,125,194.9852507
+"Son of Dracula 
+1943 · 1h 17m · 2536 toots
+Watched on 12 April 2026",Son of Dracula,1943,Son of Dracula (1943),,tt0036376,77,2536,32.93506494,2026-04-12 21:00:00,FALSE,,Approved,,"Drama, Fantasy, Horror",,Robert Siodmak,,"Lon Chaney Jr., Robert Paige, Louise Allbritton",,1,,47,,6.1,,-1,124,2053,72,3931,1533,1117,259.5031546
+"The Monster That Challenged the World 
+1957 · 1h 24m · 2857 toots
+Watched on 5 April 2026",The Monster That Challenged the World,1957,The Monster That Challenged the World (1957),,tt0050722,84,2857,34.01190476,2026-04-05 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi, Thriller",,Arnold Laven,,"Tim Holt, Audrey Dalton, Hans Conried",,0.01,,-1,,5.7,,-1,127,2769,67,4156,1939,1451,264.1232062
+"Critters 4 
+1992 · 1h 27m · 2550 toots
+Watched on 29 March 2026",Critters 4,1992,Critters 4 (1992),,tt0101628,87,2550,29.31034483,2026-03-29 21:00:00,FALSE,,PG-13,,"Horror, Sci-Fi",,Rupert Harvey,,"Don Keith Opper, Terrence Mann, Paul Whitthorne",,0,,-1,,4.1,,-1,98,2249,56,3032,1132,1247,212.1960784
+"Kazaam 
+1996 · 1h 34m · 281 toots
+Watched on 22 March 2026",Kazaam,1996,Kazaam (1996),,tt0116756,94,281,2.989361702,2026-03-22 22:55:00,TRUE,,PG,,"Comedy, Family, Fantasy",,Paul Michael Glaser,,"Shaquille O'Neal, Francis Capra, Ally Walker",,0.02,,24,,3.1,,39890153.54,32,253,23,402,174,82,234.1637011
+"The Golden Voyage of Sinbad 
+1973 · 1h 45m · 3289 toots
+Watched on 22 March 2026",The Golden Voyage of Sinbad,1973,The Golden Voyage of Sinbad (1973),,tt0071569,105,3289,31.32380952,2026-03-22 21:00:00,FALSE,,G,,"Action, Adventure, Fantasy",,Gordon Hessler,,"John Phillip Law, Caroline Munro, Tom Baker",,3,,69,,6.8,,-1,127,2831,70,3723,1939,1169,207.6923077
+"The Beast from 20,000 Fathoms 
+1953 · 1h 20m · 289 toots
+Watched on 15 March 2026","The Beast from 20,000 Fathoms",1953,"The Beast from 20,000 Fathoms (1953)",,tt0045546,80,289,3.6125,2026-03-15 22:54:00,TRUE,,Approved,,"Horror, Sci-Fi",,Eugène Lourié,,"Paul Hubschmid, Paula Raymond, Cecil Kellaway",,0.02,,-1,,6.6,,-1,35,256,24,355,147,87,203.8062284
+"Jason and the Argonauts 
+1963 · 1h 44m · 2784 toots
+Watched on 15 March 2026",Jason and the Argonauts,1963,Jason and the Argonauts (1963),,tt0057197,104,2784,26.76923077,2026-03-15 21:00:00,FALSE,,G,,"Action, Adventure, Family",,Don Chaffey,,"Todd Armstrong, Nancy Kovack, Gary Raymond",,0,,69,,7.3,,-1,116,2457,65,3843,1552,1265,239.2241379
+"Godzilla 1977 
+1977 · 1h 36m · 254 toots
+Watched on 8 March 2026",Godzilla 1977,1977,Godzilla 1977 (1977),,tt1543211,96,254,2.645833333,2026-03-08 22:38:00,TRUE,,TV-MA,,"Action, Horror, Sci-Fi",,"Luigi Cozzi, Ishirô Honda, Terry O. Morse",,"Raymond Burr, Akira Takarada, Akihiko Hirata",,0,,-1,,5.2,,-1,28,194,19,299,135,98,209.4488189
+"The Adventures of Hercules 
+1985 · 1h 28m · 3577 toots
+Watched on 8 March 2026",The Adventures of Hercules,1985,The Adventures of Hercules (1985),,tt0089271,88,3577,40.64772727,2026-03-08 21:00:00,FALSE,,PG,,"Adventure, Fantasy",,Luigi Cozzi,,"Lou Ferrigno, Milly Carlucci, Sonia Viviani",,0,,-1,,3.9,,-1,103,2874,62,2910,1640,1452,167.794241
+"The Seven Magnificent Gladiators 
+1983 · 1h 40m · 363 toots
+Watched on 1 March 2026",The Seven Magnificent Gladiators,1983,The Seven Magnificent Gladiators (1983),,tt0086289,100,363,3.63,2026-03-01 22:48:00,TRUE,,PG,,"Action, Adventure, Drama",,"Bruno Mattei, Claudio Fragasso",,"Lou Ferrigno, Sybil Danning, Brad Harris",,0,,-1,,3.7,,-1,42,300,29,496,293,165,262.8099174
+"Hercules 
+1983 · 1h 38m · 3967 toots
+Watched on 1 March 2026",Hercules,1983,Hercules (1983),,tt0085672,98,3967,40.47959184,2026-03-01 21:00:00,FALSE,,PG,,"Adventure, Fantasy, History",,Luigi Cozzi,,"Lou Ferrigno, Brad Harris, Sybil Danning",,2.03,,-1,,4.1,,35426527.28,126,3169,70,3298,1684,1789,170.6831359
+"The Flesh and the Fiends 
+1960 · 1h 34m · 199 toots
+Watched on 22 February 2026",The Flesh and the Fiends,1960,The Flesh and the Fiends (1960),,tt0052811,94,199,2.117021277,2026-02-22 22:32:00,TRUE,,UR,,"Crime, Drama, Thriller",,John Gilling,,"Peter Cushing, June Laverick, Donald Pleasence",,0,,-1,,6.9,,-1,36,147,27,283,102,72,229.6482412
+"Dr. Who and the Daleks 
+1965 · 1h 22m · 2807 toots
+Watched on 22 February 2026",Dr. Who and the Daleks,1965,Dr. Who and the Daleks (1965),,tt0059126,82,2807,34.23170732,2026-02-22 21:00:00,FALSE,,NR,,"Adventure, Drama, Sci-Fi",,Gordon Flemyng,,"Peter Cushing, Roy Castle, Jennie Linden",,0,,-1,,5.6,,-1,125,2311,73,3819,1410,1177,228.2151763
+"Master of Horror 
+1965 · 1h 0m · 240 toots
+Watched on 15 February 2026",Master of Horror,1965,Master of Horror (1965),,tt1503643,60,240,4,2026-02-15 22:35:00,TRUE,,GP,,Horror,,Enrique Carreras,,"Narciso Ibáñez Menta, Osvaldo Pacheco, Inés Moreno",,0,,-1,,6.1,,-1,37,154,23,303,101,88,205
+"4D Man 
+1959 · 1h 25m · 3014 toots
+Watched on 15 February 2026",4D Man,1959,4D Man (1959),,tt0052530,85,3014,35.45882353,2026-02-15 21:00:00,FALSE,,Approved,,"Action, Horror, Romance",,Irvin S. Yeaworth Jr.,,"Robert Lansing, Lee Meriwether, James Congdon",,0,,-1,,5.8,,-1,112,2546,60,3392,1466,1234,202.123424
+"Rebirth of Mothra III 
+1998 · 1h 39m · 246 toots
+Watched on 8 February 2026",Rebirth of Mothra III,1998,Rebirth of Mothra III (1998),,tt0189764,99,246,2.484848485,2026-02-08 22:31:00,TRUE,,TV-G,,"Action, Adventure, Fantasy",,Okihiro Yoneda,,"Megumi Kobayashi, Misato Tate, Aki Hano",,0,,-1,,5.7,,-1,24,183,17,179,101,102,155.2845528
+"Devil Doll 
+1964 · 1h 21m · 2181 toots
+Watched on 8 February 2026",Devil Doll,1964,Devil Doll (1964),,tt0058007,81,2181,26.92592593,2026-02-08 21:00:00,FALSE,,NR,,Horror,,Lindsay Shonteff,,"Bryant Haliday, William Sylvester, Yvonne Romain",,0,,-1,,4.8,,-1,87,1768,47,2483,1532,979,228.9775332
+"Rebirth of Mothra II 
+1997 · 1h 37m · 293 toots
+Watched on 1 February 2026",Rebirth of Mothra II,1997,Rebirth of Mothra II (1997),,tt0133104,97,293,3.020618557,2026-02-01 22:24:00,TRUE,,UR,,"Action, Fantasy, Sci-Fi",,Kunio Miyoshi,,"Megumi Kobayashi, Sayaka Yamaguchi, Aki Hano",,0,,-1,,5.1,,-1,44,245,28,419,140,104,226.2798635
+"Planet Earth 
+1974 · 1h 14m · 2442 toots
+Watched on 1 February 2026",Planet Earth,1974,Planet Earth (1974),,tt0072000,74,2442,33,2026-02-01 21:00:00,FALSE,,NR,,"Drama, Sci-Fi, Thriller",,Marc Daniels,,"John Saxon, Janet Margolin, Ted Cassidy",,0,,-1,,5.7,,-1,116,1859,62,3016,1421,896,218.3865684
+"Rebirth of Mothra 
+1996 · 1h 44m · 323 toots
+Watched on 25 January 2026",Rebirth of Mothra,1996,Rebirth of Mothra (1996),,tt0117089,104,323,3.105769231,2026-01-25 22:32:00,TRUE,,UR,,"Action, Adventure, Family",,Okihiro Yoneda,,"Megumi Kobayashi, Sayaka Yamaguchi, Aki Hano",,0,,-1,,5.8,,-1,31,211,21,341,64,108,158.8235294
+"The Quatermass Xperiment 
+1955 · 1h 22m · 2719 toots
+Watched on 25 January 2026",The Quatermass Xperiment,1955,The Quatermass Xperiment (1955),,tt0049646,82,2719,33.15853659,2026-01-25 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi",,Val Guest,,"Brian Donlevy, Jack Warner, Richard Wordsworth",,0,,-1,,6.6,,-1,113,2248,57,3419,1053,1128,205.9580728
+"Mars Attacks! 
+1996 · 1h 46m · 306 toots
+Watched on 18 January 2026",Mars Attacks!,1996,Mars Attacks! (1996),,tt0116996,106,306,2.886792453,2026-01-18 22:51:00,TRUE,,PG-13,,"Comedy, Sci-Fi",,Tim Burton,,"Jack Nicholson, Pierce Brosnan, Sarah Jessica Parker",,3.19,,52,,6.4,,79583719.62,36,266,20,561,167,134,281.6993464
+"Mothra 
+1961 · 1h 41m · 2390 toots
+Watched on 18 January 2026",Mothra,1961,Mothra (1961),,tt0055198,101,2390,23.66336634,2026-01-18 21:00:00,FALSE,,Approved,,"Adventure, Fantasy, Sci-Fi",,Ishirô Honda,,"Furankî Sakai, Hiroshi Koizumi, Kyôko Kagawa",,0.02,,-1,,6.6,,-1,99,1905,52,2406,1383,1025,201.4225941
+"Daigoro vs. Goliath 
+1972 · 1h 25m · 96 toots
+Watched on 11 January 2026",Daigoro vs. Goliath,1972,Daigoro vs. Goliath (1972),,tt0188014,85,96,1.129411765,2026-01-11 23:29:00,TRUE,,NR,,"Action, Family, Fantasy",,Toshihiro Iijima,,"Hiroshi Inuzuka, Akiji Kobayashi, Fusako Amachi",,0,,-1,,5.0,,-1,21,63,15,133,17,24,181.25
+"Godzilla 
+1998 · 2h 19m · 3728 toots
+Watched on 11 January 2026",Godzilla,1998,Godzilla (1998),,tt0120685,139,3728,26.82014388,2026-01-11 21:00:00,FALSE,,PG-13,,"Action, Sci-Fi, Thriller",,Roland Emmerich,,"Matthew Broderick, Jean Reno, Maria Pitillo",,10.13,,32,,5.5,,276391866.06,117,3089,70,4343,1791,1761,211.7757511
+"Death Race 2000 
+1975 · 1h 20m · 2310 toots
+Watched on 4 January 2026",Death Race 2000,2000,Death Race 2000 (2000),,tt0072856,80,2310,28.875,2026-01-04 21:00:00,FALSE,,R,,"Action, Comedy, Sci-Fi",,Paul Bartel,,"David Carradine, Sylvester Stallone, Simone Griffeth",,0,,58,,6.2,,-1,94,1672,61,1842,834,825,151.5584416
+"The Super Inframan 
+1975 · 1h 30m · 371 toots
+Watched on 28 December 2025",The Super Inframan,1975,The Super Inframan (1975),,tt0073168,90,371,4.122222222,2025-12-28 22:33:00,TRUE,,PG,,"Action, Sci-Fi",,Shan Hua,,"Danny Lee, Terry Liu, Hsieh Wang",,0,,-1,,6.3,,-1,39,298,25,353,98,105,149.8652291
+"Time Walker 
+1982 · 1h 23m · 2771 toots
+Watched on 28 December 2025",Time Walker,1982,Time Walker (1982),,tt0084796,83,2771,33.38554217,2025-12-28 21:00:00,FALSE,,PG,,"Horror, Sci-Fi",,Tom Kennedy,,"Ben Murphy, Nina Axelrod, Kevin Brophy",,0,,-1,,3.7,,-1,98,2052,52,2644,976,986,166.2215807
+"Evil of Dracula 
+1974 · 1h 23m · 208 toots
+Watched on 21 December 2025",Evil of Dracula,1974,Evil of Dracula (1974),,tt0071308,83,208,2.506024096,2025-12-21 22:43:00,TRUE,,NR,,"Drama, Horror",,Michio Yamamoto,,"Toshio Kurosawa, Kunie Tanaka, Katsuhiko Sasaki",,0.01,,-1,,6.3,,-1,33,142,22,405,222,75,337.5
+"Tales from the Crypt 
+1972 · 1h 33m · 2617 toots
+Watched on 21 December 2025",Tales from the Crypt,1972,Tales from the Crypt (1972),,tt0069341,93,2617,28.13978495,2025-12-21 21:00:00,FALSE,,PG,,"Drama, Horror, Mystery",,Freddie Francis,,"Joan Collins, Peter Cushing, Ralph Richardson",,0,,-1,,6.8,,-1,100,2046,57,2559,1117,1010,179.0599924
+"Lake of Dracula 
+1971 · 1h 22m · 287 toots
+Watched on 14 December 2025",Lake of Dracula,1971,Lake of Dracula (1971),,tt0067503,82,287,3.5,2025-12-14 22:27:00,TRUE,,NR,,Horror,,Michio Yamamoto,,"Chôei Takahashi, Sanae Emi, Midori Fujita",,0.01,,-1,,6.2,,-1,24,187,18,252,54,85,136.2369338
+"The She-Creature 
+1956 · 1h 17m · 2274 toots
+Watched on 14 December 2025",The She-Creature,1956,The She-Creature (1956),,tt0050957,77,2274,29.53246753,2025-12-14 21:00:00,FALSE,,Approved,,"Crime, Fantasy, Horror",,Edward L. Cahn,,"Chester Morris, Tom Conway, Cathy Downs",,0,,-1,,3.8,,-1,87,1754,50,2171,739,825,164.2480211
+"The Vampire Doll 
+1970 · 1h 11m · 241 toots
+Watched on 7 December 2025",The Vampire Doll,1970,The Vampire Doll (1970),,tt0066600,71,241,3.394366197,2025-12-07 22:29:00,TRUE,,NR,,Horror,,Michio Yamamoto,,"Kayo Matsuo, Akira Nakao, Yukiko Kobayashi",,0.01,,-1,,6.6,,-1,40,198,25,430,75,87,245.6431535
+"Attack of the Puppet People 
+1958 · 1h 19m · 2193 toots
+Watched on 7 December 2025",Attack of the Puppet People,1958,Attack of the Puppet People (1958),,tt0051381,79,2193,27.75949367,2025-12-07 21:00:00,FALSE,,Approved,,"Sci-Fi, Horror",,Bert I. Gordon,,"John Agar, John Hoyt, June Kenney",,0.01,,-1,,5.2,,-1,91,1669,53,2631,487,786,178.0209758
+"The Monster X Strikes Back: Attack the G8 Summit 
+2008 · 1h 38m · 437 toots
+Watched on 30 November 2025",The Monster X Strikes Back: Attack the G8 Summit,2008,The Monster X Strikes Back: Attack the G8 Summit (2008),,tt1190867,98,437,4.459183673,2025-11-30 22:49:00,TRUE,,NR,,"Comedy, Sci-Fi",,Minoru Kawasaki,,"Natsuki Katô, Kazuki Katô, Hide Fukumoto",,0,,-1,,5.2,,-1,25,236,18,303,100,84,111.4416476
+"The Asphyx 
+1972 · 1h 39m · 2546 toots
+Watched on 30 November 2025",The Asphyx,1972,The Asphyx (1972),,tt0069738,99,2546,25.71717172,2025-11-30 21:00:00,FALSE,,PG,,"Fantasy, Horror, Sci-Fi",,Peter Newbrook,,"Robert Powell, Robert Stephens, Jane Lapotaire",,0,,-1,,6.2,,-1,95,2077,58,2829,877,1101,188.8059701
+"The X from Outer Space 
+1967 · 1h 29m · 472 toots
+Watched on 23 November 2025",The X from Outer Space,1967,The X from Outer Space (1967),,tt0062411,89,472,5.303370787,2025-11-23 22:21:00,TRUE,,PG,,"Horror, Sci-Fi",,Kazui Nihonmatsu,,"Shun'ya Wazaki, Itoko Harada, Shin'ichi Yanagisawa",,0,,-1,,4.8,,-1,43,382,28,606,168,141,193.8559322
+"Space Master X-7 
+1958 · 1h 11m · 2415 toots
+Watched on 23 November 2025",Space Master X-7,1958,Space Master X-7 (1958),,tt0052228,71,2415,34.01408451,2025-11-23 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi, Thriller",,Edward Bernds,,"Bill Williams, Lyn Thomas, Robert Ellis",,0,,-1,,5.2,,-1,96,1857,52,2889,1040,807,196.1076605
+"Alligator 2: The Mutation 
+1991 · 1h 32m · 333 toots
+Watched on 16 November 2025",Alligator 2: The Mutation,1991,Alligator 2: The Mutation (1991),,tt0101309,92,333,3.619565217,2025-11-16 22:41:00,TRUE,,PG-13,,"Horror, Sci-Fi",,Jon Hess,,"Joseph Bologna, Dee Wallace, Richard Lynch",,0,,-1,,4.0,,-1,23,295,16,360,85,104,164.8648649
+"Alligator 
+1980 · 1h 31m · 2958 toots
+Watched on 16 November 2025",Alligator,1980,Alligator (1980),,tt0080354,91,2958,32.50549451,2025-11-16 21:00:00,FALSE,,R,,"Horror, Sci-Fi, Thriller",,Lewis Teague,,"Robert Forster, Robin Riker, Michael V. Gazzo",,0.03,,62,,6.1,,-1,97,2309,54,3346,630,1139,172.9208925
+"Pumpkinhead II: Blood Wings 
+1995 · 1h 28m · 301 toots
+Watched on 9 November 2025",Pumpkinhead II: Blood Wings,1995,Pumpkinhead II: Blood Wings (1995),,tt0110913,88,301,3.420454545,2025-11-09 22:30:00,TRUE,,R,,"Fantasy, Horror, Thriller",,Jeff Burr,,"Andrew Robinson, Ami Dolenz, Soleil Moon Frye",,0,,-1,,4.7,,-1,31,228,22,197,77,98,123.5880399
+"Vampires on Bikini Beach 
+1988 · 1h 20m · 3059 toots
+Watched on 9 November 2025",Vampires on Bikini Beach,1988,Vampires on Bikini Beach (1988),,tt0177329,80,3059,38.2375,2025-11-09 21:00:00,FALSE,,NR,,Horror,,Mark Headley,,"Jennifer Badham, Todd Kaufman, Stephen Mathews, Nancy Rogers",,0,,-1,,2.0,,-1,95,2441,57,2868,1006,1237,167.0807453
+"Fright Night Part 2 
+1988 · 1h 44m · 390 toots
+Watched on 2 November 2025",Fright Night Part 2,1988,Fright Night Part 2 (1988),,tt0097390,104,390,3.75,2025-11-02 22:36:00,TRUE,,R,,"Comedy, Horror, Thriller",,Tommy Lee Wallace,,"William Ragsdale, Roddy McDowall, Traci Lind",,0.02,,-1,,6.0,,8335930.79,27,295,16,358,70,128,142.5641026
+"Critters 3 
+1991 · 1h 26m · 2421 toots
+Watched on 2 November 2025",Critters 3,1991,Critters 3 (1991),,tt0101627,86,2421,28.15116279,2025-11-02 21:00:00,FALSE,,PG-13,,"Comedy, Horror, Sci-Fi",,Kristine Peterson,,"John Calvin, Aimee Brooks, Christian Cousins",,0.01,,-1,,4.5,,-1,89,1891,52,2041,866,1038,162.9491945
+"Legend of the Eight Samurai 
+1983 · 2h 13m · 337 toots
+Watched on 26 October 2025",Legend of the Eight Samurai,1983,Legend of the Eight Samurai (1983),,tt0086244,133,337,2.533834586,2025-10-26 22:41:00,TRUE,,NR,,"Action, Adventure, Drama",,Kinji Fukasaku,,"Hiroko Yakushimaru, Hiroyuki Sanada, Shin'ichi Chiba",,0.04,,-1,,6.4,,-1,23,266,15,372,55,99,156.0830861
+"The Howling 
+1981 · 1h 31m · 2535 toots
+Watched on 26 October 2025",The Howling,1981,The Howling (1981),,tt0082533,91,2535,27.85714286,2025-10-26 21:00:00,FALSE,,R,,Horror,,Joe Dante,,"Dee Wallace, Patrick Macnee, Dennis Dugan",,2.03,,68,,6.5,,65394253.43,92,1910,58,2247,599,1019,152.4654832
+"Magic Crystal 
+1986 · 1h 34m · 231 toots
+Watched on 19 October 2025",Magic Crystal,1986,Magic Crystal (1986),,tt0091532,94,231,2.457446809,2025-10-19 22:36:00,TRUE,,NR,,"Action, Adventure, Comedy",,Jing Wong,,"Andy Lau, Cynthia Rothrock, Pak-Cheung Chan",,0,,-1,,6.2,,-1,25,251,18,299,82,75,197.4025974
+"Pumpkinhead 
+1988 · 1h 26m · 2047 toots
+Watched on 19 October 2025",Pumpkinhead,1988,Pumpkinhead (1988),,tt0095925,86,2047,23.80232558,2025-10-19 21:00:00,FALSE,,R,,"Fantasy, Horror",,Stan Winston,,"Lance Henriksen, Jeff East, John D'Aquino",,0.03,,47,,6.2,,12252012.16,91,1543,48,1551,506,765,137.8602833
+"Mr. Vampire 
+1985 · 1h 36m · 298 toots
+Watched on 12 October 2025",Mr. Vampire,1985,Mr. Vampire (1985),,tt0089371,96,298,3.104166667,2025-10-12 22:46:00,TRUE,,PG-13,,"Action, Comedy, Fantasy",,Ricky Lau,,"Ching-Ying Lam, Siu-Ho Chin, Ricky Hui",,1.11,,-1,,7.3,,-1,24,189,17,296,55,61,138.2550336
+"The Hunger 
+1983 · 1h 36m · 2232 toots
+Watched on 12 October 2025",The Hunger,1983,The Hunger (1983),,tt0085701,96,2232,23.25,2025-10-12 21:00:00,FALSE,,R,,"Drama, Horror",,Tony Scott,,"Catherine Deneuve, David Bowie, Susan Sarandon",,0.03,,52,,6.6,,19840923.76,101,1576,59,3460,954,849,235.797491
+"Thrilling Bloody Sword 
+1981 · 1h 29m · 222 toots
+Watched on 5 October 2025",Thrilling Bloody Sword,1981,Thrilling Bloody Sword (1981),,tt0122286,89,222,2.494382022,2025-10-05 22:57:00,TRUE,,NR,,"Action, Fantasy, Adventure",,Hsin-Yi Chang,,"Pu-Liao Hsu, Hui-Shan Yang, Ling-Ling Hsia",,0,,-1,,6.7,,-1,17,158,15,174,48,81,136.4864865
+"Fright Night 
+1985 · 1h 47m · 3018 toots
+Watched on 5 October 2025",Fright Night,1985,Fright Night (1985),,tt0089175,107,3018,28.20560748,2025-10-05 21:00:00,FALSE,,R,,Horror,,Tom Holland,,"Chris Sarandon, William Ragsdale, Amanda Bearse",,5.05,,62,,7.1,,76550179.63,99,2360,60,2882,1155,1246,175.0497018
+"Food of the Gods II 
+1989 · 1h 31m · 232 toots
+Watched on 28 September 2025",Food of the Gods II,1989,Food of the Gods II (1989),,tt0097371,91,232,2.549450549,2025-09-28 22:38:00,TRUE,,R,,"Sci-Fi, Horror",,Damian Lee,,"Paul Coufos, Lisa Schrage, Réal Andrews",,0,,-1,,4.1,,-1,24,186,19,203,42,21,114.6551724
+"The Food of the Gods 
+1976 · 1h 28m · 2662 toots
+Watched on 28 September 2025",The Food of the Gods,1976,The Food of the Gods (1976),,tt0074540,88,2662,30.25,2025-09-28 21:00:00,FALSE,,PG,,"Adventure, Horror, Sci-Fi",,Bert I. Gordon,,"Marjoe Gortner, Pamela Franklin, Ralph Meeker",,0.02,,20,,4.6,,-1,96,2036,55,2931,491,962,164.6882044
+"The Angry Red Planet 
+1959 · 1h 23m · 2798 toots
+Watched on 21 September 2025",The Angry Red Planet,1959,The Angry Red Planet (1959),,tt0052564,83,2798,33.71084337,2025-09-21 21:00:00,FALSE,,Approved,,"Adventure, Horror, Sci-Fi",,Ib Melchior,,"Gerald Mohr, Nora Hayden, Les Tremayne",,0,,-1,,5.3,,-1,92,2159,53,3060,778,1065,175.2323088
+"Revenge of the Creature 
+1955 · 1h 22m · 346 toots
+Watched on 14 September 2025",Revenge of the Creature,1955,Revenge of the Creature (1955),,tt0048554,82,346,4.219512195,2025-09-14 22:29:00,TRUE,,Approved,,"Horror, Sci-Fi",,Jack Arnold,,"John Agar, Lori Nelson, John Bromfield",,0,,-1,,5.6,,13565298.51,36,260,24,491,135,107,211.849711
+"Creature from the Black Lagoon 
+1954 · 1h 19m · 2725 toots
+Watched on 14 September 2025",Creature from the Black Lagoon,1954,Creature from the Black Lagoon (1954),,tt0046876,79,2725,34.49367089,2025-09-14 21:00:00,FALSE,,G,,"Horror, Sci-Fi",,Jack Arnold,,"Richard Carlson, Julie Adams, Richard Denning",,2.02,,68,,6.9,,-1,112,2139,63,2929,1127,1018,186.2018349
+"Space Freaks from Planet Mutoid 
+1995 · 1h 24m · 343 toots
+Watched on 7 September 2025",Space Freaks from Planet Mutoid,1995,Space Freaks from Planet Mutoid (1995),,tt0131593,84,343,4.083333333,2025-09-07 22:20:00,TRUE,,NR,,Sci-Fi,,Dionysius Zervos,,"Tamela Glenn, Gregory Harvey, Harry Sando",,0,,-1,,3.1,,-1,35,259,27,328,131,123,169.6793003
+"The Man from Planet X 
+1951 · 1h 10m · 2442 toots
+Watched on 7 September 2025",The Man from Planet X,1951,The Man from Planet X (1951),,tt0043778,70,2442,34.88571429,2025-09-07 21:00:00,FALSE,,Approved,,"Horror, Romance, Sci-Fi",,Edgar G. Ulmer,,"Robert Clarke, Margaret Field, Raymond Bond",,0,,-1,,5.7,,-1,107,1959,62,2466,740,886,167.5675676
+"Grizzly II: Revenge 
+2020 · 1h 14m · 467 toots
+Watched on 31 August 2025",Grizzly II: Revenge,2020,Grizzly II: Revenge (2020),,tt0093119,74,467,6.310810811,2025-08-31 22:41:00,TRUE,,NR,,"Horror, Music, Thriller",,André Szöts,,"George Clooney, Laura Dern, Charlie Sheen",,0,,7,,2.7,,-1,41,296,26,378,171,93,137.4732334
+"Grizzly 
+1976 · 1h 31m · 3111 toots
+Watched on 31 August 2025",Grizzly,1976,Grizzly (1976),,tt0074593,91,3111,34.18681319,2025-08-31 21:00:00,FALSE,,PG,,"Adventure, Horror, Thriller",,William Girdler,,"Christopher George, Andrew Prine, Richard Jaeckel",,0,,25,,5.2,,-1,107,2489,63,3816,1311,1236,204.5323047
+"The Return of Swamp Thing 
+1989 · 1h 24m · 280 toots
+Watched on 24 August 2025",The Return of Swamp Thing,1989,The Return of Swamp Thing (1989),,tt0098193,84,280,3.333333333,2025-08-24 22:43:00,TRUE,,PG-13,,"Action, Adventure, Comedy",,Jim Wynorski,,"Dick Durock, Heather Locklear, Louis Jourdan",,1,,39,,4.7,,513916.84,27,231,19,170,79,80,117.5
+"Swamp Thing 
+1982 · 1h 33m · 2950 toots
+Watched on 24 August 2025",Swamp Thing,1982,Swamp Thing (1982),,tt0084745,93,2950,31.72043011,2025-08-24 21:00:00,FALSE,,PG,,"Horror, Sci-Fi",,Wes Craven,,"Louis Jourdan, Adrienne Barbeau, Ray Wise",,0.01,,50,,5.3,,-1,112,2236,67,2860,838,1096,162.5084746
+"Little Shop of Horrors 
+1986 · 1h 34m · 388 toots
+Watched on 17 August 2025",Little Shop of Horrors,1986,Little Shop of Horrors (1986),,tt0091419,94,388,4.127659574,2025-08-17 22:22:00,TRUE,,PG-13,,"Comedy, Horror, Musical",,Frank Oz,,"Rick Moranis, Ellen Greene, Vincent Gardenia",,2.14,,81,,7.1,,117701426.37,36,204,25,242,79,64,99.22680412
+"The Little Shop of Horrors 
+1960 · 1h 12m · 1744 toots
+Watched on 17 August 2025",The Little Shop of Horrors,1960,The Little Shop of Horrors (1960),,tt0054033,72,1744,24.22222222,2025-08-17 21:00:00,FALSE,,NR,,"Comedy, Horror",,Roger Corman,,"Jonathan Haze, Jackie Joseph, Mel Welles",,0,,-1,,6.2,,-1,81,1245,53,1877,528,667,176.146789
+"Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack 
+2001 · 1h 45m · 2563 toots
+Watched on 10 August 2025","Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack",2001,"Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack (2001)",,tt0279112,105,2563,24.40952381,2025-08-10 21:00:00,FALSE,,NR,,"Action, Adventure, Drama",,Shûsuke Kaneko,,"Chiharu Niiyama, Ryûdô Uzaki, Masahiro Kobayashi",,0.01,,-1,,7.0,,-1,100,2049,63,2587,808,953,169.6449473
+"The Raven 
+1963 · 1h 26m · 2762 toots
+Watched on 3 August 2025",The Raven,1963,The Raven (1963),,tt0057449,86,2762,32.11627907,2025-08-03 21:00:00,FALSE,,G,,"Comedy, Drama, Fantasy",,Roger Corman,,"Vincent Price, Peter Lorre, Boris Karloff",,1,,-1,,6.5,,-1,125,2210,72,2735,942,1110,173.3164374
+"Vampire Circus 
+1972 · 1h 27m · 2496 toots
+Watched on 27 July 2025",Vampire Circus,1972,Vampire Circus (1972),,tt0067924,87,2496,28.68965517,2025-07-27 21:00:00,FALSE,,PG,,Horror,,Robert Young,,"Adrienne Corri, Thorley Walters, Anthony Higgins",,0,,-1,,6.3,,-1,97,1950,53,2625,795,988,176.6025641
+"Trucks 
+1997 · 1h 39m · 211 toots
+Watched on 20 July 2025",Trucks,1997,Trucks (1997),,tt0120380,99,211,2.131313131,2025-07-20 22:47:00,TRUE,,R,,"Drama, Horror, Sci-Fi",,Chris Thomson,,"Timothy Busfield, Brenda Bakke, Aidan Devine",,0,,-1,,3.9,,-1,36,142,27,154,46,59,122.7488152
+"Maximum Overdrive 
+1986 · 1h 37m · 2814 toots
+Watched on 20 July 2025",Maximum Overdrive,1986,Maximum Overdrive (1986),,tt0091499,97,2814,29.01030928,2025-07-20 21:00:00,FALSE,,R,,"Action, Comedy, Horror",,Stephen King,,"Emilio Estevez, Pat Hingle, Laura Harrington",,0.04,,24,,5.4,,22416292.17,105,2098,65,2902,860,1132,173.9161336
+"X: The Man with the X-Ray Eyes 
+1963 · 1h 19m · 2071 toots
+Watched on 13 July 2025",X: The Man with the X-Ray Eyes,1963,X: The Man with the X-Ray Eyes (1963),,tt0057693,79,2071,26.21518987,2025-07-13 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi, Thriller",,Roger Corman,,"Ray Milland, Diana Van der Vlis, Harold J. Stone",,0.02,,-1,,6.6,,-1,94,1731,55,1913,959,886,181.4582327
+"Frankenstein Meets the Space Monster 
+1965 · 1h 19m · 2759 toots
+Watched on 6 July 2025",Frankenstein Meets the Space Monster,1965,Frankenstein Meets the Space Monster (1965),,tt0059199,79,2759,34.92405063,2025-07-06 21:00:00,FALSE,,UR,,"Horror, Sci-Fi",,Robert Gaffney,,"Marilyn Hanold, James Karen, Lou Cutell",,0,,-1,,3.8,,-1,104,2202,61,2857,847,1113,174.5922436
+"Clash of the Titans 
+1981 · 1h 58m · 3444 toots
+Watched on 29 June 2025",Clash of the Titans,1981,Clash of the Titans (1981),,tt0082186,118,3444,29.18644068,2025-06-29 21:00:00,FALSE,,PG,,"Action, Adventure, Fantasy",,Desmond Davis,,"Laurence Olivier, Harry Hamlin, Claire Bloom",,2.06,,59,,6.9,,149406099.05,113,2614,63,3738,1200,1448,185.4239257
+"Starcrash 
+1978 · 1h 34m · 3556 toots
+Watched on 22 June 2025",Starcrash,1978,Starcrash (1978),,tt0079946,94,3556,37.82978723,2025-06-22 21:00:00,FALSE,,PG,,"Action, Adventure, Sci-Fi",,Luigi Cozzi,,"Marjoe Gortner, Caroline Munro, Christopher Plummer",,0.01,,-1,,4.0,,-1,105,2802,60,4344,1133,1379,192.8008999
+"Bog 
+1979 · 1h 26m · 2969 toots
+Watched on 15 June 2025",Bog,1979,Bog (1979),,tt0077254,86,2969,34.52325581,2025-06-15 21:00:00,FALSE,,PG,,Horror,,Don Keeslar,,"Gloria DeHaven, Aldo Ray, Marshall Thompson",,0,,-1,,3.2,,-1,100,2387,62,3728,931,1311,201.077804
+"Dracula, Prisoner of Frankenstein 
+1972 · 1h 28m · 2874 toots
+Watched on 8 June 2025","Dracula, Prisoner of Frankenstein",1972,"Dracula, Prisoner of Frankenstein (1972)",,tt0065660,88,2874,32.65909091,2025-06-08 21:00:00,FALSE,,NR,,Horror,,Jesús Franco,,"Dennis Price, Howard Vernon, Paca Gabaldón",,0,,-1,,4.1,,-1,103,2246,64,3063,794,1229,176.9659012
+"Godzilla: Final Wars 
+2004 · 2h 5m · 3472 toots
+Watched on 1 June 2025",Godzilla: Final Wars,2004,Godzilla: Final Wars (2004),,tt0399102,125,3472,27.776,2025-06-01 21:00:00,FALSE,,PG-13,,"Action, Adventure, Fantasy",,"Ryûhei Kitamura, Kôji Hashimoto, Shûsuke Kaneko",,"Masahiro Matsuoka, Rei Kikukawa, Don Frye",,0.03,,-1,,6.3,,-1,100,2748,62,4612,1135,1302,203.0241935
+"Forbidden Planet 
+1956 · 1h 38m · 2608 toots
+Watched on 25 May 2025",Forbidden Planet,1956,Forbidden Planet (1956),,tt0049223,98,2608,26.6122449,2025-05-25 21:00:00,FALSE,,G,,"Adventure, Sci-Fi",,Fred M. Wilcox,,"Walter Pidgeon, Anne Francis, Leslie Nielsen",,2.03,,80,,7.5,,-1,116,2113,65,4539,899,1119,251.4187117
+"Beyond Atlantis 
+1973 · 1h 31m · 2305 toots
+Watched on 18 May 2025",Beyond Atlantis,1973,Beyond Atlantis (1973),,tt0069783,91,2305,25.32967033,2025-05-18 21:00:00,FALSE,,PG,,"Action, Adventure, Fantasy",,Eddie Romero,,"Patrick Wayne, John Ashley, Leigh Christian",,0,,-1,,4.0,,-1,86,1821,50,2104,708,824,157.7440347
+"Slugs 
+1988 · 1h 29m · 2526 toots
+Watched on 11 May 2025",Slugs,1988,Slugs (1988),,tt0093995,89,2526,28.38202247,2025-05-11 21:00:00,FALSE,,R,,Horror,,Juan Piquer Simón,,"Michael Garfield Levine, Kim Terry, Philip MacHale",,1.01,,-1,,5.3,,-1,86,2000,56,3317,804,947,200.6334125
+"The Gate 
+1987 · 1h 26m · 2434 toots
+Watched on 4 May 2025",The Gate,1987,The Gate (1987),,tt0093075,86,2434,28.30232558,2025-05-04 21:00:00,FALSE,,PG-13,,"Fantasy, Horror",,Tibor Takács,,"Stephen Dorff, Christa Denton, Louis Tripp",,2.02,,55,,6.0,,39390764.69,93,1934,55,2143,589,842,146.8364832
+"The Bat People 
+1974 · 1h 35m · 2828 toots
+Watched on 27 April 2025",The Bat People,1974,The Bat People (1974),,tt0071198,95,2828,29.76842105,2025-04-27 21:00:00,FALSE,,PG,,"Horror, Romance",,Jerry Jameson,,"Stewart Moss, Marianne McAndrew, Michael Pataki",,0,,-1,,2.8,,-1,98,2228,57,1625,831,1149,127.4752475
+"First Men in the Moon 
+1964 · 1h 43m · 2648 toots
+Watched on 20 April 2025",First Men in the Moon,1964,First Men in the Moon (1964),,tt0058100,103,2648,25.70873786,2025-04-20 21:00:00,FALSE,,Approved,,"Adventure, Sci-Fi",,Nathan Juran,,"Edward Judd, Martha Hyer, Lionel Jeffries",,0,,-1,,6.5,,17591129.03,86,2095,54,1713,885,1034,137.1601208
+"Krull 
+1983 · 2h 1m · 3947 toots
+Watched on 13 April 2025",Krull,1983,Krull (1983),,tt0085811,121,3947,32.61983471,2025-04-13 21:00:00,FALSE,,PG,,"Action, Adventure, Fantasy",,Peter Yates,,"Ken Marshall, Lysette Anthony, Freddie Jones",,1.05,,45,,6.1,,56133955.01,105,2904,61,3053,1533,1291,148.8978971
+"Laserblast 
+1978 · 1h 23m · 2719 toots
+Watched on 6 April 2025",Laserblast,1978,Laserblast (1978),,tt0077834,83,2719,32.75903614,2025-04-06 21:00:00,FALSE,,PG,,"Horror, Sci-Fi",,Michael Rae,,"Kim Milford, Cheryl Smith, Gianni Russo",,0.01,,-1,,2.8,,-1,98,2042,62,1779,776,955,129.0915778
+"Cat Girl 
+1957 · 1h 16m · 2213 toots
+Watched on 30 March 2025",Cat Girl,1957,Cat Girl (1957),,tt0050235,76,2213,29.11842105,2025-03-30 21:00:00,FALSE,,UR,,Horror,,Alfred Shaughnessy,,"Barbara Shelley, Robert Ayres, Kay Callard",,0,,-1,,5.5,,-1,96,1701,55,1928,714,687,150.4292815
+"Critters 2 
+1988 · 1h 26m · 2196 toots
+Watched on 23 March 2025",Critters 2,1988,Critters 2 (1988),,tt0094919,86,2196,25.53488372,2025-03-23 21:00:00,FALSE,,PG-13,,"Comedy, Horror, Sci-Fi",,Mick Garris,,"Scott Grimes, Liane Curtis, Terrence Mann",,1.03,,48,,5.6,,10653367.17,88,1685,56,1355,713,881,134.2896175
+"Yeti: The Giant of the 20th Century 
+1977 · 1h 41m · 3524 toots
+Watched on 16 March 2025",Yeti: The Giant of the 20th Century,1977,Yeti: The Giant of the 20th Century (1977),,tt0076937,101,3524,34.89108911,2025-03-16 21:00:00,FALSE,,NR,,"Adventure, Crime, Fantasy",,Gianfranco Parolini,,"Antonella Interlenghi, Mimmo Crao, Jim Sullivan",,0,,-1,,4.1,,-1,100,2651,57,2610,992,1164,135.2440409
+"Critters 
+1986 · 1h 26m · 2272 toots
+Watched on 9 March 2025",Critters,1986,Critters (1986),,tt0090887,86,2272,26.41860465,2025-03-09 21:00:00,FALSE,,PG-13,,"Comedy, Horror, Sci-Fi",,Stephen Herek,,"Dee Wallace, M. Emmet Walsh, Billy Green Bush",,0.03,,52,,6.1,,39705932.26,88,1679,56,1127,627,869,115.4489437
+"C.H.U.D. 
+1984 · 1h 37m · 2369 toots
+Watched on 2 March 2025",C.H.U.D.,1984,C.H.U.D. (1984),,tt0087015,97,2369,24.42268041,2025-03-02 21:00:00,FALSE,,R,,"Horror, Sci-Fi",,Douglas Cheek,,"John Heard, Daniel Stern, Christopher Curry",,1.01,,57,,5.6,,14805455.26,93,1804,56,2156,702,892,158.2946391
+"Frogs! 
+1991 · 1h 40m · 397 toots
+Watched on 23 February 2025",Frogs!,1991,Frogs! (1991),,tt0315609,100,397,3.97,2025-02-23 22:40:00,TRUE,,PG,,"Comedy, Fantasy",,David Grossman,,"Shelley Duvall, Elliott Gould, Scott Grimes",,0,,-1,,4.6,,-1,39,314,26,182,114,109,102.0151134
+"Frogs 
+1972 · 1h 30m · 3719 toots
+Watched on 23 February 2025",Frogs,1972,Frogs (1972),,tt0068615,90,3719,41.32222222,2025-02-23 21:00:00,FALSE,,PG,,"Horror, Mystery, Sci-Fi",,George McCowan,,"Ray Milland, Sam Elliott, Joan Van Ark",,0.01,,51,,4.4,,3757777.09,117,2697,69,2200,987,1128,116.0258134
+"The Gorgon 
+1964 · 1h 23m · 2519 toots
+Watched on 16 February 2025",The Gorgon,1964,The Gorgon (1964),,tt0058155,83,2519,30.34939759,2025-02-16 21:00:00,FALSE,,Approved,,Horror,,Terence Fisher,,"Christopher Lee, Peter Cushing, Richard Pasco",,0,,-1,,6.4,,-1,101,1896,58,2648,1001,835,178.0071457
+"Masters of the Universe 
+1987 · 1h 46m · 3044 toots
+Watched on 9 February 2025",Masters of the Universe,1987,Masters of the Universe (1987),,tt0093507,106,3044,28.71698113,2025-02-09 21:00:00,FALSE,,PG,,"Action, Adventure, Fantasy",,Gary Goddard,,"Dolph Lundgren, Frank Langella, Meg Foster",,2.05,,35,,5.4,,50437238.42,106,2262,64,2685,762,985,145.5978975
+"Invasion of the Star Creatures 
+1962 · 1h 10m · 2093 toots
+Watched on 2 February 2025",Invasion of the Star Creatures,1962,Invasion of the Star Creatures (1962),,tt0128274,70,2093,29.9,2025-02-02 21:00:00,FALSE,,Approved,,"Comedy, Sci-Fi",,Bruno VeSota,,"Robert Ball, Frank Ray Perilli, Gloria Victor",,0,,-1,,3.1,,-1,93,1532,52,1892,798,638,159.0062112
+"Piranha 
+1978 · 1h 34m · 2955 toots
+Watched on 26 January 2025",Piranha,1978,Piranha (1978),,tt0078087,94,2955,31.43617021,2025-01-26 21:00:00,FALSE,,R,,"Comedy, Horror, Sci-Fi",,Joe Dante,,"Bradford Dillman, Heather Menzies-Urich, Kevin McCarthy",,1.01,,71,,5.9,,-1,96,2123,58,2358,880,963,142.1658206
+"Invasion of the Bee Girls 
+1973 · 1h 25m · 2893 toots
+Watched on 19 January 2025",Invasion of the Bee Girls,1973,Invasion of the Bee Girls (1973),,tt0070222,85,2893,34.03529412,2025-01-19 21:00:00,FALSE,,R,,"Horror, Sci-Fi",,Denis Sanders,,"William Smith, Anitra Ford, Victoria Vetri",,0,,-1,,4.9,,-1,101,2070,66,1411,982,959,115.8658832
+"Battle Beyond the Stars 
+1980 · 1h 44m · 3183 toots
+Watched on 12 January 2025",Battle Beyond the Stars,1980,Battle Beyond the Stars (1980),,tt0080421,104,3183,30.60576923,2025-01-12 21:00:00,FALSE,,PG,,"Action, Adventure, Sci-Fi",,"Jimmy T. Murakami, Roger Corman",,"George Peppard, Robert Vaughn, Richard Thomas",,1.04,,59,,5.5,,-1,113,2293,67,2066,1403,1142,144.8633365
+"Devil Girl from Mars 
+1954 · 1h 17m · 2389 toots
+Watched on 5 January 2025",Devil Girl from Mars,1954,Devil Girl from Mars (1954),,tt0046907,77,2389,31.02597403,2025-01-05 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi",,David MacDonald,,"Hugh McDermott, Hazel Court, Peter Reynolds",,0,,-1,,4.9,,-1,77,1649,48,1691,593,829,130.3055672
+"The Stepford Wives 
+1975 · 1h 57m · 2041 toots
+Watched on 29 December 2024",The Stepford Wives,1975,The Stepford Wives (1975),,tt0073747,117,2041,17.44444444,2024-12-29 21:00:00,FALSE,,PG,,"Horror, Mystery, Sci-Fi",,Bryan Forbes,,"Katharine Ross, Paula Prentiss, Peter Masterson",,1.01,,54,,6.9,,53568029.74,79,1480,48,1853,721,802,165.4091132
+"Snowbeast 
+1977 · 1h 26m · 2906 toots
+Watched on 22 December 2024",Snowbeast,1977,Snowbeast (1977),,tt0076731,86,2906,33.79069767,2024-12-22 21:00:00,FALSE,,UR,,Horror,,Herb Wallerstein,,"Bo Svenson, Yvette Mimieux, Robert Logan",,0,,-1,,4.6,,-1,97,2121,55,2082,844,1030,136.1321404
+"The Giant Spider Invasion 
+1975 · 1h 19m · 2679 toots
+Watched on 15 December 2024",The Giant Spider Invasion,1975,The Giant Spider Invasion (1975),,tt0073043,79,2679,33.91139241,2024-12-15 21:00:00,FALSE,,PG,,"Horror, Sci-Fi",,Bill Rebane,,"Steve Brodie, Barbara Hale, Robert Easton",,0,,-1,,3.3,,1800260.53,86,1838,54,1466,701,864,113.1392311
+"The Curse of the Aztec Mummy 
+1957 · 1h 3m · 425 toots
+Watched on 8 December 2024",The Curse of the Aztec Mummy,1957,The Curse of the Aztec Mummy (1957),,tt0050672,63,425,6.746031746,2024-12-08 22:15:00,TRUE,,TV-14,,Horror,,Rafael Portillo,,"Ramón Gay, Rosita Arenas, Crox Alvarado",,0,,-1,,3.9,,-1,36,292,27,433,195,104,172.2352941
+"The Robot vs. The Aztec Mummy 
+1958 · 1h 5m · 2434 toots
+Watched on 8 December 2024",The Robot vs. The Aztec Mummy,1958,The Robot vs. The Aztec Mummy (1958),,tt0050717,65,2434,37.44615385,2024-12-08 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi",,Rafael Portillo,,"Ramón Gay, Rosita Arenas, Crox Alvarado",,0,,-1,,2.4,,-1,80,1522,52,1195,551,664,99.01396878
+"The Phantom Planet 
+1961 · 1h 22m · 2340 toots
+Watched on 1 December 2024",The Phantom Planet,1961,The Phantom Planet (1961),,tt0055294,82,2340,28.53658537,2024-12-01 21:00:00,FALSE,,UR,,"Action, Adventure, Sci-Fi",,William Marshall,,"Dean Fredericks, Coleen Gray, Anthony Dexter",,0,,-1,,3.9,,-1,78,1658,50,1659,671,689,129.017094
+"Missile to the Moon 
+1958 · 1h 18m · 468 toots
+Watched on 24 November 2024",Missile to the Moon,1958,Missile to the Moon (1958),,tt0053072,78,468,6,2024-11-24 22:14:00,TRUE,,Approved,,"Drama, Sci-Fi",,Richard E. Cunha,,"Richard Travis, Cathy Downs, K.T. Stevens",,0,,-1,,4.1,,-1,32,354,25,269,149,201,132.2649573
+"Cat-Women of the Moon 
+1953 · 1h 4m · 2435 toots
+Watched on 24 November 2024",Cat-Women of the Moon,1953,Cat-Women of the Moon (1953),,tt0045609,64,2435,38.046875,2024-11-24 21:00:00,FALSE,,Approved,,"Adventure, Sci-Fi",,Arthur Hilton,,"Sonny Tufts, Victor Jory, Marie Windsor",,0,,-1,,3.9,,-1,88,1424,54,1401,666,606,109.7741273
+"The Wrestling Women vs. the Aztec Mummy 
+1964 · 1h 29m · 2577 toots
+Watched on 17 November 2024",The Wrestling Women vs. the Aztec Mummy,1964,The Wrestling Women vs. the Aztec Mummy (1964),,tt0058304,89,2577,28.95505618,2024-11-17 21:00:00,FALSE,,NR,,"Adventure, Horror, Sci-Fi",,René Cardona,,"Lorena Velázquez, Armando Silvestre, Elizabeth Campbell",,0,,-1,,4.2,,-1,86,1611,53,1412,814,820,118.1994567
+"The Monolith Monsters 
+1957 · 1h 17m · 2218 toots
+Watched on 10 November 2024",The Monolith Monsters,1957,The Monolith Monsters (1957),,tt0050720,77,2218,28.80519481,2024-11-10 21:00:00,FALSE,,Approved,,"Drama, Horror, Sci-Fi",,John Sherwood,,"Grant Williams, Lola Albright, Les Tremayne",,0,,-1,,6.4,,-1,83,1502,54,1904,1053,684,164.1568981
+"THEM! 
+1954 · 1h 34m · 1992 toots
+Watched on 3 November 2024",THEM!,1954,THEM! (1954),,tt0047573,94,1992,21.19148936,2024-11-03 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi",,Gordon Douglas,,"James Whitmore, Edmund Gwenn, Joan Weldon",,1.03,,74,,7.2,,-1,82,1360,54,1474,847,632,148.2429719
+"Scream Blacula Scream 
+1973 · 1h 36m · 1940 toots
+Watched on 27 October 2024",Scream Blacula Scream,1973,Scream Blacula Scream (1973),,tt0070656,96,1940,20.20833333,2024-10-27 21:00:00,FALSE,,PG,,"Fantasy, Horror",,Bob Kelljan,,"William Marshall, Don Mitchell, Pam Grier",,0.01,,40,,5.6,,16227252.25,75,1278,55,933,841,625,123.6597938
+"Dracula 
+1974 · 1h 38m · 2143 toots
+Watched on 20 October 2024",Dracula,1974,Dracula (1974),,tt0070003,98,2143,21.86734694,2024-10-20 21:00:00,FALSE,,TV-14,,"Drama, Horror",,Dan Curtis,,"Jack Palance, Simon Ward, Nigel Davenport",,0,,-1,,6.2,,-1,75,1418,54,1241,688,622,119.0387308
+"Nosferatu the Vampyre 
+1979 · 1h 47m · 2524 toots
+Watched on 13 October 2024",Nosferatu the Vampyre,1979,Nosferatu the Vampyre (1979),,tt0079641,107,2524,23.58878505,2024-10-13 21:00:00,FALSE,,PG,,"Drama, Horror",,Werner Herzog,,"Klaus Kinski, Isabelle Adjani, Bruno Ganz",,5.08,,79,,7.4,,-1,81,1792,55,1717,959,937,143.1458003
+"Count Dracula 
+1970 · 1h 38m · 2291 toots
+Watched on 6 October 2024",Count Dracula,1970,Count Dracula (1970),,tt0065569,98,2291,23.37755102,2024-10-06 21:00:00,FALSE,,PG,,"Drama, Horror",,Jesús Franco,,"Christopher Lee, Herbert Lom, Klaus Kinski",,0,,-1,,5.6,,-1,78,1425,54,1186,969,769,127.629856
+"Invaders from Mars 
+1986 · 1h 40m · 2352 toots
+Watched on 29 September 2024",Invaders from Mars,1986,Invaders from Mars (1986),,tt0091276,100,2352,23.52,2024-09-29 21:00:00,FALSE,,PG,,"Horror, Sci-Fi",,Tobe Hooper,,"Karen Black, Hunter Carson, Timothy Bottoms",,0.02,,56,,5.5,,14729754.76,68,1501,46,1356,685,738,118.1547619
+"Mysterious Island 
+1961 · 1h 41m · 2446 toots
+Watched on 22 September 2024",Mysterious Island,1961,Mysterious Island (1961),,tt0055207,101,2446,24.21782178,2024-09-22 21:00:00,FALSE,,Approved,,"Adventure, Family, Fantasy",,Cy Endfield,,"Michael Craig, Joan Greenwood, Michael Callan",,0,,-1,,6.7,,-1,83,1598,57,824,705,710,91.5372036
+"Night of the Comet 
+1984 · 1h 35m · 2193 toots
+Watched on 15 September 2024",Night of the Comet,1984,Night of the Comet (1984),,tt0087799,95,2193,23.08421053,2024-09-15 21:00:00,FALSE,,PG-13,,"Comedy, Horror, Sci-Fi",,Thom Eberhardt,,"Catherine Mary Stewart, Kelli Maroney, Robert Beltran",,0.01,,59,,6.3,,45865772.10,79,1475,58,1082,499,794,108.2991336
+"Godzilla vs. Megalon 
+1973 · 1h 22m · 2199 toots
+Watched on 8 September 2024",Godzilla vs. Megalon,1973,Godzilla vs. Megalon (1973),,tt0070122,82,2199,26.81707317,2024-09-08 21:00:00,FALSE,,G,,"Action, Adventure, Family",,"Jun Fukuda, Yoshimitsu Banno, Ishirô Honda",,"Katsuhiko Sasaki, Hiroyuki Kawase, Yutaka Hayashi",,0,,-1,,4.8,,-1,67,1529,41,1261,745,672,121.7826285
+"Invasion of the Body Snatchers 
+1978 · 1h 56m · 2251 toots
+Watched on 1 September 2024",Invasion of the Body Snatchers,1978,Invasion of the Body Snatchers (1978),,tt0077745,116,2251,19.40517241,2024-09-01 21:00:00,FALSE,,PG,,"Horror, Sci-Fi",,Philip Kaufman,,"Donald Sutherland, Brooke Adams, Jeff Goldblum",,3.11,,75,,7.4,,126454434.92,81,1594,52,1240,681,734,117.9475789
+"Twins of Evil 
+1971 · 1h 27m · 2044 toots
+Watched on 25 August 2024",Twins of Evil,1971,Twins of Evil (1971),,tt0069427,87,2044,23.49425287,2024-08-25 21:00:00,FALSE,,R,,Horror,,John Hough,,"Peter Cushing, Dennis Price, Mary Collinson",,0,,62,,6.6,,-1,79,1511,57,1280,777,670,133.4148728
+"Tentacles 
+1977 · 1h 42m · 2671 toots
+Watched on 18 August 2024",Tentacles,1977,Tentacles (1977),,tt0076809,102,2671,26.18627451,2024-08-18 21:00:00,FALSE,,PG,,"Action, Adventure, Comedy",,Ovidio G. Assonitis,,"John Huston, Shelley Winters, Bo Hopkins",,0,,36,,3.8,,-1,86,1989,51,1575,1001,934,131.4114564
+"The Wicker Man 
+1973 · 1h 33m · 1688 toots
+Watched on 11 August 2024",The Wicker Man,1973,The Wicker Man (1973),,tt0070917,93,1688,18.15053763,2024-08-11 21:00:00,FALSE,,R,,"Horror, Mystery, Thriller",,Robin Hardy,,"Edward Woodward, Christopher Lee, Diane Cilento",,3.06,,87,,7.5,,1108232.00,66,1207,45,1178,928,540,156.7535545
+"Gamera: Guardian of the Universe 
+1995 · 1h 36m · 1984 toots
+Watched on 4 August 2024",Gamera: Guardian of the Universe,1995,Gamera: Guardian of the Universe (1995),,tt0113142,96,1984,20.66666667,2024-08-04 21:00:00,FALSE,,NR,,"Action, Drama, Fantasy",,Shûsuke Kaneko,,"Tsuyoshi Ihara, Akira Onodera, Shinobu Nakayama",,6.01,,-1,,6.7,,-1,74,1544,54,1070,857,705,132.6612903
+"The Last Man on Earth 
+1964 · 1h 26m · 1623 toots
+Watched on 28 July 2024",The Last Man on Earth,1964,The Last Man on Earth (1964),,tt0058700,86,1623,18.87209302,2024-07-28 21:00:00,FALSE,,Approved,,"Drama, Horror, Sci-Fi",,"Ubaldo Ragona, Sidney Salkow",,"Vincent Price, Franca Bettoia, Emma Danieli",,0.01,,-1,,6.7,,-1,79,1210,58,1345,818,513,164.8798521
+"Chopping Mall 
+1986 · 1h 17m · 2157 toots
+Watched on 21 July 2024",Chopping Mall,1986,Chopping Mall (1986),,tt0090837,77,2157,28.01298701,2024-07-21 21:00:00,FALSE,,R,,"Horror, Sci-Fi",,Jim Wynorski,,"Kelli Maroney, Tony O'Dell, Russell Todd",,0,,22,,5.6,,-1,74,1635,52,1211,858,723,129.4390357
+"Terror of Mechagodzilla 
+1975 · 1h 23m · 1993 toots
+Watched on 14 July 2024",Terror of Mechagodzilla,1975,Terror of Mechagodzilla (1975),,tt0073373,83,1993,24.01204819,2024-07-14 21:00:00,FALSE,,G,,"Action, Adventure, Family",,"Ishirô Honda, Jun Fukuda",,"Katsuhiko Sasaki, Tomoko Ai, Akihiko Hirata",,0.01,,-1,,6.1,,-1,76,1596,51,1833,683,622,157.4510788
+"Gargoyles 
+1972 · 1h 14m · 1835 toots
+Watched on 7 July 2024",Gargoyles,1972,Gargoyles (1972),,tt0068622,74,1835,24.7972973,2024-07-07 21:00:00,FALSE,,NR,,Horror,,Bill Norton,,"Cornel Wilde, Jennifer Salt, Grayson Hall",,1.01,,-1,,5.9,,-1,70,1391,49,1478,620,610,147.5749319
+"Invaders from Mars 
+1953 · 1h 18m · 1820 toots
+Watched on 30 June 2024",Invaders from Mars,1953,Invaders from Mars (1953),,tt0045917,78,1820,23.33333333,2024-06-30 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi",,William Cameron Menzies,,"Helena Carter, Arthur Franz, Jimmy Hunt",,3.01,,-1,,6.3,,-1,65,1377,43,1047,745,547,128.5164835
+"Horror Express 
+1972 · 1h 27m · 1700 toots
+Watched on 23 June 2024",Horror Express,1972,Horror Express (1972),,tt0068713,87,1700,19.54022989,2024-06-23 21:00:00,FALSE,,R,,"Adventure, Horror, Sci-Fi",,Eugenio Martín,,"Christopher Lee, Peter Cushing, Alberto de Mendoza",,1.01,,68,,6.5,,-1,67,1319,44,1069,795,647,147.7058824
+"Q 
+1982 · 1h 33m · 1628 toots
+Watched on 16 June 2024",Q,1982,Q (1982),,tt0084556,93,1628,17.50537634,2024-06-16 21:00:00,FALSE,,R,,"Crime, Fantasy, Mystery",,Larry Cohen,,"David Carradine, Michael Moriarty, Candy Clark",,0,,-1,,6.0,,-1,66,1235,42,1037,484,522,125.4914005
+"Creature with the Atom Brain 
+1955 · 1h 9m · 1308 toots
+Watched on 9 June 2024",Creature with the Atom Brain,1955,Creature with the Atom Brain (1955),,tt0047960,69,1308,18.95652174,2024-06-09 21:00:00,FALSE,,Approved,,"Crime, Horror, Sci-Fi",,Edward L. Cahn,,"Richard Denning, Angela Stevens, S. John Launer",,0,,-1,,5.5,,-1,65,1020,42,862,398,437,129.7400612
+"Stranger from Venus 
+1954 · 1h 15m · 1349 toots
+Watched on 2 June 2024",Stranger from Venus,1954,Stranger from Venus (1954),,tt0047529,75,1349,17.98666667,2024-06-02 21:00:00,FALSE,,NR,,Sci-Fi,,Burt Balaban,,"Patricia Neal, Helmut Dantine, Derek Bond",,0,,-1,,5.4,,-1,62,1030,41,892,517,436,136.7679763
+"Son of Godzilla 
+1967 · 1h 26m · 1499 toots
+Watched on 26 May 2024",Son of Godzilla,1967,Son of Godzilla (1967),,tt0061856,86,1499,17.43023256,2024-05-26 21:00:00,FALSE,,PG,,"Adventure, Comedy, Fantasy",,Jun Fukuda,,"Tadao Takashima, Akira Kubo, Bibari Maeda",,0,,-1,,5.2,,-1,57,1165,39,638,411,604,110.2735157
+"The Pit and the Pendulum 
+1961 · 1h 21m · 1330 toots
+Watched on 19 May 2024",The Pit and the Pendulum,1961,The Pit and the Pendulum (1961),,tt0055304,81,1330,16.41975309,2024-05-19 21:00:00,FALSE,,Approved,,"Drama, Horror, Mystery",,Roger Corman,,"Vincent Price, Barbara Steele, John Kerr",,0,,78,,7.0,,-1,57,1025,36,787,349,486,121.9548872
+"Journey to the Centre of the Earth 
+1977 · 1h 30m · 1852 toots
+Watched on 12 May 2024",Journey to the Centre of the Earth,1977,Journey to the Centre of the Earth (1977),,tt0075389,90,1852,20.57777778,2024-05-12 21:00:00,FALSE,,PG,,"Adventure, Family, Sci-Fi",,Juan Piquer Simón,,"Kenneth More, Pep Munné, Ivonne Sentis",,0,,-1,,4.8,,-1,66,1437,42,1282,650,705,142.3866091
+"Kingdom of the Spiders 
+1977 · 1h 37m · 1972 toots
+Watched on 5 May 2024",Kingdom of the Spiders,1977,Kingdom of the Spiders (1977),,tt0076271,97,1972,20.32989691,2024-05-05 21:00:00,FALSE,,PG,,"Horror, Sci-Fi",,John 'Bud' Cardos,,"William Shatner, Tiffany Bolling, Woody Strode",,0.04,,-1,,5.7,,-1,77,1486,48,923,784,665,120.2839757
+"Logan's Run 
+1976 · 1h 59m · 1949 toots
+Watched on 28 April 2024",Logan's Run,1976,Logan's Run (1976),,tt0074812,119,1949,16.37815126,2024-04-28 21:00:00,FALSE,,PG,,"Action, Adventure, Sci-Fi",,Michael Anderson,,"Michael York, Jenny Agutter, Richard Jordan",,7.05,,53,,6.8,,-1,83,1550,51,1354,783,642,142.5859415
+"The Shape of Things to Come 
+1979 · 1h 37m · 1901 toots
+Watched on 21 April 2024",The Shape of Things to Come,1979,The Shape of Things to Come (1979),,tt0079894,97,1901,19.59793814,2024-04-21 21:00:00,FALSE,,PG,,"Adventure, Sci-Fi, Thriller",,George McCowan,,"Jack Palance, Carol Lynley, Barry Morse",,0,,-1,,3.2,,-1,71,1476,42,1223,553,609,125.4602841
+"It Came from Outer Space 
+1953 · 1h 21m · 1246 toots
+Watched on 14 April 2024",It Came from Outer Space,1953,It Came from Outer Space (1953),,tt0045920,81,1246,15.38271605,2024-04-14 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi",,Jack Arnold,,"Richard Carlson, Barbara Rush, Charles Drake",,1.04,,68,,6.5,,-1,55,957,34,962,450,342,140.7704655
+"Project Moon Base 
+1953 · 1h 3m · 1367 toots
+Watched on 7 April 2024",Project Moon Base,1953,Project Moon Base (1953),,tt0046213,63,1367,21.6984127,2024-04-07 21:00:00,FALSE,,Approved,,Sci-Fi,,Richard Talmadge,,"Donna Martell, Hayden Rorke, Ross Ford",,0,,-1,,3.3,,-1,59,1028,39,710,397,365,107.6810534
+"Blacula 
+1972 · 1h 33m · 1465 toots
+Watched on 31 March 2024",Blacula,1972,Blacula (1972),,tt0068284,93,1465,15.75268817,2024-03-31 21:00:00,FALSE,,PG,,"Fantasy, Horror, Romance",,William Crain,,"William Marshall, Vonetta McGee, Denise Nicholas",,1,,-1,,5.7,,-1,50,522,32,292,248,242,53.37883959
+"The Werewolf of Washington 
+1973 · 1h 30m · 1622 toots
+Watched on 24 March 2024",The Werewolf of Washington,1973,The Werewolf of Washington (1973),,tt0070908,90,1622,18.02222222,2024-03-24 21:00:00,FALSE,,PG,,"Comedy, Horror",,Milton Moses Ginsberg,,"Dean Stockwell, Katalin Kallay, Henry Ferrentino",,0,,-1,,4.0,,-1,67,1292,42,1020,544,612,134.1553637
+"Godmonster of Indian Flats 
+1973 · 1h 29m · 1857 toots
+Watched on 17 March 2024",Godmonster of Indian Flats,1973,Godmonster of Indian Flats (1973),,tt0070119,89,1857,20.86516854,2024-03-17 21:00:00,FALSE,,NR,,"Drama, Horror, Western",,Fredric Hobbs,,"Christopher Brooks, Stuart Lancaster, E. Kerrigan Prescott",,0,,-1,,3.7,,-1,74,1485,45,845,515,591,105.0619278
+"Beyond the Time Barrier 
+1960 · 1h 15m · 1337 toots
+Watched on 10 March 2024",Beyond the Time Barrier,1960,Beyond the Time Barrier (1960),,tt0053651,75,1337,17.82666667,2024-03-10 21:00:00,FALSE,,NR,,"Romance, Sci-Fi",,Edgar G. Ulmer,,"Robert Clarke, Darlene Tompkins, Arianne Ulmer",,0,,-1,,5.3,,-1,65,1127,44,582,343,478,104.9364248
+"Godzilla 
+1954 · 1h 36m · 1322 toots
+Watched on 3 March 2024",Godzilla,1954,Godzilla (1954),,tt0047034,96,1322,13.77083333,2024-03-03 21:00:00,FALSE,,NR,,"Horror, Sci-Fi",,Ishirô Honda,,"Takashi Shimura, Akihiko Hirata, Akira Takarada",,4.02,,79,,7.6,,6913605.41,63,1116,40,1201,673,537,182.3751891
+"Mothra vs. Godzilla 
+1964 · 1h 29m · 1177 toots
+Watched on 25 February 2024",Mothra vs. Godzilla,1964,Mothra vs. Godzilla (1964),,tt0058379,89,1177,13.2247191,2024-02-25 21:00:00,FALSE,,NR,,"Adventure, Fantasy, Sci-Fi",,Ishirô Honda,,"Akira Takarada, Yuriko Hoshi, Hiroshi Koizumi",,0.01,,-1,,6.5,,-1,59,1036,39,1108,541,446,177.9949023
+"Earth vs. the Flying Saucers 
+1956 · 1h 23m · 1383 toots
+Watched on 18 February 2024",Earth vs. the Flying Saucers,1956,Earth vs. the Flying Saucers (1956),,tt0049169,83,1383,16.6626506,2024-02-18 21:00:00,FALSE,,Approved,,"Action, Horror, Sci-Fi",,Fred F. Sears,,"Hugh Marlowe, Joan Taylor, Donald Curtis",,1,,-1,,6.3,,-1,54,1060,37,945,399,433,128.4887925
+"Matango 
+1963 · 1h 28m · 1104 toots
+Watched on 11 February 2024",Matango,1963,Matango (1963),,tt0057295,88,1104,12.54545455,2024-02-11 21:00:00,FALSE,,UR,,"Horror, Mystery, Sci-Fi",,Ishirô Honda,,"Akira Kubo, Kumi Mizuno, Hiroshi Koizumi",,0,,-1,,6.4,,-1,50,926,31,640,339,489,132.9710145
+"Attack of the Crab Monsters 
+1957 · 1h 3m · 1194 toots
+Watched on 4 February 2024",Attack of the Crab Monsters,1957,Attack of the Crab Monsters (1957),,tt0050147,63,1194,18.95238095,2024-02-04 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi",,Roger Corman,,"Richard Garland, Pamela Duncan, Russell Johnson",,0,,-1,,4.9,,-1,53,976,31,887,385,408,140.7035176
+"20 Million Miles to Earth 
+1957 · 1h 22m · 1075 toots
+Watched on 28 January 2024",20 Million Miles to Earth,1957,20 Million Miles to Earth (1957),,tt0050084,82,1075,13.1097561,2024-01-28 21:00:00,FALSE,,Approved,,"Adventure, Family, Fantasy",,Nathan Juran,,"William Hopper, Joan Taylor, Thomas Browne Henry",,0,,-1,,6.3,,-1,47,897,31,442,519,376,124.372093
+"Empire of the Ants 
+1977 · 1h 29m · 1175 toots
+Watched on 21 January 2024",Empire of the Ants,1977,Empire of the Ants (1977),,tt0075989,89,1175,13.20224719,2024-01-21 21:00:00,FALSE,,PG,,"Adventure, Horror, Sci-Fi",,Bert I. Gordon,,"Joan Collins, Robert Lansing, John David Carson",,0.02,,26,,4.3,,-1,49,976,33,541,361,390,109.9574468
+"Gorgo 
+1961 · 1h 18m · 1186 toots
+Watched on 14 January 2024",Gorgo,1961,Gorgo (1961),,tt0054938,78,1186,15.20512821,2024-01-14 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi",,Eugène Lourié,,"Bill Travers, William Sylvester, Vincent Winter",,0,,-1,,5.6,,-1,49,996,32,506,476,495,124.5362563
+"War Between the Planets 
+1966 · 1h 20m · 1110 toots
+Watched on 7 January 2024",War Between the Planets,1966,War Between the Planets (1966),,tt0059588,80,1110,13.875,2024-01-07 21:00:00,FALSE,,G,,Sci-Fi,,Antonio Margheriti,,"Giacomo Rossi Stuart, Ombretta Colli, Enzo Fiermonte",,0,,-1,,4.1,,-1,44,910,33,137,426,390,85.85585586
+"Hogfather (Part 2) 
+2007 · 3h 5m · 293 toots
+Watched on 31 December 2023",Hogfather (Part 2),2007,Hogfather (Part 2) (2007),,tt0765458,185,293,1.583783784,2023-12-31 21:00:00,FALSE,,NR,,"Comedy, Fantasy",,Vadim Jean,,"David Jason, Marc Warren, Michelle Dockery",,3.03,,-1,,7.4,,-1,20,237,17,254,203,67,178.8395904
+"Hogfather (Part 1) 
+2007 · 3h 5m · 377 toots
+Watched on 24 December 2023",Hogfather (Part 1),2007,Hogfather (Part 1) (2007),,tt0765458,185,377,2.037837838,2023-12-24 21:00:00,FALSE,,NR,,"Comedy, Fantasy",,Vadim Jean,,"David Jason, Marc Warren, Michelle Dockery",,3.03,,-1,,7.4,,-1,26,303,22,341,239,159,196.0212202
+"From Hell It Came 
+1957 · 1h 13m · 921 toots
+Watched on 17 December 2023",From Hell It Came,1957,From Hell It Came (1957),,tt0050414,73,921,12.61643836,2023-12-17 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi",,Dan Milner,,"Tod Andrews, Tina Carver, Linda Watkins",,0,,-1,,3.8,,-1,44,694,29,294,313,275,95.76547231
+"Mothra 
+1961 · 1h 41m · 914 toots
+Watched on 10 December 2023",Mothra,1961,Mothra (1961),,tt0055198,101,914,9.04950495,2023-12-10 21:00:00,FALSE,,Approved,,"Adventure, Fantasy, Sci-Fi",,Ishirô Honda,,"Furankî Sakai, Hiroshi Koizumi, Kyôko Kagawa",,0.02,,-1,,6.6,,-1,47,790,28,402,641,352,152.6258206
+"It Came from Beneath the Sea 
+1955 · 1h 19m · 1073 toots
+Watched on 3 December 2023",It Came from Beneath the Sea,1955,It Came from Beneath the Sea (1955),,tt0048215,79,1073,13.58227848,2023-12-03 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi",,Robert Gordon,,"Kenneth Tobey, Faith Domergue, Donald Curtis",,0,,-1,,5.9,,-1,45,855,29,433,458,365,117.054986
+"It! The Terror from Beyond Space 
+1958 · 1h 8m · 1021 toots
+Watched on 26 November 2023",It! The Terror from Beyond Space,1958,It! The Terror from Beyond Space (1958),,tt0051786,68,1021,15.01470588,2023-11-26 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi, Thriller",,Edward L. Cahn,,"Marshall Thompson, Shirley Patterson, Kim Spalding",,0.01,,-1,,6.0,,-1,48,772,32,170,424,357,93.14397649
+"The Magnetic Monster 
+1953 · 1h 16m · 1137 toots
+Watched on 19 November 2023",The Magnetic Monster,1953,The Magnetic Monster (1953),,tt0046026,76,1137,14.96052632,2023-11-19 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi",,"Curt Siodmak, Herbert L. Strock",,"Richard Carlson, King Donovan, Jean Byron",,0,,-1,,5.8,,-1,48,873,29,485,469,316,111.6974494
+"The Wasp Woman 
+1959 · 1h 1m · 1059 toots
+Watched on 12 November 2023",The Wasp Woman,1959,The Wasp Woman (1959),,tt0054462,61,1059,17.36065574,2023-11-12 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi",,Roger Corman,,"Susan Cabot, Anthony Eisley, Barboura Morris",,0,,-1,,4.8,,-1,42,761,24,279,322,354,90.17941454
+"Destroy All Monsters 
+1968 · 1h 29m · 1198 toots
+Watched on 5 November 2023",Destroy All Monsters,1968,Destroy All Monsters (1968),,tt0063172,89,1198,13.46067416,2023-11-05 21:00:00,FALSE,,G,,"Action, Sci-Fi, Thriller",,"Ishirô Honda, Jun Fukuda",,"Akira Kubo, Jun Tazaki, Yukiko Kobayashi",,0,,-1,,6.4,,-1,44,955,29,427,496,424,112.4373957
+"The Beast Must Die 
+1974 · 1h 33m · 326 toots
+Watched on 29 October 2023",The Beast Must Die,1974,The Beast Must Die (1974),,tt0071200,93,326,3.505376344,2023-10-29 21:00:00,FALSE,,PG,,"Horror, Mystery",,Paul Annett,,"Calvin Lockhart, Peter Cushing, Marlene Clark",,0,,60,,5.6,,-1,20,261,14,102,190,188,147.2392638
+"The Return of the Living Dead 
+1985 · 1h 31m · 275 toots
+Watched on 22 October 2023",The Return of the Living Dead,1985,The Return of the Living Dead (1985),,tt0089907,91,275,3.021978022,2023-10-22 21:00:00,FALSE,,R,,"Comedy, Horror, Sci-Fi",,Dan O'Bannon,,"Clu Gulager, James Karen, Don Calfa",,0.04,,66,,7.3,,43732521.75,14,201,11,247,130,143,189.0909091
+"Tucker and Dale vs. Evil 
+2010 · 1h 29m · 206 toots
+Watched on 15 October 2023",Tucker and Dale vs. Evil,2010,Tucker and Dale vs. Evil (2010),,tt1465522,89,206,2.314606742,2023-10-15 21:00:00,FALSE,,R,,"Comedy, Horror",,Eli Craig,,"Tyler Labine, Alan Tudyk, Katrina Bowden",,12.14,,65,,7.5,,339195.14,10,199,8,24,194,151,179.1262136
+"Re-Animator 
+1985 · 1h 26m · 266 toots
+Watched on 8 October 2023",Re-Animator,1985,Re-Animator (1985),,tt0089885,86,266,3.093023256,2023-10-08 21:00:00,FALSE,,R,,"Comedy, Horror, Sci-Fi",,Stuart Gordon,,"Jeffrey Combs, Bruce Abbott, Barbara Crampton",,4.05,,73,,7.1,,6215040.21,15,216,11,103,112,191,152.6315789
+"Killer Klowns from Outer Space 
+1988 · 1h 28m · 208 toots
+Watched on 1 October 2023",Killer Klowns from Outer Space,1988,Killer Klowns from Outer Space (1988),,tt0095444,88,208,2.363636364,2023-10-01 21:00:00,FALSE,,PG-13,,"Comedy, Horror, Sci-Fi",,Stephen Chiodo,,"Grant Cramer, Suzanne Snyder, John Allen Nelson",,0.02,,43,,6.2,,-1,17,178,12,160,123,123,195.1923077
+"Godzilla vs. Mothra 
+1992 · 1h 42m · 1189 toots
+Watched on 24 September 2023",Godzilla vs. Mothra,1992,Godzilla vs. Mothra (1992),,tt0104352,102,1189,11.65686275,2023-09-24 21:00:00,FALSE,,NR,,"Adventure, Fantasy, Sci-Fi",,Takao Okawara,,"Tetsuya Bessho, Satomi Kobayashi, Takehiro Murata",,1.03,,-1,,6.2,,-1,40,926,25,422,615,381,119.2598823
+"The Blob 
+1958 · 1h 22m · 1081 toots
+Watched on 17 September 2023",The Blob,1958,The Blob (1958),,tt0051418,82,1081,13.18292683,2023-09-17 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi",,"Irvin S. Yeaworth Jr., Russell S. Doughten Jr.",,"Steve McQueen, Aneta Corsaut, Earl Rowe",,0.01,,58,,6.3,,-1,43,823,28,418,582,388,128.39963
+"The Stuff 
+1985 · 1h 27m · 838 toots
+Watched on 10 September 2023",The Stuff,1985,The Stuff (1985),,tt0090094,87,838,9.632183908,2023-09-10 21:00:00,FALSE,,R,,"Comedy, Horror, Sci-Fi",,Larry Cohen,,"Michael Moriarty, Andrea Marcovicci, Garrett Morris",,0,,-1,,5.9,,-1,39,675,27,476,368,319,138.7828162
+"The Thing from Another World 
+1951 · 1h 27m · 1025 toots
+Watched on 3 September 2023",The Thing from Another World,1951,The Thing from Another World (1951),,tt0044121,87,1025,11.7816092,2023-09-03 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi",,"Christian Nyby, Howard Hawks",,"Kenneth Tobey, Margaret Sheridan, James Arness",,1,,-1,,7.0,,-1,46,772,28,549,379,348,124.4878049
+"Octaman 
+1971 · 1h 16m · 954 toots
+Watched on 27 August 2023",Octaman,1971,Octaman (1971),,tt0067515,76,954,12.55263158,2023-08-27 21:00:00,FALSE,,PG,,"Sci-Fi, Horror",,Harry Essex,,"Pier Angeli, Kerwin Mathews, Jeff Morrow",,0,,-1,,3.4,,2290732.22,43,728,26,508,452,344,136.687631
+"The Day of the Triffids 
+1963 · 1h 33m · 980 toots
+Watched on 20 August 2023",The Day of the Triffids,1963,The Day of the Triffids (1963),,tt0055894,93,980,10.53763441,2023-08-20 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi",,"Steve Sekely, Freddie Francis",,"Howard Keel, Nicole Maurey, Janette Scott",,0,,-1,,6.1,,-1,44,826,26,589,461,364,144.2857143
+"Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack 
+2001 · 1h 45m · 911 toots
+Watched on 13 August 2023","Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack",2001,"Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack (2001)",,tt0279112,105,911,8.676190476,2023-08-13 21:00:00,FALSE,,NR,,"Action, Adventure, Drama",,Shûsuke Kaneko,,"Chiharu Niiyama, Ryûdô Uzaki, Masahiro Kobayashi",,0.01,,-1,,7.0,,-1,38,686,23,286,320,295,98.90230516
+"Queen of Blood 
+1966 · 1h 21m · 993 toots
+Watched on 6 August 2023",Queen of Blood,1966,Queen of Blood (1966),,tt0060877,81,993,12.25925926,2023-08-06 21:00:00,FALSE,,UR,,"Horror, Sci-Fi",,Curtis Harrington,,"John Saxon, Basil Rathbone, Judi Meredith",,0,,-1,,5.2,,-1,43,759,24,531,430,371,134.1389728
+"The Brain Eaters 
+1958 · 1h 1m · 890 toots
+Watched on 30 July 2023",The Brain Eaters,1958,The Brain Eaters (1958),,tt0051432,61,890,14.59016393,2023-07-30 21:00:00,FALSE,,Approved,,"Sci-Fi, Horror",,Bruno VeSota,,"Ed Nelson, Alan Jay Factor, Cornelius Keefe",,0,,-1,,4.4,,-1,44,732,27,162,454,352,108.7640449
+"The Giant Claw 
+1957 · 1h 13m · 976 toots
+Watched on 23 July 2023",The Giant Claw,1957,The Giant Claw (1957),,tt0050432,73,976,13.36986301,2023-07-23 21:00:00,FALSE,,Approved,,"Fantasy, Horror, Sci-Fi",,Fred F. Sears,,"Jeff Morrow, Mara Corday, Morris Ankrum",,0,,-1,,4.6,,-1,47,851,29,343,606,378,135.9631148
+"Planet of the Vampires 
+1965 · 1h 28m · 817 toots
+Watched on 16 July 2023",Planet of the Vampires,1965,Planet of the Vampires (1965),,tt0059792,88,817,9.284090909,2023-07-16 21:00:00,FALSE,,NR,,"Action, Adventure, Horror",,Mario Bava,,"Barry Sullivan, Norma Bengell, Ángel Aranda",,0.01,,-1,,6.2,,-1,32,649,21,327,317,302,115.7894737
+"The Tingler 
+1959 · 1h 22m · 706 toots
+Watched on 9 July 2023",The Tingler,1959,The Tingler (1959),,tt0053363,82,706,8.609756098,2023-07-09 21:00:00,FALSE,,Approved,,"Horror, Sci-Fi",,William Castle,,"Vincent Price, Judith Evelyn, Darryl Hickman",,0.01,,-1,,6.6,,-1,31,564,19,318,389,305,143.3427762
+"Godzilla vs. Destoroyah 
+1995 · 1h 43m · 743 toots
+Watched on 2 July 2023",Godzilla vs. Destoroyah,1995,Godzilla vs. Destoroyah (1995),,tt0113187,103,743,7.213592233,2023-07-02 21:00:00,FALSE,,UR,,"Action, Drama, Horror",,"Takao Okawara, Ishirô Honda, Kôji Hashimoto",,"Takurô Tatsumi, Yôko Ishino, Yasufumi Hayashi",,0.03,,-1,,6.9,,-1,34,614,20,159,238,323,96.90444145
+"Godzilla vs. King Ghidorah 
+1991 · 1h 43m · 762 toots
+Watched on 25 June 2023",Godzilla vs. King Ghidorah,1991,Godzilla vs. King Ghidorah (1991),,tt0101962,103,762,7.398058252,2023-06-25 21:00:00,FALSE,,NR,,"Action, Adventure, Drama",,"Kazuki Ômori, Kôji Hashimoto",,"Kôsuke Toyohara, Anna Nakagawa, Megumi Odaka",,1.01,,-1,,6.5,,-1,28,589,19,85,148,268,65.7480315
+"Invasion of the Body Snatchers 
+1956 · 1h 20m · 488 toots
+Watched on 18 June 2023",Invasion of the Body Snatchers,1956,Invasion of the Body Snatchers (1956),,tt0049366,80,488,6.1,2023-06-18 21:00:00,FALSE,,Approved,,"Drama, Horror, Sci-Fi",,Don Siegel,,"Kevin McCarthy, Dana Wynter, Larry Gates",,3,,92,,7.7,,-1,27,415,16,72,112,198,78.27868852
+"Godzilla vs. Megaguirus 
+2000 · 1h 45m · 739 toots
+Watched on 11 June 2023",Godzilla vs. Megaguirus,2000,Godzilla vs. Megaguirus (2000),,tt0255198,105,739,7.038095238,2023-06-11 21:00:00,FALSE,,NR,,"Action, Sci-Fi, Thriller",,"Masaaki Tezuka, Ishirô Honda",,"Misato Tanaka, Shôsuke Tanihara, Masatô Ibu",,1.01,,-1,,6.0,,-1,24,599,16,66,173,271,69.01217862
+"Godzilla: Tokyo S.O.S. 
+2003 · 1h 31m · 665 toots
+Watched on 4 June 2023",Godzilla: Tokyo S.O.S.,2003,Godzilla: Tokyo S.O.S. (2003),,tt0366526,91,665,7.307692308,2023-06-04 21:00:00,FALSE,,PG,,"Action, Adventure, Fantasy",,"Masaaki Tezuka, Kôji Hashimoto, Takao Okawara",,"Noboru Kaneko, Miho Yoshioka, Mickey Koga",,0.01,,-1,,6.4,,-1,23,566,16,28,328,240,89.62406015
+"Dogora 
+1964 · 1h 23m · 438 toots
+Watched on 28 May 2023",Dogora,1964,Dogora (1964),,tt0058698,83,438,5.277108434,2023-05-28 21:00:00,FALSE,,NR,,"Crime, Horror, Sci-Fi",,Ishirô Honda,,"Yôsuke Natsuki, Yôko Fujiyama, Hiroshi Koizumi",,0,,-1,,5.6,,-1,20,391,12,77,119,207,92.00913242
+"The H-Man 
+1958 · 1h 27m · 533 toots
+Watched on 21 May 2023",The H-Man,1958,The H-Man (1958),,tt0051413,87,533,6.126436782,2023-05-21 21:00:00,FALSE,,Approved,,"Crime, Horror, Sci-Fi",,Ishirô Honda,,"Yumi Shirakawa, Kenji Sahara, Akihiko Hirata",,0.01,,-1,,6.0,,-1,23,466,14,66,131,228,79.73733583
+"Godzilla 2000: Millennium 
+1999 · 1h 47m · 567 toots
+Watched on 14 May 2023",Godzilla 2000: Millennium,2000,Godzilla 2000: Millennium (2000),,tt0188640,107,567,5.299065421,2023-05-14 21:00:00,FALSE,,PG,,"Action, Adventure, Drama",,Takao Okawara,,"Takehiro Murata, Hiroshi Abe, Naomi Nishida",,0.02,,41,,6.0,,19912109.21,22,496,15,113,229,269,107.7601411
+"Atragon 
+1963 · 1h 36m · 532 toots
+Watched on 7 May 2023",Atragon,1963,Atragon (1963),,tt0057215,96,532,5.541666667,2023-05-07 21:00:00,FALSE,,TV-Y7,,"Action, Adventure, Fantasy",,"Ishirô Honda, Shûe Matsubayashi",,"Tadao Takashima, Yôko Fujiyama, Yû Fujiki",,0,,-1,,5.8,,-1,23,454,18,128,214,189,99.81203008
+"Godzilla vs. Gigan 
+1972 · 1h 29m · 721 toots
+Watched on 30 April 2023",Godzilla vs. Gigan,1972,Godzilla vs. Gigan (1972),,tt0068371,89,721,8.101123596,2023-04-30 21:00:00,FALSE,,PG,,"Action, Family, Sci-Fi",,"Jun Fukuda, Yoshimitsu Banno, Ishirô Honda",,"Hiroshi Ishikawa, Yuriko Hishimi, Minoru Takashima",,0,,-1,,5.6,,-1,25,617,18,84,337,242,91.9556172
+"Gamera the Brave 
+2006 · 1h 36m · 735 toots
+Watched on 23 April 2023",Gamera the Brave,2006,Gamera the Brave (2006),,tt0467923,96,735,7.65625,2023-04-23 21:00:00,FALSE,,NR,,"Action, Adventure, Family",,Ryuta Tasaki,,"Ryô Tomioka, Kaho, Shingo Ishikawa",,0,,-1,,6.6,,-1,25,616,17,40,296,208,74.01360544
+"King Kong Escapes 
+1967 · 1h 44m · 748 toots
+Watched on 16 April 2023",King Kong Escapes,1967,King Kong Escapes (1967),,tt0061868,104,748,7.192307692,2023-04-16 21:00:00,FALSE,,G,,"Action, Adventure, Family",,Ishirô Honda,,"Rhodes Reason, Mie Hama, Linda Miller",,0,,-1,,5.5,,21571556.89,28,630,21,47,308,253,81.28342246
+"Battle in Outer Space 
+1959 · 1h 30m · 534 toots
+Watched on 9 April 2023",Battle in Outer Space,1959,Battle in Outer Space (1959),,tt0053388,90,534,5.933333333,2023-04-09 21:00:00,FALSE,,Approved,,"Action, Sci-Fi",,Ishirô Honda,,"Ryô Ikebe, Kyôko Anzai, Minoru Takada",,0.01,,-1,,5.6,,-1,22,419,16,82,234,181,93.07116105
+"Rodan 
+1956 · 1h 12m · 501 toots
+Watched on 2 April 2023",Rodan,1956,Rodan (1956),,tt0049782,72,501,6.958333333,2023-04-02 21:00:00,FALSE,,Approved,,"Sci-Fi, Thriller",,Ishirô Honda,,"Kenji Sahara, Yumi Shirakawa, Akihiko Hirata",,0,,-1,,6.2,,6075367.65,23,416,17,49,227,172,89.42115768
+"Gamera 3: Revenge of Iris 
+1999 · 1h 48m · 409 toots
+Watched on 26 March 2023",Gamera 3: Revenge of Iris,1999,Gamera 3: Revenge of Iris (1999),,tt0184503,108,409,3.787037037,2023-03-26 21:00:00,FALSE,,NR,,"Action, Drama, Fantasy",,Shûsuke Kaneko,,"Shinobu Nakayama, Ai Maeda, Yukijirô Hotaru",,1,,-1,,7.1,,-1,18,324,14,22,393,164,141.5647922
+"Gamera 2: Attack of Legion 
+1996 · 1h 39m · 459 toots
+Watched on 19 March 2023",Gamera 2: Attack of Legion,1996,Gamera 2: Attack of Legion (1996),,tt0116390,99,459,4.636363636,2023-03-19 21:00:00,FALSE,,NR,,"Action, Drama, Fantasy",,Shûsuke Kaneko,,"Toshiyuki Nagashima, Miki Mizuno, Tamotsu Ishibashi",,0,,-1,,7.0,,-1,23,398,19,20,326,184,115.4684096
+"Gamera: Guardian of the Universe 
+1995 · 1h 36m · 435 toots
+Watched on 12 March 2023",Gamera: Guardian of the Universe,1995,Gamera: Guardian of the Universe (1995),,tt0113142,96,435,4.53125,2023-03-12 21:00:00,FALSE,,NR,,"Action, Drama, Fantasy",,Shûsuke Kaneko,,"Tsuyoshi Ihara, Akira Onodera, Shinobu Nakayama",,6.01,,-1,,6.7,,-1,23,353,17,81,377,159,141.8390805
+"The Mysterians 
+1957 · 1h 29m · 477 toots
+Watched on 5 March 2023",The Mysterians,1957,The Mysterians (1957),,tt0050251,89,477,5.359550562,2023-03-05 21:00:00,FALSE,,Approved,,"Action, Sci-Fi, Thriller",,Ishirô Honda,,"Kenji Sahara, Yumi Shirakawa, Momoko Kôchi",,0,,-1,,6.1,,11467526.69,24,403,20,74,268,165,106.2893082
+"Frankenstein Conquers the World 
+1965 · 1h 30m · 456 toots
+Watched on 26 February 2023",Frankenstein Conquers the World,1965,Frankenstein Conquers the World (1965),,tt0059205,90,456,5.066666667,2023-02-26 21:00:00,FALSE,,UR,,"Horror, Sci-Fi, Thriller",,Ishirô Honda,,"Nick Adams, Kumi Mizuno, Tadao Takashima",,0,,-1,,5.5,,-1,24,369,18,105,359,147,133.9912281
+"Matango 
+1963 · 1h 29m · 255 toots
+Watched on 19 February 2023",Matango,1963,Matango (1963),,tt0057295,89,255,2.865168539,2023-02-19 21:00:00,FALSE,,UR,,"Horror, Mystery, Sci-Fi",,Ishirô Honda,,"Akira Kubo, Kumi Mizuno, Hiroshi Koizumi",,0,,-1,,6.4,,-1,20,185,17,17,142,108,104.7058824
+"The War of the Gargantuas 
+1966 · 1h 28m · 237 toots
+Watched on 12 February 2023",The War of the Gargantuas,1966,The War of the Gargantuas (1966),,tt0060440,88,237,2.693181818,2023-02-12 21:00:00,FALSE,,G,,"Action, Horror, Sci-Fi",,Ishirô Honda,,"Russ Tamblyn, Kumi Mizuno, Kenji Sahara",,0,,-1,,6.2,,-1,14,191,11,0,222,86,129.9578059
+"Ebirah, Horror of the Deep 
+1966 · 1h 27m · 271 toots
+Watched on 5 February 2023","Ebirah, Horror of the Deep",1966,"Ebirah, Horror of the Deep (1966)",,tt0060464,87,271,3.114942529,2023-02-05 21:00:00,FALSE,,PG,,"Adventure, Fantasy, Sci-Fi",,Jun Fukuda,,"Akira Takarada, Kumi Mizuno, Chôtarô Tôgin",,0,,-1,,5.5,,-1,11,188,10,1,151,68,81.18081181
+"Space Amoeba 
+1970 · 1h 24m · 319 toots
+Watched on 29 January 2023",Space Amoeba,1970,Space Amoeba (1970),,tt0065776,84,319,3.797619048,2023-01-29 21:00:00,FALSE,,G,,"Adventure, Sci-Fi",,Ishirô Honda,,"Akira Kubo, Atsuko Takahashi, Yukiko Kobayashi",,0,,-1,,5.4,,-1,9,193,8,0,158,86,76.48902821
+"Godzilla vs. Mechagodzilla 
+1974 · 1h 24m · 206 toots
+Watched on 22 January 2023",Godzilla vs. Mechagodzilla,1974,Godzilla vs. Mechagodzilla (1974),,tt0071565,84,206,2.452380952,2023-01-22 21:00:00,FALSE,,PG,,"Action, Family, Fantasy",,Jun Fukuda,,"Masaaki Daimon, Kazuya Aoyama, Reiko Tajima",,0.01,,-1,,6.2,,-1,10,57,8,2,72,17,44.17475728
+"Shin Godzilla 
+2016 · 2h 0m · 165 toots
+Watched on 15 January 2023",Shin Godzilla,2016,Shin Godzilla (2016),,tt4262980,120,165,1.375,2023-01-15 21:00:00,FALSE,,PG-13,,"Action, Drama, Horror",,"Shinji Higuchi, Hideaki Anno",,"Hiroki Hasegawa, Yutaka Takenouchi, Satomi Ishihara",,13.1,,66,,6.9,,8208172.69,14,74,12,0,61,21,49.6969697
+"Godzilla: Final Wars 
+2004 · 2h 5m · 120 toots
+Watched on 6 January 2023",Godzilla: Final Wars,2004,Godzilla: Final Wars (2004),,tt0399102,125,120,0.96,2023-01-06 21:00:00,FALSE,,PG-13,,"Action, Adventure, Fantasy",,"Ryûhei Kitamura, Kôji Hashimoto, Shûsuke Kaneko",,"Masahiro Matsuoka, Rei Kikukawa, Don Frye",,0.03,,-1,,6.3,,-1,8,54,8,1,63,22,71.66666667
+"Invasion of Astro-Monster 
+1965 · 1h 36m · 109 toots
+Watched on 25 August 2022",Invasion of Astro-Monster,1965,Invasion of Astro-Monster (1965),,tt0059346,96,109,1.135416667,2022-08-25 21:00:00,FALSE,,G,,"Action, Adventure, Sci-Fi",,Ishirô Honda,,"Nick Adams, Akira Takarada, Jun Tazaki",,0.01,,-1,,6.2,,-1,5,46,5,4,25,10,35.77981651
+"Ghidorah, the Three-Headed Monster 
+1964 · 1h 32m · 170 toots
+Watched on 18 August 2022","Ghidorah, the Three-Headed Monster",1964,"Ghidorah, the Three-Headed Monster (1964)",,tt0058544,92,170,1.847826087,2022-08-18 21:00:00,FALSE,,NR,,"Action, Adventure, Fantasy",,Ishirô Honda,,"Yôsuke Natsuki, Yuriko Hoshi, Hiroshi Koizumi",,0.01,,-1,,6.5,,-1,8,44,8,1,18,13,18.82352941
+"Rebirth of Mothra II 
+1997 · 1h 37m · 138 toots
+Watched on 4 August 2022",Rebirth of Mothra II,1997,Rebirth of Mothra II (1997),,tt0133104,97,138,1.422680412,2022-08-04 21:00:00,FALSE,,UR,,"Action, Fantasy, Sci-Fi",,Kunio Miyoshi,,"Megumi Kobayashi, Sayaka Yamaguchi, Aki Hano",,0,,-1,,5.1,,-1,6,56,6,4,30,10,31.88405797
+"Rebirth of Mothra 
+1996 · 1h 44m · 122 toots
+Watched on 28 July 2022",Rebirth of Mothra,1996,Rebirth of Mothra (1996),,tt0117089,104,122,1.173076923,2022-07-28 21:00:00,FALSE,,UR,,"Action, Adventure, Family",,Okihiro Yoneda,,"Megumi Kobayashi, Sayaka Yamaguchi, Aki Hano",,0,,-1,,5.8,,-1,5,36,5,1,24,9,27.86885246
+"Godzilla 1985 
+1985 · 1h 27m · 127 toots
+Watched on 21 July 2022",Godzilla 1985,1985,Godzilla 1985 (1985),,tt0087344,87,127,1.459770115,2022-07-21 21:00:00,FALSE,,PG,,"Drama, Sci-Fi, Thriller",,"Kôji Hashimoto, R.J. Kizer, Ishirô Honda",,"Raymond Burr, Keiju Kobayashi, Ken Tanaka",,2.03,,31,,6.1,,12643759.74,4,37,4,0,25,13,29.92125984
+"Godzilla vs. Mechagodzilla II 
+1993 · 1h 48m · 201 toots
+Watched on 14 July 2022",Godzilla vs. Mechagodzilla II,1993,Godzilla vs. Mechagodzilla II (1993),,tt0107027,108,201,1.861111111,2022-07-14 21:00:00,FALSE,,PG,,"Action, Adventure, Drama",,"Takao Okawara, Kazuki Ômori",,"Masahiro Takashima, Ryoko Sano, Megumi Odaka",,0.02,,-1,,6.5,,-1,7,69,6,2,49,15,32.8358209
+"Godzilla vs. Hedorah 
+1971 · 1h 25m · 126 toots
+Watched on 7 July 2022",Godzilla vs. Hedorah,1971,Godzilla vs. Hedorah (1971),,tt0067148,85,126,1.482352941,2022-07-07 21:00:00,FALSE,,PG,,"Animation, Drama, Family",,"Yoshimitsu Banno, Ishirô Honda",,"Akira Yamanouchi, Toshie Kimura, Hiroyuki Kawase",,0,,-1,,6.1,,-1,7,45,7,5,43,10,46.03174603
+"Terror of Mechagodzilla 
+1975 · 1h 23m · 80 toots
+Watched on 30 June 2022",Terror of Mechagodzilla,1975,Terror of Mechagodzilla (1975),,tt0073373,83,80,0.9638554217,2022-06-30 21:00:00,FALSE,,G,,"Action, Adventure, Family",,"Ishirô Honda, Jun Fukuda",,"Katsuhiko Sasaki, Tomoko Ai, Akihiko Hirata",,0.01,,-1,,6.1,,-1,3,12,3,0,13,4,21.25
+"Godzilla vs. Biollante 
+1989 · 1h 45m · 93 toots
+Watched on 23 June 2022",Godzilla vs. Biollante,1989,Godzilla vs. Biollante (1989),,tt0097444,105,93,0.8857142857,2022-06-23 21:00:00,FALSE,,PG,,"Action, Drama, Fantasy",,"Kazuki Ômori, Kôji Hashimoto, Kenjirô Ohmori",,"Kunihiko Mitamura, Yoshiko Tanaka, Masanobu Takashima",,2,,-1,,6.5,,-1,4,30,4,0,22,13,37.6344086
+"Godzilla vs. Megalon 
+1973 · 1h 22m · 157 toots
+Watched on 16 June 2022",Godzilla vs. Megalon,1973,Godzilla vs. Megalon (1973),,tt0070122,82,157,1.914634146,2022-06-16 21:00:00,FALSE,,G,,"Action, Adventure, Family",,"Jun Fukuda, Yoshimitsu Banno, Ishirô Honda",,"Katsuhiko Sasaki, Hiroyuki Kawase, Yutaka Hayashi",,0,,-1,,4.8,,-1,5,27,5,0,18,4,14.01273885
+"Godzilla: Planet of the Monsters 
+2017 · 1h 29m · 88 toots
+Watched on 9 June 2022",Godzilla: Planet of the Monsters,2017,Godzilla: Planet of the Monsters (2017),,tt5979874,89,88,0.9887640449,2022-06-09 21:00:00,FALSE,,TV-14,,"Animation, Action, Sci-Fi",,"Hiroyuki Seshita, Kôbun Shizuno",,"Mamoru Miyano, Takahiro Sakurai, Kana Hanazawa",,0,,-1,,6.0,,-1,4,20,4,0,13,5,20.45454545
+"King Kong vs. Godzilla 
+1963 · 1h 36m · 103 toots
+Watched on 2 June 2022",King Kong vs. Godzilla,1963,King Kong vs. Godzilla (1963),,tt0056142,96,103,1.072916667,2022-06-02 21:00:00,FALSE,,Approved,,"Action, Adventure, Comedy",,"Ishirô Honda, Tom Montgomery",,"Tadao Takashima, Kenji Sahara, Yû Fujiki",,0,,40,,5.7,,-1,5,47,5,0,17,3,19.41747573
+"Godzilla 
+1954 · 1h 36m · 86 toots
+Watched on 26 May 2022",Godzilla,1954,Godzilla (1954),,tt0047034,96,86,0.8958333333,2022-05-26 21:00:00,FALSE,,NR,,"Horror, Sci-Fi",,Ishirô Honda,,"Takashi Shimura, Akihiko Hirata, Akira Takarada",,4.02,,79,,7.6,,6913605.41,8,33,6,1,20,5,30.23255814
+"Godzilla vs. SpaceGodzilla 
+1994 · 1h 48m · 132 toots
+Watched on 19 May 2022",Godzilla vs. SpaceGodzilla,1994,Godzilla vs. SpaceGodzilla (1994),,tt0109916,108,132,1.222222222,2022-05-19 21:00:00,FALSE,,NR,,"Action, Adventure, Sci-Fi",,"Kenshô Yamashita, Takao Okawara, Kazuki Ômori",,"Jun Hashizume, Megumi Odaka, Zenkichi Yoneyama",,0.01,,-1,,5.8,,-1,4,51,4,0,27,4,23.48484848
+"Godzilla: Final Wars 
+2004 · 2h 5m · 164 toots
+Watched on 12 May 2022",Godzilla: Final Wars,2004,Godzilla: Final Wars (2004),,tt0399102,125,164,1.312,2022-05-12 21:00:00,FALSE,,PG-13,,"Action, Adventure, Fantasy",,"Ryûhei Kitamura, Kôji Hashimoto, Shûsuke Kaneko",,"Masahiro Matsuoka, Rei Kikukawa, Don Frye",,0.03,,-1,,6.3,,-1,6,39,5,1,54,5,36.58536585
+"Godzilla Against MechaGodzilla 
+2002 · 1h 28m · 177 toots
+Watched on 5 May 2022",Godzilla Against MechaGodzilla,2002,Godzilla Against MechaGodzilla (2002),,tt0314111,88,177,2.011363636,2022-05-05 21:00:00,FALSE,,NR,,"Action, Sci-Fi, Thriller",,"Masaaki Tezuka, Kazuki Ômori",,"Yumiko Shaku, Shin Takuma, Kana Onodera",,0,,-1,,6.6,,-1,5,42,5,0,23,13,20.33898305
+"Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack 
+2001 · 1h 45m · 104 toots
+Watched on 28 April 2022","Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack",2001,"Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack (2001)",,tt0279112,105,104,0.9904761905,2022-04-28 21:00:00,FALSE,,NR,,"Action, Adventure, Drama",,Shûsuke Kaneko,,"Chiharu Niiyama, Ryûdô Uzaki, Masahiro Kobayashi",,0.01,,-1,,7.0,,-1,4,38,4,0,28,11,37.5
+"Godzilla vs. Destoroyah 
+1995 · 1h 43m · 137 toots
+Watched on 21 April 2022",Godzilla vs. Destoroyah,1995,Godzilla vs. Destoroyah (1995),,tt0113187,103,137,1.330097087,2022-04-21 21:00:00,FALSE,,UR,,"Action, Drama, Horror",,"Takao Okawara, Ishirô Honda, Kôji Hashimoto",,"Takurô Tatsumi, Yôko Ishino, Yasufumi Hayashi",,0.03,,-1,,6.9,,-1,4,45,3,0,46,10,40.87591241
+"Godzilla vs. King Ghidorah 
+1991 · 1h 43m · 68 toots
+Watched on 14 April 2022",Godzilla vs. King Ghidorah,1991,Godzilla vs. King Ghidorah (1991),,tt0101962,103,68,0.6601941748,2022-04-14 21:00:00,FALSE,,NR,,"Action, Adventure, Drama",,"Kazuki Ômori, Kôji Hashimoto",,"Kôsuke Toyohara, Anna Nakagawa, Megumi Odaka",,1.01,,-1,,6.5,,-1,4,17,4,0,16,2,26.47058824
+"Godzilla vs. Mothra 
+1992 · 1h 42m · 135 toots
+Watched on 7 April 2022",Godzilla vs. Mothra,1992,Godzilla vs. Mothra (1992),,tt0104352,102,135,1.323529412,2022-04-07 21:00:00,FALSE,,NR,,"Adventure, Fantasy, Sci-Fi",,Takao Okawara,,"Tetsuya Bessho, Satomi Kobayashi, Takehiro Murata",,1.03,,-1,,6.2,,-1,5,48,5,1,10,7,13.33333333
+"Mothra vs. Godzilla 
+1964 · 1h 29m · 124 toots
+Watched on 31 March 2022",Mothra vs. Godzilla,1964,Mothra vs. Godzilla (1964),,tt0058379,89,124,1.393258427,2022-03-31 21:00:00,FALSE,,NR,,"Adventure, Fantasy, Sci-Fi",,Ishirô Honda,,"Akira Takarada, Yuriko Hoshi, Hiroshi Koizumi",,0.01,,-1,,6.5,,-1,7,25,7,0,14,8,17.74193548
+"Mothra 
+1961 · 1h 41m · 119 toots
+Watched on 24 March 2022",Mothra,1961,Mothra (1961),,tt0055198,101,119,1.178217822,2022-03-24 21:00:00,FALSE,,Approved,,"Adventure, Fantasy, Sci-Fi",,Ishirô Honda,,"Furankî Sakai, Hiroshi Koizumi, Kyôko Kagawa",,0.02,,-1,,6.6,,-1,5,29,4,0,16,11,22.68907563
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,interaction_rate,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,interaction_rate,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,interaction_rate,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#DIV/0!,,
