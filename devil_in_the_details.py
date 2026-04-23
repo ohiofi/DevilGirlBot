@@ -1,6 +1,7 @@
 import csv
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 from mastodon import Mastodon
 import os
 from dotenv import load_dotenv
@@ -8,7 +9,7 @@ from dotenv import load_dotenv
 # NOTE: Run this manually in terminal. This always crashes if I try to run via VSCode play button.
 
 DEBUG_MODE = True # Set to False when ready to post publicly
-THIS_WEEKS_EMOJI = "👽"
+THIS_WEEKS_EMOJI = "🗽"
 THIS_WEEKS_INDEX_LOCATION = 1 # use index 1 to skip double feature and treat the main film as latest
 CSV_FILE = "details.csv"
 
@@ -46,39 +47,52 @@ def get_deduplicated_df(df):
 
 
 
-def create_histogram(data_series, target_val, target_label, title, x_label, filename, histogram_color, bins=15, subtitle=""):
-    """Generates a histogram with a title and an optional subtitle."""
+def create_histogram(data_series, target_val, target_label, title, x_label, filename, histogram_color, bins=15, subtitle="", useMillions=False):
+    """
+    Generates a histogram. 
+    If useMillions is True, scales data by 1,000,000 and updates axis labels.
+    """
     plt.figure(figsize=(10, 6))
     
-    # 1. Create the histogram
-    n, bins_edges, patches = plt.hist(data_series, bins=bins, color=histogram_color, edgecolor='black', alpha=0.7)
+    # 1. Scale data if necessary
+    plot_data = data_series.copy()
+    plot_target = target_val
     
-    # 2. Highlight the target value (this week's film)
-    if target_val is not None:
+    if useMillions and target_val != -1:
+        plot_data = plot_data / 1_000_000
+        plot_target = target_val / 1_000_000
+        display_x_label = f"{x_label} (in Millions)"
+    else:
+        display_x_label = x_label
+
+    # 2. Create the histogram
+    n, bins_edges, patches = plt.hist(plot_data, bins=bins, color=histogram_color, edgecolor='black', alpha=0.7)
+    
+    # 3. Highlight the target value (this week's film)
+    if plot_target is not None and plot_target != -1:
         for i in range(len(bins_edges)-1):
-            if bins_edges[i] <= target_val <= bins_edges[i+1]:
+            if bins_edges[i] <= plot_target <= bins_edges[i+1]:
                 patches[i].set_facecolor('orange')
                 patches[i].set_label(f'{target_label}')
                 break
     
-    # 3. Titles and Subtitles
-    # We use suptitle for the main bold heading and title for the subtitle
+    # 4. Titles and Subtitles
     plt.suptitle(title, fontsize=14, fontweight='bold', y=0.98)
     if subtitle:
-        plt.title(subtitle, fontsize=10, color='#555555', pad=15)
+        plt.title(subtitle, fontsize=10, color='#666666', pad=15)
     else:
-        # Default padding if no subtitle
         plt.title("", pad=10)
 
-    plt.xlabel(x_label)
-    plt.ylabel('Frequency')
+    plt.xlabel(display_x_label)
+    plt.ylabel('Number of Monsterdon Films')
+
+    # This forces the y-axis to only show whole numbers
+    plt.gca().yaxis.set_major_locator(ticker.MaxNLocator(integer=True))
     
-    if target_val is not None:
+    if plot_target is not None and plot_target != -1:
         plt.legend(loc='upper right')
         
     plt.grid(axis='y', linestyle='--', alpha=0.7)
-    
-    # tight_layout needs a small adjustment (rect) to make room for suptitle
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
     
     plt.savefig(filename)
@@ -86,7 +100,7 @@ def create_histogram(data_series, target_val, target_label, title, x_label, file
 
 
 
-def get_rank_text(df_sorted, latest_title, metric_col, unit, rank_start=1, rank_end=5, show_current=True):
+def get_rank_text(df_sorted, latest_title, metric_col, unit, rank_start=1, rank_end=5, show_current=True, isDollars=False, useMillions=False, decimals=2):
     """Builds the ranking text. Shows Top N. Appends latest film if outside Top N."""
     lines = []
     
@@ -104,14 +118,32 @@ def get_rank_text(df_sorted, latest_title, metric_col, unit, rank_start=1, rank_
         row = df_sorted.iloc[i]
         rank_mark = f"{THIS_WEEKS_EMOJI} #{i+1}: " if row['title'] == latest_title else f"#{i+1}: "
         
-        # Format decimal for TPM, integer for volume/minutes
-        val_str = f"{row[metric_col]:.1f}" if isinstance(row[metric_col], float) else f"{row[metric_col]}"
+        val = row[metric_col]
+        
+        if val == -1:
+            val_str = "N/A"
+        else:
+            # 1. Handle Million conversion
+            display_val = val / 1_000_000 if useMillions else val
+            
+            # 2. Handle Formatting with dynamic decimals
+            # The {decimals} inside the f-string sets the precision
+            if isDollars or useMillions:
+                val_str = f"{display_val:,.{decimals}f}"
+            else:
+                # Still uses commas for large non-dollar numbers, but respects precision
+                val_str = f"{display_val:,.{decimals}f}"
+            
         lines.append(f"{rank_mark}{val_str} {unit}, {row['title']} ({row['release_year']})")
 
-    # Append current film only if we want to show it AND it falls below our current visual range
     if show_current and current_rank > rank_end:
         lines.append(f"...")
-        val_str = f"{current_val:.1f}" if isinstance(current_val, float) else f"{current_val}"
+        if current_val == -1:
+            val_str = "N/A"
+        else:
+            display_val = current_val / 1_000_000 if useMillions else current_val
+            val_str = f"{display_val:,.{decimals}f}"
+            
         lines.append(f"{THIS_WEEKS_EMOJI} #{current_rank}: {val_str} {unit}, {latest_title} ({current_year})")
 
     return "\n".join(lines)
@@ -293,7 +325,7 @@ def generate_most_popular_genres(df, latest_film):
     and highlights genres from the latest film in the rankings.
     """
     # 1. Cleanly parse this week's genre(s)
-    latest_genres_str = str(latest_film.get('genres', ""))
+    latest_genres_str = str(latest_film.get('genre', ""))
     latest_genres_list = [g.strip() for g in latest_genres_str.split(',') if g.strip()]
 
     # 2. Deduplicate based on IMDB ID
@@ -301,7 +333,7 @@ def generate_most_popular_genres(df, latest_film):
 
     # 3. Split and explode for all-time counts
     # This handles "Action, Horror, Sci-Fi" by creating 3 rows for that one movie
-    genre_series = unique_df['genres'].str.split(',').explode().str.strip()
+    genre_series = unique_df['genre'].str.split(',').explode().str.strip()
     
     # 4. Count occurrences
     genre_counts = genre_series.value_counts().reset_index()
@@ -336,7 +368,7 @@ def generate_most_popular_genres(df, latest_film):
 
 
 
-def create_timeframe_reports(df, latest_film, metric_col, unit, report_title, subtitle=""):
+def create_timeframe_reports(df, latest_film, metric_col, unit, report_title, subtitle="", isDollars=False, useMillions=False, decimals=2):
     """Generates 4w, 52w, and All Time reports, skipping records where metric is -1."""
     
     # 1. Guard Clause: Skip if the current film has no data for this metric
@@ -350,45 +382,48 @@ def create_timeframe_reports(df, latest_film, metric_col, unit, report_title, su
     clean_df = df[df[metric_col] != -1].copy()
 
     posts = []
-    
+
     # Use clean_df for all timeframe slices
     ref_date = latest_film['watched_date']
     last_4_weeks = clean_df[clean_df['watched_date'] > (ref_date - pd.Timedelta(weeks=4))].copy()
     last_52_weeks = clean_df[clean_df['watched_date'] > (ref_date - pd.Timedelta(weeks=52))].copy()
     all_time = clean_df.copy()
 
+    # Formatting helper for the histogram labels
+    target_val_display = current_val / 1_000_000 if useMillions else current_val
+    target_label = f"{latest_film['title']}: {target_val_display:,.{decimals}f} {unit}"
+
     # --- 1. Last 4 Weeks ---
     df_4w = last_4_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
-    fname_4w = f"{metric_col}_4w.png"
-    create_histogram(df_4w[metric_col], current_val, 
-                     f"{latest_film['title']}: {current_val:.1f} {unit}", 
-                     f"{report_title}: Last 4 Weeks", unit.upper(), fname_4w, "purple", subtitle)
+    # fname_4w = f"{metric_col}_4w.png"
+    # create_histogram(df_4w[metric_col], current_val, target_label, 
+    #                  f"{report_title}: Last 4 Weeks", unit.upper(), fname_4w, 
+    #                  "purple",40, subtitle, useMillions=useMillions)
     
-    text_4w = f"😈📊 {report_title.upper()}: Last 4 Weeks\n{subtitle}\n" + get_rank_text(df_4w, latest_film['title'], metric_col, unit, 1, 5, show_current=True)
-    posts.append({'text': text_4w, 'image': fname_4w, 'desc': f'Histogram of {report_title} for Last 4 Weeks'})
+    text_4w = f"😈📊 {report_title.upper()}: Last 4 Weeks\n{subtitle}\n\n" + get_rank_text(df_4w, latest_film['title'], metric_col, unit, 1, 5, show_current=True, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
+    # posts.append({'text': text_4w, 'image': fname_4w, 'desc': f'Histogram of {report_title} for Last 4 Weeks'})
+    posts.append({'text': text_4w})
 
     # --- 2. Last 52 Weeks ---
     df_52w = last_52_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
     fname_52w = f"{metric_col}_52w.png"
-    create_histogram(df_52w[metric_col], current_val, 
-                     f"{latest_film['title']}: {current_val:.1f} {unit}", 
-                     f"{report_title}: Last 52 Weeks", unit.upper(), fname_52w, "purple", subtitle)
+    create_histogram(df_52w[metric_col], current_val, target_label, 
+                     f"{report_title}: Last 52 Weeks", unit.upper(), fname_52w, "purple", 55, subtitle, useMillions)
     
-    text_52w = f"😈📊 {report_title.upper()}: Last 52 Weeks\n{subtitle}\n" + get_rank_text(df_52w, latest_film['title'], metric_col, unit, 1, 5, show_current=True)
+    text_52w = f"😈📊 {report_title.upper()}: Last 52 Weeks\n{subtitle}\n\n" + get_rank_text(df_52w, latest_film['title'], metric_col, unit, 1, 5, show_current=True, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
     posts.append({'text': text_52w, 'image': fname_52w, 'desc': f'Histogram of {report_title} for Last 52 Weeks'})
 
     # --- 3. All Time (Top 1-5) ---
     df_all = all_time.sort_values(metric_col, ascending=False).reset_index(drop=True)
     fname_all = f"{metric_col}_all.png"
-    create_histogram(df_all[metric_col], current_val, 
-                     f"{latest_film['title']}: {current_val:.1f} {unit}", 
-                     f"{report_title}: Versus All Time", unit.upper(), fname_all, "purple", subtitle)
+    create_histogram(df_all[metric_col], current_val, target_label, 
+                     f"{report_title}: All Time", unit.upper(), fname_all, "purple", 60, subtitle, useMillions)
     
-    text_all_1 = f"😈📊 {report_title.upper()}: All Time Top 5\n{subtitle}\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 1, 5, show_current=False)
+    text_all_1 = f"😈📊 {report_title.upper()}: All Time Top 5\n{subtitle}\n\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 1, 5, show_current=False, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
     posts.append({'text': text_all_1, 'image': fname_all, 'desc': f'Histogram of {report_title} for All Time'})
 
     # --- 4. All Time (Ranks 6-10) ---
-    text_all_2 = f"😈📊 {report_title.upper()}: All Time 6-10\n{subtitle}\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 6, 10, show_current=True)
+    text_all_2 = f"😈📊 {report_title.upper()}: All Time 6-10\n{subtitle}\n\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 6, 10, show_current=True, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
     posts.append({'text': text_all_2, 'image': None, 'desc': None})
         
     return posts
@@ -460,6 +495,7 @@ def main():
     # 1. Load Data
     df = pd.read_csv(CSV_FILE, skipinitialspace=True)
     df['watched_date'] = pd.to_datetime(df['watched_date'])
+    df['release_year'] = df['release_year'].astype(int)
     
     # Sort by date
     df = df.sort_values('watched_date', ascending=False).reset_index(drop=True)
@@ -501,11 +537,11 @@ def main():
     thread_posts.append({'text': intro_text, 'image': None, 'desc': None})
     
     footnotes = (
-        f"😈📊 Footnotes:\n"
+        f"😈📊 Footnotes:\n\n"
         f"* Toot Rate: Toots Per Minute or TPM. Calculated as Toots / Minutes\n"
-        f"* Genres: Pulled from imdb.com. {THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']}) is {latest_film['genres']}.\n"
+        f"* Genres: Pulled from imdb.com. {THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']}) is {latest_film['genre']}.\n"
         f"* Real Box Office: Gross US & Canada from imdb.com inflation adjusted using consumer price index of film's release year.\n"
-        f"* Toot Strength: Engagements Per Toot x 100. Doesn't count Replies due to users threading posts. Calculated (Favs + Boosts) / Toots * 100.\n"
+        f"* Toot Strength: Engagements Per Toot. Doesn't count Replies due to users threading posts. Calculated (Favs + Boosts) / Toots.\n"
     )
     thread_posts.append({'text': footnotes, 'image': None, 'desc': None})
 
@@ -513,7 +549,7 @@ def main():
     # thread_posts.append(generate_decade_report(df, latest_film))
     
     # # TPM Reports
-    tpm_posts = create_timeframe_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)")
+    tpm_posts = create_timeframe_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)", isDollars=False, useMillions=False, decimals=1)
     thread_posts.extend(tpm_posts)
 
     # Add the Actor reports
@@ -527,11 +563,11 @@ def main():
     thread_posts.extend(generate_most_popular_genres(df, latest_film))
 
     # # Box Office Reports
-    tpm_posts = create_timeframe_reports(df, latest_film, metric_col='real_box_office', unit='Adj. USD', report_title='Monsterdon Inflation-Adjusted Box Office')
+    tpm_posts = create_timeframe_reports(df, latest_film, metric_col='real_box_office', unit='Adj USD', report_title='Monsterdon Box Office', subtitle="Millions grossed, adjusted for inflation", isDollars=False, useMillions=True, decimals=1)
     thread_posts.extend(tpm_posts)
 
     # # Top Strength Reports
-    tpm_posts = create_timeframe_reports(df, latest_film, metric_col='engagement_score', unit='ept', report_title='Monsterdon Toot Strength', subtitle="Engagements per toot x 100 (ept)")
+    tpm_posts = create_timeframe_reports(df, latest_film, metric_col='engagement_score', unit='ept', report_title='Monsterdon Toot Strength', subtitle="Engagements per toot (ept)", isDollars=False, useMillions=False, decimals=2)
     thread_posts.extend(tpm_posts)
     
     # # Longest Movies
