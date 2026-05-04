@@ -100,6 +100,58 @@ def create_histogram(data_series, target_val, target_label, title, x_label, file
 
 
 
+def create_horizontal_bar_chart(df_sorted, metric_col, target_title, title, x_label, filename, bar_color, subtitle="", useMillions=False, decimals=2):
+    """Generates a sorted horizontal bar chart for the 4-week window."""
+    plt.figure(figsize=(10, 6))
+    
+    # Work on a copy to avoid modifying the original df
+    plot_df = df_sorted.copy()
+    
+    # Scale if necessary
+    if useMillions:
+        plot_df[metric_col] = plot_df[metric_col] / 1_000_000
+        display_x_label = f"{x_label} (MILLIONS)"
+    else:
+        display_x_label = x_label
+
+    # Matplotlib plots from bottom to top, so we reverse to get the leader at the top
+    plot_df = plot_df.iloc[::-1]
+
+    # Create bars
+    bars = plt.barh(plot_df['title_and_year'], plot_df[metric_col], color=bar_color, edgecolor='black', alpha=0.8)
+
+    # Highlight target film and add labels to bars
+    for bar, title_label, val in zip(bars, plot_df['title_and_year'], plot_df[metric_col]):
+        # Formatting for the label on the bar
+        label_str = f"{val:,.{decimals}f}"
+        
+        if title_label == target_title:
+            bar.set_facecolor('orange')
+        
+        # Add the numeric value to the end of the bar for quick reading
+        plt.text(bar.get_width(), bar.get_y() + bar.get_height()/2, 
+                 f' {label_str}', va='center', fontweight='bold')
+
+    # Titles and Subtitles
+    plt.suptitle(title, fontsize=14, fontweight='bold', y=0.98)
+    if subtitle:
+        plt.title(subtitle, fontsize=10, color='#666666', pad=15)
+    else:
+        plt.title("", pad=10)
+
+    plt.xlabel(display_x_label)
+    
+    # Format X-axis with commas/decimals
+    plt.gca().xaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.2f}' if decimals > 0 else '{x:,.0f}'))
+    
+    plt.grid(axis='x', linestyle='--', alpha=0.5)
+    plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+    
+    plt.savefig(filename)
+    plt.close()
+
+
+
 def get_rank_text(df_sorted, latest_title, metric_col, unit, rank_start=1, rank_end=5, show_current=True, isDollars=False, useMillions=False, decimals=2):
     """Builds the ranking text. Shows Top N. Appends latest film if outside Top N."""
     lines = []
@@ -393,16 +445,26 @@ def create_timeframe_reports(df, latest_film, metric_col, unit, report_title, su
     target_val_display = current_val / 1_000_000 if useMillions else current_val
     target_label = f"{latest_film['title']}: {target_val_display:,.{decimals}f} {unit}"
 
-    # --- 1. Last 4 Weeks ---
+    # --- 1. Last 4 Weeks (NOW A BAR CHART) ---
     df_4w = last_4_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
-    # fname_4w = f"{metric_col}_4w.png"
-    # create_histogram(df_4w[metric_col], current_val, target_label, 
-    #                  f"{report_title}: Last 4 Weeks", unit.upper(), fname_4w, 
-    #                  "purple",40, subtitle, useMillions=useMillions)
+    fname_4w = f"{metric_col}_4w.png"
     
-    text_4w = f"😈📊 {report_title.upper()}: Last 4 Weeks\n{subtitle}\n\n" + get_rank_text(df_4w, latest_film['title'], metric_col, unit, 1, 5, show_current=True, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
-    # posts.append({'text': text_4w, 'image': fname_4w, 'desc': f'Histogram of {report_title} for Last 4 Weeks'})
-    posts.append({'text': text_4w})
+    create_horizontal_bar_chart(
+        df_4w, 
+        metric_col, 
+        latest_film['title_and_year'], 
+        f"{report_title}: Last 4 Weeks", 
+        unit.upper(), 
+        fname_4w, 
+        "purple", 
+        subtitle=subtitle, 
+        useMillions=useMillions, 
+        decimals=decimals
+    )
+    
+    text_4w = f"😈📊 {report_title.upper()}: Last 4 Weeks\n{subtitle}\n" + \
+              get_rank_text(df_4w, latest_film['title'], metric_col, unit, 1, 5, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
+    posts.append({'text': text_4w, 'image': fname_4w, 'desc': f'Bar chart of {report_title} for Last 4 Weeks'})
 
     # --- 2. Last 52 Weeks ---
     df_52w = last_52_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
@@ -529,28 +591,29 @@ def main():
     # Post 1: Intro
     intro_text = (
         f"😈📊 DEVIL IN THE DETAILS 😈📊\n\n"
-        f"An occasional thread with Monsterdon data rankings. This time it's the Toot Rate, Most Popular Genres, Real Box Office, and Toot Strength.\n"
-        f"How will our rookie rank? {THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']})\n"
-        f"* Data Sources: census of toots from mastodon.social, imdb.com, monsterdon-replay.gerlach.dev\n"
+        f"An occasional thread with Monsterdon data rankings.\n"
+        f"Will our newbie be noteworthy? {THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']})\n"
+        f" * Toot Volume: Total toots\n"
+        f" * Data Sources: census of toots from mastodon.social, imdb.com, monsterdon-replay.gerlach.dev\n"
         f"\n#Monsterdon"
     )
     thread_posts.append({'text': intro_text, 'image': None, 'desc': None})
     
-    footnotes = (
-        f"😈📊 Footnotes:\n\n"
-        f"* Toot Rate: Toots Per Minute or TPM. Calculated as Toots / Minutes\n"
-        f"* Genres: Pulled from imdb.com. {THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']}) is {latest_film['genre']}.\n"
-        f"* Real Box Office: Gross US & Canada from imdb.com inflation adjusted using consumer price index of film's release year.\n"
-        f"* Toot Strength: Engagements Per Toot. Doesn't count Replies due to users threading posts. Calculated (Favs + Boosts) / Toots.\n"
-    )
-    thread_posts.append({'text': footnotes, 'image': None, 'desc': None})
+    # footnotes = (
+    #     f"😈📊 Footnotes:\n\n"
+    #     f" * Toot Rate: Toots Per Minute or TPM. Calculated as Toots / Minutes\n"    
+    #     f"* Genres: Pulled from imdb.com. {THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']}) is {latest_film['genre']}.\n"
+    #     f"* Real Box Office: Gross US & Canada from imdb.com inflation adjusted using consumer price index of film's release year.\n"
+    #     f"* Toot Strength: Engagements Per Toot. Doesn't count Replies due to users threading posts. Calculated (Favs + Boosts) / Toots.\n"
+    # )
+    # thread_posts.append({'text': footnotes, 'image': None, 'desc': None})
 
     # Decade Report
     # thread_posts.append(generate_decade_report(df, latest_film))
     
     # # TPM Reports
-    tpm_posts = create_timeframe_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)", isDollars=False, useMillions=False, decimals=1)
-    thread_posts.extend(tpm_posts)
+    # tpm_posts = create_timeframe_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)", isDollars=False, useMillions=False, decimals=1)
+    # thread_posts.extend(tpm_posts)
 
     # Add the Actor reports
     # actor_posts = generate_most_popular_actors(df, latest_film)
@@ -560,22 +623,22 @@ def main():
     # thread_posts.extend(generate_most_popular_directors(df, latest_film))
 
     # Most popular genres
-    thread_posts.extend(generate_most_popular_genres(df, latest_film))
+    # thread_posts.extend(generate_most_popular_genres(df, latest_film))
 
-    # # Box Office Reports
-    tpm_posts = create_timeframe_reports(df, latest_film, metric_col='real_box_office', unit='Adj USD', report_title='Monsterdon Box Office', subtitle="Millions grossed, adjusted for inflation", isDollars=False, useMillions=True, decimals=1)
-    thread_posts.extend(tpm_posts)
+    # # # Box Office Reports
+    # tpm_posts = create_timeframe_reports(df, latest_film, metric_col='real_box_office', unit='Adj USD', report_title='Monsterdon Box Office', subtitle="Millions grossed, adjusted for inflation", isDollars=False, useMillions=True, decimals=1)
+    # thread_posts.extend(tpm_posts)
 
-    # # Top Strength Reports
-    tpm_posts = create_timeframe_reports(df, latest_film, metric_col='engagement_score', unit='ept', report_title='Monsterdon Toot Strength', subtitle="Engagements per toot (ept)", isDollars=False, useMillions=False, decimals=2)
-    thread_posts.extend(tpm_posts)
+    # # # Top Strength Reports
+    # tpm_posts = create_timeframe_reports(df, latest_film, metric_col='engagement_score', unit='ept', report_title='Monsterdon Toot Strength', subtitle="Engagements per toot (ept)", isDollars=False, useMillions=False, decimals=2)
+    # thread_posts.extend(tpm_posts)
     
     # # Longest Movies
     # thread_posts.append(generate_longest_movies_report(df))
     
     # Toot Volume Reports
-    # vol_posts = create_timeframe_reports(df, latest_film, metric_col='toots', unit='toots', report_title='Monsterdon Toot Volume')
-    # thread_posts.extend(vol_posts)
+    vol_posts = create_timeframe_reports(df, latest_film, metric_col='toots', unit='toots', report_title='Monsterdon Toot Volume', subtitle="Total toots", isDollars=False, useMillions=False, decimals=0)
+    thread_posts.extend(vol_posts)
 
     # 3. Publish Thread
     if DEBUG_MODE:
