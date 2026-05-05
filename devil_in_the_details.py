@@ -9,8 +9,8 @@ from dotenv import load_dotenv
 # NOTE: Run this manually in terminal. This always crashes if I try to run via VSCode play button.
 
 DEBUG_MODE = True # Set to False when ready to post publicly
-THIS_WEEKS_EMOJI = "🗽"
-THIS_WEEKS_INDEX_LOCATION = 1 # use index 1 to skip double feature and treat the main film as latest
+THIS_WEEKS_EMOJI = "🐺"
+THIS_WEEKS_INDEX_LOCATION = 0 # use index 1 to skip double feature and treat the main film as latest
 CSV_FILE = "details.csv"
 
 load_dotenv()
@@ -567,7 +567,7 @@ def main():
     thread_posts = []
     
     # - How will our rookie rank?
-    # Will our newbie be noteworthy?
+    # - Will our newbie be noteworthy?
     # Where did our fresh face finish?
     # Will our new recruit rise?
     # Where does our startup stand?
@@ -592,8 +592,8 @@ def main():
     intro_text = (
         f"😈📊 DEVIL IN THE DETAILS 😈📊\n\n"
         f"An occasional thread with Monsterdon data rankings.\n"
-        f"Will our newbie be noteworthy? {THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']})\n"
-        f" * Toot Volume: Total toots\n"
+        f"Where did our fresh face finish? {THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']})\n"
+        f" * Toot Strength: Engagements Per Toot calculated (Favs + Boosts) / Toots\n"
         f" * Data Sources: census of toots from mastodon.social, imdb.com, monsterdon-replay.gerlach.dev\n"
         f"\n#Monsterdon"
     )
@@ -630,15 +630,15 @@ def main():
     # thread_posts.extend(tpm_posts)
 
     # # # Top Strength Reports
-    # tpm_posts = create_timeframe_reports(df, latest_film, metric_col='engagement_score', unit='ept', report_title='Monsterdon Toot Strength', subtitle="Engagements per toot (ept)", isDollars=False, useMillions=False, decimals=2)
-    # thread_posts.extend(tpm_posts)
+    tpm_posts = create_timeframe_reports(df, latest_film, metric_col='engagement_score', unit='ept', report_title='Monsterdon Toot Strength', subtitle="Engagements per toot (ept)", isDollars=False, useMillions=False, decimals=2)
+    thread_posts.extend(tpm_posts)
     
     # # Longest Movies
     # thread_posts.append(generate_longest_movies_report(df))
     
     # Toot Volume Reports
-    vol_posts = create_timeframe_reports(df, latest_film, metric_col='toots', unit='toots', report_title='Monsterdon Toot Volume', subtitle="Total toots", isDollars=False, useMillions=False, decimals=0)
-    thread_posts.extend(vol_posts)
+    # vol_posts = create_timeframe_reports(df, latest_film, metric_col='toots', unit='toots', report_title='Monsterdon Toot Volume', subtitle="Total toots", isDollars=False, useMillions=False, decimals=0)
+    # thread_posts.extend(vol_posts)
 
     # 3. Publish Thread
     if DEBUG_MODE:
