@@ -321,6 +321,10 @@ movieCriteria = [
 
 
 movieList = [
+    "Reptilian (1999)",
+    "Silver Bullet (1985)",
+    "Hercules in New York (1970)",
+    "Communion (1989)",
     "Son of Dracula (1943)",
     "The Monster That Challenged The World (1957)",
     "Critters 4 (1992)",
@@ -430,7 +434,9 @@ def main():
         "👹",
     ]
 
-    movie1, movie2 = random.sample(movieList[:52], 2)
+    # movieList[:26] last 6 months
+    # movieList[:52] last 12 months
+    movie1, movie2 = random.sample(movieList[:26], 2)
     # question = random.choice(movieCriteria)
     movie1 = addEllipsisIfTooLong(movie1)
     movie2 = addEllipsisIfTooLong(movie2)
