@@ -9,8 +9,8 @@ from dotenv import load_dotenv
 # NOTE: Run this manually in terminal. This always crashes if I try to run via VSCode play button.
 
 DEBUG_MODE = True # Set to False when ready to post publicly
-THIS_WEEKS_EMOJI = "🐺"
-THIS_WEEKS_INDEX_LOCATION = 0 # use index 1 to skip double feature and treat the main film as latest
+THIS_WEEKS_EMOJI = "🐲"
+THIS_WEEKS_INDEX_LOCATION = 1 # use index 1 to skip double feature and treat the main film as latest
 CSV_FILE = "details.csv"
 
 load_dotenv()
@@ -470,7 +470,7 @@ def create_timeframe_reports(df, latest_film, metric_col, unit, report_title, su
     df_52w = last_52_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
     fname_52w = f"{metric_col}_52w.png"
     create_histogram(df_52w[metric_col], current_val, target_label, 
-                     f"{report_title}: Last 52 Weeks", unit.upper(), fname_52w, "purple", 55, subtitle, useMillions)
+                     f"{report_title}: Last 52 Weeks", unit.upper(), fname_52w, "purple", 30, subtitle, useMillions)
     
     text_52w = f"😈📊 {report_title.upper()}: Last 52 Weeks\n{subtitle}\n\n" + get_rank_text(df_52w, latest_film['title'], metric_col, unit, 1, 5, show_current=True, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
     posts.append({'text': text_52w, 'image': fname_52w, 'desc': f'Histogram of {report_title} for Last 52 Weeks'})
@@ -479,7 +479,7 @@ def create_timeframe_reports(df, latest_film, metric_col, unit, report_title, su
     df_all = all_time.sort_values(metric_col, ascending=False).reset_index(drop=True)
     fname_all = f"{metric_col}_all.png"
     create_histogram(df_all[metric_col], current_val, target_label, 
-                     f"{report_title}: All Time", unit.upper(), fname_all, "purple", 60, subtitle, useMillions)
+                     f"{report_title}: All Time", unit.upper(), fname_all, "purple", 30, subtitle, useMillions)
     
     text_all_1 = f"😈📊 {report_title.upper()}: All Time Top 5\n{subtitle}\n\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 1, 5, show_current=False, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
     posts.append({'text': text_all_1, 'image': fname_all, 'desc': f'Histogram of {report_title} for All Time'})
@@ -568,7 +568,7 @@ def main():
     
     # - How will our rookie rank?
     # - Will our newbie be noteworthy?
-    # Where did our fresh face finish?
+    # - Where did our fresh face finish?
     # Will our new recruit rise?
     # Where does our startup stand?
     # What position for our new premiere?
@@ -592,8 +592,8 @@ def main():
     intro_text = (
         f"😈📊 DEVIL IN THE DETAILS 😈📊\n\n"
         f"An occasional thread with Monsterdon data rankings.\n"
-        f"Where did our fresh face finish? {THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']})\n"
-        f" * Toot Strength: Engagements Per Toot calculated (Favs + Boosts) / Toots\n"
+        f"Will our new recruit rise? {THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']})\n"
+        f" * Toot Rate: TPM (Toots per Minute) \n"
         f" * Data Sources: census of toots from mastodon.social, imdb.com, monsterdon-replay.gerlach.dev\n"
         f"\n#Monsterdon"
     )
@@ -612,8 +612,8 @@ def main():
     # thread_posts.append(generate_decade_report(df, latest_film))
     
     # # TPM Reports
-    # tpm_posts = create_timeframe_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)", isDollars=False, useMillions=False, decimals=1)
-    # thread_posts.extend(tpm_posts)
+    tpm_posts = create_timeframe_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)", isDollars=False, useMillions=False, decimals=1)
+    thread_posts.extend(tpm_posts)
 
     # Add the Actor reports
     # actor_posts = generate_most_popular_actors(df, latest_film)
@@ -630,8 +630,8 @@ def main():
     # thread_posts.extend(tpm_posts)
 
     # # # Top Strength Reports
-    tpm_posts = create_timeframe_reports(df, latest_film, metric_col='engagement_score', unit='ept', report_title='Monsterdon Toot Strength', subtitle="Engagements per toot (ept)", isDollars=False, useMillions=False, decimals=2)
-    thread_posts.extend(tpm_posts)
+    # tpm_posts = create_timeframe_reports(df, latest_film, metric_col='engagement_score', unit='ept', report_title='Monsterdon Toot Strength', subtitle="Engagements per toot (ept)", isDollars=False, useMillions=False, decimals=2)
+    # thread_posts.extend(tpm_posts)
     
     # # Longest Movies
     # thread_posts.append(generate_longest_movies_report(df))
