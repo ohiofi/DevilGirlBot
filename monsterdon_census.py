@@ -18,7 +18,7 @@ CSV_FILE = "details.csv"
 ID_FILE = "census_max_id.txt"  # The file that stores our "place" in time
 LOCAL_TZ = pytz.timezone("US/Eastern")
 BATCH_SIZE = 20
-DELAY_BETWEEN_MOVIES = 60
+DELAY_BETWEEN_MOVIES = 10
 
 mastodon = Mastodon(
     access_token=os.getenv("access_token"), api_base_url="https://mastodon.social"
