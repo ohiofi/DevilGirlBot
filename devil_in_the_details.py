@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 # NOTE: Run this manually in terminal. This always crashes if I try to run via VSCode play button.
 
 DEBUG_MODE = True # Set to False when ready to post publicly
-THIS_WEEKS_EMOJI = "🐲"
+THIS_WEEKS_EMOJI = "🛸"
 THIS_WEEKS_INDEX_LOCATION = 1 # use index 1 to skip double feature and treat the main film as latest
 CSV_FILE = "details.csv"
 
@@ -52,7 +52,7 @@ def create_histogram(data_series, target_val, target_label, title, x_label, file
     Generates a histogram. 
     If useMillions is True, scales data by 1,000,000 and updates axis labels.
     """
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(15, 9))
     
     # 1. Scale data if necessary
     plot_data = data_series.copy()
@@ -102,7 +102,8 @@ def create_histogram(data_series, target_val, target_label, title, x_label, file
 
 def create_horizontal_bar_chart(df_sorted, metric_col, target_title, title, x_label, filename, bar_color, subtitle="", useMillions=False, decimals=2):
     """Generates a sorted horizontal bar chart for the 4-week window."""
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(15, 9 + len(df_sorted)*0.025))
+    # plt.figure(figsize=(15, 9))
     
     # Work on a copy to avoid modifying the original df
     plot_df = df_sorted.copy()
@@ -124,13 +125,14 @@ def create_horizontal_bar_chart(df_sorted, metric_col, target_title, title, x_la
     for bar, title_label, val in zip(bars, plot_df['title_and_year'], plot_df[metric_col]):
         # Formatting for the label on the bar
         label_str = f"{val:,.{decimals}f}"
-        
+        font_weight = 'normal'
         if title_label == target_title:
             bar.set_facecolor('orange')
+            # font_weight = 'bold'
         
         # Add the numeric value to the end of the bar for quick reading
         plt.text(bar.get_width(), bar.get_y() + bar.get_height()/2, 
-                 f' {label_str}', va='center', fontweight='bold')
+                 f' {label_str}', va='center', fontweight=font_weight)
 
     # Titles and Subtitles
     plt.suptitle(title, fontsize=14, fontweight='bold', y=0.98)
@@ -150,6 +152,65 @@ def create_horizontal_bar_chart(df_sorted, metric_col, target_title, title, x_la
     plt.savefig(filename)
     plt.close()
 
+
+def create_lollipop_chart(df_sorted, metric_col, target_title, title, x_label, filename, color, subtitle="", useMillions=False, decimals=2):
+    """Generates a clean horizontal lollipop chart for the 26-week window."""
+    tiny_font_size = 10
+    # Adjust figure size slightly taller to give 26 rows breathing room
+    plt.figure(figsize=(9, 7)) 
+    
+    plot_df = df_sorted.copy()
+    if useMillions:
+        plot_df[metric_col] = plot_df[metric_col] / 1_000_000
+        display_x_label = f"{x_label} (MILLIONS)"
+    else:
+        display_x_label = x_label
+
+    # Reverse for top-down leaderboard display
+    plot_df = plot_df.iloc[::-1]
+
+    max_val = plot_df[metric_col].max() if not plot_df[metric_col].empty else 1
+    x_offset = max_val * 0.015
+
+    # 1. Draw the "sticks"
+    stickColor = ['orange' if t == target_title else color for t in plot_df['title']]
+    plt.hlines(y=plot_df['title_and_year'], xmin=0, xmax=plot_df[metric_col], 
+               color=stickColor, linestyle='-', alpha=0.8, linewidth=4)
+    
+    # 2. Draw the "pops" (dots)
+    # Create a color list to highlight the target film
+    colors = ['orange' if t == target_title else color for t in plot_df['title']]
+    sizes = [15 if t == target_title else 10 for t in plot_df['title']]
+    
+    plt.scatter(plot_df[metric_col], plot_df['title_and_year'], c=colors, s=sizes, 
+                edgecolor=colors, alpha=1, zorder=3)
+
+    # Add numeric labels to the right of the dots
+    for title_label, val in zip(plot_df['title_and_year'], plot_df[metric_col]):
+        label_str = f"{val:,.{decimals}f}"
+        # font_weight = 'bold' if target_title in title_label else 'normal'
+        font_weight = 'normal'
+        plt.text(val + x_offset, title_label, f' {label_str}', va='center',ha='left', fontsize=tiny_font_size, fontweight=font_weight)
+
+    # Titles and Axis Formatting
+    plt.suptitle(title, fontsize=14, fontweight='bold', y=0.96)
+    if subtitle:
+        plt.title(subtitle, fontsize=10, color='#555555', pad=15)
+    
+    plt.xlabel(display_x_label)
+    plt.yticks(fontsize=tiny_font_size) # Sized down slightly so 26 titles don't overlap
+    #plt.gca().xaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.2f}' if decimals > 0 else '{x:,.0f}'))
+    # Snap text to the sticks
+    plt.gca().tick_params(axis='y', pad=2)
+    plt.xlim(0, max_val * 1.12)
+    
+    plt.gca().xaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.2f}' if decimals > 0 else '{x:,.0f}'))
+
+    plt.grid(axis='x', linestyle='--', alpha=0.3)
+    plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+    
+    plt.savefig(filename)
+    plt.close()
 
 
 def get_rank_text(df_sorted, latest_title, metric_col, unit, rank_start=1, rank_end=5, show_current=True, isDollars=False, useMillions=False, decimals=2):
@@ -436,55 +497,120 @@ def create_timeframe_reports(df, latest_film, metric_col, unit, report_title, su
     posts = []
 
     # Use clean_df for all timeframe slices
-    ref_date = latest_film['watched_date']
+    #ref_date = latest_film['watched_date']
+    ref_date = pd.Timestamp.now()
     last_4_weeks = clean_df[clean_df['watched_date'] > (ref_date - pd.Timedelta(weeks=4))].copy()
-    last_52_weeks = clean_df[clean_df['watched_date'] > (ref_date - pd.Timedelta(weeks=52))].copy()
-    all_time = clean_df.copy()
+    
+    
+    
+    
 
     # Formatting helper for the histogram labels
     target_val_display = current_val / 1_000_000 if useMillions else current_val
     target_label = f"{latest_film['title']}: {target_val_display:,.{decimals}f} {unit}"
 
     # --- 1. Last 4 Weeks (NOW A BAR CHART) ---
-    df_4w = last_4_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
-    fname_4w = f"{metric_col}_4w.png"
+    df_04w = last_4_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
+    fname_04w = f"{metric_col}_04w.png"
     
     create_horizontal_bar_chart(
-        df_4w, 
+        df_04w, 
         metric_col, 
         latest_film['title_and_year'], 
         f"{report_title}: Last 4 Weeks", 
         unit.upper(), 
-        fname_4w, 
+        fname_04w, 
         "purple", 
         subtitle=subtitle, 
         useMillions=useMillions, 
         decimals=decimals
     )
     
-    text_4w = f"😈📊 {report_title.upper()}: Last 4 Weeks\n{subtitle}\n" + \
-              get_rank_text(df_4w, latest_film['title'], metric_col, unit, 1, 5, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
-    posts.append({'text': text_4w, 'image': fname_4w, 'desc': f'Bar chart of {report_title} for Last 4 Weeks'})
+    text_04w = f"😈📊 {report_title.upper()}: Last 4 Weeks\n{subtitle}\n" + \
+              get_rank_text(df_04w, latest_film['title'], metric_col, unit, 1, 5, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
+    posts.append({'text': text_04w, 'image': fname_04w, 'desc': f'Bar chart of {report_title} for Last 4 Weeks'})
 
-    # --- 2. Last 52 Weeks ---
-    df_52w = last_52_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
-    fname_52w = f"{metric_col}_52w.png"
-    create_histogram(df_52w[metric_col], current_val, target_label, 
-                     f"{report_title}: Last 52 Weeks", unit.upper(), fname_52w, "purple", 30, subtitle, useMillions)
+    # ---  Last 12 Weeks ---
+    # last_12_weeks = clean_df[clean_df['watched_date'] > (ref_date - pd.Timedelta(weeks=12))].copy()
+    # df_12w = last_12_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
+    # fname_12w = f"{metric_col}_12w.png"
+    # create_horizontal_bar_chart(
+    #     df_12w, 
+    #     metric_col, 
+    #     latest_film['title_and_year'], 
+    #     f"{report_title}: Last 12 Weeks", 
+    #     unit.upper(), 
+    #     fname_12w, 
+    #     "purple", 
+    #     subtitle=subtitle, 
+    #     useMillions=useMillions, 
+    #     decimals=decimals
+    # )   
+    # text_12w = f"😈📊 {report_title.upper()}: Last 12 Weeks\n{subtitle}\n" + \
+    #           get_rank_text(df_12w, latest_film['title'], metric_col, unit, 1, 5, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
+    # posts.append({'text': text_12w, 'image': fname_12w, 'desc': f'Bar chart of {report_title} for Last 12 Weeks'})
+
+    # # ---  Last 16 Weeks ---
+    # last_16_weeks = clean_df[clean_df['watched_date'] > (ref_date - pd.Timedelta(weeks=16))].copy()
+    # df_16w = last_16_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
+    # fname_16w = f"{metric_col}_16w.png"
+    # create_horizontal_bar_chart(
+    #     df_16w, 
+    #     metric_col, 
+    #     latest_film['title_and_year'], 
+    #     f"{report_title}: Last 16 Weeks", 
+    #     unit.upper(), 
+    #     fname_16w, 
+    #     "purple", 
+    #     subtitle=subtitle, 
+    #     useMillions=useMillions, 
+    #     decimals=decimals
+    # )   
+    # text_16w = f"😈📊 {report_title.upper()}: Last 16 Weeks\n{subtitle}\n" + \
+    #           get_rank_text(df_16w, latest_film['title'], metric_col, unit, 1, 5, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
+    # posts.append({'text': text_16w, 'image': fname_16w, 'desc': f'Bar chart of {report_title} for Last 16 Weeks'})
+
+    # ---  Last 26 Weeks ---
+    last_26_weeks = clean_df[clean_df['watched_date'] > (ref_date - pd.Timedelta(weeks=26))].copy()
+    df_26w = last_26_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
+    fname_26w = f"{metric_col}_26w.png"
+    create_horizontal_bar_chart(
+        df_26w, 
+        metric_col, 
+        latest_film['title_and_year'], 
+        f"{report_title}: Last 26 Weeks", 
+        unit.upper(), 
+        fname_26w, 
+        "purple", 
+        subtitle=subtitle, 
+        useMillions=useMillions, 
+        decimals=decimals
+    )   
+    text_26w = f"😈📊 {report_title.upper()}: Last 6 Months\n{subtitle}\n" + \
+              get_rank_text(df_26w, latest_film['title'], metric_col, unit, 1, 5, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
+    posts.append({'text': text_26w, 'image': fname_26w, 'desc': f'Bar chart of {report_title} for Last 6 Months'})
+
+    # --- Last 52 Weeks ---
+    # last_52_weeks = clean_df[clean_df['watched_date'] > (ref_date - pd.Timedelta(weeks=52))].copy()
+    # df_52w = last_52_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
+    # fname_52w = f"{metric_col}_52w.png"
+    # create_histogram(df_52w[metric_col], current_val, target_label, 
+    #                  f"{report_title}: Last 52 Weeks", unit.upper(), fname_52w, "purple", 80, subtitle, useMillions)
     
-    text_52w = f"😈📊 {report_title.upper()}: Last 52 Weeks\n{subtitle}\n\n" + get_rank_text(df_52w, latest_film['title'], metric_col, unit, 1, 5, show_current=True, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
-    posts.append({'text': text_52w, 'image': fname_52w, 'desc': f'Histogram of {report_title} for Last 52 Weeks'})
+    # text_52w = f"😈📊 {report_title.upper()}: Last 52 Weeks\n{subtitle}\n\n" + get_rank_text(df_52w, latest_film['title'], metric_col, unit, 1, 5, show_current=True, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
+    # posts.append({'text': text_52w, 'image': fname_52w, 'desc': f'Histogram of {report_title} for Last 52 Weeks'})
 
-    # --- 3. All Time (Top 1-5) ---
+    # --- All Time (Top 1-5) ---
+    all_time = clean_df.copy()
     df_all = all_time.sort_values(metric_col, ascending=False).reset_index(drop=True)
     fname_all = f"{metric_col}_all.png"
     create_histogram(df_all[metric_col], current_val, target_label, 
-                     f"{report_title}: All Time", unit.upper(), fname_all, "purple", 30, subtitle, useMillions)
+                     f"{report_title}: All Time", unit.upper(), fname_all, "purple", 80, subtitle, useMillions)
     
     text_all_1 = f"😈📊 {report_title.upper()}: All Time Top 5\n{subtitle}\n\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 1, 5, show_current=False, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
     posts.append({'text': text_all_1, 'image': fname_all, 'desc': f'Histogram of {report_title} for All Time'})
 
-    # --- 4. All Time (Ranks 6-10) ---
+    # --- All Time (Ranks 6-10) ---
     text_all_2 = f"😈📊 {report_title.upper()}: All Time 6-10\n{subtitle}\n\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 6, 10, show_current=True, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
     posts.append({'text': text_all_2, 'image': None, 'desc': None})
         
@@ -569,7 +695,7 @@ def main():
     # - How will our rookie rank?
     # - Will our newbie be noteworthy?
     # - Where did our fresh face finish?
-    # Will our new recruit rise?
+    # - Will our new recruit rise?
     # Where does our startup stand?
     # What position for our new premiere?
     # How will our greenhorn be graded?
@@ -592,12 +718,15 @@ def main():
     intro_text = (
         f"😈📊 DEVIL IN THE DETAILS 😈📊\n\n"
         f"An occasional thread with Monsterdon data rankings.\n"
-        f"Will our new recruit rise? {THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']})\n"
-        f" * Toot Rate: TPM (Toots per Minute) \n"
-        f" * Data Sources: census of toots from mastodon.social, imdb.com, monsterdon-replay.gerlach.dev\n"
+        f"Where does our startup stand? {THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']})\n"
+        f" * Toot Volume: Total Toots \n"
+        f" * Data Sources: monsterdon-replay.gerlach.dev, census of toots from mastodon.social, imdb.com\n"
         f"\n#Monsterdon"
     )
     thread_posts.append({'text': intro_text, 'image': None, 'desc': None})
+    # 1. Toot Rate
+    # 2. Toot Volumne
+    # 3. Toot Strength
     
     # footnotes = (
     #     f"😈📊 Footnotes:\n\n"
@@ -608,12 +737,14 @@ def main():
     # )
     # thread_posts.append({'text': footnotes, 'image': None, 'desc': None})
 
+    
+
     # Decade Report
     # thread_posts.append(generate_decade_report(df, latest_film))
     
     # # TPM Reports
-    tpm_posts = create_timeframe_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)", isDollars=False, useMillions=False, decimals=1)
-    thread_posts.extend(tpm_posts)
+    # tpm_posts = create_timeframe_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)", isDollars=False, useMillions=False, decimals=1)
+    # thread_posts.extend(tpm_posts)
 
     # Add the Actor reports
     # actor_posts = generate_most_popular_actors(df, latest_film)
@@ -637,8 +768,8 @@ def main():
     # thread_posts.append(generate_longest_movies_report(df))
     
     # Toot Volume Reports
-    # vol_posts = create_timeframe_reports(df, latest_film, metric_col='toots', unit='toots', report_title='Monsterdon Toot Volume', subtitle="Total toots", isDollars=False, useMillions=False, decimals=0)
-    # thread_posts.extend(vol_posts)
+    vol_posts = create_timeframe_reports(df, latest_film, metric_col='toots', unit='toots', report_title='Monsterdon Toot Volume', subtitle="Total toots", isDollars=False, useMillions=False, decimals=0)
+    thread_posts.extend(vol_posts)
 
     # 3. Publish Thread
     if DEBUG_MODE:
