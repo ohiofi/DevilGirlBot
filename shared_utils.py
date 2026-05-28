@@ -1,4 +1,5 @@
-import os, json, re, html, random, datetime
+import os, json, re, html, random
+from datetime import datetime
 from bs4 import BeautifulSoup, MarkupResemblesLocatorWarning
 from PIL import Image, ImageDraw, ImageFont
 from dotenv import load_dotenv
@@ -42,13 +43,55 @@ def extract_raw_text(html_content):
 
 def find_source_by_parent_id(parent_id):
     """Looks through history to find which original post inspired a meme."""
-    history = load_previous_posts()
-    # We check if the parent_id (the meme post) is mentioned in our history
-    for item in history:
-        if str(parent_id) in item["meme_post_url"]:
-            return item["source_url"]
+    if not parent_id:
+        return None
+    
+    history_data = load_previous_posts()
+
+    target_id = str(parent_id)
+    
+    for item in history_data:
+        # 1. Skip entries that aren't dictionaries (handles old raw string entries)
+        if not isinstance(item, dict):
+            continue
+            
+        # 2. Extract potential URLs, ignoring literal "unknown" strings
+        meme_url = item.get("meme_post_url")
+        source_url = item.get("source_url") or item.get("url")
+        
+        # Clean up "unknown" values so they don't get searched
+        if meme_url == "unknown":
+            meme_url = None
+        if source_url == "unknown":
+            source_url = None
+            
+        # 3. Check for a match against the bot's post URL first, then the source
+        if meme_url and target_id in meme_url:
+            return item
+        if source_url and target_id in source_url:
+            return item
+            
     return None
 
+def is_sentence_valid(s, sentence_pool, history_text_only, banlist):
+    """Centralized validation for incoming scrapped sentences."""
+    # 1. Check length constraints
+    if not (5 <= len(s) <= 150):
+        return False
+        
+    # 2. Check against the banlist
+    if does_text_contain_banned(s, banlist):
+        return False
+        
+    # 3. Check if it already exists in the current scraped pool
+    if any(item["sentence"] == s for item in sentence_pool):
+        return False
+        
+    # 4. Check if we have already posted it in our history file
+    if s in history_text_only:
+        return False
+        
+    return True
 
 def load_last_seen_id(filename):
     try:

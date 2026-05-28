@@ -52,6 +52,10 @@ def create_histogram(data_series, target_val, target_label, title, x_label, file
     Generates a histogram. 
     If useMillions is True, scales data by 1,000,000 and updates axis labels.
     """
+    output_dir = "charts"
+    os.makedirs(output_dir, exist_ok=True) # Create 'charts/' folder if missing
+    full_path = os.path.join(output_dir, filename)
+
     plt.figure(figsize=(15, 9))
     
     # 1. Scale data if necessary
@@ -95,13 +99,17 @@ def create_histogram(data_series, target_val, target_label, title, x_label, file
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
     
-    plt.savefig(filename)
+    plt.savefig(full_path)
     plt.close()
 
 
 
 def create_horizontal_bar_chart(df_sorted, metric_col, target_title, title, x_label, filename, bar_color, subtitle="", useMillions=False, decimals=2):
     """Generates a sorted horizontal bar chart for the 4-week window."""
+    output_dir = "charts"
+    os.makedirs(output_dir, exist_ok=True) # Create 'charts/' folder if missing
+    full_path = os.path.join(output_dir, filename)
+
     plt.figure(figsize=(15, 9 + len(df_sorted)*0.025))
     # plt.figure(figsize=(15, 9))
     
@@ -149,12 +157,16 @@ def create_horizontal_bar_chart(df_sorted, metric_col, target_title, title, x_la
     plt.grid(axis='x', linestyle='--', alpha=0.5)
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
     
-    plt.savefig(filename)
+    plt.savefig(full_path)
     plt.close()
 
 
 def create_lollipop_chart(df_sorted, metric_col, target_title, title, x_label, filename, color, subtitle="", useMillions=False, decimals=2):
     """Generates a clean horizontal lollipop chart for the 26-week window."""
+    output_dir = "charts"
+    os.makedirs(output_dir, exist_ok=True) # Create 'charts/' folder if missing
+    full_path = os.path.join(output_dir, filename)
+
     tiny_font_size = 10
     # Adjust figure size slightly taller to give 26 rows breathing room
     plt.figure(figsize=(9, 7)) 
@@ -209,7 +221,7 @@ def create_lollipop_chart(df_sorted, metric_col, target_title, title, x_label, f
     plt.grid(axis='x', linestyle='--', alpha=0.3)
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
     
-    plt.savefig(filename)
+    plt.savefig(full_path)
     plt.close()
 
 

@@ -16,7 +16,7 @@ def scrape_monsterdon():
     history_text_only = [item["text"] for item in history]
     
     # We track the last ID specifically for the hashtag timeline
-    last_id = load_last_seen_id("last_hashtag_id.txt") 
+    last_id = load_last_seen_id("last_hashtag_scraping_id.txt") 
     
     new_toots_count = 0
     max_id = None
@@ -40,7 +40,7 @@ def scrape_monsterdon():
 
             # Update the latest ID we've seen from the very first toot in the batch
             if new_toots_count == 0:
-                save_last_seen_id(toots[0]["id"], "last_hashtag_id.txt")
+                save_last_seen_id(toots[0]["id"], "last_hashtag_scraping_id.txt")
 
             for toot in toots:
                 source_url = toot["url"]

@@ -321,6 +321,7 @@ movieCriteria = [
 
 
 movieList = [
+    "Invasion: UFO (1980)",
     "Reptilian (1999)",
     "Silver Bullet (1985)",
     "Hercules in New York (1970)",

@@ -47,10 +47,10 @@ def process_mentions():
             send_text_reply(mention, 
                             f"@{user_acct} DevilGirlBot is series of automated Python scripts.\n"
                             f"COMMANDS:\n"
-                            f"  !context = get the source URL for the meme text\n"
+                            f"  !context = reply !context to one of my random posts to get the source URL\n"
                             f"  !roll2d6 = roll two 6-sided die\n"
                             f"  !source = same as !context\n"
-                            f"  !status = returns the pool size\n"
+                            f"  !fuel = returns the ship's fuel level\n"
                             )
         elif "!context" in raw_text:
             send_text_reply(mention, context_lookup(mention, user_acct))
