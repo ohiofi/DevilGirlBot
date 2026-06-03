@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 # NOTE: Run this manually in terminal. This always crashes if I try to run via VSCode play button.
 
 DEBUG_MODE = True # Set to False when ready to post publicly
-THIS_WEEKS_EMOJI = "🏛️"
+THIS_WEEKS_EMOJI = "🫛"
 THIS_WEEKS_INDEX_LOCATION = 1 # use index 1 to skip double feature and treat the main film as latest
 CSV_FILE = "details.csv"
 
@@ -709,7 +709,7 @@ def main():
     # - Where did our fresh face finish?
     # - Will our new recruit rise?
     # - Where does our startup stand?
-    # What position for our new premiere?
+    # - What position for our new premiere?
     # How will our greenhorn be graded?
     # Where does our baby belong?
     # Does our challenger stand a chance?
@@ -730,15 +730,19 @@ def main():
     intro_text = (
         f"😈📊 DEVIL IN THE DETAILS 😈📊\n\n"
         f"An occasional thread with Monsterdon data rankings.\n"
-        f"What position for our new premiere? {THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']})\n"
-        f" * Toot Strength: Engagements Per Toot. Doesn't count Replies due to users threading posts. Calculated (Favs + Boosts) / Toots.\n"
-        f" * Data Sources: monsterdon-replay.gerlach.dev, census of toots from mastodon.social, imdb.com\n"
+        f"How will our greenhorn be graded?\n"
+        f"{THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']})\n"
+        f"{THIS_WEEKS_EMOJI} Toot Rate: Toots Per Minute or TPM. Calculated as Toots / Minutes\n"  
+        f"{THIS_WEEKS_EMOJI} Data Sources: monsterdon-replay.gerlach.dev, census of toots from mastodon.social, imdb.com\n"
         f"\n#Monsterdon"
     )
     thread_posts.append({'text': intro_text, 'image': None, 'desc': None})
     # 1. Toot Rate
-    # 2. Toot Volumne
+    # f" * Toot Rate: Toots Per Minute or TPM. Calculated as Toots / Minutes\n"  
+    # 2. Toot Volume
+    # f" * Toot Volume: Total Toots\n"  
     # 3. Toot Strength
+    # f" * Toot Strength: Engagements Per Toot. Doesn't count Replies due to users threading posts. Calculated (Favs + Boosts) / Toots.\n"
     
     # footnotes = (
     #     f"😈📊 Footnotes:\n\n"
@@ -754,9 +758,9 @@ def main():
     # Decade Report
     # thread_posts.append(generate_decade_report(df, latest_film))
     
-    # # TPM Reports
-    # tpm_posts = create_timeframe_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)", isDollars=False, useMillions=False, decimals=1)
-    # thread_posts.extend(tpm_posts)
+    # TPM Reports
+    tpm_posts = create_timeframe_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)", isDollars=False, useMillions=False, decimals=1)
+    thread_posts.extend(tpm_posts)
 
     # Add the Actor reports
     # actor_posts = generate_most_popular_actors(df, latest_film)
@@ -773,8 +777,8 @@ def main():
     # thread_posts.extend(tpm_posts)
 
     # # # Top Strength Reports
-    tpm_posts = create_timeframe_reports(df, latest_film, metric_col='engagement_score', unit='ept', report_title='Monsterdon Toot Strength', subtitle="Engagements per toot (ept)", isDollars=False, useMillions=False, decimals=2)
-    thread_posts.extend(tpm_posts)
+    # tpm_posts = create_timeframe_reports(df, latest_film, metric_col='engagement_score', unit='ept', report_title='Monsterdon Toot Strength', subtitle="Engagements per toot (ept)", isDollars=False, useMillions=False, decimals=2)
+    # thread_posts.extend(tpm_posts)
     
     # # Longest Movies
     # thread_posts.append(generate_longest_movies_report(df))
