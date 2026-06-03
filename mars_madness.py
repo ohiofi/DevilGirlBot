@@ -321,6 +321,8 @@ movieCriteria = [
 
 
 movieList = [
+    "Seedpeople (1992)",
+    "Terror in the Wax Museum (1973)",
     "Invasion: UFO (1980)",
     "Reptilian (1999)",
     "Silver Bullet (1985)",
