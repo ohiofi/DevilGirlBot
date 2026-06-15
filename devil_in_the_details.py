@@ -6,10 +6,10 @@ from mastodon import Mastodon
 import os
 from dotenv import load_dotenv
 
-# NOTE: Run this manually in terminal. This always crashes if I try to run via VSCode play button.
+# NOTE: Run this manually in terminal venv. Always crashes/times-out if I try to run via VSCode play button.
 
-DEBUG_MODE = True # Set to False when ready to post publicly
-THIS_WEEKS_EMOJI = "🫛"
+DEBUG_MODE = False # Set to False when ready to post publicly
+THIS_WEEKS_EMOJI = "☢️"
 THIS_WEEKS_INDEX_LOCATION = 1 # use index 1 to skip double feature and treat the main film as latest
 CSV_FILE = "details.csv"
 
@@ -83,7 +83,7 @@ def create_histogram(data_series, target_val, target_label, title, x_label, file
     # 4. Titles and Subtitles
     plt.suptitle(title, fontsize=14, fontweight='bold', y=0.98)
     if subtitle:
-        plt.title(subtitle, fontsize=10, color='#666666', pad=15)
+        plt.title(subtitle, fontsize=10, color="#444444", pad=15)
     else:
         plt.title("", pad=10)
 
@@ -224,6 +224,178 @@ def create_lollipop_chart(df_sorted, metric_col, target_title, title, x_label, f
     plt.savefig(full_path)
     plt.close()
 
+def create_timeline_reports(df, latest_film, metric_col, unit, report_title, subtitle="", isDollars=False, useMillions=False, decimals=2):
+    """
+    Generates chronological timeline charts but formats the accompanying post text
+    as classic leaderboard ranking summary threads.
+    """
+    current_val = latest_film[metric_col]
+    if current_val == -1:
+        print(f"⚠️ Skipping {report_title} timeline: Current film has no data (-1).")
+        return []
+
+    clean_df = df[df[metric_col] != -1].copy()
+    posts = []
+
+    ref_date = pd.Timestamp.now()
+    sub_text = f"{subtitle}\n" if subtitle else ""
+
+    # --- 1. Last 4 Weeks Timeline ---
+    last_4_weeks = clean_df[clean_df['watched_date'] > (ref_date - pd.Timedelta(weeks=4))].copy()
+    # Sort descending for the rank generator engine
+    df_04w_ranked = last_4_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
+    fname_04w_line = f"{metric_col}_timeline_04w.png"
+    
+    create_timeline_trend_chart(
+        df_chronological=last_4_weeks,
+        metric_col=metric_col,
+        target_identifier=latest_film['title_and_year'],
+        title=f"{report_title}: 4-Week Chronological View",
+        y_label=unit.upper(),
+        filename=fname_04w_line,
+        bar_color="purple",
+        subtitle=subtitle,
+        useMillions=useMillions,
+        decimals=decimals,
+        show_x_labels=True
+    )
+    
+    # Generate old-style leaderboard text using the rank engine
+    text_04w_line = f"😈📊 {report_title.upper()}: Last 4 Weeks\n{sub_text}" + \
+                    get_rank_text(df_04w_ranked, latest_film['title'], metric_col, unit, 1, 5, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
+    posts.append({'text': text_04w_line, 'image': os.path.join("charts", fname_04w_line), 'desc': f'Chronological bar chart of {report_title} for Last 4 Weeks'})
+
+    # --- 2. Last 16 Weeks Timeline ---
+    last_16_weeks = clean_df[clean_df['watched_date'] > (ref_date - pd.Timedelta(weeks=16))].copy()
+    # Sort descending for the rank generator engine
+    df_16w_ranked = last_16_weeks.sort_values(metric_col, ascending=False).reset_index(drop=True)
+    fname_16w_line = f"{metric_col}_timeline_16w.png"
+    
+    create_timeline_trend_chart(
+        df_chronological=last_16_weeks,
+        metric_col=metric_col,
+        target_identifier=latest_film['title_and_year'],
+        title=f"{report_title}: 16-Week Chronological View",
+        y_label=unit.upper(),
+        filename=fname_16w_line,
+        bar_color="purple",
+        subtitle=subtitle,
+        useMillions=useMillions,
+        decimals=decimals,
+        show_x_labels=True
+    )
+    
+    # Generate old-style leaderboard text using the rank engine
+    text_16w_line = f"😈📊 {report_title.upper()}: Last 16 Weeks\n{sub_text}" + \
+                    get_rank_text(df_16w_ranked, latest_film['title'], metric_col, unit, 1, 5, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
+    posts.append({'text': text_16w_line, 'image': os.path.join("charts", fname_16w_line), 'desc': f'Chronological bar chart of {report_title} for Last 16 Weeks'})
+
+    # --- 3. All Time History Timeline (Top 1-5) ---
+    all_time = clean_df.copy()
+    df_all_ranked = all_time.sort_values(metric_col, ascending=False).reset_index(drop=True)
+    fname_all_line = f"{metric_col}_timeline_all.png"
+    
+    create_timeline_trend_chart(
+        df_chronological=all_time,
+        metric_col=metric_col,
+        target_identifier=latest_film['title_and_year'],
+        title=f"{report_title}: All-Time Chronological View",
+        y_label=unit.upper(),
+        filename=fname_all_line,
+        bar_color="purple",
+        subtitle=subtitle,
+        useMillions=useMillions,
+        decimals=decimals,
+        show_x_labels=False # Kept False to hide chaotic layout strings
+    )
+    
+    # Generate old-style leaderboard text for the top 5 spots
+    text_all_line = f"😈📊 {report_title.upper()}: All Time Top 5\n{sub_text}" + \
+                    get_rank_text(df_all_ranked, latest_film['title'], metric_col, unit, 1, 5, show_current=False, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
+    posts.append({'text': text_all_line, 'image': os.path.join("charts", fname_all_line), 'desc': f'Chronological bar chart of {report_title} across All-Time rows'})
+
+    # --- 4. All Time History Timeline (Ranks 6-10 Text-Only fallback) ---
+    text_all_2 = f"😈📊 {report_title.upper()}: All Time 6-10\n{sub_text}" + \
+                 get_rank_text(df_all_ranked, latest_film['title'], metric_col, unit, 6, 10, show_current=True, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
+    posts.append({'text': text_all_2, 'image': None, 'desc': None})
+
+    return posts
+
+def create_timeline_trend_chart(df_chronological, metric_col, target_identifier, title, y_label, filename, bar_color, subtitle="", useMillions=False, decimals=2, show_x_labels=True):
+    """
+    Generates a vertical bar chart where EVERY individual row gets its own equidistant bar.
+    No rows are collapsed or grouped.
+    """
+    output_dir = "charts"
+    os.makedirs(output_dir, exist_ok=True)
+    full_path = os.path.join(output_dir, filename)
+
+    # Sort strictly by date, oldest to newest (left to right) without collapsing rows
+    plot_df = df_chronological.sort_values('watched_date', ascending=True).copy()
+
+    if useMillions:
+        plot_df[metric_col] = plot_df[metric_col] / 1_000_000
+        display_y_label = f"{y_label} (MILLIONS)"
+    else:
+        display_y_label = y_label
+
+    plt.figure(figsize=(12, 6))
+
+    colors = ['yellow' if t == target_identifier else bar_color for t in plot_df['title_and_year']]
+
+    # --- THE EQUIDISTANT SEQUENTIAL POSITION FIX ---
+    # We place bars at positions [0, 1, 2, 3...] so duplicate films sit side-by-side instead of overlapping
+    x_positions = range(len(plot_df))
+    bars = plt.bar(x_positions, plot_df[metric_col], color=colors, edgecolor='black', alpha=0.85, zorder=3)
+
+    # Only print numeric values on top of bars if the layout isn't overcrowded
+    if len(plot_df) <= 20:
+        for bar in bars:
+            y_val = bar.get_height()
+            label_str = f"{y_val:,.{decimals}f}"
+            
+            is_target = (bar.get_facecolor() == (1.0, 1.0, 0.0, 0.85))
+            font_w = 'bold' if is_target else 'normal'
+            
+            plt.text(bar.get_x() + bar.get_width()/2, y_val, f"{label_str}", 
+                     va='bottom', ha='center', fontsize=8, fontweight=font_w)
+
+    # --- X-AXIS CUSTOM LABEL MAPPING ---
+    if show_x_labels:
+        # Assigned size=7 so long movie titles don't overpower the canvas height
+        plt.xticks(
+            ticks=x_positions, 
+            labels=plot_df['title_and_year'], 
+            rotation=45, 
+            ha='right', 
+            fontsize=7, # <--- Dropped from 9 to 7
+            rotation_mode='anchor' # Ensures cleaner alignment at 45 degrees
+        )
+        bottom_margin = 0.02  # <--- Safely reduced from 0.28 since font is smaller
+    else:
+        # Strip all text and structural tick markers for the All Time view
+        plt.gca().set_xticklabels([]) 
+        plt.gca().set_xticks([])      
+        plt.xlabel("Monsterdon Sessions Over Time", fontsize=10, labelpad=10)
+        bottom_margin = 0.01  # <--- Tighter layout padding
+
+    # Titles and Formatting
+    plt.suptitle(title, fontsize=14, fontweight='bold', y=0.96)
+    if subtitle:
+        plt.title(subtitle, fontsize=10, color='#555555', pad=10)
+
+    plt.ylabel(display_y_label)
+    
+    max_val = plot_df[metric_col].max() if not plot_df[metric_col].empty else 1
+    plt.ylim(0, max_val * 1.12)
+    
+    plt.gca().yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.2f}' if decimals > 0 else '{x:,.0f}'))
+    plt.grid(axis='y', linestyle='--', alpha=0.3, zorder=1)
+    
+    plt.tight_layout(rect=[0, bottom_margin, 1, 0.90])
+    
+    plt.savefig(full_path)
+    plt.close()
 
 def get_rank_text(df_sorted, latest_title, metric_col, unit, rank_start=1, rank_end=5, show_current=True, isDollars=False, useMillions=False, decimals=2):
     """Builds the ranking text. Shows Top N. Appends latest film if outside Top N."""
@@ -710,8 +882,8 @@ def main():
     # - Will our new recruit rise?
     # - Where does our startup stand?
     # - What position for our new premiere?
-    # How will our greenhorn be graded?
-    # Where does our baby belong?
+    # - How will our greenhorn be graded?
+    # - Where does our baby belong?
     # Does our challenger stand a chance?
     # What's our new kid's KPIs?
     # Where does our fledgling fit?
@@ -730,19 +902,21 @@ def main():
     intro_text = (
         f"😈📊 DEVIL IN THE DETAILS 😈📊\n\n"
         f"An occasional thread with Monsterdon data rankings.\n"
-        f"How will our greenhorn be graded?\n"
+        f"Does our challenger stand a chance?\n"
         f"{THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']})\n"
-        f"{THIS_WEEKS_EMOJI} Toot Rate: Toots Per Minute or TPM. Calculated as Toots / Minutes\n"  
+        f"{THIS_WEEKS_EMOJI} Toot Volume: Total Toots\n"  
         f"{THIS_WEEKS_EMOJI} Data Sources: monsterdon-replay.gerlach.dev, census of toots from mastodon.social, imdb.com\n"
         f"\n#Monsterdon"
     )
     thread_posts.append({'text': intro_text, 'image': None, 'desc': None})
     # 1. Toot Rate
-    # f" * Toot Rate: Toots Per Minute or TPM. Calculated as Toots / Minutes\n"  
-    # 2. Toot Volume
-    # f" * Toot Volume: Total Toots\n"  
-    # 3. Toot Strength
-    # f" * Toot Strength: Engagements Per Toot. Doesn't count Replies due to users threading posts. Calculated (Favs + Boosts) / Toots.\n"
+    # f"{THIS_WEEKS_EMOJI} Toot Rate: Toots Per Minute or TPM. Calculated as Toots / Minutes\n"  
+    # 2. Participation Trophy
+    # f"{THIS_WEEKS_EMOJI} Participation Trophy: Participations Per User or PPU. Calculated as (Toots + Favs + Boosts) / Users.\n" 
+    # 3. Toot Volume
+    # f"{THIS_WEEKS_EMOJI} Toot Volume: Total Toots\n"  
+    # 4. Toot Strength
+    # f"{THIS_WEEKS_EMOJI} Toot Strength: Engagements Per Toot. Doesn't count Replies due to users threading posts. Calculated (Favs + Boosts) / Toots.\n"
     
     # footnotes = (
     #     f"😈📊 Footnotes:\n\n"
@@ -758,9 +932,17 @@ def main():
     # Decade Report
     # thread_posts.append(generate_decade_report(df, latest_film))
     
-    # TPM Reports
-    tpm_posts = create_timeframe_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)", isDollars=False, useMillions=False, decimals=1)
-    thread_posts.extend(tpm_posts)
+    # # TPM Reports
+    # tpm_posts = create_timeframe_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)", isDollars=False, useMillions=False, decimals=1)
+    # thread_posts.extend(tpm_posts)
+
+    # PPU Reports
+    # ppu_posts = create_timeframe_reports(df, latest_film, metric_col='participation_score', unit='ppu', report_title='Monsterdon Participations Per User', subtitle="Participations Per User (ppu)", isDollars=False, useMillions=False, decimals=1)
+    # thread_posts.extend(ppu_posts)
+
+    # Toot Volume Reports
+    vol_posts = create_timeline_reports(df, latest_film, metric_col='toots', unit='toots', report_title='Monsterdon Toot Volume', subtitle="Total toots", isDollars=False, useMillions=False, decimals=0)
+    thread_posts.extend(vol_posts)
 
     # Add the Actor reports
     # actor_posts = generate_most_popular_actors(df, latest_film)
@@ -783,9 +965,7 @@ def main():
     # # Longest Movies
     # thread_posts.append(generate_longest_movies_report(df))
     
-    # Toot Volume Reports
-    # vol_posts = create_timeframe_reports(df, latest_film, metric_col='toots', unit='toots', report_title='Monsterdon Toot Volume', subtitle="Total toots", isDollars=False, useMillions=False, decimals=0)
-    # thread_posts.extend(vol_posts)
+    
 
     # 3. Publish Thread
     if DEBUG_MODE:

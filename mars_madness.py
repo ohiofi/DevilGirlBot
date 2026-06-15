@@ -321,6 +321,7 @@ movieCriteria = [
 
 
 movieList = [
+    "Class of 1999 (1990)",
     "Seedpeople (1992)",
     "Terror in the Wax Museum (1973)",
     "Invasion: UFO (1980)",

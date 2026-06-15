@@ -1,5 +1,4 @@
-import os
-import time
+import os, time
 import pandas as pd
 from datetime import datetime, timedelta
 from mastodon import Mastodon
@@ -74,7 +73,7 @@ def fetch_census_data(start_dt, duration, starting_max_id=None):
                 total_hashtags_found += 1
 
                 # Engagement Metrics
-                total_favorites += toot.get('favourites_count', 0)
+                total_favorites += toot.get('favorites_count', 0)
                 total_boosts += toot.get('reblogs_count', 0)
                 total_replies += toot.get('replies_count', 0)
 
@@ -98,10 +97,10 @@ def fetch_census_data(start_dt, duration, starting_max_id=None):
         print(f"\n   ⚠️ No toots found. Recording 0 and moving to next movie...")
     else:
         print(f"\n   ✅ Done. Found {total_hashtags_found} toots.")
-
+    
     return {
         'users': len(unique_users),
-        'toots': total_hashtags_found,
+        'event_toots': total_hashtags_found,
         'servers': len(unique_servers),
         'favs': total_favorites,
         'boosts': total_boosts,
@@ -173,13 +172,19 @@ def main():
             # Update the pointer (Crucial for leaping gaps!)
             last_max_id = results['next_id']
 
+            # Calculate additional metrics
+            engagementsPerToot = (results['favs'] + results['boosts']) / max(row['toots'], results['event_toots'])
+            participationPerUser = ( max(row['toots'], results['event_toots']) + results['favs'] + results['boosts'] ) / results['users']
+
             # Update the DataFrame with all metrics
             df.at[index, 'attendees'] = results['users']
-            df.at[index, 'event_toots'] = results['toots']
+            df.at[index, 'event_toots'] = results['event_toots']
             df.at[index, 'unique_servers'] = results['servers']
             df.at[index, 'total_favorites'] = results['favs']
             df.at[index, 'total_boosts'] = results['boosts']
             df.at[index, 'total_replies'] = results['replies']
+            df.at[index, 'engagement_score'] = engagementsPerToot
+            df.at[index, 'participation_score'] = participationPerUser
             
             # Save CSV state
             df_to_save = df.copy()
