@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 # NOTE: Run this manually in terminal venv. Always crashes/times-out if I try to run via VSCode play button.
 
-DEBUG_MODE = False # Set to False when ready to post publicly
+DEBUG_MODE = True # Set to False when ready to post publicly
 THIS_WEEKS_EMOJI = "☢️"
 THIS_WEEKS_INDEX_LOCATION = 1 # use index 1 to skip double feature and treat the main film as latest
 CSV_FILE = "details.csv"

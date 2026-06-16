@@ -1,55 +1,15 @@
 from mastodon import Mastodon
 from dotenv import load_dotenv
-import os
-import random
-import re
-import json
-from datetime import datetime, timedelta
-from PIL import Image, ImageDraw, ImageFont
-import logging
-from pathlib import Path
+import os, random, re
 
-DEBUG_MODE = False
-MOCK_DAY_IDX = 0
-current_day_idx = MOCK_DAY_IDX
+load_dotenv()
 
-# Automatically detect the directory where mars_madness.py is actually stored
-SCRIPT_DIR = Path(__file__).parent.resolve()
-
-# Force all file targets to use exact, absolute paths
-ENV_FILE = SCRIPT_DIR / ".env"
-STATE_FILE = SCRIPT_DIR / "bracket_state.json"
-GRAPHIC_FILE = SCRIPT_DIR / "bracket.png"
-LOG_FILE = SCRIPT_DIR / "mars_madness_errors.log"
-
-# Explicitly load the .env file from its exact absolute path
-load_dotenv(dotenv_path=ENV_FILE)
-
-# Update your logging setup to point to the exact log file path
-logging.basicConfig(
-    filename=LOG_FILE,
-    level=logging.ERROR,
-    format="%(asctime)s - %(levelname)s - %(message)s"
+mastodon = Mastodon(
+    client_id=os.getenv("client_key"),
+    client_secret=os.getenv("client_secret"),
+    access_token=os.getenv("access_token"),
+    api_base_url="https://mastodon.social",
 )
-
-
-# Only initialize Mastodon if we are in production mode
-if DEBUG_MODE:
-    mastodon = None
-    print(
-        f"🤖 RUNNING IN DEBUG MODE: Simulating Day Index {current_day_idx} (No live API calls)"
-    )
-else:
-    current_day_idx = datetime.now().weekday()
-    load_dotenv()
-    mastodon = Mastodon(
-        client_id=os.getenv("client_key"),
-        client_secret=os.getenv("client_secret"),
-        access_token=os.getenv("access_token"),
-        api_base_url="https://mastodon.social",
-    )
-
-
 
 
 movieCriteria = [
@@ -181,7 +141,7 @@ movieCriteria = [
     ["is the ", "MOST", "LEAST", " professional"],
     ["is the ", "MOST", "LEAST", " raucous"],
     ["is the ", "MOST", "LEAST", " rewatchable"],
-    ["is the ", "MOST", "LEAST", " Roger Corman-esque"],
+        ["is the ", "MOST", "LEAST", " Roger Corman-esque"],
     ["is the ", "MOST", "LEAST", " scary"],
     ["is the ", "MOST", "LEAST", " serious"],
     ["is the ", "MOST", "LEAST", " Star Trek-esque"],
@@ -361,7 +321,6 @@ movieCriteria = [
 
 
 movieList = [
-    "In the Year 2889 (1969)",
     "Class of 1999 (1990)",
     "Seedpeople (1992)",
     "Terror in the Wax Museum (1973)",
@@ -377,360 +336,128 @@ movieList = [
     "Jason and the Argonauts (1963)",
     "The Adventures of Hercules (1985)",
     "Hercules (1983)",
+    "Dr. Who and the Daleks (1965)",
+    "4D Man (1959)",
+    "Devil Doll (1964)",
+    "Planet Earth (1974)",
+    "The Quatermass Xperiment (1955)",
+    "Mothra (1961)",
+    "Godzilla (1998)",
+    "Death Race 2000 (1975)",
+    "Time Walker (1982)",
+    "Tales from the Crypt (1972)",
+    "The She-Creature (1956)",
+    "Attack of the Puppet People (1958)",
+    "The Asphyx (1972)",
+    "Space Master X-7 (1958)",
+    "Alligator (1980)",
+    "Vampires on Bikini Beach (1988)",
+    "Critters 3 (1991)",
+    "The Howling (1981)",
+    "Pumpkinhead (1988)",
+    "The Hunger (1983)",
+    "Fright Night (1985)",
+    "The Food of the Gods (1976)",
+    "The Angry Red Planet (1959)",
+    "Creature from the Black Lagoon (1954)",
+    "The Man from Planet X (1951)",
+    "Grizzly (1976)",
+    "Swamp Thing (1982)",
+    "The Little Shop of Horrors (1960)",
+    "Godzilla, Mothra and King Ghidorah: Giant Monsters All-Out Attack (2001)",
+    "The Raven (1963)",
+    "Vampire Circus (1972)",
+    "Maximum Overdrive (1986)",
+    "X: The Man with the X-Ray Eyes (1963)",
+    "Frankenstein Meets the Space Monster (1965)",
+    "Clash of the Titans (1981)",
+    "Starcrash (1978)",
+    "Bog (1979)",
+    "Dracula, Prisoner of Frankenstein (1972)",
+    "Godzilla: Final Wars (2004)",
+    "Forbidden Planet (1956)",
+    "Beyond Atlantis (1973)",
+    "Slugs (1988)",
+    "The Gate (1987)",
+    "The Bat People (1974)",
+    "First Men in the Moon (1964)",
+    "Krull (1983)",
+    "Laserblast (1978)",
+    "Cat Girl (1957)",
+    "Critters 2 (1988)",
+    "Yeti: The Giant of the 20th Century (1977)",
+    "Critters (1986)",
+    "C.H.U.D. (1984)",
 ]
 
 
 def get_random_question():
     template = random.choice(movieCriteria)
+    # Randomly pick index 1 or 2 (the polarities)
     polarity = random.choice([template[1], template[2]])
     return f"Which movie {template[0]}{polarity}{template[3]}?"
 
 
 def getMovieHashtag(titleParenthesesDate):
+    # This regex finds everything that IS NOT a letter or a number
+    # and replaces it with an empty string.
     clean_title = re.sub(r"[^a-zA-Z0-9]", "", titleParenthesesDate)
     return f"#{clean_title}"
 
 
-def addEllipsisIfTooLong(word, max_len=50):
-    if len(word) > max_len:
-        word = word[: max_len - 1] + "…"
+def addEllipsisIfTooLong(word):
+    if len(word) > 50:
+        word = word[:49] + "…"
     return word
 
 
-def get_poll_winner(poll_id, match_details):
-    if DEBUG_MODE:
-        simulated_winner = random.choice([match_details["home"], match_details["away"]])
-        print(f"🔮 [DEBUG] Simulating winner for poll {poll_id}: {simulated_winner}")
-        return simulated_winner
-
-    try:
-        status = mastodon.status(poll_id)
-        poll = status.get("poll")
-        if not poll:
-            return None
-            
-        # 🚨 SAFETY CHECK: If the poll is still active, do NOT tally the votes yet!
-        if not poll.get("expired", False):
-            print(f"⚠️ Warning: Poll {poll_id} is still open. Waiting until it closes.")
-            return None
-
-        options = poll["options"]
-        if options[0]["votes_count"] >= options[1]["votes_count"]:
-            return options[0]["title"]
-        else:
-            return options[1]["title"]
-    except Exception as e:
-        print(f"Error fetching poll winner: {e}")
-        return None
-
-def initialize_new_bracket():
-    """Initializes a new bracket layout on Monday using the last 8 unique movies."""
-    # "Last 8 films in chronological order with the most recent being the 1 seed"
-    # Assuming your movieList is already ordered chronologically (oldest to newest),
-    # the last 8 items represent the most recent. We reverse it so index 0 is the 1 seed.
-    recent_movies = list(movieList[:8])
-
-    # Standard 8-team bracket seed matching: 1v8, 4v5, 2v7, 3v6
-    state = {
-        "week_start": datetime.now().strftime("%Y-%m-%d"),
-        "matches": {
-            "0": {
-                "home": recent_movies[0],
-                "away": recent_movies[7],
-                "poll_id": None,
-                "winner": None,
-                "label": "Quarterfinal 1",
-            },  # Monday
-            "1": {
-                "home": recent_movies[3],
-                "away": recent_movies[4],
-                "poll_id": None,
-                "winner": None,
-                "label": "Quarterfinal 2",
-            },  # Tuesday
-            "2": {
-                "home": recent_movies[1],
-                "away": recent_movies[6],
-                "poll_id": None,
-                "winner": None,
-                "label": "Quarterfinal 3",
-            },  # Wednesday
-            "3": {
-                "home": recent_movies[2],
-                "away": recent_movies[5],
-                "poll_id": None,
-                "winner": None,
-                "label": "Quarterfinal 4",
-            },  # Thursday
-            "4": {
-                "home": None,
-                "away": None,
-                "poll_id": None,
-                "winner": None,
-                "label": "Semifinal 1",
-            },  # Friday (Winner Q1 vs Winner Q2)
-            "5": {
-                "home": None,
-                "away": None,
-                "poll_id": None,
-                "winner": None,
-                "label": "Semifinal 2",
-            },  # Saturday (Winner Q3 vs Winner Q4)
-            "6": {
-                "home": None,
-                "away": None,
-                "poll_id": None,
-                "winner": None,
-                "label": "Finals",
-            },  # Sunday (Winner S1 vs Winner S2)
-        },
-    }
-    return state
-
-
-def load_state():
-    if os.path.exists(STATE_FILE):
-        with open(STATE_FILE, "r") as f:
-            return json.load(f)
-    return None
-
-
-def save_state(state):
-    with open(STATE_FILE, "w") as f:
-        json.dump(state, f, indent=4)
-
-
-def generate_bracket_graphic(state):
-    width, height = 1200, 800
-
-    # LIGHT MODE: Crisp cream/off-white canvas color
-    img = Image.new("RGB", (width, height), color="#f4f4f0")
-    draw = ImageDraw.Draw(img)
-
-    # Font sizing control variable
-    font_size = 18
-
-    try:
-        # Modern pillow syntax supporting custom default font sizes
-        font = ImageFont.load_default(size=font_size)
-    except Exception:
-        # Fallback to base default font if using an older library build
-        font = ImageFont.load_default()
-
-    # Increased line length from 180 to 260 to give titles room and spread the layout
-    node_line_length = 260
-
-    def draw_text_node(x, y, text, title_text="???"):
-        display_text = addEllipsisIfTooLong(text or title_text, max_len=40)
-
-        # LIGHT MODE TEXT: Dark slate for populated items, muted gray for empty slots
-        color = "#111111" if text else "#888888"
-
-        # Adjust Y offset dynamically based on font size so it sits neatly above the line
-        draw.text((x, y - (font_size // 2) - 4), display_text, fill=color, font=font)
-        draw.line(
-            [(x, y + 10), (x + node_line_length), (y + 10)], fill="#b0b0b0", width=2
-        )
-
-    m = state["matches"]
-
-    # --- ADJUSTED HORIZONTAL SPACING MAP ---
-    # Col 1 (Quarterfinals) X = 60
-    # Col 2 (Semifinals)    X = 450  (60 + 260 line length + 130 connector gap)
-    # Col 3 (Finals)        X = 840  (450 + 260 line length + 130 connector gap)
-    # Right-most edge ends cleanly near X = 1100 (leaving a nice 100px right margin)
-
-    # QUARTERFINALS (Col 1: X = 60)
-    draw_text_node(60, 100, m["0"]["home"], "Seed 1")
-    draw_text_node(60, 160, m["0"]["away"], "Seed 8")
-    draw_text_node(60, 260, m["1"]["home"], "Seed 4")
-    draw_text_node(60, 320, m["1"]["away"], "Seed 5")
-    draw_text_node(60, 460, m["2"]["home"], "Seed 2")
-    draw_text_node(60, 520, m["2"]["away"], "Seed 7")
-    draw_text_node(60, 620, m["3"]["home"], "Seed 3")
-    draw_text_node(60, 680, m["3"]["away"], "Seed 6")
-
-    # SEMIFINALS (Col 2: X = 450)
-    draw_text_node(450, 180, m["4"]["home"], "Winner Q1")
-    draw_text_node(450, 240, m["4"]["away"], "Winner Q2")
-    draw_text_node(450, 540, m["5"]["home"], "Winner Q3")
-    draw_text_node(450, 600, m["5"]["away"], "Winner Q4")
-
-    # FINALS (Col 3: X = 840)
-    draw_text_node(840, 360, m["6"]["home"], "Winner S1")
-    draw_text_node(840, 420, m["6"]["away"], "Winner S2")
-
-    # CONNECTING LINES (Recalculated paths to bridge the new node coordinates seamlessly)
-    track_color = "#b0b0b0"
-
-    # Q1 & Q2 -> S1 Lines (From end of Col 1 line [60 + 260 = 320] to start of Col 2 [450])
-    draw.line(
-        [(320, 110), (385, 110), (385, 190), (450, 190)], fill=track_color, width=2
-    )
-    draw.line(
-        [(320, 330), (385, 330), (385, 250), (450, 250)], fill=track_color, width=2
-    )
-
-    # Q3 & Q4 -> S2 Lines (From end of Col 1 line [320] to start of Col 2 [450])
-    draw.line(
-        [(320, 470), (385, 470), (385, 550), (450, 550)], fill=track_color, width=2
-    )
-    draw.line(
-        [(320, 690), (385, 690), (385, 610), (450, 610)], fill=track_color, width=2
-    )
-
-    # S1 & S2 -> Finals Lines (From end of Col 2 line [450 + 260 = 710] to start of Col 3 [840])
-    draw.line(
-        [(710, 190), (775, 190), (775, 370), (840, 370)], fill=track_color, width=2
-    )
-    draw.line(
-        [(710, 610), (775, 610), (775, 430), (840, 430)], fill=track_color, width=2
-    )
-
-    # Darker Midnight Blue Header text for striking contrast
-    draw.text(
-        (60, 30),
-        f"MARS MADNESS BRACKET: WEEK OF {state['week_start']}",
-        fill="#0f2042",
-        font=font,
-    )
-
-    img.save(GRAPHIC_FILE)
-
-    # DYNAMIC ALT TEXT GENERATION
-    alt_text = (
-        f"Mars Madness Tournament Bracket Chart for the week of {state['week_start']}. "
-    )
-    alt_text += f"Quarterfinals: 1) {m['0']['home'] or 'Seed 1'} vs {m['0']['away'] or 'Seed 8'}. "
-    alt_text += f"2) {m['1']['home'] or 'Seed 4'} vs {m['1']['away'] or 'Seed 5'}. "
-    alt_text += f"3) {m['2']['home'] or 'Seed 2'} vs {m['2']['away'] or 'Seed 7'}. "
-    alt_text += f"4) {m['3']['home'] or 'Seed 3'} vs {m['3']['away'] or 'Seed 6'}. "
-    alt_text += f"Semifinals: Match 1 has {m['4']['home'] or 'Winner Q1'} vs {m['4']['away'] or 'Winner Q2'}. "
-    alt_text += f"Match 2 has {m['5']['home'] or 'Winner Q3'} vs {m['5']['away'] or 'Winner Q4'}. "
-    alt_text += (
-        f"Finals: {m['6']['home'] or 'Winner S1'} vs {m['6']['away'] or 'Winner S2'}."
-    )
-
-    return alt_text
-
-
-
-
 def main():
-    global current_day_idx
-    emojis = ["🚨", "🧟", "👾", "👺", "☢️", "💀", "🦇", "🏚️", "🧪", "🎥", "🔥", "🎬", "🎞️", "🍿", "🧛", "🛸", "🤢", "🩸", "😱", "👻", "👽", "🎃", "👹"]
-    
-    # 1. Load current bracket state
-    try:
-        state = load_state()
-        if current_day_idx == 0 or state is None:
-            print("Starting a brand new bracket week!")
-            state = initialize_new_bracket()
-    except Exception as e:
-        logging.error(f"Critical error loading or initializing tournament state: {e}", exc_info=True)
-        return  # Stop execution if state is corrupt
+    emojis = [
+        "🚨",
+        "🧟",
+        "👾",
+        "👺",
+        "☢️",
+        "💀",
+        "🦇",
+        "🏚️",
+        "🧪",
+        "🎥",
+        "🔥",
+        "🎬",
+        "🎞️",
+        "🍿",
+        "🧛",
+        "🛸",
+        "🤢",
+        "🩸",
+        "😱",
+        "👻",
+        "👽",
+        "🎃",
+        "👹",
+    ]
 
-    # 2. Try to resolve past polls and propagate winners
-    for m_id, match in state["matches"].items():
-        if match["poll_id"] and not match["winner"]:
-            winner = get_poll_winner(match["poll_id"], match)
-            if winner:
-                match["winner"] = winner
-                print(f"Resolved {match['label']}: Winner is {winner}")
-
-    if state["matches"]["0"]["winner"]: state["matches"]["4"]["home"] = state["matches"]["0"]["winner"]
-    if state["matches"]["1"]["winner"]: state["matches"]["4"]["away"] = state["matches"]["1"]["winner"]
-    if state["matches"]["2"]["winner"]: state["matches"]["5"]["home"] = state["matches"]["2"]["winner"]
-    if state["matches"]["3"]["winner"]: state["matches"]["5"]["away"] = state["matches"]["3"]["winner"]
-    if state["matches"]["4"]["winner"]: state["matches"]["6"]["home"] = state["matches"]["4"]["winner"]
-    if state["matches"]["5"]["winner"]: state["matches"]["6"]["away"] = state["matches"]["5"]["winner"]
-
-    # 3. Pull today's matchup details
-    today_match_key = str(current_day_idx)
-    today_match = state["matches"][today_match_key]
-
-    if not today_match["home"] or not today_match["away"]:
-        fallback_movies = random.sample(movieList, 2)
-        if not today_match["home"]: today_match["home"] = fallback_movies[0]
-        if not today_match["away"]: today_match["away"] = fallback_movies[1]
-
-    # 4. Generate the graphic locally
-    try:
-        generated_alt_text = generate_bracket_graphic(state)
-    except Exception as e:
-        logging.error(f"Failed to generate bracket image asset: {e}", exc_info=True)
-        generated_alt_text = "Mars Madness tournament bracket update."  # Fallback alt text
-
-    movie1 = addEllipsisIfTooLong(today_match["home"])
-    movie2 = addEllipsisIfTooLong(today_match["away"])
-    
-    e1, e2 = random.sample(emojis, 2)
-    match_label = today_match["label"].upper()
-    
-    post_text = (
-        f"{e1}{e2} MARS MADNESS {e2}{e1}\n{match_label}\n"
-        f"{get_random_question()}\n\n"
-        f"#monsterdon #MarsMadness {getMovieHashtag(movie1)} {getMovieHashtag(movie2)}"
+    # movieList[:26] last 6 months
+    # movieList[:52] last 12 months
+    movie1, movie2 = random.sample(movieList[:26], 2)
+    # question = random.choice(movieCriteria)
+    movie1 = addEllipsisIfTooLong(movie1)
+    movie2 = addEllipsisIfTooLong(movie2)
+    poll = mastodon.make_poll(
+        options=[movie1, movie2], expires_in=86400, multiple=False
     )
-    
-    # Calculate dynamic expiration time (Tomorrow at 17:29:50 minus now)
-    now = datetime.now()
-    tomorrow = now + timedelta(days=1)
-    target_time = tomorrow.replace(hour=17, minute=29, second=50, microsecond=0)
-    expires_in_seconds = max(1, int((target_time - now).total_seconds()))
-
-    # 5. Handle Live vs. Debug execution with full API safety wrappers
-    if DEBUG_MODE:
-        print("\n--- 🚫 DEBUG OUTPUT (NOT PUBLISHED) ---")
-        print(f"Current Mock Day Index: {current_day_idx}")
-        print(f"Status Text:\n{post_text}")
-        print("---------------------------------------\n")
-        today_match["poll_id"] = random.randint(100000, 999999)
-    else:
-        print(f"Publishing main poll post, then replying with the bracket chart...")
-        try:
-            # First, create and post the poll status on its own
-            poll = mastodon.make_poll(options=[movie1, movie2], expires_in=expires_in_seconds, multiple=False)
-            
-            status_response = mastodon.status_post(
-                status=post_text,
-                poll=poll,
-                visibility="public",
-            )
-            
-            # Save the successful poll status ID to our state tracking
-            today_match["poll_id"] = status_response["id"]
-            
-            # Second, upload the bracket graphic to Mastodon's media servers
-            media_dict = mastodon.media_post(
-                media_file=GRAPHIC_FILE, 
-                mime_type="image/png",
-                description=generated_alt_text
-            )
-            
-            # Finally, reply to the poll post with the bracket chart attached
-            reply_text = f"😈🏆 Mars Madness Bracket 😈🏆 for {match_label}"
-            
-            mastodon.status_post(
-                status=reply_text,
-                in_reply_to_id=status_response["id"], # <-- Links it directly as a reply thread
-                media_ids=[media_dict["id"]],
-                visibility="public"
-            )
-            
-            print("🚀 Thread posted successfully to Mastodon!")
-            
-        except Exception as e:
-            logging.error(f"Network call failed while pushing status thread to Mastodon API: {e}", exc_info=True)
-            print("❌ Post failed due to a network error. Details written to logs.")
-            return  # Stop script and do not overwrite your JSON state tracking file
-    
-    # 6. Save State
-    try:
-        save_state(state)
-    except Exception as e:
-        logging.error(f"Failed to write tournament progress to JSON state file: {e}", exc_info=True)
+    e1, e2 = random.sample(emojis, 2)
+    post_text = f"{e1}{e2} MARS MADNESS POLL {e2}{e1} {get_random_question()}\n\n#monsterdon #MarsMadness {getMovieHashtag(movie1)} {getMovieHashtag(movie2)}"
+    print(post_text)
+    mastodon.status_post(
+        status=f"{post_text}",
+        poll=poll,
+        visibility="public",
+    )
 
 
 if __name__ == "__main__":
     main()
+# for i in range(20):
+#     print(get_random_question())
