@@ -1,4 +1,7 @@
+import time
+
 from mastodon import Mastodon
+from mastodon.errors import MastodonBadGatewayError, MastodonInternalServerError
 from dotenv import load_dotenv
 import os
 import random
@@ -508,7 +511,7 @@ def generate_bracket_graphic(state):
     draw = ImageDraw.Draw(img)
 
     # Font sizing control variable
-    font_size = 18
+    font_size = 25
 
     try:
         # Modern pillow syntax supporting custom default font sizes
@@ -619,16 +622,57 @@ def generate_bracket_graphic(state):
 def main():
     global current_day_idx
     emojis = ["🚨", "🧟", "👾", "👺", "☢️", "💀", "🦇", "🏚️", "🧪", "🎥", "🔥", "🎬", "🎞️", "🍿", "🧛", "🛸", "🤢", "🩸", "😱", "👻", "👽", "🎃", "👹"]
-    
+    week_label = ""
     # 1. Load current bracket state
     try:
         state = load_state()
-        if current_day_idx == 0 or state is None:
-            print("Starting a brand new bracket week!")
+        
+        # Check if today is Monday (Weekday index 0)
+        is_monday = (datetime.now().weekday() == 0)
+        
+        if is_monday and state is not None:
+            print("Processing Monday wrap-up before resetting the tournament slate...")
+            
+            # Extract the final championship match information
+            final_match = state["matches"].get("6")
+            
+            if final_match and final_match.get("poll_id"):
+                # 1. Safely pull and confirm the champion name
+                champion = final_match.get("winner")
+                if not champion:
+                    # Fallback check if the winner hasn't been evaluated yet
+                    champion = get_poll_winner(final_match["poll_id"], final_match)
+                
+                # 2. Only attempt to post if a champion name is resolved
+                if champion:
+                    week_label = state.get("week_start", "Current Week")
+                    announcement_text = f"🏆🥇 THE MARS MADNESS CHAMPION 🥇🏆\nfor the week of {week_label} is...\n{champion}\nThanks for voting!\n\n#MarsMadness"
+                    
+                    try:
+                        print(f"Replying to final match poll {final_match['poll_id']} with championship announcement...")
+                        mastodon.status_post(
+                            status=announcement_text,
+                            in_reply_to_id=final_match["poll_id"],
+                            visibility="public"
+                        )
+                    except Exception as api_err:
+                        # Log but don't let a network failure trap the bot in an endless loop next run
+                        logging.error(f"Failed to post championship announcement reply: {api_err}", exc_info=True)
+                else:
+                    logging.error("Could not announce champion: Final match winner or votes could not be resolved.")
+            
+            # Force the script to wipe the slate and generate a brand new week tracking frame
+            print("Clearing out history and building a brand new tournament bracket!")
             state = initialize_new_bracket()
+            
+        elif current_day_idx == 0 or state is None:
+            # Fallback for fresh installs or completely missing JSON targets
+            print("Initializing clean bracket state...")
+            state = initialize_new_bracket()
+            
     except Exception as e:
-        logging.error(f"Critical error loading or initializing tournament state: {e}", exc_info=True)
-        return  # Stop execution if state is corrupt
+        logging.error(f"Critical error during Monday reset phase: {e}", exc_info=True)
+        return  # Stop execution if state generation fundamentally breaks down
 
     # 2. Try to resolve past polls and propagate winners
     for m_id, match in state["matches"].items():
@@ -688,47 +732,59 @@ def main():
         today_match["poll_id"] = random.randint(100000, 999999)
     else:
         print(f"Publishing main poll post, then replying with the bracket chart...")
-        try:
-            # First, create and post the poll status on its own
-            poll = mastodon.make_poll(options=[movie1, movie2], expires_in=expires_in_seconds, multiple=False)
-            
-            status_response = mastodon.status_post(
-                status=post_text,
-                poll=poll,
-                visibility="public",
-            )
-            
-            # Save the successful poll status ID to our state tracking
-            today_match["poll_id"] = status_response["id"]
-            
-            # Second, upload the bracket graphic to Mastodon's media servers
-            media_dict = mastodon.media_post(
-                media_file=GRAPHIC_FILE, 
-                mime_type="image/png",
-                description=generated_alt_text
-            )
-            
-            # Finally, reply to the poll post with the bracket chart attached
-            reply_text = f"😈🏆 Mars Madness Bracket 😈🏆 for {match_label}"
-            
-            mastodon.status_post(
-                status=reply_text,
-                in_reply_to_id=status_response["id"], # <-- Links it directly as a reply thread
-                media_ids=[media_dict["id"]],
-                visibility="public"
-            )
-            
-            print("🚀 Thread posted successfully to Mastodon!")
-            
-        except Exception as e:
-            logging.error(f"Network call failed while pushing status thread to Mastodon API: {e}", exc_info=True)
-            print("❌ Post failed due to a network error. Details written to logs.")
-            return  # Stop script and do not overwrite your JSON state tracking file
-    
-    # 6. Save State
+        
+        # --- ATTEMPT TO POST THE MAIN POLL ---
+        status_response = None
+        for attempt in range(3): # Try up to 3 times for transient server errors
+            try:
+                poll = mastodon.make_poll(options=[movie1, movie2], expires_in=expires_in_seconds, multiple=False)
+                status_response = mastodon.status_post(status=post_text, poll=poll, visibility="public")
+                today_match["poll_id"] = status_response["id"]
+                break # It worked! Exit the retry loop.
+            except (MastodonBadGatewayError, MastodonInternalServerError) as server_err:
+                print(f"⚠️ Mastodon threw a {server_err.status_code} on poll post. Retrying in 10s... (Attempt {attempt+1}/3)")
+                time.sleep(10)
+            except Exception as e:
+                logging.error(f"Fatal non-network error on poll creation: {e}", exc_info=True)
+                return
+
+        if not status_response:
+            logging.error("Failed to post main poll after 3 attempts due to Mastodon server outages.")
+            return
+
+        # --- ATTEMPT TO UPLOAD AND REPLY WITH THE BRACKET IMAGE ---
+        for attempt in range(3):
+            try:
+                media_dict = mastodon.media_post(
+                    media_file=GRAPHIC_FILE, 
+                    mime_type="image/png",
+                    description=generated_alt_text
+                )
+                
+                reply_text = f"😈✨ MARS MADNESS BRACKET ✨😈\nfor {match_label}\nweek of {week_label}"
+                
+                mastodon.status_post(
+                    status=reply_text,
+                    in_reply_to_id=status_response["id"],
+                    media_ids=[media_dict["id"]],
+                    visibility="public"
+                )
+                print("🚀 Thread posted successfully to Mastodon!")
+                break # It worked! Exit the loop.
+            except (MastodonBadGatewayError, MastodonInternalServerError) as server_err:
+                print(f"⚠️ Mastodon threw a {server_err.status_code} on image reply. Retrying in 10s... (Attempt {attempt+1}/3)")
+                time.sleep(10)
+            except Exception as e:
+                # If the image upload completely breaks down, log it but let the script save the poll ID
+                logging.error(f"Main poll went live, but the bracket reply failed fundamentally: {e}", exc_info=True)
+                print("❌ Main poll is live, but image reply failed completely.")
+                break 
+
+    # 6. Save State (Safe now because the script won't crash mid-way anymore)
     try:
         save_state(state)
     except Exception as e:
+        logging.error(f"Failed to write tournament progress to JSON state file: {e}", exc_info=True)
         logging.error(f"Failed to write tournament progress to JSON state file: {e}", exc_info=True)
 
 
