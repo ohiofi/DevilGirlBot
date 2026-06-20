@@ -32,7 +32,7 @@ load_dotenv(dotenv_path=ENV_FILE)
 logging.basicConfig(
     filename=LOG_FILE,
     level=logging.ERROR,
-    format="%(asctime)s - %(levelname)s - %(message)s"
+    format="%(asctime)s - %(levelname)s - %(message)s",
 )
 
 
@@ -52,8 +52,25 @@ else:
         api_base_url="https://mastodon.social",
     )
 
-
-
+movieList = [
+    "End of the World (1977)",
+    "In the Year 2889 (1969)",
+    "Class of 1999 (1990)",
+    "Seedpeople (1992)",
+    "Terror in the Wax Museum (1973)",
+    "Invasion: UFO (1980)",
+    "Reptilian (1999)",
+    "Silver Bullet (1985)",
+    "Hercules in New York (1970)",
+    "Communion (1989)",
+    "Son of Dracula (1943)",
+    "The Monster That Challenged The World (1957)",
+    "Critters 4 (1992)",
+    "The Golden Voyage of Sinbad (1973)",
+    "Jason and the Argonauts (1963)",
+    "The Adventures of Hercules (1985)",
+    "Hercules (1983)",
+]
 
 movieCriteria = [
     ["feels the ", "MOST", "LEAST", " likely to pass the Bechdel test"],
@@ -363,24 +380,7 @@ movieCriteria = [
 ]
 
 
-movieList = [
-    "In the Year 2889 (1969)",
-    "Class of 1999 (1990)",
-    "Seedpeople (1992)",
-    "Terror in the Wax Museum (1973)",
-    "Invasion: UFO (1980)",
-    "Reptilian (1999)",
-    "Silver Bullet (1985)",
-    "Hercules in New York (1970)",
-    "Communion (1989)",
-    "Son of Dracula (1943)",
-    "The Monster That Challenged The World (1957)",
-    "Critters 4 (1992)",
-    "The Golden Voyage of Sinbad (1973)",
-    "Jason and the Argonauts (1963)",
-    "The Adventures of Hercules (1985)",
-    "Hercules (1983)",
-]
+
 
 
 def get_random_question():
@@ -411,7 +411,7 @@ def get_poll_winner(poll_id, match_details):
         poll = status.get("poll")
         if not poll:
             return None
-            
+
         # 🚨 SAFETY CHECK: If the poll is still active, do NOT tally the votes yet!
         if not poll.get("expired", False):
             print(f"⚠️ Warning: Poll {poll_id} is still open. Waiting until it closes.")
@@ -425,6 +425,7 @@ def get_poll_winner(poll_id, match_details):
     except Exception as e:
         print(f"Error fetching poll winner: {e}")
         return None
+
 
 def initialize_new_bracket():
     """Initializes a new bracket layout on Monday using the last 8 unique movies."""
@@ -503,6 +504,35 @@ def save_state(state):
         json.dump(state, f, indent=4)
 
 
+def draw_bracket_text_node(
+    drawing_object,
+    x,
+    y,
+    text,
+    font,
+    font_size,
+    node_line_length,
+    track_color,
+    track_width,
+    track_offset,
+    title_text="???",
+):
+    display_text = addEllipsisIfTooLong(text or title_text, max_len=31)
+
+    # LIGHT MODE TEXT: Dark slate for populated items, muted gray for empty slots
+    color = "#111111" if text else "#888888"
+
+    # Adjust Y offset dynamically based on font size so it sits neatly above the line
+    drawing_object.line(
+        [(x, y + track_offset), (x + node_line_length), (y + track_offset)],
+        fill=track_color,
+        width=track_width,
+    )
+    drawing_object.text(
+        (x, y - (font_size // 2) - 4), display_text, fill=color, font=font
+    )
+
+
 def generate_bracket_graphic(state):
     width, height = 1200, 800
 
@@ -511,31 +541,65 @@ def generate_bracket_graphic(state):
     draw = ImageDraw.Draw(img)
 
     # Font sizing control variable
-    font_size = 25
+    font_size = 32
 
     try:
         # Modern pillow syntax supporting custom default font sizes
-        font = ImageFont.load_default(size=font_size)
+        my_font = ImageFont.load_default(size=font_size)
     except Exception:
         # Fallback to base default font if using an older library build
-        font = ImageFont.load_default()
+        my_font = ImageFont.load_default()
 
     # Increased line length from 180 to 260 to give titles room and spread the layout
     node_line_length = 260
+    track_color = "#ffddff"
+    track_width = 20
+    track_offset = 22
 
-    def draw_text_node(x, y, text, title_text="???"):
-        display_text = addEllipsisIfTooLong(text or title_text, max_len=40)
+    match_list = state["matches"]
 
-        # LIGHT MODE TEXT: Dark slate for populated items, muted gray for empty slots
-        color = "#111111" if text else "#888888"
+    # BORDER BOX
+    border_track_width = track_width * 2
+    # north border
+    draw.line([(0, 0), (1200, 0)], fill=track_color, width=border_track_width)
+    # east border
+    draw.line([(1200, 0), (1200, 800) ],fill=track_color,width=border_track_width)
+    # south border
+    draw.line([(0, 800), (1200, 800)],fill=track_color,width=border_track_width)
+    # west border
+    draw.line([(0, 0), (0, 800)],fill=track_color,width=border_track_width)
 
-        # Adjust Y offset dynamically based on font size so it sits neatly above the line
-        draw.text((x, y - (font_size // 2) - 4), display_text, fill=color, font=font)
-        draw.line(
-            [(x, y + 10), (x + node_line_length), (y + 10)], fill="#b0b0b0", width=2
-        )
+    # CONNECTING LINES (Recalculated paths to bridge the new node coordinates seamlessly)
+   
+    # Q1 & Q2 -> S1 Lines (From end of Col 1 line [60 + 260 = 320] to start of Col 2 [450])
+    # draw.line(
+    #     [(320, 110), (385, 110), (385, 190), (450, 190)], fill=track_color, width=track_width
+    # )
+    draw.line([(60 + 260, height * 3/17 + track_offset), (60 + 260 + 60, height * 4/17 + track_offset)], fill=track_color, width=track_width)
+    # draw.line(
+    #     [(320, 330), (385, 330), (385, 250), (450, 250)], fill=track_color, width=track_width
+    # )
+    draw.line([(60 + 260 , height * 6/17 + track_offset), (60 + 260 + 60, height * 5/17 + track_offset)], fill=track_color, width=track_width)
 
-    m = state["matches"]
+    # Q3 & Q4 -> S2 Lines (From end of Col 1 line [320] to start of Col 2 [450])
+    # draw.line(
+    #     [(320, 470), (385, 470), (385, 550), (450, 550)], fill=track_color, width=track_width
+    # )
+    draw.line([(60 + 260 , height * 11/17 + track_offset), (60 + 260 + 60, height * 12/17 + track_offset)], fill=track_color, width=track_width)
+    # draw.line(
+    #     [(320, 690), (385, 690), (385, 610), (450, 610)], fill=track_color, width=track_width
+    # )
+    draw.line([(60 + 260 , height * 14/17 + track_offset), (60 + 260 + 60, height * 13/17 + track_offset)], fill=track_color, width=track_width)
+
+    # S1 & S2 -> Finals Lines (From end of Col 2 line [450 + 260 = 710] to start of Col 3 [840])
+    # draw.line(
+    #     [(710, 190), (775, 190), (775, 370), (840, 370)], fill=track_color, width=track_width
+    # )
+    draw.line([(60 + 260 + 60 + 260 , height * 5/17 + track_offset), (60 + 260 + 60 + 260 + 60, height * 8/17 + track_offset)], fill=track_color, width=track_width)
+    # draw.line(
+    #     [(710, 610), (775, 610), (775, 430), (840, 430)], fill=track_color, width=track_width
+    # )
+    draw.line([(60 + 260 + 60 + 260 , height * 12/17 + track_offset), (60 + 260 + 60 + 260 + 60, height * 9/17 + track_offset)], fill=track_color, width=track_width)
 
     # --- ADJUSTED HORIZONTAL SPACING MAP ---
     # Col 1 (Quarterfinals) X = 60
@@ -543,59 +607,79 @@ def generate_bracket_graphic(state):
     # Col 3 (Finals)        X = 840  (450 + 260 line length + 130 connector gap)
     # Right-most edge ends cleanly near X = 1100 (leaving a nice 100px right margin)
 
-    # QUARTERFINALS (Col 1: X = 60)
-    draw_text_node(60, 100, m["0"]["home"], "Seed 1")
-    draw_text_node(60, 160, m["0"]["away"], "Seed 8")
-    draw_text_node(60, 260, m["1"]["home"], "Seed 4")
-    draw_text_node(60, 320, m["1"]["away"], "Seed 5")
-    draw_text_node(60, 460, m["2"]["home"], "Seed 2")
-    draw_text_node(60, 520, m["2"]["away"], "Seed 7")
-    draw_text_node(60, 620, m["3"]["home"], "Seed 3")
-    draw_text_node(60, 680, m["3"]["away"], "Seed 6")
+    text_nodes = [
+        # QUARTERFINALS (Col 1: X = 60)
+        {"x": 60, "y": height *  2/17, "text": match_list["0"]["home"], "title_text": "Seed 1"},
+        {"x": 60, "y": height *  3/17, "text": match_list["0"]["away"], "title_text": "Seed 8"},
+        {"x": 60, "y": height *  6/17, "text": match_list["1"]["home"], "title_text": "Seed 4"},
+        {"x": 60, "y": height *  7/17, "text": match_list["1"]["away"], "title_text": "Seed 5"},
+        {"x": 60, "y": height * 10/17, "text": match_list["2"]["home"], "title_text": "Seed 2"},
+        {"x": 60, "y": height * 11/17, "text": match_list["2"]["away"], "title_text": "Seed 7"},
+        {"x": 60, "y": height * 14/17, "text": match_list["3"]["home"], "title_text": "Seed 3"},
+        {"x": 60, "y": height * 15/17, "text": match_list["3"]["away"], "title_text": "Seed 6"},
+        # SEMIFINALS (Col 2: X = 450)
+        {
+            "x": 60 + 260 + 60,
+            "y": height * 4/17,
+            "text": match_list["4"]["home"],
+            "title_text": "Winner Q1",
+        },
+        {
+            "x": 60 + 260 + 60,
+            "y": height * 5/17,
+            "text": match_list["4"]["away"],
+            "title_text": "Winner Q2",
+        },
+        {
+            "x": 60 + 260 + 60,
+            "y": height * 12/17,
+            "text": match_list["5"]["home"],
+            "title_text": "Winner Q3",
+        },
+        {
+            "x": 60 + 260 + 60,
+            "y": height * 13/17,
+            "text": match_list["5"]["away"],
+            "title_text": "Winner Q4",
+        },
+        # FINALS (Col 3: X = 840)
+        {
+            "x": 60 + 260 + 60 + 260 + 60,
+            "y": height * 8/17,
+            "text": match_list["6"]["home"],
+            "title_text": "Winner S1",
+        },
+        {
+            "x": 60 + 260 + 60 + 260 + 60,
+            "y": height * 9/17,
+            "text": match_list["6"]["away"],
+            "title_text": "Winner S2",
+        },
+    ]
 
-    # SEMIFINALS (Col 2: X = 450)
-    draw_text_node(450, 180, m["4"]["home"], "Winner Q1")
-    draw_text_node(450, 240, m["4"]["away"], "Winner Q2")
-    draw_text_node(450, 540, m["5"]["home"], "Winner Q3")
-    draw_text_node(450, 600, m["5"]["away"], "Winner Q4")
-
-    # FINALS (Col 3: X = 840)
-    draw_text_node(840, 360, m["6"]["home"], "Winner S1")
-    draw_text_node(840, 420, m["6"]["away"], "Winner S2")
-
-    # CONNECTING LINES (Recalculated paths to bridge the new node coordinates seamlessly)
-    track_color = "#b0b0b0"
-
-    # Q1 & Q2 -> S1 Lines (From end of Col 1 line [60 + 260 = 320] to start of Col 2 [450])
-    draw.line(
-        [(320, 110), (385, 110), (385, 190), (450, 190)], fill=track_color, width=2
-    )
-    draw.line(
-        [(320, 330), (385, 330), (385, 250), (450, 250)], fill=track_color, width=2
-    )
-
-    # Q3 & Q4 -> S2 Lines (From end of Col 1 line [320] to start of Col 2 [450])
-    draw.line(
-        [(320, 470), (385, 470), (385, 550), (450, 550)], fill=track_color, width=2
-    )
-    draw.line(
-        [(320, 690), (385, 690), (385, 610), (450, 610)], fill=track_color, width=2
-    )
-
-    # S1 & S2 -> Finals Lines (From end of Col 2 line [450 + 260 = 710] to start of Col 3 [840])
-    draw.line(
-        [(710, 190), (775, 190), (775, 370), (840, 370)], fill=track_color, width=2
-    )
-    draw.line(
-        [(710, 610), (775, 610), (775, 430), (840, 430)], fill=track_color, width=2
-    )
+    for each in text_nodes:
+        # draw_bracket_text_node(drawing_object, x, y, text, font, font_size, node_line_length, track_color, track_width, title_text="???")
+        draw_bracket_text_node(
+            draw,
+            each["x"],
+            each["y"],
+            each["text"],
+            my_font,
+            font_size,
+            node_line_length,
+            track_color,
+            track_width,
+            track_offset,
+            each["title_text"],
+        )
 
     # Darker Midnight Blue Header text for striking contrast
     draw.text(
-        (60, 30),
+        (1200 - 40, height * 1/17),
         f"MARS MADNESS BRACKET: WEEK OF {state['week_start']}",
-        fill="#0f2042",
-        font=font,
+        fill="black",
+        font=my_font,
+        anchor="rm",
     )
 
     img.save(GRAPHIC_FILE)
@@ -604,72 +688,99 @@ def generate_bracket_graphic(state):
     alt_text = (
         f"Mars Madness Tournament Bracket Chart for the week of {state['week_start']}. "
     )
-    alt_text += f"Quarterfinals: 1) {m['0']['home'] or 'Seed 1'} vs {m['0']['away'] or 'Seed 8'}. "
-    alt_text += f"2) {m['1']['home'] or 'Seed 4'} vs {m['1']['away'] or 'Seed 5'}. "
-    alt_text += f"3) {m['2']['home'] or 'Seed 2'} vs {m['2']['away'] or 'Seed 7'}. "
-    alt_text += f"4) {m['3']['home'] or 'Seed 3'} vs {m['3']['away'] or 'Seed 6'}. "
-    alt_text += f"Semifinals: Match 1 has {m['4']['home'] or 'Winner Q1'} vs {m['4']['away'] or 'Winner Q2'}. "
-    alt_text += f"Match 2 has {m['5']['home'] or 'Winner Q3'} vs {m['5']['away'] or 'Winner Q4'}. "
-    alt_text += (
-        f"Finals: {m['6']['home'] or 'Winner S1'} vs {m['6']['away'] or 'Winner S2'}."
-    )
+    alt_text += f"Quarterfinals: 1) {match_list['0']['home'] or 'Seed 1'} vs {match_list['0']['away'] or 'Seed 8'}. "
+    alt_text += f"2) {match_list['1']['home'] or 'Seed 4'} vs {match_list['1']['away'] or 'Seed 5'}. "
+    alt_text += f"3) {match_list['2']['home'] or 'Seed 2'} vs {match_list['2']['away'] or 'Seed 7'}. "
+    alt_text += f"4) {match_list['3']['home'] or 'Seed 3'} vs {match_list['3']['away'] or 'Seed 6'}. "
+    alt_text += f"Semifinals: Match 1 has {match_list['4']['home'] or 'Winner Q1'} vs {match_list['4']['away'] or 'Winner Q2'}. "
+    alt_text += f"Match 2 has {match_list['5']['home'] or 'Winner Q3'} vs {match_list['5']['away'] or 'Winner Q4'}. "
+    alt_text += f"Finals: {match_list['6']['home'] or 'Winner S1'} vs {match_list['6']['away'] or 'Winner S2'}."
 
     return alt_text
 
 
-
-
 def main():
     global current_day_idx
-    emojis = ["🚨", "🧟", "👾", "👺", "☢️", "💀", "🦇", "🏚️", "🧪", "🎥", "🔥", "🎬", "🎞️", "🍿", "🧛", "🛸", "🤢", "🩸", "😱", "👻", "👽", "🎃", "👹"]
+    emojis = [
+        "🚨",
+        "🧟",
+        "👾",
+        "👺",
+        "☢️",
+        "💀",
+        "🦇",
+        "🏚️",
+        "🧪",
+        "🎥",
+        "🔥",
+        "🎬",
+        "🎞️",
+        "🍿",
+        "🧛",
+        "🛸",
+        "🤢",
+        "🩸",
+        "😱",
+        "👻",
+        "👽",
+        "🎃",
+        "👹",
+    ]
     week_label = ""
     # 1. Load current bracket state
     try:
         state = load_state()
-        
+
         # Check if today is Monday (Weekday index 0)
-        is_monday = (datetime.now().weekday() == 0)
-        
+        is_monday = datetime.now().weekday() == 0
+
         if is_monday and state is not None:
             print("Processing Monday wrap-up before resetting the tournament slate...")
-            
+
             # Extract the final championship match information
             final_match = state["matches"].get("6")
-            
+
             if final_match and final_match.get("poll_id"):
                 # 1. Safely pull and confirm the champion name
                 champion = final_match.get("winner")
                 if not champion:
                     # Fallback check if the winner hasn't been evaluated yet
                     champion = get_poll_winner(final_match["poll_id"], final_match)
-                
+
                 # 2. Only attempt to post if a champion name is resolved
                 if champion:
                     week_label = state.get("week_start", "Current Week")
                     announcement_text = f"🏆🥇 THE MARS MADNESS CHAMPION 🥇🏆\nfor the week of {week_label} is...\n{champion}\nThanks for voting!\n\n#MarsMadness"
-                    
+
                     try:
-                        print(f"Replying to final match poll {final_match['poll_id']} with championship announcement...")
+                        print(
+                            f"Replying to final match poll {final_match['poll_id']} with championship announcement..."
+                        )
                         mastodon.status_post(
                             status=announcement_text,
                             in_reply_to_id=final_match["poll_id"],
-                            visibility="public"
+                            visibility="public",
                         )
                     except Exception as api_err:
                         # Log but don't let a network failure trap the bot in an endless loop next run
-                        logging.error(f"Failed to post championship announcement reply: {api_err}", exc_info=True)
+                        logging.error(
+                            f"Failed to post championship announcement reply: {api_err}",
+                            exc_info=True,
+                        )
                 else:
-                    logging.error("Could not announce champion: Final match winner or votes could not be resolved.")
-            
+                    logging.error(
+                        "Could not announce champion: Final match winner or votes could not be resolved."
+                    )
+
             # Force the script to wipe the slate and generate a brand new week tracking frame
             print("Clearing out history and building a brand new tournament bracket!")
             state = initialize_new_bracket()
-            
+
         elif current_day_idx == 0 or state is None:
             # Fallback for fresh installs or completely missing JSON targets
             print("Initializing clean bracket state...")
             state = initialize_new_bracket()
-            
+
     except Exception as e:
         logging.error(f"Critical error during Monday reset phase: {e}", exc_info=True)
         return  # Stop execution if state generation fundamentally breaks down
@@ -682,12 +793,18 @@ def main():
                 match["winner"] = winner
                 print(f"Resolved {match['label']}: Winner is {winner}")
 
-    if state["matches"]["0"]["winner"]: state["matches"]["4"]["home"] = state["matches"]["0"]["winner"]
-    if state["matches"]["1"]["winner"]: state["matches"]["4"]["away"] = state["matches"]["1"]["winner"]
-    if state["matches"]["2"]["winner"]: state["matches"]["5"]["home"] = state["matches"]["2"]["winner"]
-    if state["matches"]["3"]["winner"]: state["matches"]["5"]["away"] = state["matches"]["3"]["winner"]
-    if state["matches"]["4"]["winner"]: state["matches"]["6"]["home"] = state["matches"]["4"]["winner"]
-    if state["matches"]["5"]["winner"]: state["matches"]["6"]["away"] = state["matches"]["5"]["winner"]
+    if state["matches"]["0"]["winner"]:
+        state["matches"]["4"]["home"] = state["matches"]["0"]["winner"]
+    if state["matches"]["1"]["winner"]:
+        state["matches"]["4"]["away"] = state["matches"]["1"]["winner"]
+    if state["matches"]["2"]["winner"]:
+        state["matches"]["5"]["home"] = state["matches"]["2"]["winner"]
+    if state["matches"]["3"]["winner"]:
+        state["matches"]["5"]["away"] = state["matches"]["3"]["winner"]
+    if state["matches"]["4"]["winner"]:
+        state["matches"]["6"]["home"] = state["matches"]["4"]["winner"]
+    if state["matches"]["5"]["winner"]:
+        state["matches"]["6"]["away"] = state["matches"]["5"]["winner"]
 
     # 3. Pull today's matchup details
     today_match_key = str(current_day_idx)
@@ -695,32 +812,36 @@ def main():
 
     if not today_match["home"] or not today_match["away"]:
         fallback_movies = random.sample(movieList, 2)
-        if not today_match["home"]: today_match["home"] = fallback_movies[0]
-        if not today_match["away"]: today_match["away"] = fallback_movies[1]
+        if not today_match["home"]:
+            today_match["home"] = fallback_movies[0]
+        if not today_match["away"]:
+            today_match["away"] = fallback_movies[1]
 
     # 4. Generate the graphic locally
     try:
         generated_alt_text = generate_bracket_graphic(state)
     except Exception as e:
         logging.error(f"Failed to generate bracket image asset: {e}", exc_info=True)
-        generated_alt_text = "Mars Madness tournament bracket update."  # Fallback alt text
+        generated_alt_text = (
+            "Mars Madness tournament bracket update."  # Fallback alt text
+        )
 
     movie1 = addEllipsisIfTooLong(today_match["home"])
     movie2 = addEllipsisIfTooLong(today_match["away"])
-    
+
     e1, e2 = random.sample(emojis, 2)
     match_label = today_match["label"].upper()
-    
+
     post_text = (
         f"{e1}{e2} MARS MADNESS {e2}{e1}\n{match_label}\n"
         f"{get_random_question()}\n\n"
         f"#monsterdon #MarsMadness {getMovieHashtag(movie1)} {getMovieHashtag(movie2)}"
     )
-    
-    # Calculate dynamic expiration time (Tomorrow at 17:29:50 minus now)
+
+    # Calculate dynamic expiration time (Tomorrow at 17:59:50 minus now)
     now = datetime.now()
     tomorrow = now + timedelta(days=1)
-    target_time = tomorrow.replace(hour=17, minute=29, second=50, microsecond=0)
+    target_time = tomorrow.replace(hour=17, minute=59, second=50, microsecond=0)
     expires_in_seconds = max(1, int((target_time - now).total_seconds()))
 
     # 5. Handle Live vs. Debug execution with full API safety wrappers
@@ -732,61 +853,85 @@ def main():
         today_match["poll_id"] = random.randint(100000, 999999)
     else:
         print(f"Publishing main poll post, then replying with the bracket chart...")
-        
+
         # --- ATTEMPT TO POST THE MAIN POLL ---
         status_response = None
-        for attempt in range(3): # Try up to 3 times for transient server errors
+        for attempt in range(3):  # Try up to 3 times for transient server errors
             try:
-                poll = mastodon.make_poll(options=[movie1, movie2], expires_in=expires_in_seconds, multiple=False)
-                status_response = mastodon.status_post(status=post_text, poll=poll, visibility="public")
+                poll = mastodon.make_poll(
+                    options=[movie1, movie2],
+                    expires_in=expires_in_seconds,
+                    multiple=False,
+                )
+                status_response = mastodon.status_post(
+                    status=post_text, poll=poll, visibility="public"
+                )
                 today_match["poll_id"] = status_response["id"]
-                break # It worked! Exit the retry loop.
+                break  # It worked! Exit the retry loop.
             except (MastodonBadGatewayError, MastodonInternalServerError) as server_err:
-                print(f"⚠️ Mastodon threw a {server_err.status_code} on poll post. Retrying in 10s... (Attempt {attempt+1}/3)")
+                print(
+                    f"⚠️ Mastodon threw a {server_err.status_code} on poll post. Retrying in 10s... (Attempt {attempt+1}/3)"
+                )
                 time.sleep(10)
             except Exception as e:
-                logging.error(f"Fatal non-network error on poll creation: {e}", exc_info=True)
+                logging.error(
+                    f"Fatal non-network error on poll creation: {e}", exc_info=True
+                )
                 return
 
         if not status_response:
-            logging.error("Failed to post main poll after 3 attempts due to Mastodon server outages.")
+            logging.error(
+                "Failed to post main poll after 3 attempts due to Mastodon server outages."
+            )
             return
 
         # --- ATTEMPT TO UPLOAD AND REPLY WITH THE BRACKET IMAGE ---
         for attempt in range(3):
             try:
                 media_dict = mastodon.media_post(
-                    media_file=GRAPHIC_FILE, 
+                    media_file=GRAPHIC_FILE,
                     mime_type="image/png",
-                    description=generated_alt_text
+                    description=generated_alt_text,
                 )
-                
+
                 reply_text = f"😈✨ MARS MADNESS BRACKET ✨😈\nfor {match_label}\nweek of {week_label}"
-                
+
                 mastodon.status_post(
                     status=reply_text,
                     in_reply_to_id=status_response["id"],
                     media_ids=[media_dict["id"]],
-                    visibility="public"
+                    visibility="public",
                 )
                 print("🚀 Thread posted successfully to Mastodon!")
-                break # It worked! Exit the loop.
+                break  # It worked! Exit the loop.
             except (MastodonBadGatewayError, MastodonInternalServerError) as server_err:
-                print(f"⚠️ Mastodon threw a {server_err.status_code} on image reply. Retrying in 10s... (Attempt {attempt+1}/3)")
+                print(
+                    f"⚠️ Mastodon threw a {server_err.status_code} on image reply. Retrying in 10s... (Attempt {attempt+1}/3)"
+                )
                 time.sleep(10)
             except Exception as e:
                 # If the image upload completely breaks down, log it but let the script save the poll ID
-                logging.error(f"Main poll went live, but the bracket reply failed fundamentally: {e}", exc_info=True)
+                logging.error(
+                    f"Main poll went live, but the bracket reply failed fundamentally: {e}",
+                    exc_info=True,
+                )
                 print("❌ Main poll is live, but image reply failed completely.")
-                break 
+                break
 
     # 6. Save State (Safe now because the script won't crash mid-way anymore)
     try:
         save_state(state)
     except Exception as e:
-        logging.error(f"Failed to write tournament progress to JSON state file: {e}", exc_info=True)
-        logging.error(f"Failed to write tournament progress to JSON state file: {e}", exc_info=True)
+        logging.error(
+            f"Failed to write tournament progress to JSON state file: {e}",
+            exc_info=True,
+        )
+        logging.error(
+            f"Failed to write tournament progress to JSON state file: {e}",
+            exc_info=True,
+        )
 
 
 if __name__ == "__main__":
     main()
+    # generate_bracket_graphic(load_state())
