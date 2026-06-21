@@ -1,5 +1,4 @@
 import time
-
 from mastodon import Mastodon
 from mastodon.errors import MastodonBadGatewayError, MastodonInternalServerError
 from dotenv import load_dotenv
@@ -11,10 +10,30 @@ from datetime import datetime, timedelta
 from PIL import Image, ImageDraw, ImageFont
 import logging
 from pathlib import Path
+from enum import Enum
+
 
 DEBUG_MODE = False
 MOCK_DAY_IDX = 0
 current_day_idx = MOCK_DAY_IDX
+
+class BracketState(Enum):
+    INTRO = 1
+    CHARTQ1 = 2
+    POLL_Q1 = 3
+    CHARTQ2 = 4
+    POLL_Q2 = 5
+    CHARTQ3 = 6
+    POLL_Q3 = 7
+    CHARTQ4 = 8
+    POLL_Q4 = 9
+    CHARTS1 = 10
+    POLL_S1 = 11
+    CHARTS2 = 12
+    POLL_S2 = 13
+    CHARTFI = 14
+    POLL_FI = 15
+    WRAP_UP = 16
 
 # Automatically detect the directory where mars_madness.py is actually stored
 SCRIPT_DIR = Path(__file__).parent.resolve()
@@ -380,130 +399,6 @@ movieCriteria = [
 ]
 
 
-
-
-
-def get_random_question():
-    template = random.choice(movieCriteria)
-    polarity = random.choice([template[1], template[2]])
-    return f"Which movie {template[0]}{polarity}{template[3]}?"
-
-
-def getMovieHashtag(titleParenthesesDate):
-    clean_title = re.sub(r"[^a-zA-Z0-9]", "", titleParenthesesDate)
-    return f"#{clean_title}"
-
-
-def addEllipsisIfTooLong(word, max_len=50):
-    if len(word) > max_len:
-        word = word[: max_len - 1] + "…"
-    return word
-
-
-def get_poll_winner(poll_id, match_details):
-    if DEBUG_MODE:
-        simulated_winner = random.choice([match_details["home"], match_details["away"]])
-        print(f"🔮 [DEBUG] Simulating winner for poll {poll_id}: {simulated_winner}")
-        return simulated_winner
-
-    try:
-        status = mastodon.status(poll_id)
-        poll = status.get("poll")
-        if not poll:
-            return None
-
-        # 🚨 SAFETY CHECK: If the poll is still active, do NOT tally the votes yet!
-        if not poll.get("expired", False):
-            print(f"⚠️ Warning: Poll {poll_id} is still open. Waiting until it closes.")
-            return None
-
-        options = poll["options"]
-        if options[0]["votes_count"] >= options[1]["votes_count"]:
-            return options[0]["title"]
-        else:
-            return options[1]["title"]
-    except Exception as e:
-        print(f"Error fetching poll winner: {e}")
-        return None
-
-
-def initialize_new_bracket():
-    """Initializes a new bracket layout on Monday using the last 8 unique movies."""
-    # "Last 8 films in chronological order with the most recent being the 1 seed"
-    # Assuming your movieList is already ordered chronologically (oldest to newest),
-    # the last 8 items represent the most recent. We reverse it so index 0 is the 1 seed.
-    recent_movies = list(movieList[:8])
-
-    # Standard 8-team bracket seed matching: 1v8, 4v5, 2v7, 3v6
-    state = {
-        "week_start": datetime.now().strftime("%Y-%m-%d"),
-        "matches": {
-            "0": {
-                "home": recent_movies[0],
-                "away": recent_movies[7],
-                "poll_id": None,
-                "winner": None,
-                "label": "Quarterfinal 1",
-            },  # Monday
-            "1": {
-                "home": recent_movies[3],
-                "away": recent_movies[4],
-                "poll_id": None,
-                "winner": None,
-                "label": "Quarterfinal 2",
-            },  # Tuesday
-            "2": {
-                "home": recent_movies[1],
-                "away": recent_movies[6],
-                "poll_id": None,
-                "winner": None,
-                "label": "Quarterfinal 3",
-            },  # Wednesday
-            "3": {
-                "home": recent_movies[2],
-                "away": recent_movies[5],
-                "poll_id": None,
-                "winner": None,
-                "label": "Quarterfinal 4",
-            },  # Thursday
-            "4": {
-                "home": None,
-                "away": None,
-                "poll_id": None,
-                "winner": None,
-                "label": "Semifinal 1",
-            },  # Friday (Winner Q1 vs Winner Q2)
-            "5": {
-                "home": None,
-                "away": None,
-                "poll_id": None,
-                "winner": None,
-                "label": "Semifinal 2",
-            },  # Saturday (Winner Q3 vs Winner Q4)
-            "6": {
-                "home": None,
-                "away": None,
-                "poll_id": None,
-                "winner": None,
-                "label": "Finals",
-            },  # Sunday (Winner S1 vs Winner S2)
-        },
-    }
-    return state
-
-
-def load_state():
-    if os.path.exists(STATE_FILE):
-        with open(STATE_FILE, "r") as f:
-            return json.load(f)
-    return None
-
-
-def save_state(state):
-    with open(STATE_FILE, "w") as f:
-        json.dump(state, f, indent=4)
-
-
 def draw_bracket_text_node(
     drawing_object,
     x,
@@ -532,7 +427,6 @@ def draw_bracket_text_node(
         (x, y - (font_size // 2) - 4), display_text, fill=color, font=font
     )
 
-
 def generate_bracket_graphic(state):
     width, height = 1200, 800
 
@@ -541,7 +435,7 @@ def generate_bracket_graphic(state):
     draw = ImageDraw.Draw(img)
 
     # Font sizing control variable
-    font_size = 32
+    font_size = 30
 
     try:
         # Modern pillow syntax supporting custom default font sizes
@@ -699,6 +593,169 @@ def generate_bracket_graphic(state):
     return alt_text
 
 
+def get_random_question():
+    template = random.choice(movieCriteria)
+    polarity = random.choice([template[1], template[2]])
+    return f"Which movie {template[0]}{polarity}{template[3]}?"
+
+
+def getMovieHashtag(titleParenthesesDate):
+    clean_title = re.sub(r"[^a-zA-Z0-9]", "", titleParenthesesDate)
+    return f"#{clean_title}"
+
+
+def addEllipsisIfTooLong(word, max_len=50):
+    if len(word) > max_len:
+        word = word[: max_len - 1] + "…"
+    return word
+
+
+def get_poll_winner(poll_id, match_details):
+    if DEBUG_MODE:
+        simulated_winner = random.choice([match_details["home"], match_details["away"]])
+        print(f"🔮 [DEBUG] Simulating winner for poll {poll_id}: {simulated_winner}")
+        return simulated_winner
+
+    try:
+        status = mastodon.status(poll_id)
+        poll = status.get("poll")
+        if not poll:
+            return None
+
+        # 🚨 SAFETY CHECK: If the poll is still active, do NOT tally the votes yet!
+        if not poll.get("expired", False):
+            print(f"⚠️ Warning: Poll {poll_id} is still open. Waiting until it closes.")
+            return None
+
+        options = poll["options"]
+        if options[0]["votes_count"] >= options[1]["votes_count"]:
+            return options[0]["title"]
+        else:
+            return options[1]["title"]
+    except Exception as e:
+        print(f"Error fetching poll winner: {e}")
+        return None
+
+
+def initialize_new_bracket():
+    """Initializes a new bracket layout on Monday using the last 8 unique movies."""
+    # "Last 8 films in chronological order with the most recent being the 1 seed"
+    # Assuming your movieList is already ordered chronologically (oldest to newest),
+    # the last 8 items represent the most recent. We reverse it so index 0 is the 1 seed.
+    recent_movies = list(movieList[:8])
+
+    # Standard 8-team bracket seed matching: 1v8, 4v5, 2v7, 3v6
+    state = {
+        "week_start": datetime.now().strftime("%Y-%m-%d"),
+        "matches": {
+            "0": {
+                "home": recent_movies[0],
+                "away": recent_movies[7],
+                "poll_id": None,
+                "winner": None,
+                "label": "Quarterfinal 1",
+            },  # Monday
+            "1": {
+                "home": recent_movies[3],
+                "away": recent_movies[4],
+                "poll_id": None,
+                "winner": None,
+                "label": "Quarterfinal 2",
+            },  # Tuesday
+            "2": {
+                "home": recent_movies[1],
+                "away": recent_movies[6],
+                "poll_id": None,
+                "winner": None,
+                "label": "Quarterfinal 3",
+            },  # Wednesday
+            "3": {
+                "home": recent_movies[2],
+                "away": recent_movies[5],
+                "poll_id": None,
+                "winner": None,
+                "label": "Quarterfinal 4",
+            },  # Thursday
+            "4": {
+                "home": None,
+                "away": None,
+                "poll_id": None,
+                "winner": None,
+                "label": "Semifinal 1",
+            },  # Friday (Winner Q1 vs Winner Q2)
+            "5": {
+                "home": None,
+                "away": None,
+                "poll_id": None,
+                "winner": None,
+                "label": "Semifinal 2",
+            },  # Saturday (Winner Q3 vs Winner Q4)
+            "6": {
+                "home": None,
+                "away": None,
+                "poll_id": None,
+                "winner": None,
+                "label": "Finals",
+            },  # Sunday (Winner S1 vs Winner S2)
+        },
+    }
+    return state
+
+
+def load_state():
+    if os.path.exists(STATE_FILE):
+        with open(STATE_FILE, "r") as f:
+            return json.load(f)
+    return None
+
+def post_monday_wrapup(state):
+    print("Processing Monday wrap-up before resetting the tournament slate...")
+
+    # Extract the final championship match information
+    final_match = state["matches"].get("6")
+
+    if final_match and final_match.get("poll_id"):
+        # 1. Safely pull and confirm the champion name
+        champion = final_match.get("winner")
+        if not champion:
+            # Fallback check if the winner hasn't been evaluated yet
+            champion = get_poll_winner(final_match["poll_id"], final_match)
+
+        # 2. Only attempt to post if a champion name is resolved
+        if champion:
+            week_label = state.get("week_start", "Current Week")
+            announcement_text = f"🏆🥇 MARS MADNESS CHAMPION 🥇🏆\nfor the week of {week_label} is...\n{champion}\nThanks for voting!\n\n#MarsMadness"
+
+            try:
+                print(
+                    f"Replying to final match poll {final_match['poll_id']} with championship announcement..."
+                )
+                mastodon.status_post(
+                    status=announcement_text,
+                    in_reply_to_id=final_match["poll_id"],
+                    visibility="public",
+                )
+            except Exception as api_err:
+                # Log but don't let a network failure trap the bot in an endless loop next run
+                logging.error(
+                    f"Failed to post championship announcement reply: {api_err}",
+                    exc_info=True,
+                )
+        else:
+            logging.error(
+                "Could not announce champion: Final match winner or votes could not be resolved."
+            )
+
+
+def save_state(state):
+    with open(STATE_FILE, "w") as f:
+        json.dump(state, f, indent=4)
+
+
+
+
+
+
 def main():
     global current_day_idx
     emojis = [
@@ -735,42 +792,7 @@ def main():
         is_monday = datetime.now().weekday() == 0
 
         if is_monday and state is not None:
-            print("Processing Monday wrap-up before resetting the tournament slate...")
-
-            # Extract the final championship match information
-            final_match = state["matches"].get("6")
-
-            if final_match and final_match.get("poll_id"):
-                # 1. Safely pull and confirm the champion name
-                champion = final_match.get("winner")
-                if not champion:
-                    # Fallback check if the winner hasn't been evaluated yet
-                    champion = get_poll_winner(final_match["poll_id"], final_match)
-
-                # 2. Only attempt to post if a champion name is resolved
-                if champion:
-                    week_label = state.get("week_start", "Current Week")
-                    announcement_text = f"🏆🥇 THE MARS MADNESS CHAMPION 🥇🏆\nfor the week of {week_label} is...\n{champion}\nThanks for voting!\n\n#MarsMadness"
-
-                    try:
-                        print(
-                            f"Replying to final match poll {final_match['poll_id']} with championship announcement..."
-                        )
-                        mastodon.status_post(
-                            status=announcement_text,
-                            in_reply_to_id=final_match["poll_id"],
-                            visibility="public",
-                        )
-                    except Exception as api_err:
-                        # Log but don't let a network failure trap the bot in an endless loop next run
-                        logging.error(
-                            f"Failed to post championship announcement reply: {api_err}",
-                            exc_info=True,
-                        )
-                else:
-                    logging.error(
-                        "Could not announce champion: Final match winner or votes could not be resolved."
-                    )
+            do_monday_wrapup(state)
 
             # Force the script to wipe the slate and generate a brand new week tracking frame
             print("Clearing out history and building a brand new tournament bracket!")
@@ -893,7 +915,7 @@ def main():
                     mime_type="image/png",
                     description=generated_alt_text,
                 )
-
+                week_label = state.get("week_start", "Current Week")
                 reply_text = f"😈✨ MARS MADNESS BRACKET ✨😈\nfor {match_label}\nweek of {week_label}"
 
                 mastodon.status_post(
@@ -933,5 +955,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
-    # generate_bracket_graphic(load_state())
+    # main()
+    generate_bracket_graphic(load_state())
