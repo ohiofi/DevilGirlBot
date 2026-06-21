@@ -399,6 +399,13 @@ movieCriteria = [
 ]
 
 
+def advance_state(current_state):
+    """Calculates the next chronological step in the state pattern."""
+    try:
+        return BracketState(current_state.value + 1)
+    except ValueError:
+        return BracketState.INTRO
+
 def draw_bracket_text_node(
     drawing_object,
     x,
@@ -646,6 +653,8 @@ def initialize_new_bracket():
 
     # Standard 8-team bracket seed matching: 1v8, 4v5, 2v7, 3v6
     state = {
+        "current_state": BracketState.INTRO.name,
+        "previous_status_id": None,
         "week_start": datetime.now().strftime("%Y-%m-%d"),
         "matches": {
             "0": {
@@ -710,42 +719,128 @@ def load_state():
 
 def post_monday_wrapup(state):
     print("Processing Monday wrap-up before resetting the tournament slate...")
-
-    # Extract the final championship match information
     final_match = state["matches"].get("6")
 
     if final_match and final_match.get("poll_id"):
-        # 1. Safely pull and confirm the champion name
         champion = final_match.get("winner")
         if not champion:
-            # Fallback check if the winner hasn't been evaluated yet
             champion = get_poll_winner(final_match["poll_id"], final_match)
 
-        # 2. Only attempt to post if a champion name is resolved
         if champion:
             week_label = state.get("week_start", "Current Week")
             announcement_text = f"🏆🥇 MARS MADNESS CHAMPION 🥇🏆\nfor the week of {week_label} is...\n{champion}\nThanks for voting!\n\n#MarsMadness"
 
             try:
-                print(
-                    f"Replying to final match poll {final_match['poll_id']} with championship announcement..."
-                )
-                mastodon.status_post(
-                    status=announcement_text,
-                    in_reply_to_id=final_match["poll_id"],
-                    visibility="public",
-                )
+                print(f"Replying to the last post with championship announcement...")
+                if not DEBUG_MODE:
+                    mastodon.status_post(
+                        status=announcement_text,
+                        in_reply_to_id=state.get("previous_status_id") or final_match["poll_id"], 
+                        visibility="public",
+                    )
             except Exception as api_err:
-                # Log but don't let a network failure trap the bot in an endless loop next run
-                logging.error(
-                    f"Failed to post championship announcement reply: {api_err}",
-                    exc_info=True,
-                )
-        else:
-            logging.error(
-                "Could not announce champion: Final match winner or votes could not be resolved."
-            )
+                logging.error(f"Failed to post championship announcement reply: {api_err}", exc_info=True)
 
+def process_chart_stage(state, match_key):
+    """Generates the bracket update image and replies directly to the immediate previous post."""
+    match = state["matches"][match_key]
+    match_label = match["label"].upper()
+    week_label = state.get("week_start", "Current Week")
+
+    try:
+        generated_alt_text = generate_bracket_graphic(state)
+    except Exception as e:
+        logging.error(f"Failed to generate bracket image asset: {e}", exc_info=True)
+        generated_alt_text = "Mars Madness tournament bracket update."
+
+    reply_text = f"😈✨ MARS MADNESS BRACKET ✨😈\nfor {match_label}\nweek of {week_label}"
+
+    if DEBUG_MODE:
+        print(f"[DEBUG] Simulated Chronological Chart Post for {match_label}")
+        return True
+
+    for attempt in range(3):
+        try:
+            media_dict = mastodon.media_post(
+                media_file=GRAPHIC_FILE,
+                mime_type="image/png",
+                description=generated_alt_text,
+            )
+            
+            # Linear chaining rule: Always reply to the immediate past piece of content
+            target_reply_id = state.get("previous_status_id")
+
+            status_response = mastodon.status_post(
+                status=reply_text,
+                in_reply_to_id=target_reply_id, 
+                media_ids=[media_dict["id"]],
+                visibility="public",
+            )
+            
+            # Update the rolling position placeholder
+            state["previous_status_id"] = status_response["id"]
+            return True
+        except (MastodonBadGatewayError, MastodonInternalServerError) as server_err:
+            print(f"⚠️ Gateway Error ({server_err.status_code}) on graphic. Retrying in 10s...")
+            time.sleep(10)
+        except Exception as e:
+            logging.error(f"Fatal exception during chart attachment step: {e}", exc_info=True)
+            break
+    return False
+
+def process_poll_stage(state, match_key, expires_in_seconds, emojis):
+    """Calculates dependencies, parses titles, and publishes the voting poll card."""
+    match = state["matches"][match_key]
+    
+    # Run dynamic missing candidate resolution fallbacks
+    if not match["home"] or not match["away"]:
+        fallback_movies = random.sample(movieList, 2)
+        if not match["home"]: match["home"] = fallback_movies[0]
+        if not match["away"]: match["away"] = fallback_movies[1]
+
+    movie1 = addEllipsisIfTooLong(match["home"])
+    movie2 = addEllipsisIfTooLong(match["away"])
+
+    e1, e2 = random.sample(emojis, 2)
+    match_label = match["label"].upper()
+
+    post_text = (
+        f"{e1}{e2} MARS MADNESS POLL {e2}{e1}\n{match_label}\n"
+        f"{get_random_question()}\n\n"
+        f"#monsterdon #MarsMadness {getMovieHashtag(movie1)} {getMovieHashtag(movie2)}"
+    )
+
+    if DEBUG_MODE:
+        print(f"[DEBUG] Simulated Poll Post Deployment:\n{post_text}")
+        match["poll_id"] = random.randint(100000, 999999)
+        return True
+
+    for attempt in range(3):
+        try:
+            poll = mastodon.make_poll(options=[movie1, movie2], expires_in=expires_in_seconds, multiple=False)
+            
+            # Linear chaining rule: Always reply to the immediate past piece of content
+            target_reply_id = state.get("previous_status_id")
+
+            status_response = mastodon.status_post(
+                status=post_text, 
+                poll=poll, 
+                in_reply_to_id=target_reply_id, 
+                visibility="public"
+            )
+            
+            match["poll_id"] = status_response["id"]
+            
+            # Update the rolling position placeholder
+            state["previous_status_id"] = status_response["id"]
+            return True
+        except (MastodonBadGatewayError, MastodonInternalServerError) as server_err:
+            print(f"⚠️ Gateway Error ({server_err.status_code}) on poll. Retrying in 10s...")
+            time.sleep(10)
+        except Exception as e:
+            logging.error(f"Fatal error deploying poll entity: {e}", exc_info=True)
+            break
+    return False
 
 def save_state(state):
     with open(STATE_FILE, "w") as f:
@@ -757,57 +852,20 @@ def save_state(state):
 
 
 def main():
-    global current_day_idx
-    emojis = [
-        "🚨",
-        "🧟",
-        "👾",
-        "👺",
-        "☢️",
-        "💀",
-        "🦇",
-        "🏚️",
-        "🧪",
-        "🎥",
-        "🔥",
-        "🎬",
-        "🎞️",
-        "🍿",
-        "🧛",
-        "🛸",
-        "🤢",
-        "🩸",
-        "😱",
-        "👻",
-        "👽",
-        "🎃",
-        "👹",
-    ]
-    week_label = ""
-    # 1. Load current bracket state
+    emojis = ["🚨", "🧟", "👾", "👺", "☢️", "💀", "🦇", "🏚️", "🧪", "🎥", "🔥", "🎬", "🎞️", "🍿", "🧛", "🛸", "🤢", "🩸", "😱", "👻", "👽", "🎃", "👹"]
+
+    # 1. Load context state
     try:
         state = load_state()
-
-        # Check if today is Monday (Weekday index 0)
-        is_monday = datetime.now().weekday() == 0
-
-        if is_monday and state is not None:
-            do_monday_wrapup(state)
-
-            # Force the script to wipe the slate and generate a brand new week tracking frame
-            print("Clearing out history and building a brand new tournament bracket!")
+        if state is None:
             state = initialize_new_bracket()
-
-        elif current_day_idx == 0 or state is None:
-            # Fallback for fresh installs or completely missing JSON targets
-            print("Initializing clean bracket state...")
-            state = initialize_new_bracket()
-
+        
+        current_state = BracketState[state.get("current_state", BracketState.INTRO.name)]
     except Exception as e:
-        logging.error(f"Critical error during Monday reset phase: {e}", exc_info=True)
-        return  # Stop execution if state generation fundamentally breaks down
+        logging.error(f"FSM Context Resolution Lifecycle Error: {e}", exc_info=True)
+        return
 
-    # 2. Try to resolve past polls and propagate winners
+    # 2. Automatically check and populate tournament results from previous days
     for m_id, match in state["matches"].items():
         if match["poll_id"] and not match["winner"]:
             winner = get_poll_winner(match["poll_id"], match)
@@ -815,145 +873,103 @@ def main():
                 match["winner"] = winner
                 print(f"Resolved {match['label']}: Winner is {winner}")
 
-    if state["matches"]["0"]["winner"]:
-        state["matches"]["4"]["home"] = state["matches"]["0"]["winner"]
-    if state["matches"]["1"]["winner"]:
-        state["matches"]["4"]["away"] = state["matches"]["1"]["winner"]
-    if state["matches"]["2"]["winner"]:
-        state["matches"]["5"]["home"] = state["matches"]["2"]["winner"]
-    if state["matches"]["3"]["winner"]:
-        state["matches"]["5"]["away"] = state["matches"]["3"]["winner"]
-    if state["matches"]["4"]["winner"]:
-        state["matches"]["6"]["home"] = state["matches"]["4"]["winner"]
-    if state["matches"]["5"]["winner"]:
-        state["matches"]["6"]["away"] = state["matches"]["5"]["winner"]
+    if state["matches"]["0"]["winner"]: state["matches"]["4"]["home"] = state["matches"]["0"]["winner"]
+    if state["matches"]["1"]["winner"]: state["matches"]["4"]["away"] = state["matches"]["1"]["winner"]
+    if state["matches"]["2"]["winner"]: state["matches"]["5"]["home"] = state["matches"]["2"]["winner"]
+    if state["matches"]["3"]["winner"]: state["matches"]["5"]["away"] = state["matches"]["3"]["winner"]
+    if state["matches"]["4"]["winner"]: state["matches"]["6"]["home"] = state["matches"]["4"]["winner"]
+    if state["matches"]["5"]["winner"]: state["matches"]["6"]["away"] = state["matches"]["5"]["winner"]
 
-    # 3. Pull today's matchup details
-    today_match_key = str(current_day_idx)
-    today_match = state["matches"][today_match_key]
-
-    if not today_match["home"] or not today_match["away"]:
-        fallback_movies = random.sample(movieList, 2)
-        if not today_match["home"]:
-            today_match["home"] = fallback_movies[0]
-        if not today_match["away"]:
-            today_match["away"] = fallback_movies[1]
-
-    # 4. Generate the graphic locally
-    try:
-        generated_alt_text = generate_bracket_graphic(state)
-    except Exception as e:
-        logging.error(f"Failed to generate bracket image asset: {e}", exc_info=True)
-        generated_alt_text = (
-            "Mars Madness tournament bracket update."  # Fallback alt text
-        )
-
-    movie1 = addEllipsisIfTooLong(today_match["home"])
-    movie2 = addEllipsisIfTooLong(today_match["away"])
-
-    e1, e2 = random.sample(emojis, 2)
-    match_label = today_match["label"].upper()
-
-    post_text = (
-        f"{e1}{e2} MARS MADNESS {e2}{e1}\n{match_label}\n"
-        f"{get_random_question()}\n\n"
-        f"#monsterdon #MarsMadness {getMovieHashtag(movie1)} {getMovieHashtag(movie2)}"
-    )
-
-    # Calculate dynamic expiration time (Tomorrow at 17:59:50 minus now)
+    # 3. Dynamic target time math (Closes at 17:59:50 tomorrow minus now)
     now = datetime.now()
-    tomorrow = now + timedelta(days=1)
-    target_time = tomorrow.replace(hour=17, minute=59, second=50, microsecond=0)
+    target_today = now.replace(hour=17, minute=59, second=50, microsecond=0)
+    target_time = target_today + timedelta(days=1)
     expires_in_seconds = max(1, int((target_time - now).total_seconds()))
 
-    # 5. Handle Live vs. Debug execution with full API safety wrappers
-    if DEBUG_MODE:
-        print("\n--- 🚫 DEBUG OUTPUT (NOT PUBLISHED) ---")
-        print(f"Current Mock Day Index: {current_day_idx}")
-        print(f"Status Text:\n{post_text}")
-        print("---------------------------------------\n")
-        today_match["poll_id"] = random.randint(100000, 999999)
-    else:
-        print(f"Publishing main poll post, then replying with the bracket chart...")
+    # 4. Map the days of the week to their allowed execution states
+    weekday = datetime.now().weekday()  # Monday = 0, Tuesday = 1, etc.
+    
+    # Define which states are allowed to run on which days
+    day_schedules = {
+        0: [BracketState.WRAP_UP, BracketState.INTRO, BracketState.CHARTQ1, BracketState.POLL_Q1], # Monday
+        1: [BracketState.CHARTQ2, BracketState.POLL_Q2],                                          # Tuesday
+        2: [BracketState.CHARTQ3, BracketState.POLL_Q3],                                          # Wednesday
+        3: [BracketState.CHARTQ4, BracketState.POLL_Q4],                                          # Thursday
+        4: [BracketState.CHARTS1, BracketState.POLL_S1],                                          # Friday
+        5: [BracketState.CHARTS2, BracketState.POLL_S2],                                          # Saturday
+        6: [BracketState.CHARTFI, BracketState.POLL_FI]                                           # Sunday
+    }
+    
+    allowed_states = day_schedules.get(weekday, [])
 
-        # --- ATTEMPT TO POST THE MAIN POLL ---
-        status_response = None
-        for attempt in range(3):  # Try up to 3 times for transient server errors
+    print(f"--- Running FSM Loop for Weekday {weekday} ---")
+    
+    # 5. Continuous Loop: Run through states sequentially if they belong to today's schedule
+    while current_state in allowed_states:
+        print(f"Processing State: {current_state.name} ({current_state.value})")
+        success = False
+
+        if current_state == BracketState.INTRO:
+            # Intro is a structural pass-through state; it clears/sets up variables and passes
+            success = True
+
+        # --- QUARTERFINALS MATCH STAGES ---
+        elif current_state == BracketState.CHARTQ1: success = process_chart_stage(state, "0")
+        elif current_state == BracketState.POLL_Q1:  success = process_poll_stage(state, "0", expires_in_seconds, emojis)
+        elif current_state == BracketState.CHARTQ2: success = process_chart_stage(state, "1")
+        elif current_state == BracketState.POLL_Q2:  success = process_poll_stage(state, "1", expires_in_seconds, emojis)
+        elif current_state == BracketState.CHARTQ3: success = process_chart_stage(state, "2")
+        elif current_state == BracketState.POLL_Q3:  success = process_poll_stage(state, "2", expires_in_seconds, emojis)
+        elif current_state == BracketState.CHARTQ4: success = process_chart_stage(state, "3")
+        elif current_state == BracketState.POLL_Q4:  success = process_poll_stage(state, "3", expires_in_seconds, emojis)
+
+        # --- SEMIFINALS STAGES ---
+        elif current_state == BracketState.CHARTS1: success = process_chart_stage(state, "4")
+        elif current_state == BracketState.POLL_S1:  success = process_poll_stage(state, "4", expires_in_seconds, emojis)
+        elif current_state == BracketState.CHARTS2: success = process_chart_stage(state, "5")
+        elif current_state == BracketState.POLL_S2:  success = process_poll_stage(state, "5", expires_in_seconds, emojis)
+
+        # --- CHAMPIONSHIP FINALS STAGES ---
+        elif current_state == BracketState.CHARTFI: success = process_chart_stage(state, "6")
+        elif current_state == BracketState.POLL_FI:  success = process_poll_stage(state, "6", expires_in_seconds, emojis)
+        
+        # --- WRAP UP / RESET ---
+        elif current_state == BracketState.WRAP_UP:
+            post_monday_wrapup(state)
+            print("Resetting bracket records completely for the new week...")
+            
+            # Wipes variables and returns a fresh slate dictionary
+            new_state = initialize_new_bracket()
+            state.clear()
+            state.update(new_state)
+            
+            # Manually step to INTRO to let the loop continue processing Monday states
+            current_state = BracketState.INTRO
+            state["current_state"] = current_state.name
+            save_state(state)
+            continue  # Re-evaluate loop with INTRO state
+
+        # If a state action finishes successfully, advance the state machine immediately
+        if success:
+            next_state = advance_state(current_state)
+            print(f"State {current_state.name} completed. Advancing to: {next_state.name}")
+            
+            # Update pointers
+            current_state = next_state
+            state["current_state"] = current_state.name
+            
+            # Save progress mid-run in case a subsequent network call fails
             try:
-                poll = mastodon.make_poll(
-                    options=[movie1, movie2],
-                    expires_in=expires_in_seconds,
-                    multiple=False,
-                )
-                status_response = mastodon.status_post(
-                    status=post_text, poll=poll, visibility="public"
-                )
-                today_match["poll_id"] = status_response["id"]
-                break  # It worked! Exit the retry loop.
-            except (MastodonBadGatewayError, MastodonInternalServerError) as server_err:
-                print(
-                    f"⚠️ Mastodon threw a {server_err.status_code} on poll post. Retrying in 10s... (Attempt {attempt+1}/3)"
-                )
-                time.sleep(10)
+                save_state(state)
             except Exception as e:
-                logging.error(
-                    f"Fatal non-network error on poll creation: {e}", exc_info=True
-                )
-                return
-
-        if not status_response:
-            logging.error(
-                "Failed to post main poll after 3 attempts due to Mastodon server outages."
-            )
-            return
-
-        # --- ATTEMPT TO UPLOAD AND REPLY WITH THE BRACKET IMAGE ---
-        for attempt in range(3):
-            try:
-                media_dict = mastodon.media_post(
-                    media_file=GRAPHIC_FILE,
-                    mime_type="image/png",
-                    description=generated_alt_text,
-                )
-                week_label = state.get("week_start", "Current Week")
-                reply_text = f"😈✨ MARS MADNESS BRACKET ✨😈\nfor {match_label}\nweek of {week_label}"
-
-                mastodon.status_post(
-                    status=reply_text,
-                    in_reply_to_id=status_response["id"],
-                    media_ids=[media_dict["id"]],
-                    visibility="public",
-                )
-                print("🚀 Thread posted successfully to Mastodon!")
-                break  # It worked! Exit the loop.
-            except (MastodonBadGatewayError, MastodonInternalServerError) as server_err:
-                print(
-                    f"⚠️ Mastodon threw a {server_err.status_code} on image reply. Retrying in 10s... (Attempt {attempt+1}/3)"
-                )
-                time.sleep(10)
-            except Exception as e:
-                # If the image upload completely breaks down, log it but let the script save the poll ID
-                logging.error(
-                    f"Main poll went live, but the bracket reply failed fundamentally: {e}",
-                    exc_info=True,
-                )
-                print("❌ Main poll is live, but image reply failed completely.")
+                logging.error(f"Failed mid-loop state file write: {e}", exc_info=True)
                 break
+        else:
+            print(f"❌ State execution failed or paused at {current_state.name}. Breaking sequence loop.")
+            break
 
-    # 6. Save State (Safe now because the script won't crash mid-way anymore)
-    try:
-        save_state(state)
-    except Exception as e:
-        logging.error(
-            f"Failed to write tournament progress to JSON state file: {e}",
-            exc_info=True,
-        )
-        logging.error(
-            f"Failed to write tournament progress to JSON state file: {e}",
-            exc_info=True,
-        )
-
+    print(f"Finished schedule loop for today. Current retained machine state: {current_state.name}")
 
 if __name__ == "__main__":
-    # main()
-    generate_bracket_graphic(load_state())
+    main()
+    # generate_bracket_graphic(load_state())
