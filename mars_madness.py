@@ -906,7 +906,7 @@ def post_monday_wrapup(state):
 
         if champion:
             week_label = state.get("week_start", "Current Week")
-            announcement_text = f"🏆🥇 MARS MADNESS CHAMPION 🥇🏆\nfor the week of {week_label} is...\n{champion}\nThanks for voting!\n\n#MarsMadness"
+            announcement_text = f"🏆🥇 MARS MADNESS CHAMPION 🥇🏆\nfor the week of {week_label} is...\n\n{champion.upper()}\n\nThanks for voting!\n\n#MarsMadness"
 
             try:
                 print(f"Replying to the last post with championship announcement...")
@@ -926,7 +926,7 @@ def process_chart_stage(state, match_key):
     week_label = state.get("week_start", "Current Week")
 
     try:
-        generated_alt_text = generate_bracket_graphic(load_state(), get_daily_theme())
+        generated_alt_text = generate_bracket_graphic(state, get_daily_theme())
     except Exception as e:
         logging.error(f"Failed to generate bracket image asset: {e}", exc_info=True)
         generated_alt_text = "Mars Madness tournament bracket update."
@@ -1145,6 +1145,6 @@ def main():
     print(f"Finished schedule loop for today. Current retained machine state: {current_state.name}")
 
 if __name__ == "__main__":
-    main()
+    # main()
     # generate_bracket_graphic(load_state(), DEEP_OCEAN_COLOR_SCHEME)
-    # generate_bracket_graphic(load_state(), get_daily_theme())
+    generate_bracket_graphic(load_state(), get_daily_theme())
