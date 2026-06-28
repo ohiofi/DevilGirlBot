@@ -16,6 +16,168 @@ from enum import Enum
 DEBUG_MODE = False
 MOCK_DAY_IDX = 0
 current_day_idx = MOCK_DAY_IDX
+LIGHT_COLOR_SCHEME = {
+    "canvas_color":"#f4f4f0",
+    "track_color": "#ffddff",
+    "text_color": "#342A21",
+    "border_color": "#783F8E",
+    "muted_text_color": "#50C9CE",
+    "track_width":12,
+    "font_path": "/System/Library/Fonts/Arial Bold.ttf"
+}
+DARK_COLOR_SCHEME = {
+    "canvas_color":"#212121",
+    "track_color": "#6C006C",
+    "text_color": "#F9F5FF",
+    "border_color": "#9882AC",
+    "muted_text_color": "#7B7554",
+    "track_width":8,
+    "font_path": "/System/Library/Fonts/Avenir Next.ttc"
+}
+TROPICAL_BLISS_COLOR_SCHEME = {
+    "canvas_color": "#fef9ef",
+    "track_color": "#17c3b2",
+    "text_color": "#18206F",
+    "border_color": "#fe6d73",
+    "muted_text_color": "#D7B377",
+    "track_width":10,
+    "font_path": "/System/Library/Fonts/Times New Roman Bold.ttf"
+}
+CYBERPUNK_COLOR_SCHEME = {
+    "canvas_color": "#0d0e15",
+    "track_color": "#00ff66",
+    "text_color": "#FCFFFD",
+    "border_color": "#6320EE",
+    "muted_text_color": "#6320EE",
+    "track_width":4,
+    "font_path": "/System/Library/Fonts/Trebuchet MS Bold.ttf"
+}
+PASTEL_COLOR_SCHEME = {
+    "canvas_color": "#fffdf0",
+    "track_color": "#ffd3f3",
+    "text_color": "#3d263a",
+    "border_color": "#9bf6ff",
+    "muted_text_color": "#B5EF8A",
+    "track_width":10,
+    "font_path": "/System/Library/Fonts/Arial Rounded Bold.ttf"
+}
+DRACULA_COLOR_SCHEME = {
+    "canvas_color": "#1e1f29",
+    "track_color": "#ff5555",
+    "text_color": "#f8f8f2",
+    "border_color": "#bd93f9",
+    "muted_text_color": "#6272a4",
+    "track_width": 6,
+    "font_path": "/System/Library/Fonts/Impact.ttf"
+}
+DESERT_OASIS_COLOR_SCHEME = {
+    "canvas_color": "#fbf6ef",
+    "track_color": "#daa191",
+    "text_color": "#012a40",
+    "border_color": "#81b29a",
+    "muted_text_color": "#b8b0a6",
+    "track_width": 10,
+    "font_path": "/System/Library/Fonts/Supplemental/Microsoft Sans Serif.ttf"
+}
+DEEP_OCEAN_COLOR_SCHEME = {
+    "canvas_color": "#0b132b",
+    "track_color": "#00b4d8",
+    "text_color": "#FFF1D0",
+    "border_color": "#EF946C",
+    "muted_text_color": "#5c677d",
+    "track_width": 8,
+    "font_path": "/System/Library/Fonts/Futura.ttc"
+}
+MINT_COLOR_SCHEME = {
+    "canvas_color":"#f0f4f4",
+    "track_color": "#50C9CE",
+    "text_color": "#3D1D00",
+    "border_color": "#783F8E",
+    "muted_text_color": "#E5A4FF",
+    "track_width":12,
+    "font_path": "/System/Library/Fonts/Arial Bold.ttf"
+}
+GOLDENROD_COLOR_SCHEME = {
+    "canvas_color":"#212121",
+    "track_color": "#DAA520",
+    "text_color": "#E5A4FF",
+    "border_color": "#9882AC",
+    "muted_text_color": "#6C006C",
+    "track_width":8,
+    "font_path": "/System/Library/Fonts/Avenir Next.ttc"
+}
+SALMON_COLOR_SCHEME = {
+    "canvas_color": "#ecfeff",
+    "track_color": "#fe6d73",
+    "text_color": "#18206F",
+    "border_color": "#17c3b2",
+    "muted_text_color": "#D7B377",
+    "track_width":10,
+    "font_path": "/System/Library/Fonts/Times New Roman Bold.ttf"
+}
+ELECTRIC_COLOR_SCHEME = {
+    "canvas_color": "#0d0e15",
+    "track_color": "#7DF9FF" ,
+    "text_color": "#FF00FF",
+    "border_color": "#CCFF00",
+    "muted_text_color": "#356a4a",
+    "track_width":6,
+    "font_path": "/System/Library/Fonts/Trebuchet MS Bold.ttf"
+}
+MIAMI_COLOR_SCHEME = {
+    "canvas_color": "#ffecfc",
+    "track_color": "#C1FF9B",
+    "text_color": "#2E5266",
+    "border_color": "#0ad2d3",
+    "muted_text_color": "#f990e8",
+    "track_width":12,
+    "font_path": "/System/Library/Fonts/Arial Rounded Bold.ttf"
+}
+GOTHIC_LAVENDER_COLOR_SCHEME = {
+    "canvas_color": "#1e1f29",
+    "track_color": "#bd93f9",
+    "text_color": "#cdf5ff",
+    "border_color": "#FFECFC",
+    "muted_text_color": "#8E4162",
+    "track_width": 6,
+    "font_path": "/System/Library/Fonts/HelveticaNeue.ttc"
+}
+LIFE_AQUATIC_COLOR_SCHEME = {
+    "canvas_color": "#F4EBDE",
+    "track_color": "#35b8ff",
+    "text_color": "#8a1e00",
+    "border_color": "#4C9A9A",
+    "muted_text_color": "#b8b0a6",
+    "track_width": 10,
+    "font_path": "/System/Library/Fonts/Supplemental/Microsoft Sans Serif.ttf"
+}
+FRANKENBERRY_COLOR_SCHEME = {
+    "canvas_color": "#0b132b",
+    "track_color": "#e5989c",
+    "text_color": "#FFECFC",
+    "border_color": "#7F2CCB",
+    "muted_text_color": "#5c677d",
+    "track_width": 8,
+    "font_path": "/System/Library/Fonts/Futura.ttc"
+}
+THEMES = [
+    LIGHT_COLOR_SCHEME,
+    DARK_COLOR_SCHEME,
+    CYBERPUNK_COLOR_SCHEME,
+    TROPICAL_BLISS_COLOR_SCHEME,
+    PASTEL_COLOR_SCHEME,
+    DRACULA_COLOR_SCHEME,
+    DESERT_OASIS_COLOR_SCHEME,
+    DEEP_OCEAN_COLOR_SCHEME,
+    MINT_COLOR_SCHEME,
+    GOLDENROD_COLOR_SCHEME,
+    SALMON_COLOR_SCHEME,
+    ELECTRIC_COLOR_SCHEME,
+    MIAMI_COLOR_SCHEME,
+    GOTHIC_LAVENDER_COLOR_SCHEME,
+    LIFE_AQUATIC_COLOR_SCHEME,
+    FRANKENBERRY_COLOR_SCHEME
+]
 
 class BracketState(Enum):
     INTRO = 1
@@ -72,6 +234,7 @@ else:
     )
 
 movieList = [
+    "Zarkorr! the Invader (1996)",
     "End of the World (1977)",
     "In the Year 2889 (1969)",
     "Class of 1999 (1990)",
@@ -406,6 +569,9 @@ def advance_state(current_state):
     except ValueError:
         return BracketState.INTRO
 
+def date_to_integer(dt_time):
+    return 10000*dt_time.year + 100*dt_time.month + dt_time.day
+
 def draw_bracket_text_node(
     drawing_object,
     x,
@@ -413,62 +579,73 @@ def draw_bracket_text_node(
     text,
     font,
     font_size,
+    color_scheme,
     node_line_length,
-    track_color,
-    track_width,
     track_offset,
     title_text="???",
 ):
     display_text = addEllipsisIfTooLong(text or title_text, max_len=31)
 
     # LIGHT MODE TEXT: Dark slate for populated items, muted gray for empty slots
-    color = "#111111" if text else "#888888"
+    color = color_scheme["text_color"] if text else color_scheme["muted_text_color"]
 
     # Adjust Y offset dynamically based on font size so it sits neatly above the line
     drawing_object.line(
         [(x, y + track_offset), (x + node_line_length), (y + track_offset)],
-        fill=track_color,
-        width=track_width,
+        fill=color_scheme["track_color"],
+        width=color_scheme["track_width"],
     )
     drawing_object.text(
         (x, y - (font_size // 2) - 4), display_text, fill=color, font=font
     )
 
-def generate_bracket_graphic(state):
+def generate_bracket_graphic(state, color_scheme):
     width, height = 1200, 800
 
     # LIGHT MODE: Crisp cream/off-white canvas color
-    img = Image.new("RGB", (width, height), color="#f4f4f0")
+    img = Image.new("RGB", (width, height), color=color_scheme["canvas_color"])
     draw = ImageDraw.Draw(img)
 
     # Font sizing control variable
     font_size = 30
 
     try:
-        # Modern pillow syntax supporting custom default font sizes
-        my_font = ImageFont.load_default(size=font_size)
-    except Exception:
-        # Fallback to base default font if using an older library build
-        my_font = ImageFont.load_default()
+        # Load the unique high-readability font assigned to this specific color profile
+        my_font = ImageFont.truetype(color_scheme["font_path"], size=font_size)
+    except Exception as font_err:
+        # Graceful logging fallback if execution occurs outside standard Mac desktop environments
+        print(f"⚠️ Custom legibility font not found, falling back to system default: {font_err}")
+        try:
+            my_font = ImageFont.load_default(size=font_size)
+        except Exception:
+            my_font = ImageFont.load_default()
 
     # Increased line length from 180 to 260 to give titles room and spread the layout
     node_line_length = 260
-    track_color = "#ffddff"
-    track_width = 20
+    color_scheme["track_width"]
     track_offset = 22
 
     match_list = state["matches"]
 
     # BORDER BOX
-    border_track_width = track_width * 2
-    # north border
-    draw.line([(0, 0), (1200, 0)], fill=track_color, width=border_track_width)
+    border_track_width = color_scheme["track_width"] * 4
+        # north border
+    draw.line([(0, 0), (1200, 0)], fill=color_scheme["border_color"], width=border_track_width)
     # east border
-    draw.line([(1200, 0), (1200, 800) ],fill=track_color,width=border_track_width)
+    draw.line([(1200-2, 0), (1200-2, 800) ],fill=color_scheme["border_color"],width=border_track_width)
     # south border
-    draw.line([(0, 800), (1200, 800)],fill=track_color,width=border_track_width)
+    draw.line([(0, 800-2), (1200, 800-2)],fill=color_scheme["border_color"],width=border_track_width)
     # west border
-    draw.line([(0, 0), (0, 800)],fill=track_color,width=border_track_width)
+    draw.line([(0, 0), (0, 800)],fill=color_scheme["border_color"],width=border_track_width)
+    border_track_width = color_scheme["track_width"] * 2
+    # north border
+    draw.line([(0, 0), (1200, 0)], fill=color_scheme["track_color"], width=border_track_width)
+    # east border
+    draw.line([(1200-2, 0), (1200-2, 800) ],fill=color_scheme["track_color"],width=border_track_width)
+    # south border
+    draw.line([(0, 800-2), (1200, 800-2)],fill=color_scheme["track_color"],width=border_track_width)
+    # west border
+    draw.line([(0, 0), (0, 800)],fill=color_scheme["track_color"],width=border_track_width)
 
     # CONNECTING LINES (Recalculated paths to bridge the new node coordinates seamlessly)
    
@@ -476,31 +653,31 @@ def generate_bracket_graphic(state):
     # draw.line(
     #     [(320, 110), (385, 110), (385, 190), (450, 190)], fill=track_color, width=track_width
     # )
-    draw.line([(60 + 260, height * 3/17 + track_offset), (60 + 260 + 60, height * 4/17 + track_offset)], fill=track_color, width=track_width)
+    draw.line([(60 + 260, height * 3/17 + track_offset), (60 + 260 + 60, height * 4/17 + track_offset)], fill=color_scheme["track_color"], width=color_scheme["track_width"])
     # draw.line(
     #     [(320, 330), (385, 330), (385, 250), (450, 250)], fill=track_color, width=track_width
     # )
-    draw.line([(60 + 260 , height * 6/17 + track_offset), (60 + 260 + 60, height * 5/17 + track_offset)], fill=track_color, width=track_width)
+    draw.line([(60 + 260 , height * 6/17 + track_offset), (60 + 260 + 60, height * 5/17 + track_offset)], fill=color_scheme["track_color"], width=color_scheme["track_width"])
 
     # Q3 & Q4 -> S2 Lines (From end of Col 1 line [320] to start of Col 2 [450])
     # draw.line(
     #     [(320, 470), (385, 470), (385, 550), (450, 550)], fill=track_color, width=track_width
     # )
-    draw.line([(60 + 260 , height * 11/17 + track_offset), (60 + 260 + 60, height * 12/17 + track_offset)], fill=track_color, width=track_width)
+    draw.line([(60 + 260 , height * 11/17 + track_offset), (60 + 260 + 60, height * 12/17 + track_offset)], fill=color_scheme["track_color"], width=color_scheme["track_width"])
     # draw.line(
     #     [(320, 690), (385, 690), (385, 610), (450, 610)], fill=track_color, width=track_width
     # )
-    draw.line([(60 + 260 , height * 14/17 + track_offset), (60 + 260 + 60, height * 13/17 + track_offset)], fill=track_color, width=track_width)
+    draw.line([(60 + 260 , height * 14/17 + track_offset), (60 + 260 + 60, height * 13/17 + track_offset)], fill=color_scheme["track_color"], width=color_scheme["track_width"])
 
     # S1 & S2 -> Finals Lines (From end of Col 2 line [450 + 260 = 710] to start of Col 3 [840])
     # draw.line(
     #     [(710, 190), (775, 190), (775, 370), (840, 370)], fill=track_color, width=track_width
     # )
-    draw.line([(60 + 260 + 60 + 260 , height * 5/17 + track_offset), (60 + 260 + 60 + 260 + 60, height * 8/17 + track_offset)], fill=track_color, width=track_width)
+    draw.line([(60 + 260 + 60 + 260 , height * 5/17 + track_offset), (60 + 260 + 60 + 260 + 60, height * 8/17 + track_offset)], fill=color_scheme["track_color"], width=color_scheme["track_width"])
     # draw.line(
     #     [(710, 610), (775, 610), (775, 430), (840, 430)], fill=track_color, width=track_width
     # )
-    draw.line([(60 + 260 + 60 + 260 , height * 12/17 + track_offset), (60 + 260 + 60 + 260 + 60, height * 9/17 + track_offset)], fill=track_color, width=track_width)
+    draw.line([(60 + 260 + 60 + 260 , height * 12/17 + track_offset), (60 + 260 + 60 + 260 + 60, height * 9/17 + track_offset)], fill=color_scheme["track_color"], width=color_scheme["track_width"])
 
     # --- ADJUSTED HORIZONTAL SPACING MAP ---
     # Col 1 (Quarterfinals) X = 60
@@ -567,9 +744,8 @@ def generate_bracket_graphic(state):
             each["text"],
             my_font,
             font_size,
+            color_scheme,
             node_line_length,
-            track_color,
-            track_width,
             track_offset,
             each["title_text"],
         )
@@ -578,7 +754,7 @@ def generate_bracket_graphic(state):
     draw.text(
         (1200 - 40, height * 1/17),
         f"MARS MADNESS BRACKET: WEEK OF {state['week_start']}",
-        fill="black",
+        fill=color_scheme["text_color"],
         font=my_font,
         anchor="rm",
     )
@@ -599,6 +775,8 @@ def generate_bracket_graphic(state):
 
     return alt_text
 
+def get_daily_theme():
+    return THEMES[(date_to_integer(datetime.now())) % len(THEMES)]
 
 def get_random_question():
     template = random.choice(movieCriteria)
@@ -748,7 +926,7 @@ def process_chart_stage(state, match_key):
     week_label = state.get("week_start", "Current Week")
 
     try:
-        generated_alt_text = generate_bracket_graphic(state)
+        generated_alt_text = generate_bracket_graphic(load_state(), get_daily_theme())
     except Exception as e:
         logging.error(f"Failed to generate bracket image asset: {e}", exc_info=True)
         generated_alt_text = "Mars Madness tournament bracket update."
@@ -845,10 +1023,6 @@ def process_poll_stage(state, match_key, expires_in_seconds, emojis):
 def save_state(state):
     with open(STATE_FILE, "w") as f:
         json.dump(state, f, indent=4)
-
-
-
-
 
 
 def main():
@@ -972,4 +1146,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-    # generate_bracket_graphic(load_state())
+    # generate_bracket_graphic(load_state(), DEEP_OCEAN_COLOR_SCHEME)
+    # generate_bracket_graphic(load_state(), get_daily_theme())
