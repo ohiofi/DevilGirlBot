@@ -1,6 +1,6 @@
 import time
 from mastodon import Mastodon
-from mastodon.errors import MastodonBadGatewayError, MastodonInternalServerError
+from mastodon.errors import MastodonBadGatewayError, MastodonInternalServerError, MastodonServiceUnavailableError
 from dotenv import load_dotenv
 import os
 import random
@@ -958,7 +958,7 @@ def process_chart_stage(state, match_key):
             # Update the rolling position placeholder
             state["previous_status_id"] = status_response["id"]
             return True
-        except (MastodonBadGatewayError, MastodonInternalServerError) as server_err:
+        except (MastodonBadGatewayError, MastodonInternalServerError, MastodonServiceUnavailableError) as server_err:
             print(f"⚠️ Gateway Error ({server_err.status_code}) on graphic. Retrying in 10s...")
             time.sleep(10)
         except Exception as e:
@@ -1012,7 +1012,7 @@ def process_poll_stage(state, match_key, expires_in_seconds, emojis):
             # Update the rolling position placeholder
             state["previous_status_id"] = status_response["id"]
             return True
-        except (MastodonBadGatewayError, MastodonInternalServerError) as server_err:
+        except (MastodonBadGatewayError, MastodonInternalServerError, MastodonServiceUnavailableError) as server_err:
             print(f"⚠️ Gateway Error ({server_err.status_code}) on poll. Retrying in 10s...")
             time.sleep(10)
         except Exception as e:
@@ -1145,6 +1145,6 @@ def main():
     print(f"Finished schedule loop for today. Current retained machine state: {current_state.name}")
 
 if __name__ == "__main__":
-    # main()
+    main()
     # generate_bracket_graphic(load_state(), DEEP_OCEAN_COLOR_SCHEME)
-    generate_bracket_graphic(load_state(), get_daily_theme())
+    # generate_bracket_graphic(load_state(), get_daily_theme())
