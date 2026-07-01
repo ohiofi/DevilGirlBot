@@ -16,7 +16,7 @@ load_dotenv()
 CSV_FILE = "details.csv"
 ID_FILE = "census_max_id.txt"  # The file that stores our "place" in time
 LOCAL_TZ = pytz.timezone("US/Eastern")
-BATCH_SIZE = 20
+BATCH_SIZE = 2
 DELAY_BETWEEN_MOVIES = 10
 
 mastodon = Mastodon(
