@@ -254,6 +254,41 @@ movieList = [
     "Hercules (1983)",
 ]
 
+# movieList = [
+#     {
+#         "title": "Zarkorr! the Invader (1996)",
+#         "image": "posters/zarkorr_the_invader_1996.jpg"
+#     },
+#     {
+#         "title": "End of the World (1977)",
+#         "image": "posters/end_of_the_world_1977.jpg"
+#     },
+#     {
+#         "title": "In the Year 2889 (1969)",
+#         "image": "posters/in_the_year_2889_1969.jpg"
+#     },
+#     {
+#         "title": "Class of 1999 (1990)",
+#         "image": "posters/class_of_1999_1990.jpg"
+#     },
+#     {
+#         "title": "Seedpeople (1992)",
+#         "image": "posters/seedpeople_1992.jpg"
+#     },
+#     {
+#         "title": "Terror in the Wax Museum (1973)",
+#         "image": "posters/terror_in_the_wax_museum_1973.jpg"
+#     },
+#     {
+#         "title": "Invasion: UFO (1980)",
+#         "image": "posters/invasion_ufo_1980.jpg"
+#     },
+#     {
+#         "title": "Reptilian (1999)",
+#         "image": "posters/reptilian_1999.jpg"
+#     }
+# ]
+
 movieCriteria = [
     ["feels the ", "MOST", "LEAST", " likely to pass the Bechdel test"],
     ["feels the ", "MOST", "LEAST", " like a cash grab"],
