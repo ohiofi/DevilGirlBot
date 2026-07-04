@@ -73,21 +73,25 @@ def find_source_by_parent_id(parent_id):
             
     return None
 
-def is_sentence_valid(s, sentence_pool, history_text_only, banlist):
-    """Centralized validation for incoming scrapped sentences."""
-    # 1. Check length constraints
+def is_sentence_valid(s, author_username, sentence_pool, history_text_only, banned_words, banned_users):
+    """Centralized validation for incoming scraped sentences, filtering by content and author."""
+    # 1. Check if the user who wrote this is on the banned users list (e.g., 'devilgirlbot')
+    if author_username and any(banned.lower() in author_username.lower() for banned in banned_users):
+        return False
+
+    # 2. Check length constraints
     if not (5 <= len(s) <= 150):
         return False
         
-    # 2. Check against the banlist
-    if does_text_contain_banned(s, banlist):
+    # 3. Check against the keyword/phrase banned_words list
+    if does_text_contain_banned(s, banned_words):
         return False
         
-    # 3. Check if it already exists in the current scraped pool
+    # 4. Check if it already exists in the current scraped pool
     if any(item["sentence"] == s for item in sentence_pool):
         return False
         
-    # 4. Check if we have already posted it in our history file
+    # 5. Check if we have already posted it in our history file
     if s in history_text_only:
         return False
         
