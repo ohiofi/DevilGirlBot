@@ -234,6 +234,7 @@ else:
     )
 
 movieList = [
+    "Earth vs. the Spider (1958)",
     "Zarkorr! the Invader (1996)",
     "End of the World (1977)",
     "In the Year 2889 (1969)",
