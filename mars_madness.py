@@ -205,6 +205,7 @@ ENV_FILE = SCRIPT_DIR / ".env"
 STATE_FILE = SCRIPT_DIR / "bracket_state.json"
 GRAPHIC_FILE = SCRIPT_DIR / "bracket.png"
 LOG_FILE = SCRIPT_DIR / "mars_madness_errors.log"
+MOVIE_LIST_FILE = SCRIPT_DIR / "mars_madness_movie_list.json"
 
 # Explicitly load the .env file from its exact absolute path
 load_dotenv(dotenv_path=ENV_FILE)
@@ -233,7 +234,10 @@ else:
         api_base_url="https://mastodon.social",
     )
 
-movieList = [
+
+
+# in case mars_madness_movie_list.json doesn't load
+FALLBACK_MOVIE_LIST = [
     "Earth vs. the Spider (1958)",
     "Zarkorr! the Invader (1996)",
     "End of the World (1977)",
@@ -254,6 +258,29 @@ movieList = [
     "The Adventures of Hercules (1985)",
     "Hercules (1983)",
 ]
+
+MOVIE_LIST_PATH_ENV = os.getenv("MOVIE_LIST_PATH")
+
+# Attempt to load from the external JSON file safely
+if MOVIE_LIST_PATH_ENV:
+    MOVIE_LIST_FILE = Path(MOVIE_LIST_PATH_ENV)
+else:
+    # Fail-safe local backup anchor changed to .txt
+    MOVIE_LIST_FILE = SCRIPT_DIR / "mars_madness_movie_list.txt"
+
+# Attempt to load from the external iCloud TXT file safely
+try:
+    if MOVIE_LIST_FILE.exists():
+        with open(MOVIE_LIST_FILE, "r", encoding="utf-8") as f:
+            movieList = json.load(f)  # Parses the valid JSON syntax inside the text file perfectly
+            print("☁️ Successfully loaded movie list from text configuration file.")
+    else:
+        print("⚠️ External movie list text file not found on disk. Utilizing hardcoded fallback list.")
+        movieList = FALLBACK_MOVIE_LIST
+except Exception as err:
+    logging.error(f"Failed to parse movie list text file, falling back to original code list: {err}")
+    print("❌ Error reading movie list text layout. Safety fallback initiated.")
+    movieList = FALLBACK_MOVIE_LIST
 
 # movieList = [
 #     {
