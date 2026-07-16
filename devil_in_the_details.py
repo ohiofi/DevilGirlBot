@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 # NOTE: Run this manually in terminal venv. Always crashes/times-out if I try to run via VSCode play button.
 
 DEBUG_MODE = True # Set to False when ready to post publicly
-THIS_WEEKS_EMOJI = "👾"
+THIS_WEEKS_EMOJI = "🐺"
 THIS_WEEKS_INDEX_LOCATION = 1 # use index 1 to skip double feature and treat the main film as latest
 CSV_FILE = "details.csv"
 
@@ -902,9 +902,9 @@ def main():
     intro_text = (
         f"😈📊 DEVIL IN THE DETAILS 📊😈\n\n"
         f"An occasional thread with Monsterdon data rankings.\n"
-        f"Will our invader fit in?\n"
+        f"Will Wolfen win or wipe out?\n"
         f"{THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']})\n"
-        f"{THIS_WEEKS_EMOJI} TOOT RATE: Toots Per Minute or TPM. Calculated as Toots / Minutes\n"
+        f"{THIS_WEEKS_EMOJI} PARTICIPATION TROPHY: Participations Per User or PPU. Calculated as (Toots + Favs + Boosts) / Users.\n" 
         f"Data Sources: census of toots from mastodon.social, monsterdon-replay.gerlach.dev, imdb.com\n"
         f"\n#Monsterdon"
     )
@@ -912,7 +912,7 @@ def main():
     # 1. TOOT RATE
     # f"{THIS_WEEKS_EMOJI} TOOT RATE: Toots Per Minute or TPM. Calculated as Toots / Minutes\n"  
     # 2. Participation Trophy
-    # f"{THIS_WEEKS_EMOJI} Participation Trophy: Participations Per User or PPU. Calculated as (Toots + Favs + Boosts) / Users.\n" 
+    # f"{THIS_WEEKS_EMOJI} PARTICIPATION TROPHY: Participations Per User or PPU. Calculated as (Toots + Favs + Boosts) / Users.\n" 
     # 3. Toot Volume
     # f"{THIS_WEEKS_EMOJI} Toot Volume: Total Toots\n"  
     # 4. Toot Strength
@@ -928,19 +928,14 @@ def main():
     #     f"* Toot Strength: Engagements Per Toot. Doesn't count Replies due to users threading posts. Calculated (Favs + Boosts) / Toots.\n"
     # )
     # thread_posts.append({'text': footnotes, 'image': None, 'desc': None})
-
     
+    # # Toot Rate - TPM Reports
+    # tpm_posts = create_timeline_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)", isDollars=False, useMillions=False, decimals=1)
+    # thread_posts.extend(tpm_posts)
 
-    # Decade Report
-    # thread_posts.append(generate_decade_report(df, latest_film))
-    
-    # # TPM Reports
-    tpm_posts = create_timeline_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)", isDollars=False, useMillions=False, decimals=1)
-    thread_posts.extend(tpm_posts)
-
-    # PPU Reports
-    # ppu_posts = create_timeframe_reports(df, latest_film, metric_col='participation_score', unit='ppu', report_title='Monsterdon Participations Per User', subtitle="Participations Per User (ppu)", isDollars=False, useMillions=False, decimals=1)
-    # thread_posts.extend(ppu_posts)
+    # Participation - PPU Reports
+    ppu_posts = create_timeline_reports(df, latest_film, metric_col='participation_score', unit='ppu', report_title='Monsterdon Participations Per User', subtitle="Participations Per User (ppu)", isDollars=False, useMillions=False, decimals=1)
+    thread_posts.extend(ppu_posts)
 
     # Toot Volume Reports
     # vol_posts = create_timeline_reports(df, latest_film, metric_col='toots', unit='toots', report_title='Monsterdon Toot Volume', subtitle="Total toots", isDollars=False, useMillions=False, decimals=0)
@@ -953,6 +948,11 @@ def main():
     # # # Attendance Reports
     # attendance_posts = create_timeline_reports(df, latest_film, metric_col='attendees', unit='ppl', report_title='Monsterdon Attendees', subtitle="Total People (ppl)", isDollars=False, useMillions=False, decimals=0)
     # thread_posts.extend(attendance_posts)
+
+    # -=-=-=-=-=-=-=-=-
+
+    # Decade Report
+    # thread_posts.append(generate_decade_report(df, latest_film))
 
     # Add the Actor reports
     # actor_posts = generate_most_popular_actors(df, latest_film)

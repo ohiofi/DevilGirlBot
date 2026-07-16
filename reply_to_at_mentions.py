@@ -19,7 +19,7 @@ load_dotenv()
 mastodon = Mastodon(
     access_token=os.getenv("access_token"), api_base_url="https://mastodon.social"
 )
-BANLIST = json.loads(os.getenv("banlist"))
+BANLIST = json.loads(os.getenv("banned_words") or '[]')
 LAST_ID_FILE = os.getenv("LAST_ID_FILE", "/tmp/last_id.txt")
 
 def send_text_reply(original_mention, text):
