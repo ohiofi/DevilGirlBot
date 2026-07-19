@@ -7,6 +7,7 @@ import random
 import re
 import json
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 from PIL import Image, ImageDraw, ImageFont
 import logging
 from pathlib import Path
@@ -68,7 +69,7 @@ DRACULA_COLOR_SCHEME = {
     "border_color": "#bd93f9",
     "muted_text_color": "#6272a4",
     "track_width": 6,
-    "font_path": "/System/Library/Fonts/Impact.ttf"
+    "font_path": "/System/Library/Fonts/HelveticaNeue.ttc"
 }
 DESERT_OASIS_COLOR_SCHEME = {
     "canvas_color": "#fbf6ef",
@@ -160,6 +161,132 @@ FRANKENBERRY_COLOR_SCHEME = {
     "track_width": 8,
     "font_path": "/System/Library/Fonts/Futura.ttc"
 }
+REDS_LIGHT_COLOR_SCHEME = {
+    "canvas_color": "#CDD6D0",
+    "track_color": "#E60000",
+    "text_color": "#740000",
+    "border_color": "#ffa2a2",
+    "muted_text_color": "#ffa2a2",
+    "track_width": 6,
+    "font_path": "/System/Library/Fonts/Arial Bold.ttf"
+}
+ORANGES_DARK_COLOR_SCHEME = {
+    "canvas_color": "#714220",
+    "track_color": "#ff3503",
+    "text_color": "#ffae9a",
+    "border_color": "#AE8E1C",
+    "muted_text_color": "#AE8E1C",
+    "track_width": 10,
+    "font_path": "/System/Library/Fonts/Avenir Next.ttc"
+}
+YELLOWS_LIGHT_COLOR_SCHEME = {
+    "canvas_color": "#f0e3d2",
+    "track_color": "#fffc00",
+    "text_color": "#56351E",
+    "border_color": "#F4BB00",
+    "muted_text_color": "#F4BB00",
+    "track_width": 12,
+    "font_path": "/System/Library/Fonts/Trebuchet MS Bold.ttf"
+}
+GREENS_DARK_COLOR_SCHEME = {
+    "canvas_color": "#0B2E00",
+    "track_color": "#62FF00",
+    "text_color": "#D7FFCC",
+    "border_color": "#2D8000",
+    "muted_text_color": "#2D8000",
+    "track_width": 8,
+    "font_path": "/System/Library/Fonts/Arial Rounded Bold.ttf"
+}
+BLUES_LIGHT_COLOR_SCHEME = {
+    "canvas_color": "#E6FEFF",
+    "track_color": "#7DF9FF",
+    "text_color": "#004447",
+    "border_color": "#7DB8FF",
+    "muted_text_color": "#7DB8FF",
+    "track_width": 10,
+    "font_path": "/System/Library/Fonts/HelveticaNeue.ttc"
+}
+INDIGOS_DARK_COLOR_SCHEME = {
+    "canvas_color": "#2c0066",
+    "track_color": "#6F00FF",
+    "text_color": "#f0e5ff",
+    "border_color": "#9a4cff",
+    "muted_text_color": "#9a4cff",
+    "track_width": 6,
+    "font_path": "/System/Library/Fonts/Supplemental/Microsoft Sans Serif.ttf"
+}
+VIOLETS_LIGHT_COLOR_SCHEME = {
+    "canvas_color": "#E6D9FF",
+    "track_color": "#8F00FF",
+    "text_color": "#340063",
+    "border_color": "#B78AFF",
+    "muted_text_color": "#B78AFF",
+    "track_width": 12,
+    "font_path": "/System/Library/Fonts/Futura.ttc"
+}
+REDS_DARK_COLOR_SCHEME = {
+    "canvas_color": "#400000",
+    "track_color": "#E60000",
+    "text_color": "#FFD8D1",
+    "border_color": "#730000",
+    "muted_text_color": "#730000",
+    "track_width": 6,
+    "font_path": "/System/Library/Fonts/Arial Bold.ttf"
+}
+ORANGES_LIGHT_COLOR_SCHEME = {
+    "canvas_color": "#FFDDD4",
+    "track_color": "#ff3503",
+    "text_color": "#480800",
+    "border_color": "#FF957D",
+    "muted_text_color": "#FF957D",
+    "track_width": 10,
+    "font_path": "/System/Library/Fonts/Avenir Next.ttc"
+}
+YELLOWS_DARK_COLOR_SCHEME = {
+    "canvas_color": "#2E2D00",
+    "track_color": "#fffc00",
+    "text_color": "#FEFFBE",
+    "border_color": "#807E00",
+    "muted_text_color": "#807E00",
+    "track_width": 8,
+    "font_path": "/System/Library/Fonts/Trebuchet MS Bold.ttf"
+}
+GREENS_LIGHT_COLOR_SCHEME = {
+    "canvas_color": "#E5FFDD",
+    "track_color": "#62FF00",
+    "text_color": "#0B2E00",
+    "border_color": "#7EB36F",
+    "muted_text_color": "#7EB36F",
+    "track_width": 8,
+    "font_path": "/System/Library/Fonts/Arial Rounded Bold.ttf"
+}
+BLUES_DARK_COLOR_SCHEME = {
+    "canvas_color": "#112C2E",
+    "track_color": "#7DF9FF",
+    "text_color": "#E9FEFF",
+    "border_color": "#3B7D80",
+    "muted_text_color": "#3B7D80",
+    "track_width": 10,
+    "font_path": "/System/Library/Fonts/HelveticaNeue.ttc"
+}
+INDIGOS_LIGHT_COLOR_SCHEME = {
+    "canvas_color": "#DCD9FF",
+    "track_color": "#6F00FF",
+    "text_color": "#0E002E",
+    "border_color": "#7670A9",
+    "muted_text_color": "#7670A9",
+    "track_width": 6,
+    "font_path": "/System/Library/Fonts/Supplemental/Microsoft Sans Serif.ttf"
+}
+VIOLETS_DARK_COLOR_SCHEME = {
+    "canvas_color": "#15002E",
+    "track_color": "#8F00FF",
+    "text_color": "#DAC6FF",
+    "border_color": "#8370A9",
+    "muted_text_color": "#8370A9",
+    "track_width": 12,
+    "font_path": "/System/Library/Fonts/Futura.ttc"
+}
 THEMES = [
     LIGHT_COLOR_SCHEME,
     DARK_COLOR_SCHEME,
@@ -176,26 +303,47 @@ THEMES = [
     MIAMI_COLOR_SCHEME,
     GOTHIC_LAVENDER_COLOR_SCHEME,
     LIFE_AQUATIC_COLOR_SCHEME,
-    FRANKENBERRY_COLOR_SCHEME
+    FRANKENBERRY_COLOR_SCHEME,
+    REDS_LIGHT_COLOR_SCHEME,
+    ORANGES_DARK_COLOR_SCHEME,
+    YELLOWS_LIGHT_COLOR_SCHEME,
+    GREENS_DARK_COLOR_SCHEME,
+    BLUES_LIGHT_COLOR_SCHEME,
+    INDIGOS_DARK_COLOR_SCHEME,
+    VIOLETS_LIGHT_COLOR_SCHEME,
+    REDS_DARK_COLOR_SCHEME,
+    ORANGES_LIGHT_COLOR_SCHEME,
+    YELLOWS_DARK_COLOR_SCHEME,
+    GREENS_LIGHT_COLOR_SCHEME,
+    BLUES_DARK_COLOR_SCHEME,
+    INDIGOS_LIGHT_COLOR_SCHEME,
+    VIOLETS_DARK_COLOR_SCHEME
 ]
 
 class BracketState(Enum):
     INTRO = 1
     CHARTQ1 = 2
-    POLL_Q1 = 3
-    CHARTQ2 = 4
-    POLL_Q2 = 5
-    CHARTQ3 = 6
-    POLL_Q3 = 7
-    CHARTQ4 = 8
-    POLL_Q4 = 9
-    CHARTS1 = 10
-    POLL_S1 = 11
-    CHARTS2 = 12
-    POLL_S2 = 13
-    CHARTFI = 14
-    POLL_FI = 15
-    WRAP_UP = 16
+    MATCHQ1 = 3    
+    POLL_Q1 = 4
+    CHARTQ2 = 5
+    MATCHQ2 = 6
+    POLL_Q2 = 7
+    CHARTQ3 = 8
+    MATCHQ3 = 9
+    POLL_Q3 = 10
+    CHARTQ4 = 11
+    MATCHQ4 = 12
+    POLL_Q4 = 13
+    CHARTS1 = 14
+    MATCHS1 = 15
+    POLL_S1 = 16
+    CHARTS2 = 17
+    MATCHS2 = 18
+    POLL_S2 = 19
+    CHARTFI = 20
+    MATCHFI = 21
+    POLL_FI = 22
+    WRAP_UP = 23
 
 # Automatically detect the directory where mars_madness.py is actually stored
 SCRIPT_DIR = Path(__file__).parent.resolve()
@@ -659,7 +807,8 @@ def draw_bracket_text_node(
         width=color_scheme["track_width"],
     )
     drawing_object.text(
-        (x, y - (font_size // 2) - 4), display_text, fill=color, font=font
+        (x, y - (font_size // 2) - 4), display_text, fill=color, font=font, stroke_width=4,
+        stroke_fill=color_scheme["canvas_color"]
     )
 
 def generate_bracket_graphic(state, color_scheme):
@@ -813,13 +962,15 @@ def generate_bracket_graphic(state, color_scheme):
             each["title_text"],
         )
 
-    # Darker Midnight Blue Header text for striking contrast
+    # Header text 
     draw.text(
         (1200 - 40, height * 1/17),
         f"MARS MADNESS BRACKET: WEEK OF {state['week_start']}",
         fill=color_scheme["text_color"],
         font=my_font,
         anchor="rm",
+        stroke_width=2,
+        stroke_fill=color_scheme["canvas_color"]
     )
 
     img.save(GRAPHIC_FILE)
@@ -838,8 +989,128 @@ def generate_bracket_graphic(state, color_scheme):
 
     return alt_text
 
+def generate_matchup_graphic(match_label, left_title, right_title):
+    """
+    Creates a 1200x800 canvas with left and right movie posters side-by-side.
+    Guaranteed not to crash if either poster is missing, deleted, or corrupted.
+    """
+    canvas_w, canvas_h = 1200, 800
+    top_margin = 4
+    side_margin = 4
+    spacing = 2
+    
+    # Calculate target dimensions for each side lane
+    poster_w = (canvas_w - (side_margin * 2) - spacing) // 2
+    poster_h = canvas_h - top_margin - side_margin
+
+    # 1. Initialize canvas background frame
+    img = Image.new("RGB", (canvas_w, canvas_h), color="#1e1f29")
+    draw = ImageDraw.Draw(img)
+
+    # 2. Load fonts
+    try:
+        font = ImageFont.truetype("/System/Library/Fonts/Arial Bold.ttf", size=50)
+        fallback_font = ImageFont.truetype("/System/Library/Fonts/Arial Bold.ttf", size=30)
+    except Exception:
+        font = ImageFont.load_default()
+        fallback_font = ImageFont.load_default()
+
+    # 3. Process Left Side Poster Safely
+    left_path = get_poster_path(left_title)
+    left_loaded = False
+    
+    if left_path and left_path.exists():
+        try:
+            with Image.open(left_path) as left_img:
+                left_img.thumbnail((poster_w, poster_h))
+                x_pos = side_margin + (poster_w - left_img.width) // 2
+                y_pos = top_margin + (poster_h - left_img.height) // 2
+                img.paste(left_img, (x_pos, y_pos))
+                left_loaded = True
+        except Exception as img_err:
+            print(f"⚠️ Warning: Left poster '{left_title}' exists but failed to open (corrupted file?): {img_err}")
+
+    if not left_loaded:
+        # Visual fallback block displaying the specific movie title instead of crashing
+        draw.rectangle([side_margin, top_margin, side_margin + poster_w, top_margin + poster_h], outline="#ff5555", width=4)
+        error_msg = f"[missing poster for\n{left_title}]"
+        draw.text((side_margin + poster_w // 2, top_margin + poster_h // 2), error_msg, fill="#ff5555", font=fallback_font, anchor="mm", align="center")
+
+    # 4. Process Right Side Poster Safely
+    right_path = get_poster_path(right_title)
+    right_loaded = False
+    
+    if right_path and right_path.exists():
+        try:
+            with Image.open(right_path) as right_img:
+                right_img.thumbnail((poster_w, poster_h))
+                x_pos = side_margin + poster_w + spacing + (poster_w - right_img.width) // 2
+                y_pos = top_margin + (poster_h - right_img.height) // 2
+                img.paste(right_img, (x_pos, y_pos))
+                right_loaded = True
+        except Exception as img_err:
+            print(f"⚠️ Warning: Right poster '{right_title}' exists but failed to open (corrupted file?): {img_err}")
+
+    if not right_loaded:
+        # Visual fallback block displaying the specific movie title instead of crashing
+        x_start = side_margin + poster_w + spacing
+        draw.rectangle([x_start, top_margin, x_start + poster_w, top_margin + poster_h], outline="#ff5555", width=4)
+        error_msg = f"[missing poster for\n{right_title}]"
+        draw.text((x_start + poster_w // 2, top_margin + poster_h // 2), error_msg, fill="#ff5555", font=fallback_font, anchor="mm", align="center")
+
+    # 5. Centered text
+    draw.text(
+        (canvas_w // 2 + 3, canvas_h // 2), 
+        f"{match_label.upper()}\n\n{left_title}\nversus\n{right_title}", 
+        fill="#000000", 
+        font=font, 
+        anchor="mm",
+        align="center",
+        stroke_width=15,       # Thickness of the outline
+        stroke_fill="#000000" # Color of the outline
+    )
+    draw.text(
+        (canvas_w // 2 - 3, canvas_h // 2), 
+        f"{match_label.upper()}\n\n{left_title}\nversus\n{right_title}", 
+        fill="#000000", 
+        font=font, 
+        anchor="mm",
+        align="center",
+        stroke_width=15,       # Thickness of the outline
+        stroke_fill="#000000" # Color of the outline
+    )
+    draw.text(
+        (canvas_w // 2, canvas_h // 2), 
+        f"{match_label.upper()}\n\n{left_title}\nversus\n{right_title}", 
+        fill="#ffeeff", 
+        font=font, 
+        anchor="mm",
+        align="center",
+        stroke_width=15,       # Thickness of the outline
+        stroke_fill="#000000" # Color of the outline
+    )
+
+    # 6. Save out the final compilation image asset
+    output_path = SCRIPT_DIR / "mars_madness_matchup.png"
+    alt_text = ""
+    try:
+        img.save(output_path)
+        print(f"🎉 Matchup graphic successfully saved to: {output_path}")
+        alt_text = f"Side by side matchup posters for {match_label}: {left_title} vs {right_title}"
+    except Exception as save_err:
+        print(f"❌ Critical error saving compilation image to disk: {save_err}")
+    return alt_text
+
 def get_daily_theme():
     return THEMES[(date_to_integer(datetime.now())) % len(THEMES)]
+
+def get_poster_path(movie_title):
+    """Looks up the image file path from the loaded dictionary list."""
+    for movie in movieList:
+        if isinstance(movie, dict) and movie.get("title") == movie_title:
+            # Resolve relative to script directory
+            return SCRIPT_DIR / movie.get("image")
+    return None
 
 def get_random_question():
     template = random.choice(movieCriteria)
@@ -887,10 +1158,12 @@ def get_poll_winner(poll_id, match_details):
 
 def initialize_new_bracket():
     """Initializes a new bracket layout on Monday using the last 8 unique movies."""
-    # "Last 8 films in chronological order with the most recent being the 1 seed"
-    # Assuming your movieList is already ordered chronologically (oldest to newest),
-    # the last 8 items represent the most recent. We reverse it so index 0 is the 1 seed.
-    recent_movies = list(movieList[:8])
+    # Account for the new dictionary format by extracting the "title" string.
+    # Safely handles the hardcoded fallback string list via type checking.
+    recent_movies = [
+        movie["title"] if isinstance(movie, dict) else movie 
+        for movie in movieList[:8]
+    ]
 
     # Standard 8-team bracket seed matching: 1v8, 4v5, 2v7, 3v6
     state = {
@@ -973,12 +1246,43 @@ def post_monday_wrapup(state):
 
             try:
                 print(f"Replying to the last post with championship announcement...")
+                media_ids = []
+
                 if not DEBUG_MODE:
+                    champ_poster_path = get_poster_path(champion)
+                    
+                    if champ_poster_path and champ_poster_path.exists():
+                        # Retry loop for uploading media asset (up to 3 attempts)
+                        for attempt in range(3):
+                            try:
+                                print(f"📤 Uploading champion poster for {champion} (Attempt {attempt + 1}/3)...")
+                                alt_desc = f"Poster for the film {champion}"
+                                media_dict = mastodon.media_post(
+                                    media_file=champ_poster_path,
+                                    mime_type="image/jpeg",
+                                    description=alt_desc,
+                                )
+                                media_ids.append(media_dict["id"])
+                                break  # Success! Break out of the retry loop.
+                            except (MastodonBadGatewayError, MastodonInternalServerError, MastodonServiceUnavailableError) as server_err:
+                                print(f"⚠️ Gateway Error ({server_err.status_code}) on champion poster upload. Retrying in 10s...")
+                                time.sleep(10)
+                            except Exception as img_upload_err:
+                                logging.error(f"Fatal error uploading champion poster asset: {img_upload_err}", exc_info=True)
+                                print("❌ Direct upload failure, aborting retries.")
+                                break
+                        else:
+                            print("⚠️ Poster upload failed after 3 attempts, proceeding with text-only announcement.")
+
                     mastodon.status_post(
                         status=announcement_text,
                         in_reply_to_id=state.get("previous_status_id") or final_match["poll_id"], 
-                        visibility="public",
+                        media_ids=media_ids if media_ids else None,
+                        visibility="unlisted",
                     )
+                else:
+                    print(f"[DEBUG] Simulated Champion Post Deployment:\n{announcement_text}")
+                    
             except Exception as api_err:
                 logging.error(f"Failed to post championship announcement reply: {api_err}", exc_info=True)
 
@@ -994,7 +1298,7 @@ def process_chart_stage(state, match_key):
         logging.error(f"Failed to generate bracket image asset: {e}", exc_info=True)
         generated_alt_text = "Mars Madness tournament bracket update."
 
-    reply_text = f"😈✨ MARS MADNESS BRACKET ✨😈\nfor {match_label}\nweek of {week_label}"
+    reply_text = f"😈✨ MARS MADNESS BRACKET ✨😈\nfor {match_label}\nweek of {week_label}\n\n#MarsMadness"
 
     if DEBUG_MODE:
         print(f"[DEBUG] Simulated Chronological Chart Post for {match_label}")
@@ -1029,6 +1333,64 @@ def process_chart_stage(state, match_key):
             break
     return False
 
+def process_match_stage(state, match_key):
+    """Generates the side-by-side poster image and posts it to the linear chain."""
+    match = state["matches"][match_key]
+    match_label = match["label"]
+    alt_text = ""
+
+    # Dynamic fallback checks to match standard poll logic safety parameters
+    if not match["home"] or not match["away"]:
+        fallback_movies = random.sample(movieList, 2)
+        if not match["home"]: 
+            match["home"] = fallback_movies[0]["title"] if isinstance(fallback_movies[0], dict) else fallback_movies[0]
+        if not match["away"]: 
+            match["away"] = fallback_movies[1]["title"] if isinstance(fallback_movies[1], dict) else fallback_movies[1]
+
+    try:
+        print(f"🎨 Generating poster matchup matrix for {match_label}...")
+        alt_text = generate_matchup_graphic(match_label, match["home"], match["away"])
+    except Exception as e:
+        logging.error(f"Failed to generate poster matchup asset: {e}", exc_info=True)
+        return False
+
+    reply_text = f"😈⚔️ MARS MADNESS MATCHUP ⚔️😈\n{match_label.upper()}:\n{match['home']} vs {match['away']}\n\n#MarsMadness"
+
+    if DEBUG_MODE:
+        print(f"[DEBUG] Simulated Chronological Poster Matchup Post for {match_label}")
+        return True
+
+    for attempt in range(3):
+        try:
+            matchup_img_path = SCRIPT_DIR / "mars_madness_matchup.png"
+            if not matchup_img_path.exists():
+                return False
+
+            media_dict = mastodon.media_post(
+                media_file=matchup_img_path,
+                mime_type="image/png",
+                description=alt_text,
+            )
+            
+            target_reply_id = state.get("previous_status_id")
+
+            status_response = mastodon.status_post(
+                status=reply_text,
+                in_reply_to_id=target_reply_id, 
+                media_ids=[media_dict["id"]],
+                visibility="unlisted",
+            )
+            
+            state["previous_status_id"] = status_response["id"]
+            return True
+        except (MastodonBadGatewayError, MastodonInternalServerError, MastodonServiceUnavailableError) as server_err:
+            print(f"⚠️ Gateway Error ({server_err.status_code}) on poster card. Retrying in 10s...")
+            time.sleep(10)
+        except Exception as e:
+            logging.error(f"Fatal exception during poster attachment step: {e}", exc_info=True)
+            break
+    return False
+
 def process_poll_stage(state, match_key, expires_in_seconds, emojis):
     """Calculates dependencies, parses titles, and publishes the voting poll card."""
     match = state["matches"][match_key]
@@ -1036,8 +1398,10 @@ def process_poll_stage(state, match_key, expires_in_seconds, emojis):
     # Run dynamic missing candidate resolution fallbacks
     if not match["home"] or not match["away"]:
         fallback_movies = random.sample(movieList, 2)
-        if not match["home"]: match["home"] = fallback_movies[0]
-        if not match["away"]: match["away"] = fallback_movies[1]
+        if not match["home"]: 
+            match["home"] = fallback_movies[0]["title"] if isinstance(fallback_movies[0], dict) else fallback_movies[0]
+        if not match["away"]: 
+            match["away"] = fallback_movies[1]["title"] if isinstance(fallback_movies[1], dict) else fallback_movies[1]
 
     movie1 = addEllipsisIfTooLong(match["home"])
     movie2 = addEllipsisIfTooLong(match["away"])
@@ -1118,7 +1482,8 @@ def main():
     if state["matches"]["5"]["winner"]: state["matches"]["6"]["away"] = state["matches"]["5"]["winner"]
 
     # 3. Dynamic target time math (Closes at 17:59:50 tomorrow minus now)
-    now = datetime.now()
+    LOCAL_TZ = ZoneInfo("America/New_York")
+    now = datetime.now(LOCAL_TZ)
     target_today = now.replace(hour=17, minute=59, second=50, microsecond=0)
     target_time = target_today + timedelta(days=1)
     expires_in_seconds = max(1, int((target_time - now).total_seconds()))
@@ -1128,13 +1493,13 @@ def main():
     
     # Define which states are allowed to run on which days
     day_schedules = {
-        0: [BracketState.WRAP_UP, BracketState.INTRO, BracketState.CHARTQ1, BracketState.POLL_Q1], # Monday
-        1: [BracketState.CHARTQ2, BracketState.POLL_Q2],                                          # Tuesday
-        2: [BracketState.CHARTQ3, BracketState.POLL_Q3],                                          # Wednesday
-        3: [BracketState.CHARTQ4, BracketState.POLL_Q4],                                          # Thursday
-        4: [BracketState.CHARTS1, BracketState.POLL_S1],                                          # Friday
-        5: [BracketState.CHARTS2, BracketState.POLL_S2],                                          # Saturday
-        6: [BracketState.CHARTFI, BracketState.POLL_FI]                                           # Sunday
+        0: [BracketState.WRAP_UP, BracketState.INTRO, BracketState.CHARTQ1, BracketState.MATCHQ1, BracketState.POLL_Q1], 
+        1: [BracketState.CHARTQ2, BracketState.MATCHQ2, BracketState.POLL_Q2],                                          
+        2: [BracketState.CHARTQ3, BracketState.MATCHQ3, BracketState.POLL_Q3],                                          
+        3: [BracketState.CHARTQ4, BracketState.MATCHQ4, BracketState.POLL_Q4],                                          
+        4: [BracketState.CHARTS1, BracketState.MATCHS1, BracketState.POLL_S1],                                          
+        5: [BracketState.CHARTS2, BracketState.MATCHS2, BracketState.POLL_S2],                                          
+        6: [BracketState.CHARTFI, BracketState.MATCHFI, BracketState.POLL_FI]                                           
     }
     
     allowed_states = day_schedules.get(weekday, [])
@@ -1147,27 +1512,37 @@ def main():
         success = False
 
         if current_state == BracketState.INTRO:
-            # Intro is a structural pass-through state; it clears/sets up variables and passes
             success = True
 
         # --- QUARTERFINALS MATCH STAGES ---
         elif current_state == BracketState.CHARTQ1: success = process_chart_stage(state, "0")
+        elif current_state == BracketState.MATCHQ1: success = process_match_stage(state, "0")
         elif current_state == BracketState.POLL_Q1:  success = process_poll_stage(state, "0", expires_in_seconds, emojis)
+        
         elif current_state == BracketState.CHARTQ2: success = process_chart_stage(state, "1")
+        elif current_state == BracketState.MATCHQ2: success = process_match_stage(state, "1")
         elif current_state == BracketState.POLL_Q2:  success = process_poll_stage(state, "1", expires_in_seconds, emojis)
+        
         elif current_state == BracketState.CHARTQ3: success = process_chart_stage(state, "2")
+        elif current_state == BracketState.MATCHQ3: success = process_match_stage(state, "2")
         elif current_state == BracketState.POLL_Q3:  success = process_poll_stage(state, "2", expires_in_seconds, emojis)
+        
         elif current_state == BracketState.CHARTQ4: success = process_chart_stage(state, "3")
+        elif current_state == BracketState.MATCHQ4: success = process_match_stage(state, "3")
         elif current_state == BracketState.POLL_Q4:  success = process_poll_stage(state, "3", expires_in_seconds, emojis)
 
         # --- SEMIFINALS STAGES ---
         elif current_state == BracketState.CHARTS1: success = process_chart_stage(state, "4")
+        elif current_state == BracketState.MATCHS1: success = process_match_stage(state, "4")
         elif current_state == BracketState.POLL_S1:  success = process_poll_stage(state, "4", expires_in_seconds, emojis)
+        
         elif current_state == BracketState.CHARTS2: success = process_chart_stage(state, "5")
+        elif current_state == BracketState.MATCHS2: success = process_match_stage(state, "5")
         elif current_state == BracketState.POLL_S2:  success = process_poll_stage(state, "5", expires_in_seconds, emojis)
 
         # --- CHAMPIONSHIP FINALS STAGES ---
         elif current_state == BracketState.CHARTFI: success = process_chart_stage(state, "6")
+        elif current_state == BracketState.MATCHFI: success = process_match_stage(state, "6")
         elif current_state == BracketState.POLL_FI:  success = process_poll_stage(state, "6", expires_in_seconds, emojis)
         
         # --- WRAP UP / RESET ---
@@ -1175,27 +1550,23 @@ def main():
             post_monday_wrapup(state)
             print("Resetting bracket records completely for the new week...")
             
-            # Wipes variables and returns a fresh slate dictionary
             new_state = initialize_new_bracket()
             state.clear()
             state.update(new_state)
             
-            # Manually step to INTRO to let the loop continue processing Monday states
             current_state = BracketState.INTRO
             state["current_state"] = current_state.name
             save_state(state)
-            continue  # Re-evaluate loop with INTRO state
+            continue
 
-        # If a state action finishes successfully, advance the state machine immediately
+        # Advance state machine immediately if current task returns True
         if success:
             next_state = advance_state(current_state)
             print(f"State {current_state.name} completed. Advancing to: {next_state.name}")
             
-            # Update pointers
             current_state = next_state
             state["current_state"] = current_state.name
             
-            # Save progress mid-run in case a subsequent network call fails
             try:
                 save_state(state)
             except Exception as e:
@@ -1209,5 +1580,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-    # generate_bracket_graphic(load_state(), DEEP_OCEAN_COLOR_SCHEME)
+    # generate_bracket_graphic(load_state(), THEMES[-1])
     # generate_bracket_graphic(load_state(), get_daily_theme())
