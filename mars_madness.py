@@ -1278,7 +1278,7 @@ def post_monday_wrapup(state):
                         status=announcement_text,
                         in_reply_to_id=state.get("previous_status_id") or final_match["poll_id"], 
                         media_ids=media_ids if media_ids else None,
-                        visibility="unlisted",
+                        visibility="public",
                     )
                 else:
                     print(f"[DEBUG] Simulated Champion Post Deployment:\n{announcement_text}")
@@ -1378,7 +1378,7 @@ def process_match_stage(state, match_key):
                 status=reply_text,
                 in_reply_to_id=target_reply_id, 
                 media_ids=[media_dict["id"]],
-                visibility="unlisted",
+                visibility="public",
             )
             
             state["previous_status_id"] = status_response["id"]
@@ -1412,7 +1412,7 @@ def process_poll_stage(state, match_key, expires_in_seconds, emojis):
     post_text = (
         f"{e1}{e2} MARS MADNESS POLL {e2}{e1}\n{match_label}\n"
         f"{get_random_question()}\n\n"
-        f"#monsterdon #MarsMadness {getMovieHashtag(movie1)} {getMovieHashtag(movie2)}"
+        f"#MarsMadness {getMovieHashtag(movie1)} {getMovieHashtag(movie2)}"
     )
 
     if DEBUG_MODE:
