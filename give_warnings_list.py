@@ -53,7 +53,7 @@ def build_main_post(movie_title, num_warnings, movie_url, target_year=None):
             f"{display_name}\n\n"
             f"{num_warnings} community content flags found\n"
             f"The detailed breakdown is attached as a content warning reply below\n\n"
-            f"Source: {movie_url}\n#Monsterdon #MonsterdonWarnings"
+            f"Source: {movie_url}\n#MonsterdonWarnings"
         )
     else:
         post_text = (
@@ -61,7 +61,7 @@ def build_main_post(movie_title, num_warnings, movie_url, target_year=None):
             f"Automated content check for\n"
             f"{display_name}\n\n"
             f"0 community content flags reported for this title\n\n"
-            f"Source: {movie_url}\n#Monsterdon #MonsterdonWarnings"
+            f"Source: {movie_url}\n#MonsterdonWarnings"
         )
         
     return display_name, post_text
@@ -256,7 +256,7 @@ def publish_threaded_replies(mastodon_client, parent_id, chunks, display_name, d
                 status=reply_text,
                 in_reply_to_id=previous_post_id,
                 spoiler_text=cw_label,
-                visibility="unlisted"
+                visibility="public"
             )
             previous_post_id = reply_post.get("id")
             time.sleep(1) # Keep ordering intact in the Mastodon DB
