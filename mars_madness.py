@@ -772,6 +772,10 @@ movieCriteria = [
     ["is the ", "MOST", "LEAST", " likely to be name-dropped in a rap"],
 ]
 
+def addEllipsisIfTooLong(word, max_len=50):
+    if len(word) > max_len:
+        word = word[: max_len - 1] + "…"
+    return word
 
 def advance_state(current_state):
     """Calculates the next chronological step in the state pattern."""
@@ -800,15 +804,21 @@ def draw_bracket_text_node(
     # LIGHT MODE TEXT: Dark slate for populated items, muted gray for empty slots
     color = color_scheme["text_color"] if text else color_scheme["muted_text_color"]
 
-    # Adjust Y offset dynamically based on font size so it sits neatly above the line
+    # Draw horizontal bracket line
     drawing_object.line(
-        [(x, y + track_offset), (x + node_line_length), (y + track_offset)],
+        [(x, y + track_offset), (x + node_line_length, y + track_offset)],
         fill=color_scheme["track_color"],
         width=color_scheme["track_width"],
     )
+
+    # Render text cleanly above line with background outline stroke
     drawing_object.text(
-        (x, y - (font_size // 2) - 4), display_text, fill=color, font=font, stroke_width=4,
-        stroke_fill=color_scheme["canvas_color"]
+        (x, y - (font_size // 2) - 4),
+        display_text,
+        fill=color,
+        font=font,
+        stroke_width=4,
+        stroke_fill=color_scheme["canvas_color"],
     )
 
 def generate_bracket_graphic(state, color_scheme):
@@ -1123,10 +1133,7 @@ def getMovieHashtag(titleParenthesesDate):
     return f"#{clean_title}"
 
 
-def addEllipsisIfTooLong(word, max_len=50):
-    if len(word) > max_len:
-        word = word[: max_len - 1] + "…"
-    return word
+
 
 
 def get_poll_winner(poll_id, match_details):
