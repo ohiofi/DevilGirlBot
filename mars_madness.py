@@ -1479,7 +1479,11 @@ def main():
             winner = get_poll_winner(match["poll_id"], match)
             if winner:
                 match["winner"] = winner
-                print(f"Resolved {match['label']}: Winner is {winner}")
+                print(f"✅ Resolved {match['label']}: Winner is {winner}")
+            else:
+                print(
+                    f"⏳ Checked {match['label']} (Poll {match['poll_id']}), but poll is not finalized yet."
+                )
 
     if state["matches"]["0"]["winner"]: state["matches"]["4"]["home"] = state["matches"]["0"]["winner"]
     if state["matches"]["1"]["winner"]: state["matches"]["4"]["away"] = state["matches"]["1"]["winner"]
