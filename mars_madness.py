@@ -12,313 +12,11 @@ from PIL import Image, ImageDraw, ImageFont
 import logging
 from pathlib import Path
 from enum import Enum
-
+from color_schemes import THEMES
 
 DEBUG_MODE = False
 MOCK_DAY_IDX = 0
 current_day_idx = MOCK_DAY_IDX
-LIGHT_COLOR_SCHEME = {
-    "canvas_color":"#f4f4f0",
-    "track_color": "#ffddff",
-    "text_color": "#342A21",
-    "border_color": "#783F8E",
-    "muted_text_color": "#50C9CE",
-    "track_width":12,
-    "font_path": "/System/Library/Fonts/Arial Bold.ttf"
-}
-DARK_COLOR_SCHEME = {
-    "canvas_color":"#212121",
-    "track_color": "#6C006C",
-    "text_color": "#F9F5FF",
-    "border_color": "#9882AC",
-    "muted_text_color": "#7B7554",
-    "track_width":8,
-    "font_path": "/System/Library/Fonts/Avenir Next.ttc"
-}
-TROPICAL_BLISS_COLOR_SCHEME = {
-    "canvas_color": "#fef9ef",
-    "track_color": "#17c3b2",
-    "text_color": "#18206F",
-    "border_color": "#fe6d73",
-    "muted_text_color": "#D7B377",
-    "track_width":10,
-    "font_path": "/System/Library/Fonts/Times New Roman Bold.ttf"
-}
-CYBERPUNK_COLOR_SCHEME = {
-    "canvas_color": "#0d0e15",
-    "track_color": "#00ff66",
-    "text_color": "#FCFFFD",
-    "border_color": "#6320EE",
-    "muted_text_color": "#6320EE",
-    "track_width":4,
-    "font_path": "/System/Library/Fonts/Trebuchet MS Bold.ttf"
-}
-PASTEL_COLOR_SCHEME = {
-    "canvas_color": "#fffdf0",
-    "track_color": "#ffd3f3",
-    "text_color": "#3d263a",
-    "border_color": "#9bf6ff",
-    "muted_text_color": "#B5EF8A",
-    "track_width":10,
-    "font_path": "/System/Library/Fonts/Arial Rounded Bold.ttf"
-}
-DRACULA_COLOR_SCHEME = {
-    "canvas_color": "#1e1f29",
-    "track_color": "#ff5555",
-    "text_color": "#f8f8f2",
-    "border_color": "#bd93f9",
-    "muted_text_color": "#6272a4",
-    "track_width": 6,
-    "font_path": "/System/Library/Fonts/HelveticaNeue.ttc"
-}
-DESERT_OASIS_COLOR_SCHEME = {
-    "canvas_color": "#fbf6ef",
-    "track_color": "#daa191",
-    "text_color": "#012a40",
-    "border_color": "#81b29a",
-    "muted_text_color": "#b8b0a6",
-    "track_width": 10,
-    "font_path": "/System/Library/Fonts/Supplemental/Microsoft Sans Serif.ttf"
-}
-DEEP_OCEAN_COLOR_SCHEME = {
-    "canvas_color": "#0b132b",
-    "track_color": "#00b4d8",
-    "text_color": "#FFF1D0",
-    "border_color": "#EF946C",
-    "muted_text_color": "#5c677d",
-    "track_width": 8,
-    "font_path": "/System/Library/Fonts/Futura.ttc"
-}
-MINT_COLOR_SCHEME = {
-    "canvas_color":"#f0f4f4",
-    "track_color": "#50C9CE",
-    "text_color": "#3D1D00",
-    "border_color": "#783F8E",
-    "muted_text_color": "#E5A4FF",
-    "track_width":12,
-    "font_path": "/System/Library/Fonts/Arial Bold.ttf"
-}
-GOLDENROD_COLOR_SCHEME = {
-    "canvas_color":"#212121",
-    "track_color": "#DAA520",
-    "text_color": "#E5A4FF",
-    "border_color": "#9882AC",
-    "muted_text_color": "#6C006C",
-    "track_width":8,
-    "font_path": "/System/Library/Fonts/Avenir Next.ttc"
-}
-SALMON_COLOR_SCHEME = {
-    "canvas_color": "#ecfeff",
-    "track_color": "#fe6d73",
-    "text_color": "#18206F",
-    "border_color": "#17c3b2",
-    "muted_text_color": "#D7B377",
-    "track_width":10,
-    "font_path": "/System/Library/Fonts/Times New Roman Bold.ttf"
-}
-ELECTRIC_COLOR_SCHEME = {
-    "canvas_color": "#0d0e15",
-    "track_color": "#7DF9FF" ,
-    "text_color": "#FF00FF",
-    "border_color": "#CCFF00",
-    "muted_text_color": "#356a4a",
-    "track_width":6,
-    "font_path": "/System/Library/Fonts/Trebuchet MS Bold.ttf"
-}
-MIAMI_COLOR_SCHEME = {
-    "canvas_color": "#ffecfc",
-    "track_color": "#C1FF9B",
-    "text_color": "#2E5266",
-    "border_color": "#0ad2d3",
-    "muted_text_color": "#f990e8",
-    "track_width":12,
-    "font_path": "/System/Library/Fonts/Arial Rounded Bold.ttf"
-}
-GOTHIC_LAVENDER_COLOR_SCHEME = {
-    "canvas_color": "#1e1f29",
-    "track_color": "#bd93f9",
-    "text_color": "#cdf5ff",
-    "border_color": "#FFECFC",
-    "muted_text_color": "#8E4162",
-    "track_width": 6,
-    "font_path": "/System/Library/Fonts/HelveticaNeue.ttc"
-}
-LIFE_AQUATIC_COLOR_SCHEME = {
-    "canvas_color": "#F4EBDE",
-    "track_color": "#35b8ff",
-    "text_color": "#8a1e00",
-    "border_color": "#4C9A9A",
-    "muted_text_color": "#b8b0a6",
-    "track_width": 10,
-    "font_path": "/System/Library/Fonts/Supplemental/Microsoft Sans Serif.ttf"
-}
-FRANKENBERRY_COLOR_SCHEME = {
-    "canvas_color": "#0b132b",
-    "track_color": "#e5989c",
-    "text_color": "#FFECFC",
-    "border_color": "#7F2CCB",
-    "muted_text_color": "#5c677d",
-    "track_width": 8,
-    "font_path": "/System/Library/Fonts/Futura.ttc"
-}
-REDS_LIGHT_COLOR_SCHEME = {
-    "canvas_color": "#CDD6D0",
-    "track_color": "#E60000",
-    "text_color": "#740000",
-    "border_color": "#ffa2a2",
-    "muted_text_color": "#ffa2a2",
-    "track_width": 6,
-    "font_path": "/System/Library/Fonts/Arial Bold.ttf"
-}
-ORANGES_DARK_COLOR_SCHEME = {
-    "canvas_color": "#714220",
-    "track_color": "#ff3503",
-    "text_color": "#ffae9a",
-    "border_color": "#AE8E1C",
-    "muted_text_color": "#AE8E1C",
-    "track_width": 10,
-    "font_path": "/System/Library/Fonts/Avenir Next.ttc"
-}
-YELLOWS_LIGHT_COLOR_SCHEME = {
-    "canvas_color": "#f0e3d2",
-    "track_color": "#fffc00",
-    "text_color": "#56351E",
-    "border_color": "#F4BB00",
-    "muted_text_color": "#F4BB00",
-    "track_width": 12,
-    "font_path": "/System/Library/Fonts/Trebuchet MS Bold.ttf"
-}
-GREENS_DARK_COLOR_SCHEME = {
-    "canvas_color": "#0B2E00",
-    "track_color": "#62FF00",
-    "text_color": "#D7FFCC",
-    "border_color": "#2D8000",
-    "muted_text_color": "#2D8000",
-    "track_width": 8,
-    "font_path": "/System/Library/Fonts/Arial Rounded Bold.ttf"
-}
-BLUES_LIGHT_COLOR_SCHEME = {
-    "canvas_color": "#E6FEFF",
-    "track_color": "#7DF9FF",
-    "text_color": "#004447",
-    "border_color": "#7DB8FF",
-    "muted_text_color": "#7DB8FF",
-    "track_width": 10,
-    "font_path": "/System/Library/Fonts/HelveticaNeue.ttc"
-}
-INDIGOS_DARK_COLOR_SCHEME = {
-    "canvas_color": "#2c0066",
-    "track_color": "#6F00FF",
-    "text_color": "#f0e5ff",
-    "border_color": "#9a4cff",
-    "muted_text_color": "#9a4cff",
-    "track_width": 6,
-    "font_path": "/System/Library/Fonts/Supplemental/Microsoft Sans Serif.ttf"
-}
-VIOLETS_LIGHT_COLOR_SCHEME = {
-    "canvas_color": "#E6D9FF",
-    "track_color": "#8F00FF",
-    "text_color": "#340063",
-    "border_color": "#B78AFF",
-    "muted_text_color": "#B78AFF",
-    "track_width": 12,
-    "font_path": "/System/Library/Fonts/Futura.ttc"
-}
-REDS_DARK_COLOR_SCHEME = {
-    "canvas_color": "#400000",
-    "track_color": "#E60000",
-    "text_color": "#FFD8D1",
-    "border_color": "#730000",
-    "muted_text_color": "#730000",
-    "track_width": 6,
-    "font_path": "/System/Library/Fonts/Arial Bold.ttf"
-}
-ORANGES_LIGHT_COLOR_SCHEME = {
-    "canvas_color": "#FFDDD4",
-    "track_color": "#ff3503",
-    "text_color": "#480800",
-    "border_color": "#FF957D",
-    "muted_text_color": "#FF957D",
-    "track_width": 10,
-    "font_path": "/System/Library/Fonts/Avenir Next.ttc"
-}
-YELLOWS_DARK_COLOR_SCHEME = {
-    "canvas_color": "#2E2D00",
-    "track_color": "#fffc00",
-    "text_color": "#FEFFBE",
-    "border_color": "#807E00",
-    "muted_text_color": "#807E00",
-    "track_width": 8,
-    "font_path": "/System/Library/Fonts/Trebuchet MS Bold.ttf"
-}
-GREENS_LIGHT_COLOR_SCHEME = {
-    "canvas_color": "#E5FFDD",
-    "track_color": "#62FF00",
-    "text_color": "#0B2E00",
-    "border_color": "#7EB36F",
-    "muted_text_color": "#7EB36F",
-    "track_width": 8,
-    "font_path": "/System/Library/Fonts/Arial Rounded Bold.ttf"
-}
-BLUES_DARK_COLOR_SCHEME = {
-    "canvas_color": "#112C2E",
-    "track_color": "#7DF9FF",
-    "text_color": "#E9FEFF",
-    "border_color": "#3B7D80",
-    "muted_text_color": "#3B7D80",
-    "track_width": 10,
-    "font_path": "/System/Library/Fonts/HelveticaNeue.ttc"
-}
-INDIGOS_LIGHT_COLOR_SCHEME = {
-    "canvas_color": "#DCD9FF",
-    "track_color": "#6F00FF",
-    "text_color": "#0E002E",
-    "border_color": "#7670A9",
-    "muted_text_color": "#7670A9",
-    "track_width": 6,
-    "font_path": "/System/Library/Fonts/Supplemental/Microsoft Sans Serif.ttf"
-}
-VIOLETS_DARK_COLOR_SCHEME = {
-    "canvas_color": "#15002E",
-    "track_color": "#8F00FF",
-    "text_color": "#DAC6FF",
-    "border_color": "#8370A9",
-    "muted_text_color": "#8370A9",
-    "track_width": 12,
-    "font_path": "/System/Library/Fonts/Futura.ttc"
-}
-THEMES = [
-    LIGHT_COLOR_SCHEME,
-    DARK_COLOR_SCHEME,
-    CYBERPUNK_COLOR_SCHEME,
-    TROPICAL_BLISS_COLOR_SCHEME,
-    PASTEL_COLOR_SCHEME,
-    DRACULA_COLOR_SCHEME,
-    DESERT_OASIS_COLOR_SCHEME,
-    DEEP_OCEAN_COLOR_SCHEME,
-    MINT_COLOR_SCHEME,
-    GOLDENROD_COLOR_SCHEME,
-    SALMON_COLOR_SCHEME,
-    ELECTRIC_COLOR_SCHEME,
-    MIAMI_COLOR_SCHEME,
-    GOTHIC_LAVENDER_COLOR_SCHEME,
-    LIFE_AQUATIC_COLOR_SCHEME,
-    FRANKENBERRY_COLOR_SCHEME,
-    REDS_LIGHT_COLOR_SCHEME,
-    ORANGES_DARK_COLOR_SCHEME,
-    YELLOWS_LIGHT_COLOR_SCHEME,
-    GREENS_DARK_COLOR_SCHEME,
-    BLUES_LIGHT_COLOR_SCHEME,
-    INDIGOS_DARK_COLOR_SCHEME,
-    VIOLETS_LIGHT_COLOR_SCHEME,
-    REDS_DARK_COLOR_SCHEME,
-    ORANGES_LIGHT_COLOR_SCHEME,
-    YELLOWS_DARK_COLOR_SCHEME,
-    GREENS_LIGHT_COLOR_SCHEME,
-    BLUES_DARK_COLOR_SCHEME,
-    INDIGOS_LIGHT_COLOR_SCHEME,
-    VIOLETS_DARK_COLOR_SCHEME
-]
 
 class BracketState(Enum):
     INTRO = 1
@@ -408,6 +106,8 @@ FALLBACK_MOVIE_LIST = [
 ]
 
 MOVIE_LIST_PATH_ENV = os.getenv("MOVIE_LIST_PATH")
+
+EMOJIS = ["🚨", "🧟", "👾", "👺", "☢️", "💀", "🦇", "🏚️", "🧪", "🎥", "🔥", "🎬", "🎞️", "🍿", "🧛", "🛸", "🤢", "🩸", "😱", "👻", "👽", "🎃", "👹"]
 
 # Attempt to load from the external JSON file safely
 if MOVIE_LIST_PATH_ENV:
@@ -784,6 +484,14 @@ def advance_state(current_state):
     except ValueError:
         return BracketState.INTRO
 
+def calculate_poll_duration():
+    """Calculates seconds until target expiration time (17:59:50 tomorrow)."""
+    LOCAL_TZ = ZoneInfo("America/New_York")
+    now = datetime.now(LOCAL_TZ)
+    target_today = now.replace(hour=17, minute=59, second=50, microsecond=0)
+    target_time = target_today + timedelta(days=1)
+    return max(1, int((target_time - now).total_seconds()))
+
 def date_to_integer(dt_time):
     return 10000*dt_time.year + 100*dt_time.month + dt_time.day
 
@@ -820,6 +528,51 @@ def draw_bracket_text_node(
         stroke_width=4,
         stroke_fill=color_scheme["canvas_color"],
     )
+
+def execute_fsm_step(current_state, state, expires_in_seconds, emojis):
+    """Dispatches execution for a single BracketState and returns success status."""
+    if current_state == BracketState.INTRO:
+        return True
+
+    # State Dispatch Mapping: State -> (handler_function, args)
+    dispatch_map = {
+        # Quarterfinals
+        BracketState.CHARTQ1: (process_chart_stage, (state, "0")),
+        BracketState.MATCHQ1: (process_match_stage, (state, "0")),
+        BracketState.POLL_Q1:  (process_poll_stage,  (state, "0", expires_in_seconds, emojis)),
+
+        BracketState.CHARTQ2: (process_chart_stage, (state, "1")),
+        BracketState.MATCHQ2: (process_match_stage, (state, "1")),
+        BracketState.POLL_Q2:  (process_poll_stage,  (state, "1", expires_in_seconds, emojis)),
+
+        BracketState.CHARTQ3: (process_chart_stage, (state, "2")),
+        BracketState.MATCHQ3: (process_match_stage, (state, "2")),
+        BracketState.POLL_Q3:  (process_poll_stage,  (state, "2", expires_in_seconds, emojis)),
+
+        BracketState.CHARTQ4: (process_chart_stage, (state, "3")),
+        BracketState.MATCHQ4: (process_match_stage, (state, "3")),
+        BracketState.POLL_Q4:  (process_poll_stage,  (state, "3", expires_in_seconds, emojis)),
+
+        # Semifinals
+        BracketState.CHARTS1: (process_chart_stage, (state, "4")),
+        BracketState.MATCHS1: (process_match_stage, (state, "4")),
+        BracketState.POLL_S1:  (process_poll_stage,  (state, "4", expires_in_seconds, emojis)),
+
+        BracketState.CHARTS2: (process_chart_stage, (state, "5")),
+        BracketState.MATCHS2: (process_match_stage, (state, "5")),
+        BracketState.POLL_S2:  (process_poll_stage,  (state, "5", expires_in_seconds, emojis)),
+
+        # Finals
+        BracketState.CHARTFI: (process_chart_stage, (state, "6")),
+        BracketState.MATCHFI: (process_match_stage, (state, "6")),
+        BracketState.POLL_FI:  (process_poll_stage,  (state, "6", expires_in_seconds, emojis)),
+    }
+
+    if current_state in dispatch_map:
+        handler, args = dispatch_map[current_state]
+        return handler(*args)
+
+    return False
 
 def generate_bracket_graphic(state, color_scheme):
     width, height = 1200, 800
@@ -1419,7 +1172,7 @@ def process_poll_stage(state, match_key, expires_in_seconds, emojis):
     post_text = (
         f"{e1}{e2} MARS MADNESS POLL {e2}{e1}\n{match_label}\n"
         f"{get_random_question()}\n\n"
-        f"#MarsMadness {getMovieHashtag(movie1)} {getMovieHashtag(movie2)}"
+        f"#MarsMadness #poll {getMovieHashtag(movie1)} {getMovieHashtag(movie2)}"
     )
 
     if DEBUG_MODE:
@@ -1454,14 +1207,42 @@ def process_poll_stage(state, match_key, expires_in_seconds, emojis):
             break
     return False
 
+def resolve_and_advance_polls(state):
+    """Scans for un-tallied polls, records winners, advances bracket slots, and saves state."""
+    state_changed = False
+
+    # 1. Check & tally completed polls
+    for m_id, match in state["matches"].items():
+        if match["poll_id"] and not match["winner"]:
+            winner = get_poll_winner(match["poll_id"], match)
+            if winner:
+                match["winner"] = winner
+                state_changed = True
+                print(f"✅ Resolved {match['label']}: Winner is {winner}")
+            else:
+                print(
+                    f"⏳ Checked {match['label']} (Poll {match['poll_id']}), but poll is not finalized yet."
+                )
+
+    # 2. Advance winners to next round slots
+    matches = state["matches"]
+    if matches["0"]["winner"]: matches["4"]["home"] = matches["0"]["winner"]
+    if matches["1"]["winner"]: matches["4"]["away"] = matches["1"]["winner"]
+    if matches["2"]["winner"]: matches["5"]["home"] = matches["2"]["winner"]
+    if matches["3"]["winner"]: matches["5"]["away"] = matches["3"]["winner"]
+    if matches["4"]["winner"]: matches["6"]["home"] = matches["4"]["winner"]
+    if matches["5"]["winner"]: matches["6"]["away"] = matches["5"]["winner"]
+
+    # 3. Persist state if changed
+    if state_changed:
+        save_state(state)
+
 def save_state(state):
     with open(STATE_FILE, "w") as f:
         json.dump(state, f, indent=4)
 
 
 def main():
-    emojis = ["🚨", "🧟", "👾", "👺", "☢️", "💀", "🦇", "🏚️", "🧪", "🎥", "🔥", "🎬", "🎞️", "🍿", "🧛", "🛸", "🤢", "🩸", "😱", "👻", "👽", "🎃", "👹"]
-
     # 1. Load context state
     try:
         state = load_state()
@@ -1473,36 +1254,14 @@ def main():
         logging.error(f"FSM Context Resolution Lifecycle Error: {e}", exc_info=True)
         return
 
-    # 2. Automatically check and populate tournament results from previous days
-    for m_id, match in state["matches"].items():
-        if match["poll_id"] and not match["winner"]:
-            winner = get_poll_winner(match["poll_id"], match)
-            if winner:
-                match["winner"] = winner
-                print(f"✅ Resolved {match['label']}: Winner is {winner}")
-            else:
-                print(
-                    f"⏳ Checked {match['label']} (Poll {match['poll_id']}), but poll is not finalized yet."
-                )
+    # 2. Check and populate results from previous polls
+    resolve_and_advance_polls(state)
 
-    if state["matches"]["0"]["winner"]: state["matches"]["4"]["home"] = state["matches"]["0"]["winner"]
-    if state["matches"]["1"]["winner"]: state["matches"]["4"]["away"] = state["matches"]["1"]["winner"]
-    if state["matches"]["2"]["winner"]: state["matches"]["5"]["home"] = state["matches"]["2"]["winner"]
-    if state["matches"]["3"]["winner"]: state["matches"]["5"]["away"] = state["matches"]["3"]["winner"]
-    if state["matches"]["4"]["winner"]: state["matches"]["6"]["home"] = state["matches"]["4"]["winner"]
-    if state["matches"]["5"]["winner"]: state["matches"]["6"]["away"] = state["matches"]["5"]["winner"]
+    # 3. Dynamic target time math
+    expires_in_seconds = calculate_poll_duration()
 
-    # 3. Dynamic target time math (Closes at 17:59:50 tomorrow minus now)
-    LOCAL_TZ = ZoneInfo("America/New_York")
-    now = datetime.now(LOCAL_TZ)
-    target_today = now.replace(hour=17, minute=59, second=50, microsecond=0)
-    target_time = target_today + timedelta(days=1)
-    expires_in_seconds = max(1, int((target_time - now).total_seconds()))
-
-    # 4. Map the days of the week to their allowed execution states
-    weekday = datetime.now().weekday()  # Monday = 0, Tuesday = 1, etc.
-    
-    # Define which states are allowed to run on which days
+    # 4. Map day schedules
+    weekday = datetime.now().weekday()
     day_schedules = {
         0: [BracketState.WRAP_UP, BracketState.INTRO, BracketState.CHARTQ1, BracketState.MATCHQ1, BracketState.POLL_Q1], 
         1: [BracketState.CHARTQ2, BracketState.MATCHQ2, BracketState.POLL_Q2],                                          
@@ -1512,52 +1271,16 @@ def main():
         5: [BracketState.CHARTS2, BracketState.MATCHS2, BracketState.POLL_S2],                                          
         6: [BracketState.CHARTFI, BracketState.MATCHFI, BracketState.POLL_FI]                                           
     }
-    
     allowed_states = day_schedules.get(weekday, [])
 
     print(f"--- Running FSM Loop for Weekday {weekday} ---")
-    
-    # 5. Continuous Loop: Run through states sequentially if they belong to today's schedule
+
+    # 5. Continuous Execution Loop
     while current_state in allowed_states:
         print(f"Processing State: {current_state.name} ({current_state.value})")
-        success = False
 
-        if current_state == BracketState.INTRO:
-            success = True
-
-        # --- QUARTERFINALS MATCH STAGES ---
-        elif current_state == BracketState.CHARTQ1: success = process_chart_stage(state, "0")
-        elif current_state == BracketState.MATCHQ1: success = process_match_stage(state, "0")
-        elif current_state == BracketState.POLL_Q1:  success = process_poll_stage(state, "0", expires_in_seconds, emojis)
-        
-        elif current_state == BracketState.CHARTQ2: success = process_chart_stage(state, "1")
-        elif current_state == BracketState.MATCHQ2: success = process_match_stage(state, "1")
-        elif current_state == BracketState.POLL_Q2:  success = process_poll_stage(state, "1", expires_in_seconds, emojis)
-        
-        elif current_state == BracketState.CHARTQ3: success = process_chart_stage(state, "2")
-        elif current_state == BracketState.MATCHQ3: success = process_match_stage(state, "2")
-        elif current_state == BracketState.POLL_Q3:  success = process_poll_stage(state, "2", expires_in_seconds, emojis)
-        
-        elif current_state == BracketState.CHARTQ4: success = process_chart_stage(state, "3")
-        elif current_state == BracketState.MATCHQ4: success = process_match_stage(state, "3")
-        elif current_state == BracketState.POLL_Q4:  success = process_poll_stage(state, "3", expires_in_seconds, emojis)
-
-        # --- SEMIFINALS STAGES ---
-        elif current_state == BracketState.CHARTS1: success = process_chart_stage(state, "4")
-        elif current_state == BracketState.MATCHS1: success = process_match_stage(state, "4")
-        elif current_state == BracketState.POLL_S1:  success = process_poll_stage(state, "4", expires_in_seconds, emojis)
-        
-        elif current_state == BracketState.CHARTS2: success = process_chart_stage(state, "5")
-        elif current_state == BracketState.MATCHS2: success = process_match_stage(state, "5")
-        elif current_state == BracketState.POLL_S2:  success = process_poll_stage(state, "5", expires_in_seconds, emojis)
-
-        # --- CHAMPIONSHIP FINALS STAGES ---
-        elif current_state == BracketState.CHARTFI: success = process_chart_stage(state, "6")
-        elif current_state == BracketState.MATCHFI: success = process_match_stage(state, "6")
-        elif current_state == BracketState.POLL_FI:  success = process_poll_stage(state, "6", expires_in_seconds, emojis)
-        
-        # --- WRAP UP / RESET ---
-        elif current_state == BracketState.WRAP_UP:
+        # Special case: WRAP_UP handles state reset directly
+        if current_state == BracketState.WRAP_UP:
             post_monday_wrapup(state)
             print("Resetting bracket records completely for the new week...")
             
@@ -1570,7 +1293,9 @@ def main():
             save_state(state)
             continue
 
-        # Advance state machine immediately if current task returns True
+        # Execute standard state logic via dispatch table
+        success = execute_fsm_step(current_state, state, expires_in_seconds, EMOJIS)
+
         if success:
             next_state = advance_state(current_state)
             print(f"State {current_state.name} completed. Advancing to: {next_state.name}")
@@ -1593,3 +1318,10 @@ if __name__ == "__main__":
     main()
     # generate_bracket_graphic(load_state(), THEMES[-1])
     # generate_bracket_graphic(load_state(), get_daily_theme())
+    # state = load_state()
+    # if state:
+    #     print("Checking DevilGirlBot for un-tallied polls...")
+    #     resolve_and_advance_polls(state)
+    #     print("Done!")
+    # else:
+    #     print("⚠️ Could not load state file.")
