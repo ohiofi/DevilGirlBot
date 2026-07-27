@@ -73,7 +73,7 @@ def fetch_census_data(start_dt, duration, starting_max_id=None):
                 total_hashtags_found += 1
 
                 # Engagement Metrics
-                total_favorites += toot.get('favorites_count', 0)
+                total_favorites += toot.get('favourites_count', 0)
                 total_boosts += toot.get('reblogs_count', 0)
                 total_replies += toot.get('replies_count', 0)
 
