@@ -5,6 +5,7 @@ import time
 import requests
 from dotenv import load_dotenv
 from mastodon import Mastodon
+from datetime import datetime
 
 # =====================================================================
 # CONFIGURATION
@@ -80,7 +81,7 @@ def check_guard_rail():
         sys.exit(0)
         
     if lines[-1] == "!STOP":
-        print("Guard keyword '!STOP' detected at end of file. All current warnings processed. Skipping.")
+        print(f"{datetime.today().strftime('%Y-%m-%d')} !STOP at end of file ✅")
         sys.exit(0)
         
     # Split the file by previous !STOP markers to find only the fresh movies at the bottom
@@ -298,7 +299,7 @@ def publish_warnings_to_mastodon(movie_title, warnings, item_id, target_year=Non
         print("Clean bill of health! Skipped empty details reply.")
 
 def main():
-    print("Initializing Trigger Warning Engine...")
+    # print("Initializing Trigger Warning Engine...")
     movies_to_check = check_guard_rail()
     
     print(f"Identified {len(movies_to_check)} movie(s) waiting in queue.")
