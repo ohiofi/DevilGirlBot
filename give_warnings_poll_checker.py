@@ -19,8 +19,8 @@ LIST_PATH = os.getenv("GIVE_WARNINGS_LIST_PATH", os.path.join(WORKING_DIR, "give
 # Criteria to trigger a match
 TARGET_HASHTAG = "MonsterdonAlert"
 # ⚠️ UPDATE THIS: Put the target's exact full federated handle below
-TARGET_FULL_HANDLE = "username@remoteinstance.com" 
-LOOKBACK_MINUTES = 30
+TARGET_FULL_HANDLE = "Taweret@timeloop.cafe" # must NOT begin with @ sign
+LOOKBACK_MINUTES = 60
 
 # API Setup (DevilGirlBot's home instance)
 MASTODON_TOKEN = os.getenv("access_token")
@@ -30,8 +30,7 @@ MASTODON_BASE_URL = os.getenv("MASTODON_BASE_URL", "https://mastodon.social")
 def fetch_and_check_polls(mastodon_client):
     print(f"Resolving federated handle across instances: @{TARGET_FULL_HANDLE}...")
     try:
-        # search_v2 forces the home instance to resolve the remote user via Webfinger
-        search_results = mastodon_client.search_v2(q=TARGET_FULL_HANDLE, result_type="accounts", limit=1)
+        search_results = mastodon_client.search_v2(q=TARGET_FULL_HANDLE, result_type="accounts")
         accounts = search_results.get("accounts", [])
         
         if not accounts:
@@ -116,7 +115,7 @@ def append_to_warnings_list(movie_titles):
 
     with open(LIST_PATH, "a") as f:
         for title in lines_to_add:
-            f.write(f"{title}\n")
+            f.write(f"\n{title}\n")
             print(f"  📝 Appended to queue: '{title}'")
 
 
