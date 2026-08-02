@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 # NOTE: Run this manually in terminal venv. Always crashes/times-out if I try to run via VSCode play button.
 
 DEBUG_MODE = True # Set to False when ready to post publicly
-THIS_WEEKS_EMOJI = "🌞"
+THIS_WEEKS_EMOJI = "🦗"
 THIS_WEEKS_INDEX_LOCATION = 1 # use index 1 to skip double feature and treat the main film as latest
 CSV_FILE = "details.csv"
 
@@ -810,7 +810,8 @@ def post_thread(posts):
     
     for i, post_data in enumerate(posts):
         # First post (index 0) is public. Everything else (1-9) is unlisted.
-        current_visibility = "public" if i == 0 else "unlisted"
+        # current_visibility = "public" if i == 0 else "unlisted"
+        current_visibility = "public"
         if DEBUG_MODE:
             current_visibility = "private"
         
@@ -888,7 +889,7 @@ def main():
     # - Is it new kid for the win?
     # - Where does our fledgling fit?
     # - What's the status of our startup?
-    # Will our rookie be highly regarded?
+    # - Will our rookie be highly regarded?
     # Where will our new punk get placed?
     # What's the tally for our trainee?
     # Will our beginner bloom?
@@ -902,9 +903,9 @@ def main():
     intro_text = (
         f"😈📊 DEVIL IN THE DETAILS 📊😈\n\n"
         f"An occasional thread with Monsterdon data rankings.\n"
-        f"What's the status of our solar startup???\n"
+        f"Will our radioactive rookie be highly regarded?\n"
         f"{THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']})\n"
-        f"{THIS_WEEKS_EMOJI} TOOT VOLUME: Total Toots\n" 
+        f"{THIS_WEEKS_EMOJI} TOOT STRENGTH: Engagements Per Toot. Doesn't count Replies due to users threading posts. Calculated (Favs + Boosts) / Toots.\n"
         f"Data Sources: census of toots from mastodon.social, monsterdon-replay.gerlach.dev, imdb.com\n"
         f"\n#Monsterdon"
     )
@@ -938,12 +939,12 @@ def main():
     # thread_posts.extend(ppu_posts)
 
     # Toot Volume Reports
-    vol_posts = create_timeline_reports(df, latest_film, metric_col='toots', unit='toots', report_title='Monsterdon Toot Volume', subtitle="Total toots", isDollars=False, useMillions=False, decimals=0)
-    thread_posts.extend(vol_posts)
+    # vol_posts = create_timeline_reports(df, latest_film, metric_col='toots', unit='toots', report_title='Monsterdon Toot Volume', subtitle="Total toots", isDollars=False, useMillions=False, decimals=0)
+    # thread_posts.extend(vol_posts)
 
     # # # Top Strength Reports
-    # tpm_posts = create_timeline_reports(df, latest_film, metric_col='engagement_score', unit='ept', report_title='Monsterdon Toot Strength', subtitle="Engagements per toot (ept)", isDollars=False, useMillions=False, decimals=2)
-    # thread_posts.extend(tpm_posts)
+    tpm_posts = create_timeline_reports(df, latest_film, metric_col='engagement_score', unit='ept', report_title='Monsterdon Toot Strength', subtitle="Engagements per toot (ept)", isDollars=False, useMillions=False, decimals=2)
+    thread_posts.extend(tpm_posts)
 
     # # # Attendance Reports
     # attendance_posts = create_timeline_reports(df, latest_film, metric_col='attendees', unit='ppl', report_title='Monsterdon Attendees', subtitle="Total People (ppl)", isDollars=False, useMillions=False, decimals=0)
