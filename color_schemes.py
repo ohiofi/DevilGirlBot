@@ -153,11 +153,11 @@ REDS_LIGHT_COLOR_SCHEME = {
     "font_path": "/System/Library/Fonts/Arial Bold.ttf"
 }
 ORANGES_DARK_COLOR_SCHEME = {
-    "canvas_color": "#714220",
+    "canvas_color": "#480800",
     "track_color": "#ff3503",
-    "text_color": "#ffae9a",
-    "border_color": "#AE8E1C",
-    "muted_text_color": "#AE8E1C",
+    "text_color": "#FFDDD4",
+    "border_color": "#FF957D",
+    "muted_text_color": "#FF957D",
     "track_width": 10,
     "font_path": "/System/Library/Fonts/Avenir Next.ttc"
 }
