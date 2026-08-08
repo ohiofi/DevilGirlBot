@@ -50,7 +50,9 @@ SCRIPT_DIR = Path(__file__).parent.resolve()
 ENV_FILE = SCRIPT_DIR / ".env"
 STATE_FILE = SCRIPT_DIR / "bracket_state.json"
 GRAPHIC_FILE = SCRIPT_DIR / "bracket.png"
-LOG_FILE = SCRIPT_DIR / "mars_madness_errors.log"
+LOG_FILE = SCRIPT_DIR / "logs" / "mars_madness_errors.log"
+# Force macOS to create the "logs" folder if it isn't there already
+LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
 MOVIE_LIST_FILE = SCRIPT_DIR / "mars_madness_movie_list.json"
 
 # Explicitly load the .env file from its exact absolute path
@@ -1172,7 +1174,7 @@ def process_poll_stage(state, match_key, expires_in_seconds, emojis):
     post_text = (
         f"{e1}{e2} MARS MADNESS POLL {e2}{e1}\n{match_label}\n"
         f"{get_random_question()}\n\n"
-        f"#MarsMadness #poll {getMovieHashtag(movie1)} {getMovieHashtag(movie2)}"
+        f"#MarsMadness #poll #Monsterdon {getMovieHashtag(movie1)} {getMovieHashtag(movie2)}"
     )
 
     if DEBUG_MODE:
