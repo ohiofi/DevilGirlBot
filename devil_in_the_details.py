@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 # NOTE: Run this manually in terminal venv. Always crashes/times-out if I try to run via VSCode play button.
 
 DEBUG_MODE = True # Set to False when ready to post publicly
-THIS_WEEKS_EMOJI = "🦗"
+THIS_WEEKS_EMOJI = "👄"
 THIS_WEEKS_INDEX_LOCATION = 1 # use index 1 to skip double feature and treat the main film as latest
 CSV_FILE = "details.csv"
 
@@ -261,7 +261,7 @@ def create_timeline_reports(df, latest_film, metric_col, unit, report_title, sub
     )
     
     # Generate old-style leaderboard text using the rank engine
-    text_04w_line = f"😈📊 {report_title.upper()}: Last 4 Weeks\n{sub_text}" + \
+    text_04w_line = f"😈📊 {report_title.upper()}: Last 4 Weeks\n{sub_text}\n" + \
                     get_rank_text(df_04w_ranked, latest_film['title'], metric_col, unit, 1, 5, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
     posts.append({'text': text_04w_line, 'image': os.path.join("charts", fname_04w_line), 'desc': f'Chronological bar chart of {report_title} for Last 4 Weeks'})
 
@@ -286,7 +286,7 @@ def create_timeline_reports(df, latest_film, metric_col, unit, report_title, sub
     )
     
     # Generate old-style leaderboard text using the rank engine
-    text_16w_line = f"😈📊 {report_title.upper()}: Last 16 Weeks\n{sub_text}" + \
+    text_16w_line = f"😈📊 {report_title.upper()}: Last 16 Weeks\n{sub_text}\n" + \
                     get_rank_text(df_16w_ranked, latest_film['title'], metric_col, unit, 1, 5, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
     posts.append({'text': text_16w_line, 'image': os.path.join("charts", fname_16w_line), 'desc': f'Chronological bar chart of {report_title} for Last 16 Weeks'})
 
@@ -310,14 +310,21 @@ def create_timeline_reports(df, latest_film, metric_col, unit, report_title, sub
     )
     
     # Generate old-style leaderboard text for the top 5 spots
-    text_all_line = f"😈📊 {report_title.upper()}: All Time Top 5\n{sub_text}" + \
+    text_all_line = f"😈📊 {report_title.upper()}: All Time Top 5\n{sub_text}\n" + \
                     get_rank_text(df_all_ranked, latest_film['title'], metric_col, unit, 1, 5, show_current=False, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
     posts.append({'text': text_all_line, 'image': os.path.join("charts", fname_all_line), 'desc': f'Chronological bar chart of {report_title} across All-Time rows'})
 
     # --- 4. All Time History Timeline (Ranks 6-10 Text-Only fallback) ---
-    text_all_2 = f"😈📊 {report_title.upper()}: All Time 6-10\n{sub_text}" + \
-                 get_rank_text(df_all_ranked, latest_film['title'], metric_col, unit, 6, 10, show_current=True, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
+        # --- All Time (Ranks 6-10) ---
+    text_all_2 = (
+        f"😈📊 {report_title.upper()}: All Time 6-10\n"
+        f"{subtitle}\n\n"
+        f"{get_rank_text(df_all_ranked, latest_film['title'], metric_col, unit, 6, 10, show_current=True, isDollars=isDollars, useMillions=useMillions, decimals=decimals)}\n\n"
+        f"Data Sources: census of toots from mastodon.social, monsterdon-replay.gerlach.dev, imdb.com"
+    )
     posts.append({'text': text_all_2, 'image': None, 'desc': None})
+        
+    return posts
 
     return posts
 
@@ -444,6 +451,105 @@ def get_rank_text(df_sorted, latest_title, metric_col, unit, rank_start=1, rank_
         lines.append(f"{THIS_WEEKS_EMOJI} #{current_rank}: {val_str} {unit}, {latest_title} ({current_year})")
 
     return "\n".join(lines)
+
+
+
+
+def get_film_achievements(df, latest_film):
+    """
+    Analyzes film history to generate achievement callouts for the current film:
+    1. Decade count
+    2. Director appearance count (> 1)
+    3. Actor appearance count (> 1)
+    4. Metascore milestones (if length < 3 and metascore != -1)
+    5. IMDb score milestones (if length < 3 and imdb != -1)
+    """
+    achievements = []
+    
+    # Ordinal suffix helper (1st, 2nd, 3rd, 17th...)
+    def ordinal(n):
+        return f"{n}{'th' if 11 <= n % 100 <= 13 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')}"
+
+    # 1. Decade Count
+    if 'release_year' in latest_film and pd.notna(latest_film['release_year']):
+        try:
+            year = int(latest_film['release_year'])
+            decade = (year // 10) * 10
+            decade_str = f"{decade}s"
+            
+            # Count films in the same decade up to and including this screening
+            df_up_to_now = df[df['watched_date'] <= latest_film['watched_date']]
+            decade_count = df_up_to_now['release_year'].apply(
+                lambda y: (int(y) // 10 * 10) if pd.notna(y) else None
+            ).eq(decade).sum()
+
+            achievements.append(f"Our {ordinal(decade_count)} film from the {decade_str}.")
+        except Exception:
+            pass
+
+    # 2. Director Count (> 1)
+    director_col = 'director' if 'director' in latest_film else 'directors'
+    if director_col in latest_film and pd.notna(latest_film[director_col]):
+        directors = [d.strip() for d in str(latest_film[director_col]).split(',')]
+        for director in directors:
+            if not director:
+                continue
+            dir_count = df[df[director_col].astype(str).str.contains(director, regex=False, na=False)].shape[0]
+            if dir_count > 1:
+                achievements.append(f"Our {ordinal(dir_count)} film directed by {director}.")
+
+    # 3. Actor Count (> 1)
+    actor_col = 'actors' if 'actors' in latest_film else 'cast'
+    if actor_col in latest_film and pd.notna(latest_film[actor_col]):
+        actors = [a.strip() for a in str(latest_film[actor_col]).split(',')]
+        for actor in actors:
+            if not actor:
+                continue
+            actor_count = df[df[actor_col].astype(str).str.contains(actor, regex=False, na=False)].shape[0]
+            if actor_count > 1:
+                achievements.append(f"Our {ordinal(actor_count)} film featuring actor {actor}.")
+
+    # 4. Metascore Achievement (If achievements < 3 and Metascore is valid)
+    if len(achievements) < 3 and 'metascore' in latest_film and pd.notna(latest_film['metascore']):
+        try:
+            score = float(latest_film['metascore'])
+            
+            if score != -1:
+                valid_meta_df = df[(df['metascore'].notna()) & (df['metascore'] != -1)].copy()
+                valid_meta_df['metascore'] = valid_meta_df['metascore'].astype(float)
+
+                score_int = int(score) if score.is_integer() else score
+
+                if score > 50:
+                    count = valid_meta_df[valid_meta_df['metascore'] > 50].shape[0]
+                    achievements.append(f"Metascore is {score_int}. Our {ordinal(count)} film with Metascore over 50.")
+                else:
+                    count = valid_meta_df[valid_meta_df['metascore'] <= 50].shape[0]
+                    achievements.append(f"Metascore is {score_int}. Our {ordinal(count)} film at or below 50.")
+        except Exception:
+            pass
+
+    # 5. IMDb Score Achievement (If achievements < 3 and IMDb score is valid)
+    imdb_col = 'imdb' if 'imdb' in latest_film else 'imdb_score'
+    if len(achievements) < 3 and imdb_col in latest_film and pd.notna(latest_film[imdb_col]):
+        try:
+            score = float(latest_film[imdb_col])
+            
+            if score != -1:
+                valid_imdb_df = df[(df[imdb_col].notna()) & (df[imdb_col] != -1)].copy()
+                valid_imdb_df[imdb_col] = valid_imdb_df[imdb_col].astype(float)
+
+                if score > 5.0:
+                    count = valid_imdb_df[valid_imdb_df[imdb_col] > 5.0].shape[0]
+                    achievements.append(f"IMDb score is {score:.1f}. Our {ordinal(count)} film with IMDb score over 5.0.")
+                else:
+                    count = valid_imdb_df[valid_imdb_df[imdb_col] <= 5.0].shape[0]
+                    achievements.append(f"IMDb score is {score:.1f}. Our {ordinal(count)} film at or below 5.0.")
+        except Exception:
+            pass
+
+    return achievements
+
 
 
 
@@ -795,7 +901,12 @@ def create_timeframe_reports(df, latest_film, metric_col, unit, report_title, su
     posts.append({'text': text_all_1, 'image': os.path.join("charts", fname_all), 'desc': f'Histogram of {report_title} for All Time'})
 
     # --- All Time (Ranks 6-10) ---
-    text_all_2 = f"😈📊 {report_title.upper()}: All Time 6-10\n{subtitle}\n\n" + get_rank_text(df_all, latest_film['title'], metric_col, unit, 6, 10, show_current=True, isDollars=isDollars, useMillions=useMillions, decimals=decimals)
+    text_all_2 = (
+        f"😈📊 {report_title.upper()}: All Time 6-10\n"
+        f"{subtitle}\n"
+        f"{get_rank_text(df_all, latest_film['title'], metric_col, unit, 6, 10, show_current=True, isDollars=isDollars, useMillions=useMillions, decimals=decimals)}\n\n"
+        f"Data Sources: census of toots from mastodon.social, monsterdon-replay.gerlach.dev, imdb.com"
+    )
     posts.append({'text': text_all_2, 'image': None, 'desc': None})
         
     return posts
@@ -890,7 +1001,8 @@ def main():
     # - Where does our fledgling fit?
     # - What's the status of our startup?
     # - Will our rookie be highly regarded?
-    # Where will our new punk get placed?
+    # - Where will the Slayer be seated?
+    # - Where will our new punk get placed?
     # What's the tally for our trainee?
     # Will our beginner bloom?
     # Can our candidate climb?
@@ -900,26 +1012,37 @@ def main():
     # Does our prodigy prevail?
     # Will our underdog overperform?
     # Post 1: Intro
+    attendee_count = int(latest_film.get('attendees', 0)) if pd.notna(latest_film.get('attendees')) and latest_film.get('attendees') is not None else 0
+    toot_rate = round(float(latest_film.get('tpm', 0.0)), 1) if pd.notna(latest_film.get('tpm')) and latest_film.get('tpm') is not None else 0.0
+    participation_score = float(latest_film.get('participation_score', 0.0)) if pd.notna(latest_film.get('participation_score')) and latest_film.get('participation_score') is not None else 0.0
+    raw_toots = int(latest_film.get('toots', 0)) if pd.notna(latest_film.get('toots')) and latest_film.get('toots') is not None else 0
+    engagement_score = float(latest_film.get('engagement_score', 0.0)) if pd.notna(latest_film.get('engagement_score')) and latest_film.get('engagement_score') is not None else 0.0
+    achievements = get_film_achievements(df, latest_film)
+    # Prefix each achievement line with the emoji, separated by double newlines for breathing room
+    if achievements:
+        stats_text = "\n".join([f"{THIS_WEEKS_EMOJI} {stat}" for stat in achievements])
+    else:
+        stats_text = ""
     intro_text = (
         f"😈📊 DEVIL IN THE DETAILS 📊😈\n\n"
         f"An occasional thread with Monsterdon data rankings.\n"
-        f"Will our radioactive rookie be highly regarded?\n"
+        f"Where will our Sam Neill picture get placed?\n"
         f"{THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']})\n"
-        f"{THIS_WEEKS_EMOJI} TOOT STRENGTH: Engagements Per Toot. Doesn't count Replies due to users threading posts. Calculated (Favs + Boosts) / Toots.\n"
-        f"Data Sources: census of toots from mastodon.social, monsterdon-replay.gerlach.dev, imdb.com\n"
+        f"{stats_text}\n"
+        f"{THIS_WEEKS_EMOJI} TOOT RATE: {toot_rate} tpm or Toots Per Minute. Calculated Toots / Minutes\n"  
         f"\n#Monsterdon"
     )
     thread_posts.append({'text': intro_text, 'image': None, 'desc': None})
     # 1. TOOT RATE
-    # f"{THIS_WEEKS_EMOJI} TOOT RATE: Toots Per Minute or TPM. Calculated as Toots / Minutes\n"  
+    # f"{THIS_WEEKS_EMOJI} TOOT RATE: {toot_rate} tpm or Toots Per Minute. Calculated Toots / Minutes\n"  
     # 2. Participation Trophy
-    # f"{THIS_WEEKS_EMOJI} PARTICIPATION TROPHY: Participations Per User or PPU. Calculated as (Toots + Favs + Boosts) / Users.\n" 
+    # f"{THIS_WEEKS_EMOJI} PARTICIPATION TROPHY: {participation_score} ppu or Participations Per User. Calculated (Toots + Favs + Boosts) / Users.\n" 
     # 3. Toot Volume
-    # f"{THIS_WEEKS_EMOJI} TOOT VOLUME: Total Toots\n"  
+    # f"{THIS_WEEKS_EMOJI} TOOT VOLUME: {raw_toots} Total Toots\n"  
     # 4. Toot Strength
-    # f"{THIS_WEEKS_EMOJI} TOOT STRENGTH: Engagements Per Toot. Doesn't count Replies due to users threading posts. Calculated (Favs + Boosts) / Toots.\n"
+    # f"{THIS_WEEKS_EMOJI} TOOT STRENGTH: {engagement_score} ept or Engagements Per Toot. Doesn't count Replies due to users threading posts. Calculated (Favs + Boosts) / Toots.\n"
     # 5. Attendees
-    # f"{THIS_WEEKS_EMOJI} ATTENDEES: Total People (ppl)"
+    # f"{THIS_WEEKS_EMOJI} ATTENDEES: {attendee_count} Total People (ppl)\n"
     
     # footnotes = (
     #     f"😈📊 Footnotes:\n\n"
@@ -931,8 +1054,8 @@ def main():
     # thread_posts.append({'text': footnotes, 'image': None, 'desc': None})
     
     # # Toot Rate - TPM Reports
-    # tpm_posts = create_timeline_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)", isDollars=False, useMillions=False, decimals=1)
-    # thread_posts.extend(tpm_posts)
+    tpm_posts = create_timeline_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)", isDollars=False, useMillions=False, decimals=1)
+    thread_posts.extend(tpm_posts)
 
     # Participation - PPU Reports
     # ppu_posts = create_timeline_reports(df, latest_film, metric_col='participation_score', unit='ppu', report_title='Monsterdon Participations Per User', subtitle="Participations Per User (ppu)", isDollars=False, useMillions=False, decimals=1)
@@ -943,8 +1066,8 @@ def main():
     # thread_posts.extend(vol_posts)
 
     # # # Top Strength Reports
-    tpm_posts = create_timeline_reports(df, latest_film, metric_col='engagement_score', unit='ept', report_title='Monsterdon Toot Strength', subtitle="Engagements per toot (ept)", isDollars=False, useMillions=False, decimals=2)
-    thread_posts.extend(tpm_posts)
+    # tpm_posts = create_timeline_reports(df, latest_film, metric_col='engagement_score', unit='ept', report_title='Monsterdon Toot Strength', subtitle="Engagements per toot (ept)", isDollars=False, useMillions=False, decimals=2)
+    # thread_posts.extend(tpm_posts)
 
     # # # Attendance Reports
     # attendance_posts = create_timeline_reports(df, latest_film, metric_col='attendees', unit='ppl', report_title='Monsterdon Attendees', subtitle="Total People (ppl)", isDollars=False, useMillions=False, decimals=0)
