@@ -1088,7 +1088,9 @@ def process_chart_stage(state, match_key):
             state["previous_status_id"] = status_response["id"]
             return True
         except (MastodonBadGatewayError, MastodonInternalServerError, MastodonServiceUnavailableError) as server_err:
-            print(f"⚠️ Gateway Error ({server_err.status_code}) on graphic. Retrying in 10s...")
+            # Pull status code safely from .args[1] or fallback gracefully
+            code = server_err.args[1] if len(server_err.args) > 1 else "503/Gateway"
+            print(f"⚠️ Gateway Error ({code}) on graphic. Retrying in 10s...")
             time.sleep(10)
         except Exception as e:
             logging.error(f"Fatal exception during chart attachment step: {e}", exc_info=True)
