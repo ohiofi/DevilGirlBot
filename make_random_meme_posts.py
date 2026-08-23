@@ -6,6 +6,7 @@ from shared_utils import (
     load_sentences, 
     save_sentences, 
     update_history, 
+    select_random_image,
     make_image, 
     build_alt_text
 )
@@ -29,7 +30,7 @@ def run_random_meme_post():
     posts it, and logs the source/result to history.
     """
     
-    # 2. LOAD THE SENTENCE POOL
+    # LOAD THE SENTENCE POOL
     # This reads the possible_sentences.json populated by your scraper
     pool = load_sentences()
     
@@ -37,7 +38,7 @@ def run_random_meme_post():
         print("DEBUG: The sentence pool is empty. Please run the scraper script.")
         return False
 
-    # 3. SELECT AND REMOVE A SENTENCE
+    # SELECT AND REMOVE A SENTENCE
     # We pick one at random to use for the post
     selection = random.choice(pool)
     sentence = selection['sentence']
@@ -50,12 +51,18 @@ def run_random_meme_post():
     print(f"DEBUG: Selected sentence: {sentence[:50]}...")
 
     try:
-        # 4. GENERATE THE MEME IMAGE
-        # Standardizes the image creation and alt text generation
-        png_path = make_image(sentence)
+        image_path = select_random_image()
+
+        # Render the image passing the selected path and sentence
+        png_path = make_image(
+            image_path=image_path,
+            user_text=sentence
+        )
+
+        # Build alt text (uses default DevilGirl subject description)
         alt_text = build_alt_text(sentence)
 
-        # 5. UPLOAD MEDIA & POST TO MASTODON
+        # UPLOAD MEDIA & POST TO MASTODON
         print("DEBUG: Uploading media...")
         with open(png_path, "rb") as f:
             media = mastodon.media_post(
@@ -75,7 +82,7 @@ def run_random_meme_post():
         meme_url = response.get("url") or response.get("uri")
         print(f"SUCCESS: Post live at {meme_url}")
 
-        # 6. LOG TO SHARED HISTORY
+        # LOG TO SHARED HISTORY
         # Stores the sentence, original toot URL, and your new meme URL
         update_history(
             text=sentence,
