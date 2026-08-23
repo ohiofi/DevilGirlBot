@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 # NOTE: Run this manually in terminal venv. Always crashes/times-out if I try to run via VSCode play button.
 
 DEBUG_MODE = True # Set to False when ready to post publicly
-THIS_WEEKS_EMOJI = "👄"
+THIS_WEEKS_EMOJI = "🚀"
 THIS_WEEKS_INDEX_LOCATION = 1 # use index 1 to skip double feature and treat the main film as latest
 CSV_FILE = "details.csv"
 
@@ -1003,6 +1003,7 @@ def main():
     # - Will our rookie be highly regarded?
     # - Where will the Slayer be seated?
     # - Where will our new punk get placed?
+    # - Will our underdog overperform?
     # What's the tally for our trainee?
     # Will our beginner bloom?
     # Can our candidate climb?
@@ -1010,13 +1011,13 @@ def main():
     # How will our entry endure?
     # Will our first-timer find fame?
     # Does our prodigy prevail?
-    # Will our underdog overperform?
+    
     # Post 1: Intro
     attendee_count = int(latest_film.get('attendees', 0)) if pd.notna(latest_film.get('attendees')) and latest_film.get('attendees') is not None else 0
     toot_rate = round(float(latest_film.get('tpm', 0.0)), 1) if pd.notna(latest_film.get('tpm')) and latest_film.get('tpm') is not None else 0.0
-    participation_score = float(latest_film.get('participation_score', 0.0)) if pd.notna(latest_film.get('participation_score')) and latest_film.get('participation_score') is not None else 0.0
+    participation_score = round(float(latest_film.get('participation_score', 0.0)),1) if pd.notna(latest_film.get('participation_score')) and latest_film.get('participation_score') is not None else 0.0
     raw_toots = int(latest_film.get('toots', 0)) if pd.notna(latest_film.get('toots')) and latest_film.get('toots') is not None else 0
-    engagement_score = float(latest_film.get('engagement_score', 0.0)) if pd.notna(latest_film.get('engagement_score')) and latest_film.get('engagement_score') is not None else 0.0
+    engagement_score = round(float(latest_film.get('engagement_score', 0.0)),1) if pd.notna(latest_film.get('engagement_score')) and latest_film.get('engagement_score') is not None else 0.0
     achievements = get_film_achievements(df, latest_film)
     # Prefix each achievement line with the emoji, separated by double newlines for breathing room
     if achievements:
@@ -1026,10 +1027,10 @@ def main():
     intro_text = (
         f"😈📊 DEVIL IN THE DETAILS 📊😈\n\n"
         f"An occasional thread with Monsterdon data rankings.\n"
-        f"Where will our Sam Neill picture get placed?\n"
+        f"Will our underdog Odyssey overperform?\n"
         f"{THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']})\n"
         f"{stats_text}\n"
-        f"{THIS_WEEKS_EMOJI} TOOT RATE: {toot_rate} tpm or Toots Per Minute. Calculated Toots / Minutes\n"  
+        f"{THIS_WEEKS_EMOJI} PARTICIPATION TROPHY: {participation_score} ppu or Participations Per User. Calculated (Toots + Favs + Boosts) / Users.\n" 
         f"\n#Monsterdon"
     )
     thread_posts.append({'text': intro_text, 'image': None, 'desc': None})
@@ -1054,12 +1055,12 @@ def main():
     # thread_posts.append({'text': footnotes, 'image': None, 'desc': None})
     
     # # Toot Rate - TPM Reports
-    tpm_posts = create_timeline_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)", isDollars=False, useMillions=False, decimals=1)
-    thread_posts.extend(tpm_posts)
+    # tpm_posts = create_timeline_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)", isDollars=False, useMillions=False, decimals=1)
+    # thread_posts.extend(tpm_posts)
 
     # Participation - PPU Reports
-    # ppu_posts = create_timeline_reports(df, latest_film, metric_col='participation_score', unit='ppu', report_title='Monsterdon Participations Per User', subtitle="Participations Per User (ppu)", isDollars=False, useMillions=False, decimals=1)
-    # thread_posts.extend(ppu_posts)
+    ppu_posts = create_timeline_reports(df, latest_film, metric_col='participation_score', unit='ppu', report_title='Monsterdon Participations Per User', subtitle="Participations Per User (ppu)", isDollars=False, useMillions=False, decimals=1)
+    thread_posts.extend(ppu_posts)
 
     # Toot Volume Reports
     # vol_posts = create_timeline_reports(df, latest_film, metric_col='toots', unit='toots', report_title='Monsterdon Toot Volume', subtitle="Total toots", isDollars=False, useMillions=False, decimals=0)
