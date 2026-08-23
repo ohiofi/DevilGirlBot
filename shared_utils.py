@@ -13,14 +13,11 @@ HISTORY_FILE = os.getenv("HISTORY_FILE", "/tmp/previous_posts.txt")
 SENTENCE_FILE = os.getenv("SENTENCE_FILE", "/tmp/possible_sentences.txt")
 
 
-def build_alt_text(user_text):
-    clean = html.unescape(user_text).strip()[:255]
-    return (
-        "screenshot from the film Devil Girl From Mars showing a "
-        "serious woman wearing a black leather suit, cape, and cowl. "
-        'Text reads: "' + clean + '"'
-    )
 
+
+def build_alt_text(user_text, subject="screenshot from the film Devil Girl From Mars showing a serious woman wearing a black leather suit, cape, and cowl"):
+    clean = html.unescape(user_text).strip()[:255]
+    return f"{subject}. Text reads: \"{clean}\""
 
 def does_text_contain_banned(html_content, banlist):
     """
@@ -152,20 +149,22 @@ def load_sentences():
         return []
 
 
-def make_image(user_text, output_path=TEMP_PNG_PATH):
+def make_image(image_path, user_text, target_size=None, output_path=TEMP_PNG_PATH):
+    """
+    Loads a specific image path, optionally resizes it, and overlays text.
+    """
     user_text = user_text.upper()
 
-    # Pick random image
-    img_number = random.randint(0, 64)
-    img_filename = f"devilgirl{img_number:02d}.png"
-    img_path = os.path.join(IMAGES_FOLDER, img_filename)
+    im = Image.open(image_path).convert("RGBA")
 
-    im = Image.open(img_path).convert("RGBA")
+    if target_size:
+        im = im.resize(target_size, Image.Resampling.LANCZOS)
+
     draw = ImageDraw.Draw(im)
     font = ImageFont.truetype(FONT_PATH, FONT_SIZE)
 
-    # Dynamic wrapping based on image width
-    max_width = im.width - 40  # 20px padding on each side
+    # Dynamic wrapping based on actual width
+    max_width = im.width - 40
     words = user_text.split()
     lines = []
     line = ""
@@ -186,7 +185,7 @@ def make_image(user_text, output_path=TEMP_PNG_PATH):
     line_height = (bbox[3] - bbox[1]) + line_spacing
     total_text_height = line_height * len(lines)
 
-    # Draw each line, bottom-centered
+    # Draw centered text
     y_text = im.height - total_text_height - 20
     for line in lines:
         bbox = draw.textbbox((0, 0), line, font=font)
@@ -275,6 +274,21 @@ def save_sentences(sentences):
         # ensure_ascii=False keeps the text readable in the file
         json.dump(sentences, f, ensure_ascii=False, indent=2)
 
+def select_random_image(images_folder=IMAGES_FOLDER):
+    """
+    Scans the provided folder and selects a random image file path.
+    """
+    valid_extensions = ('.png', '.jpg', '.jpeg', '.webp')
+    image_files = [
+        f for f in os.listdir(images_folder) 
+        if f.lower().endswith(valid_extensions) and not f.startswith('.')
+    ]
+
+    if not image_files:
+        raise FileNotFoundError(f"No valid image files found in directory: {images_folder}")
+
+    selected_file = random.choice(image_files)
+    return os.path.join(images_folder, selected_file)
 
 def text_only_cleaning_algorithm(html_content):
     soup = BeautifulSoup(html_content, "html.parser")
