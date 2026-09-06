@@ -2,13 +2,13 @@ import os
 import re
 import sys
 import logging
+import requests
 from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
 from mastodon import Mastodon
 
-# =====================================================================
-# CONFIGURATION
-# =====================================================================
+DEBUG_MODE = False # Set to False to go live
+
 WORKING_DIR = "/Users/justinriley/DevilGirlBot"
 LOG_DIR = os.path.join(WORKING_DIR, "logs")
 ENV_PATH = os.path.join(WORKING_DIR, ".env")
@@ -30,17 +30,37 @@ logging.basicConfig(
 
 # File to append names to
 LIST_PATH = os.getenv("GIVE_WARNINGS_LIST_PATH", os.path.join(WORKING_DIR, "give_warnings_list.txt"))
+DDD_API_KEY = os.getenv("DOESTHEDOGDIE_API_KEY")
 
 # Criteria to trigger a match
 TARGET_HASHTAG = "MonsterdonAlert"
 # ⚠️ UPDATE THIS: Put the target's exact full federated handle below
 TARGET_FULL_HANDLE = "Taweret@timeloop.cafe" # must NOT begin with @ sign
-LOOKBACK_MINUTES = 60
+LOOKBACK_MINUTES = 30
 
 # API Setup (DevilGirlBot's home instance)
 MASTODON_TOKEN = os.getenv("access_token")
 MASTODON_BASE_URL = os.getenv("MASTODON_BASE_URL", "https://mastodon.social")
 
+def append_to_warnings_list(movie_titles):
+    """Safely appends movie items onto new lines if they aren't already tracked."""
+    existing_lines = []
+    if os.path.exists(LIST_PATH):
+        with open(LIST_PATH, "r") as f:
+            existing_lines = [line.strip() for line in f.readlines()]
+
+    lines_to_add = [m for m in movie_titles if m not in existing_lines]
+
+    if not lines_to_add:
+        print("  All titles from this poll are already present in the file.")
+        logging.info("  All titles from this poll are already present in the file.")
+        return
+
+    with open(LIST_PATH, "a") as f:
+        for title in lines_to_add:
+            f.write(f"\n{title}\n")
+            print(f"  📝 Appended to queue: '{title}'")
+            logging.info(f"  📝 Appended to queue: '{title}'")
 
 def fetch_and_check_polls(mastodon_client):
     print(f"Resolving federated handle across instances: @{TARGET_FULL_HANDLE}...")
@@ -97,6 +117,7 @@ def fetch_and_check_polls(mastodon_client):
 
         # All conditions met
         matched_any = True
+        status_id = status.get("id")
         print(f"\n🎯 [MATCH] Found a matching federated poll post from {created_at.strftime('%H:%M:%S UTC')}!")
         logging.info(f"[MATCH] Found matching poll post from {created_at.strftime('%H:%M:%S UTC')}!")
         
@@ -117,32 +138,97 @@ def fetch_and_check_polls(mastodon_client):
 
         if new_entries:
             append_to_warnings_list(new_entries)
+            # Feature 2: Post warning counts summary reply to the poll post
+            post_poll_summary_reply(mastodon_client, status_id, new_entries)
 
     if not matched_any:
         print("No new matching polls found from the target user in the last 30 minutes.")
         logging.info("No new matching polls found from the target user in the last 30 minutes.")
 
+def get_ddd_warning_count(raw_input):
+    """Searches DoesTheDogDie for a title string and counts topics where yesSum > noSum."""
+    if not DDD_API_KEY:
+        logging.warning("DOESTHEDOGDIE_API_KEY is missing. Defaulting flag count to 0.")
+        return 0
 
-def append_to_warnings_list(movie_titles):
-    """Safely appends movie items onto new lines if they aren't already tracked."""
-    existing_lines = []
-    if os.path.exists(LIST_PATH):
-        with open(LIST_PATH, "r") as f:
-            existing_lines = [line.strip() for line in f.readlines()]
+    year_match = re.search(r'\((19\d{2}|20\d{2})\)', raw_input)
+    target_year = year_match.group(1) if year_match else None
+    
+    if target_year:
+        movie_query = raw_input.replace(f"({target_year})", "").strip()
+    else:
+        movie_query = raw_input.strip()
 
-    lines_to_add = [m for m in movie_titles if m not in existing_lines]
+    search_url = f"https://www.doesthedogdie.com/dddsearch?q={movie_query}"
+    headers = {
+        "Accept": "application/json",
+        "X-API-KEY": str(DDD_API_KEY).strip(),
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    }
 
-    if not lines_to_add:
-        print("  All titles from this poll are already present in the file.")
-        logging.info("  All titles from this poll are already present in the file.")
+    try:
+        search_resp = requests.get(search_url, headers=headers, timeout=10)
+        if search_resp.status_code != 200:
+            return 0
+        
+        items = search_resp.json().get("items", [])
+        if not items:
+            return 0
+        
+        # Select best match based on target year if provided
+        selected_item = items[0]
+        if target_year:
+            for item in items:
+                api_year = item.get("releaseYear") or item.get("year") or item.get("release_date")
+                if api_year and str(target_year) in str(api_year):
+                    selected_item = item
+                    break
+
+        item_id = selected_item["id"]
+        media_url = f"https://www.doesthedogdie.com/media/{item_id}"
+        media_resp = requests.get(media_url, headers=headers, timeout=10)
+        if media_resp.status_code != 200:
+            return 0
+        
+        media_data = media_resp.json()
+        yes_count = 0
+        for topic_item in media_data.get("topicItemStats", []):
+            if topic_item.get("yesSum", 0) > topic_item.get("noSum", 0):
+                yes_count += 1
+                
+        return yes_count
+    except Exception as e:
+        logging.error(f"Error fetching DDD warning count for '{raw_input}': {e}")
+        return 0
+
+
+
+def post_poll_summary_reply(mastodon_client, status_id, movie_titles):
+    """Formats and posts the warning count summary reply to the original poll post."""
+    lines = ["🍿⚠️ CONTENT WARNINGS COUNT ⚠️🍿\n"]
+    for title in movie_titles:
+        count = get_ddd_warning_count(title)
+        lines.append(f"{count} flags, {title}")
+    
+    lines.append("\nSee #MonsterdonWarnings or DoesTheDogDie for more info")
+    reply_text = "\n".join(lines)
+
+    if DEBUG_MODE:
+        logging.info("=== DEBUG MODE ACTIVE - MOCKING REPLY POST ===")
+        print(f"\n--- MOCK REPLY TO STATUS ID: {status_id} ---")
+        print(reply_text)
+        print("-------------------------------------------\n")
         return
 
-    with open(LIST_PATH, "a") as f:
-        for title in lines_to_add:
-            f.write(f"\n{title}\n")
-            print(f"  📝 Appended to queue: '{title}'")
-            logging.info(f"  📝 Appended to queue: '{title}'")
-
+    try:
+        mastodon_client.status_post(
+            status=reply_text,
+            in_reply_to_id=status_id,
+            visibility="public"
+        )
+        logging.info(f"Successfully posted summary reply to status ID {status_id}.")
+    except Exception as e:
+        logging.error(f"Failed to post summary reply to status ID {status_id}: {e}")
 
 def main():
     if not MASTODON_TOKEN:

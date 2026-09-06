@@ -112,13 +112,20 @@ def fetch_census_data(start_dt, duration, starting_max_id=None):
     # Ensure starting_max_id isn't the literal string "None"
     if starting_max_id == "None":
         starting_max_id = None
-    
+
+    # Parse as Eastern local time directly (do NOT treat as UTC)
+    start_dt = pd.to_datetime(start_dt)
+    if start_dt.tzinfo is None:
+        start_dt = start_dt.tz_localize(LOCAL_TZ)
+    else:
+        start_dt = start_dt.tz_convert(LOCAL_TZ)
+
     # include the 10 minutes after the end of the film
     end_dt = start_dt + timedelta(minutes = int(duration) + 10) 
    
     unique_users = set()
     unique_servers = set()
-    collected_toots = []  # <--- ACCUMULATOR LIST FOR ALL TOOTS IN TARGET WINDOW
+    collected_toots = [] 
     total_hashtags_found = 0
     
     # Engagement Counters
@@ -149,22 +156,23 @@ def fetch_census_data(start_dt, duration, starting_max_id=None):
             total_checked += 1
             created_at = toot["created_at"].astimezone(LOCAL_TZ)
 
+            # Check if toot falls strictly within the movie window
             if start_dt <= created_at <= end_dt:
                 unique_users.add(toot["account"]["acct"])
                 server_domain = urlparse(toot["account"]["url"]).netloc
                 unique_servers.add(server_domain)
 
                 total_hashtags_found += 1
-                collected_toots.append(toot)  # <--- APPEND TO ACCUMULATOR
+                collected_toots.append(toot)
 
-                # Engagement Metrics
                 total_favorites += toot.get('favourites_count', 0)
                 total_boosts += toot.get('reblogs_count', 0)
                 total_replies += toot.get('replies_count', 0)
 
-            if created_at < start_dt:
-                done = True
-                break
+        # Evaluate termination at the BATCH level, not individual toot level
+        last_toot_time = batch_toots[-1]["created_at"].astimezone(LOCAL_TZ)
+        if last_toot_time < start_dt:
+            done = True
 
         # Update the pointer to the last toot in this batch
         current_max_id = batch_toots[-1]["id"]
@@ -332,8 +340,11 @@ def run_census_scan():
             last_max_id = results['next_id']
 
             # Calculate additional metrics
-            engagementsPerToot = (results['favs'] + results['boosts']) / max(row['toots'], results['event_toots'])
-            participationPerUser = ( max(row['toots'], results['event_toots']) + results['favs'] + results['boosts'] ) / results['users']
+            # Calculate additional metrics (Zero-guarded)
+            total_toots_count = max(row['toots'] if pd.notna(row['toots']) else 0, results['event_toots'])
+            
+            engagementsPerToot = (results['favs'] + results['boosts']) / total_toots_count if total_toots_count > 0 else 0.0
+            participationPerUser = (total_toots_count + results['favs'] + results['boosts']) / results['users'] if results['users'] > 0 else 0.0
 
             # Update the DataFrame with all metrics
             df.at[index, 'attendees'] = results['users']

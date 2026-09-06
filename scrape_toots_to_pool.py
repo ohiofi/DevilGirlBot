@@ -64,9 +64,9 @@ def scrape_monsterdon():
             # API safety: don't hammer the server too hard in a tight loop
             time.sleep(1) 
 
-            # Safety break: stop if we've fetched a massive amount (e.g., 200 toots)
-            if new_toots_count > 200:
-                print("Safety cap reached (200+ sentences). Stopping scrape.")
+            # Safety break: stop if we've fetched a massive amount (e.g., 1000 toots)
+            if new_toots_count > 1000:
+                print("Safety cap reached (900+ sentences). Stopping scrape.")
                 keep_fetching = False
 
         except Exception as e:
