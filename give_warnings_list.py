@@ -54,7 +54,8 @@ def build_main_post(movie_title, num_warnings, movie_url, target_year=None):
             f"{display_name}\n\n"
             f"{num_warnings} community content flags found\n"
             f"The detailed breakdown is attached as a content warning reply below\n\n"
-            f"Source: {movie_url}\n#MonsterdonWarnings"
+            f"Source: {movie_url}\n"
+            f"Powered by DoesTheDogDie.com\n\n#MonsterdonWarnings"
         )
     else:
         post_text = (
@@ -62,7 +63,8 @@ def build_main_post(movie_title, num_warnings, movie_url, target_year=None):
             f"Automated content check for\n"
             f"{display_name}\n\n"
             f"0 community content flags reported for this title\n\n"
-            f"Source: {movie_url}\n#MonsterdonWarnings"
+            f"Source: {movie_url}\n"
+            f"Powered by DoesTheDogDie.com\n\n#MonsterdonWarnings"
         )
         
     return display_name, post_text

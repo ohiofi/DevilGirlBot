@@ -210,7 +210,7 @@ def post_poll_summary_reply(mastodon_client, status_id, movie_titles):
         count = get_ddd_warning_count(title)
         lines.append(f"{count} flags, {title}")
     
-    lines.append("\nSee #MonsterdonWarnings or DoesTheDogDie for more info")
+    lines.append("\nSee #MonsterdonWarnings or DoesTheDogDie for more info\nPowered by DoesTheDogDie.com")
     reply_text = "\n".join(lines)
 
     if DEBUG_MODE:
