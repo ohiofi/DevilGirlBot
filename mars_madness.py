@@ -119,18 +119,35 @@ else:
     MOVIE_LIST_FILE = SCRIPT_DIR / "mars_madness_movie_list.txt"
 
 # Attempt to load from the external iCloud TXT file safely
-try:
-    if MOVIE_LIST_FILE.exists():
-        with open(MOVIE_LIST_FILE, "r", encoding="utf-8") as f:
-            movieList = json.load(f)  # Parses the valid JSON syntax inside the text file perfectly
+if MOVIE_LIST_FILE.exists():
+    for attempt in range(1, 4):
+        try:
+            with open(MOVIE_LIST_FILE, mode="r", encoding="utf-8") as f:
+                movieList = json.load(f)
             print("☁️ Successfully loaded movie list from text configuration file.")
+            break  # Success! Exit the retry loop.
+        except (OSError, IOError) as lock_err:
+            # Check specifically for Errno 11 (Resource deadlock avoided) or related OS locking errors
+            if getattr(lock_err, "errno", None) == 11 or "deadlock" in str(lock_err).lower():
+                logging.warning(
+                    f"⚠️ File deadlock encountered on {MOVIE_LIST_FILE.name} (Attempt {attempt}/3): {lock_err}. Retrying in 10s..."
+                )
+                print(f"⚠️ Movie list file deadlocked (Attempt {attempt}/3). Retrying in 10 seconds...")
+            else:
+                logging.warning(
+                    f"⚠️ I/O Error reading {MOVIE_LIST_FILE.name} (Attempt {attempt}/3): {lock_err}. Retrying in 10s..."
+                )
+                print(f"⚠️ Read error on movie list file (Attempt {attempt}/3). Retrying in 10 seconds...")
+            
+            time.sleep(10)
+        except Exception as parse_err:
+            logging.error(f"Fatal JSON parsing error in {MOVIE_LIST_FILE.name}: {parse_err}", exc_info=True)
+            break  # Break immediately on bad JSON structure so we don't delay execution
     else:
-        print("⚠️ External movie list text file not found on disk. Utilizing hardcoded fallback list.")
+        logging.error(
+            f"Failed to parse movie list text file after 3 deadlock/lock retries. Falling back to default list."
+        )
         movieList = FALLBACK_MOVIE_LIST
-except Exception as err:
-    logging.error(f"Failed to parse movie list text file, falling back to original code list: {err}")
-    print("❌ Error reading movie list text layout. Safety fallback initiated.")
-    movieList = FALLBACK_MOVIE_LIST
 
 # movieList = [
 #     {
@@ -273,6 +290,7 @@ movieCriteria = [
     ["is the ", "MOST", "LEAST", " beefy"],
     ["is the ", "MOST", "LEAST", " chill"],
     ["is the ", "MOST", "LEAST", " complex"],
+    ["is the ", "MOST", "LEAST", " cozy"],
     ["is the ", "MOST", "LEAST", " dark"],
     ["is the ", "MOST", "LEAST", " David Lynch-esque"],
     ["is the ", "MOST", "LEAST", " Devil Girl From Mars-esque"],
