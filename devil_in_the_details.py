@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 # NOTE: Run this manually in terminal venv. Always crashes/times-out if I try to run via VSCode play button.
 
 DEBUG_MODE = True # Set to False when ready to post publicly
-THIS_WEEKS_EMOJI = "🐙"
+THIS_WEEKS_EMOJI = "⏰"
 THIS_WEEKS_INDEX_LOCATION = 1 # use index 1 to skip double feature and treat the main film as latest
 CSV_FILE = "details.csv"
 
@@ -1027,10 +1027,10 @@ def main():
     intro_text = (
         f"😈📊 DEVIL IN THE DETAILS 📊😈\n\n"
         f"An occasional thread with Monsterdon data rankings.\n"
-        f"Will our new elrich entry endure?\n"
+        f"What's the tally for our time-traveling trainee?\n"
         f"{THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']})\n"
         f"{stats_text}\n"
-        f"{THIS_WEEKS_EMOJI} ATTENDEES: {attendee_count} Total People (ppl)\n"
+        f"{THIS_WEEKS_EMOJI} TOOT RATE: {toot_rate} tpm or Toots Per Minute. Calculated Toots / Minutes\n"
         f"\n#Monsterdon"
     )
     thread_posts.append({'text': intro_text, 'image': None, 'desc': None})
@@ -1055,8 +1055,8 @@ def main():
     # thread_posts.append({'text': footnotes, 'image': None, 'desc': None})
     
     # # Toot Rate - TPM Reports
-    # tpm_posts = create_timeline_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)", isDollars=False, useMillions=False, decimals=1)
-    # thread_posts.extend(tpm_posts)
+    tpm_posts = create_timeline_reports(df, latest_film, metric_col='tpm', unit='tpm', report_title='Monsterdon Toot Rate', subtitle="Toots per minute (tpm)", isDollars=False, useMillions=False, decimals=1)
+    thread_posts.extend(tpm_posts)
 
     # Participation - PPU Reports
     # ppu_posts = create_timeline_reports(df, latest_film, metric_col='participation_score', unit='ppu', report_title='Monsterdon Participations Per User', subtitle="Participations Per User (ppu)", isDollars=False, useMillions=False, decimals=1)
@@ -1071,8 +1071,8 @@ def main():
     # thread_posts.extend(tpm_posts)
 
     # # # Attendance Reports
-    attendance_posts = create_timeline_reports(df, latest_film, metric_col='attendees', unit='ppl', report_title='Monsterdon Attendees', subtitle="Total People (ppl)", isDollars=False, useMillions=False, decimals=0)
-    thread_posts.extend(attendance_posts)
+    # attendance_posts = create_timeline_reports(df, latest_film, metric_col='attendees', unit='ppl', report_title='Monsterdon Attendees', subtitle="Total People (ppl)", isDollars=False, useMillions=False, decimals=0)
+    # thread_posts.extend(attendance_posts)
 
     # -=-=-=-=-=-=-=-=-
 
