@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 # NOTE: Run this manually in terminal venv. Always crashes/times-out if I try to run via VSCode play button.
 
 DEBUG_MODE = True # Set to False when ready to post publicly
-THIS_WEEKS_EMOJI = "💀"
+THIS_WEEKS_EMOJI = "🦇"
 THIS_WEEKS_INDEX_LOCATION = 1 # use index 1 to skip double feature and treat the main film as latest
 CSV_FILE = "details.csv"
 
@@ -1006,7 +1006,7 @@ def main():
     # - Will our underdog overperform?
     # - Will our new entry endure?
     # What's the tally for our trainee?
-    # Will our beginner bloom?
+    # - Will our batty beginner bloom?
     # Can our candidate climb?
     # Does our debut deliver?
     # Will our first-timer find fame?
@@ -1027,10 +1027,10 @@ def main():
     intro_text = (
         f"😈📊 DEVIL IN THE DETAILS 📊😈\n\n"
         f"An occasional thread with Monsterdon data rankings.\n"
-        f"How's House hold up?\n"
+        f"Will our batty beginner bloom?\n"
         f"{THIS_WEEKS_EMOJI} {latest_film['title']} ({latest_film['release_year']})\n"
         f"{stats_text}\n"
-        f"{THIS_WEEKS_EMOJI} PARTICIPATION TROPHY: {participation_score} ppu or Participations Per User. Calculated (Toots + Favs + Boosts) / Users.\n" 
+        f"{THIS_WEEKS_EMOJI} TOOT VOLUME: {raw_toots} Total Toots\n"  
         f"\n#Monsterdon"
     )
     thread_posts.append({'text': intro_text, 'image': None, 'desc': None})
@@ -1059,12 +1059,12 @@ def main():
     # thread_posts.extend(tpm_posts)
 
     # Participation - PPU Reports
-    ppu_posts = create_timeline_reports(df, latest_film, metric_col='participation_score', unit='ppu', report_title='Monsterdon Participations Per User', subtitle="Participations Per User (ppu)", isDollars=False, useMillions=False, decimals=1)
-    thread_posts.extend(ppu_posts)
+    # ppu_posts = create_timeline_reports(df, latest_film, metric_col='participation_score', unit='ppu', report_title='Monsterdon Participations Per User', subtitle="Participations Per User (ppu)", isDollars=False, useMillions=False, decimals=1)
+    # thread_posts.extend(ppu_posts)
 
     # Toot Volume Reports
-    # vol_posts = create_timeline_reports(df, latest_film, metric_col='toots', unit='toots', report_title='Monsterdon Toot Volume', subtitle="Total toots", isDollars=False, useMillions=False, decimals=0)
-    # thread_posts.extend(vol_posts)
+    vol_posts = create_timeline_reports(df, latest_film, metric_col='toots', unit='toots', report_title='Monsterdon Toot Volume', subtitle="Total toots", isDollars=False, useMillions=False, decimals=0)
+    thread_posts.extend(vol_posts)
 
     # # # Top Strength Reports
     # tpm_posts = create_timeline_reports(df, latest_film, metric_col='engagement_score', unit='ept', report_title='Monsterdon Toot Strength', subtitle="Engagements per toot (ept)", isDollars=False, useMillions=False, decimals=2)
