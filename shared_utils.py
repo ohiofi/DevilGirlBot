@@ -262,13 +262,13 @@ def save_previous_posts(history_list):
 def save_sentences(sentences):
     """
     Saves the sentence pool to SENTENCE_FILE. 
-    Trims to 500 items to keep the file manageable.
+    Trims to 900 items to keep the file manageable.
     """
-    # Keep the pool to a maximum of 500 items
-    if len(sentences) > 500:
+    # Keep the pool to a maximum of 900 items
+    if len(sentences) > 900:
         # Optionally shuffle before trimming to keep a variety
         random.shuffle(sentences)
-        sentences = sentences[:500]
+        sentences = sentences[:900]
         
     with open(SENTENCE_FILE, "w", encoding="utf-8") as f:
         # ensure_ascii=False keeps the text readable in the file
