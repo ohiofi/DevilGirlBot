@@ -144,3 +144,9 @@ last_random_post.txt
 *.pyc
 possible_sentences.txt
 previous_posts.txt
+*.json
+possible_sentences_original.txt
+
+*.png
+last_hashtag_scraping_id.txt
+census_max_id.txt
