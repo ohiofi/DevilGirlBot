@@ -29,7 +29,8 @@ logging.basicConfig(
     ]
 )
 
-JSON_PATH = os.getenv("GIVE_WARNINGS_JSON_PATH") or os.getenv("GIVE_WARNINGS_LIST_PATH") or os.path.join(WORKING_DIR, "give_warnings.json")
+# JSON_PATH = os.getenv("GIVE_WARNINGS_JSON_PATH") or os.getenv("GIVE_WARNINGS_LIST_PATH") or os.path.join(WORKING_DIR, "give_warnings.json")
+JSON_PATH = os.getenv("GIVE_WARNINGS_LIST_PATH")
 if JSON_PATH.endswith(".txt"):
     JSON_PATH = os.path.join(os.path.dirname(JSON_PATH), "give_warnings.json")
 
@@ -42,16 +43,28 @@ LOOKBACK_MINUTES = 30
 MASTODON_TOKEN = os.getenv("access_token")
 MASTODON_BASE_URL = os.getenv("MASTODON_BASE_URL", "https://mastodon.social")
 
+DEFAULT_ENTRY = {
+    "name": "",
+    "hasPosted": False,
+    "datePosted": None,
+    "postID": None,
+    "warningsList": [],
+    "aliasNamesList": [],
+    "doesTheDogDieUrl": None
+}
+
 def load_warnings_json(filepath):
-    """Loads JSON data list."""
+    """Loads the JSON list of movie entries and normalizes missing fields."""
     if not os.path.exists(filepath):
         return []
     try:
         with open(filepath, "r", encoding="utf-8") as f:
             data = json.load(f)
-            return data if isinstance(data, list) else []
+            if isinstance(data, list):
+                return [normalize_movie_entry(item) for item in data if isinstance(item, dict)]
+            return []
     except Exception as e:
-        logging.error(f"Error loading JSON {filepath}: {e}")
+        logging.error(f"Error reading JSON file {filepath}: {e}")
         return []
 
 def save_warnings_json(filepath, data):
@@ -219,6 +232,21 @@ def get_ddd_warning_count(raw_input):
     except Exception as e:
         logging.error(f"Error fetching DDD warning count for '{raw_input}': {e}")
         return 0
+
+
+def normalize_movie_entry(entry):
+    """Fills in any missing fields with their standard default values."""
+    if not isinstance(entry, dict):
+        return entry
+    for key, default_val in DEFAULT_ENTRY.items():
+        if key not in entry or entry[key] is None:
+            # Create a new list copy for list defaults to avoid shared reference bugs
+            if isinstance(default_val, list):
+                entry[key] = []
+            else:
+                entry[key] = default_val
+    return entry
+
 
 def post_poll_summary_reply(mastodon_client, status_id, movie_titles):
     """Formats and posts the warning count summary reply to the original poll post."""
