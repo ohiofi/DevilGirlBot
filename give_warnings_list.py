@@ -20,6 +20,7 @@ ENV_PATH = os.path.join(WORKING_DIR, ".env")
 os.makedirs(LOG_DIR, exist_ok=True)
 LOG_PATH = os.path.join(LOG_DIR, "give_warnings_list.log")
 
+
 # Configure logger to output to both log file and stdout
 logging.basicConfig(
     level=logging.INFO,
@@ -35,7 +36,8 @@ DEBUG_MODE = False
 
 load_dotenv(ENV_PATH)
 
-JSON_PATH = os.getenv("GIVE_WARNINGS_JSON_PATH") or os.getenv("GIVE_WARNINGS_LIST_PATH") or os.path.join(WORKING_DIR, "give_warnings.json")
+# JSON_PATH = os.getenv("GIVE_WARNINGS_JSON_PATH") or os.getenv("GIVE_WARNINGS_LIST_PATH") or os.path.join(WORKING_DIR, "give_warnings.json")
+JSON_PATH = os.getenv("GIVE_WARNINGS_LIST_PATH")
 if JSON_PATH.endswith(".txt"):
     JSON_PATH = os.path.join(os.path.dirname(JSON_PATH), "give_warnings.json")
 
@@ -43,14 +45,27 @@ DDD_API_KEY = os.getenv("DOESTHEDOGDIE_API_KEY")
 MASTODON_TOKEN = os.getenv("access_token")
 MASTODON_BASE_URL = os.getenv("MASTODON_BASE_URL", "https://mastodon.social")
 
+DEFAULT_ENTRY = {
+    "name": "",
+    "hasPosted": False,
+    "datePosted": None,
+    "postID": None,
+    "warningsList": [],
+    "aliasNamesList": [],
+    "doesTheDogDieUrl": None
+}
+
+
 def load_warnings_json(filepath):
-    """Loads the JSON list of movie entries."""
+    """Loads the JSON list of movie entries and normalizes missing fields."""
     if not os.path.exists(filepath):
         return []
     try:
         with open(filepath, "r", encoding="utf-8") as f:
             data = json.load(f)
-            return data if isinstance(data, list) else []
+            if isinstance(data, list):
+                return [normalize_movie_entry(item) for item in data if isinstance(item, dict)]
+            return []
     except Exception as e:
         logging.error(f"Error reading JSON file {filepath}: {e}")
         return []
@@ -219,6 +234,19 @@ def handle_duplicate_films(items, movie_query, target_year):
 
     logging.info(f"Tier 4 Fallback (No exact year criteria matched. Using top API result): '{items[0].get('name')}'")
     return items[0]
+
+def normalize_movie_entry(entry):
+    """Fills in any missing fields with their standard default values."""
+    if not isinstance(entry, dict):
+        return entry
+    for key, default_val in DEFAULT_ENTRY.items():
+        if key not in entry or entry[key] is None:
+            # Create a new list copy for list defaults to avoid shared reference bugs
+            if isinstance(default_val, list):
+                entry[key] = []
+            else:
+                entry[key] = default_val
+    return entry
 
 def publish_main_post(mastodon_client, text, debug_mode):
     """Step 3: Publishes the public-facing primary announcement post."""
